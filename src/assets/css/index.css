@@ -1,0 +1,39 @@
+@font-face { 
+    font-family: "Roboto";
+    src: url('../fonts/Roboto/Roboto-Medium.ttf');
+}
+@font-face { 
+    font-family: "RobotoBold";
+    src: url('../fonts/Roboto/Roboto-Black.ttf');
+}
+
+@font-face { 
+    font-family: "RobotoThin";
+    src: url('../fonts/Roboto/Roboto-Thin.ttf');
+}
+/* Poppins font */
+
+@font-face { 
+    font-family: "Poppins";
+    src: url('../fonts/Poppins/Poppins-Light.ttf');
+}
+@font-face { 
+    font-family: "PoppinsBold";
+    src: url('../fonts/Poppins/Poppins-ExtraBold.ttf');
+}
+
+@font-face { 
+    font-family: "PoppinsThin";
+    src: url('../fonts/Poppins/Poppins-ExtraLight.ttf');
+}
+
+*{
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 300;
+}
+html,body{
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
