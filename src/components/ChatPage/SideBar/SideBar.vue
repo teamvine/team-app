@@ -257,10 +257,6 @@ export default {
         min-height: 100%;
         max-height: 100%;
         flex: 0 0 300px;
-<<<<<<< HEAD
-        /* background-color: rgb(99, 99, 99);
-        color: white; */
-=======
         background-color: #fff;
         color: white;
         overflow-y: scroll;
@@ -269,18 +265,16 @@ export default {
         display:inline-block;
     }
     .contact-name{
-        font-weight:800;
+        font-weight:500;
     }
     .contact-last-message{
         font-weight: 200;
-        font-family: 'PoppinsThin';
+        font-family: 'inter';
         margin-left: 38px;
         margin-top:-10px;
 
         white-space: nowrap;
-        width: 300px;
         overflow: hidden;
         text-overflow: ellipsis;
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
     }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-view">
       <div class="my-auto">
-          <div class="text-center">Icon 1</div>
+          <div class="text-center mt-4">Icon 1</div>
       </div>
   </div>
 </template>
