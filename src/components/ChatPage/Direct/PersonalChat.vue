@@ -15,7 +15,7 @@ export default {
     name: "PersonalChatPage",
     components: {
         Chat,ChatDetails,ChatReplies
-    }
+    },
 }
 </script>
 

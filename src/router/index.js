@@ -5,6 +5,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path:"/try/chat",
+    name:"Trying new chat layout",
+    component: () =>import('../pages/try_general_chat_view.vue'),
+  },
+  {
     path: "/",
     name: "Home",
     component: () => import(/* webpackChunkName: "about" */ '../pages/Home.vue'),

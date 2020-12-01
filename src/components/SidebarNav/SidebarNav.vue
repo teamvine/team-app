@@ -1,6 +1,8 @@
 <template>
   <div class="sidebar-view">
-      <!-- NAV -->
+      <div class="my-auto">
+          <div class="text-center">Icon 1</div>
+      </div>
   </div>
 </template>
 
@@ -11,10 +13,15 @@ export default {
 </script>
 
 <style scoped>
+    .my-auto{
+        position: absolute;
+        margin-top: auto 0;
+    }
     .sidebar-view {
         height: 100%;
         flex: 0 50px;
-        /* background: rgb(143, 143, 143);
-        color: white; */
+        background: #F4FAFB;
+        color:black;
+        position: relative;
     }
 </style>

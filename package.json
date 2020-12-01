@@ -1,5 +1,5 @@
 {
-  "name": "teamvine",
+  "name": "team-app",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -47,5 +47,10 @@
       "git add"
     ]
   },
-  "readme": "ERROR: No README data found!"
+  "readme": "ERROR: No README data found!",
+  "description": "app to help teams work together",
+  "main": "index.js",
+  "repository": "https://github.com/teamvine/team-app/",
+  "author": "sandberg-smith <123.smith.!>",
+  "license": "MIT"
 }
