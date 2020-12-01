@@ -10,36 +10,57 @@
                 sharing skills and ideas and your staffs made easier and secure.
               </p>
             </div>
-            <img class="img mt-4" src="../assets/images/illustration.png" alt="">
+            <img class="img mt-4" src="../assets/images/Group Chat-amico.svg" alt="">
           </div>
-          <div class="right">
+          <div class="register-container right focus">
             <form @submit.prevent="onSignIn" class="pt-4 pb-3">
               <h1 class="f-md mb-3 mt-3 head">SIGN UP TO RCONNECT</h1>
               <span class="line"></span>
-              <div class="in-field">
+              <div class="in-field one">
+
                 <div class="icn"><i class="ri-account-pin-circle-line"></i></div>
-                <div class="inpt"><input type="text" placeholder="Full Name"></div>
-                <div class="icn"><i class="ri-check-line"></i></div>
+                <div class="inpt">
+                  <h5>Full Name</h5>
+                  <input type="text" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
+                  </div>
+                <div class="icn check-icon"><i class="ri-check-line"></i></div>
               </div>
+
+
+
               <div class="in-field">
                 <div class="icn"><i class="ri-price-tag-line"></i></div>
-                <div class="inpt"><input type="text" placeholder="Display Name"></div>
-                <div class="icn"><i class="ri-check-line"></i></div>
+                <div class="inpt">
+                  <h5>Display Name</h5>
+                  <input type="text" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
+                  </div>
+                <div class="icn check-icon" ><i class="ri-check-line"></i></div>
               </div>
               <div class="in-field">
                 <div class="icn"><i class="ri-at-line"></i></div>
-                <div class="inpt"><input type="email" placeholder="Your Email"></div>
-                <div class="icn"><i class="ri-check-line"></i></div>
+                <div class="inpt">
+                  <h5>Email</h5>
+                  <input type="email" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
+                  </div>
+                <div class="icn check-icon"><i class="ri-check-line"></i></div>
               </div>
               <div class="in-field">
                 <div class="icn"><i class="ri-lock-line"></i></div>
-                <div class="inpt"><input type="password" placeholder="New Password"></div>
-                <div class="icn"><i class="ri-check-line"></i></div>
+                <div class="inpt">
+                  <h5>New Password</h5>
+                  <input type="password" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
+                  </div>
+                <div class="icn check-icon"><i class="ri-check-line"></i></div>
               </div>
               <div class="in-field">
-                <div class="icn"><i class="ri-lock-line"></i></div>
-                <div class="inpt"><input type="password" placeholder="Repeat Password"></div>
-                <div class="icn"><i class="ri-check-line"></i></div>
+                <div class="icn">
+                  <i class="ri-lock-line"></i>
+                  </div>
+                <div class="inpt">
+                  <h5>Repeat Password</h5>
+                  <input type="password" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
+                  </div>
+                <div class="icn check-icon"><i class="ri-check-line"></i></div>
               </div>
               <div class="agree-terms">
                 <input type="checkbox" id="check-b"> I agree to the terms and conditions of privacy.
@@ -69,6 +90,16 @@ export default {
   methods: {
     onSignIn() {
       return;
+    },
+    onFocusFunc(e){
+      let parent = e.target.parentNode.parentNode
+      parent.classList.add('focus')
+    },
+    onBlurFunc($e){
+      let parent = $e.target.parentNode.parentNode
+      if($e.target.value == ""){
+        parent.classList.remove('focus')
+      } 
     }
   }
 }
@@ -142,21 +173,35 @@ export default {
 .desc {
   font-weight: bold;
 }
-form {
-   background-color: white;
-   border-radius: 7px;
-   width: 90%;
-   margin-top: 16%;
-   padding-bottom: 4%;
-   -webkit-box-shadow: 0 0 5px 2px rgb(219, 219, 219);
-   -moz-box-shadow: 0 0 5px 2px rgb(219, 219, 219);
-   box-shadow: 0 0 5px 2px rgb(219, 219, 219);
+.register-content {
+  width: 100%;
+  height: auto;
+  min-height: 87%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+.register-container{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 1em;
+    margin:3.8em 0 0 0;
+    border: none;
+     box-shadow: 0 0 4px 1px rgb(219, 219, 219);
+}
+form{
+    width: 360px;
+    margin: -17em 0 0 5em;
 }
 form h1 {
   color: #00A8FF;
   font-weight: 100px;
   font-size: 110% !important;
-  margin-top: 10%;
+  margin-top: 82%;
   margin-bottom: 0;
 }
 form .line {
@@ -168,8 +213,9 @@ form .line {
     margin-top: 1%;
     margin-bottom: 12%;
 }
+
 .in-field {
-  margin: 2% auto;
+  /* margin: 2% auto;
   width: 70%;
   height: 45px;
   display: flex;
@@ -178,14 +224,102 @@ form .line {
   border-radius: 3px;
   margin-top: 5%;
   box-shadow: 0 0 2px 1px rgb(219, 219, 219);
-  background: none !important;
+  background: none !important; */
+
+  position: relative;
+  display: grid;
+  grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
 }
+.in-field::after, .in-field::before{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #4299e1;
+    transition: .3s;
+    left: 0;
+    right: 0;
+}
+.in-field::after{
+    right: 50%; 
+}
+.in-field::before{
+    right: 50%;
+}
+.in-field.one{
+    margin-bottom: 4px;
+}
+
+
 .in-field .icn {
-  flex: 12%;
+  /* flex: 12%;
   font-size: 150%;
   padding-top: 1%;
-  color: #00A8FF;
+  color: #00A8FF; */
+      display: flex;
+    justify-content: center;
+    align-items: center;
 } 
+.in-field .icn i{
+  color: #d9d9d9 !important;
+    transition: .3s;
+}
+
+
+.in-field > div{
+    position: relative;
+    height: 45px;
+}
+.in-field.focus .icn i{
+    color: #4299e1 !important;
+}
+
+.in-field.focus div h5{
+    top: -5px;
+    font-size: 15px;
+}
+.in-field.focus::after, .in-field.focus::before{
+    width: 100%;
+}
+.in-field > div h5{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 18px;
+    transition: .3s;
+
+}
+
+.input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    color: #555;
+}
+
+
+
+.check-icon {
+    margin: -50px 0 0 21em;
+}
+.check-icon i {
+    margin: 18px 0 0 0;
+}
+/* 
 .in-field .inpt {
   flex: 100%;
 }
@@ -196,7 +330,7 @@ form .line {
   padding-right: 3%;
   border: none;
   background: none !important;
-}
+} */
 .btn-create {
   width: auto;
   display: block;
@@ -248,7 +382,7 @@ form .line {
 .primary {
   color: #167df0;
 }
-@media only screen and (max-width: 700px){
+/* @media only screen and (max-width: 700px){
   .register-content {
     min-height:initial;
   }
@@ -282,5 +416,5 @@ form .line {
   form h1 {
     margin-top: 0%;
   }
-}
+} */
 </style>
