@@ -25,12 +25,9 @@ export default {
         overflow-x: auto;
         overflow-y: auto;
         flex-direction: row;
-        background: rgb(0, 27, 116);
     }
     .main-chat-view {
         width: 100%;
         flex: 0 100%;
-        background: rgb(139, 193, 243);
-        color: white;
     }
 </style>

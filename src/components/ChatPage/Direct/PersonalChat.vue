@@ -15,7 +15,7 @@ export default {
     name: "PersonalChatPage",
     components: {
         Chat,ChatDetails,ChatReplies
-    }
+    },
 }
 </script>
 
@@ -23,7 +23,6 @@ export default {
     .personal-chat-view {
         height: 100%;
         flex: 0 0 100%;
-        /* background: rgb(52, 124, 146); */
         color: white;
     }
     .main-personal-chat {
