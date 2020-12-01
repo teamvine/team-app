@@ -1,29 +1,48 @@
 <template>
     <div class="side-bar-view">
         <div class="upper-part p-4">
-            <div class="search">
-            <form class="">
-              <div class="input-group mb-3 input-group-lg">
-                  <input type="text" id="search-txt" class="form-control" placeholder="Paste url here..."
-                         aria-label="url to shorten" aria-describedby="basic-addon2" />
-                  <div class="input-group-append">
-                      <button class="btn btn-primary btn-lg" type="button" >Shorten</button>
-                  </div>
-              </div>
-          </form>
+            <div class="relative">
+                <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+                    <input type="text" :disabled="false" name="searchtext" id="searchtext"
+                        placeholder="Search messages..."
+                        class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border h-10 border-grey-light rounded rounded-r-none px-3 relative" />
+                    <div class="flex -mr-px">
+                        <button
+                            class="srchtextbtn flex items-center leading-normal rounded rounded-l-none border border-l-0 border-grey-light px-3 whitespace-no-wrap bg-white text-sm hover:bg-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path
+                                    d="M11 2c4.968 0 9 4.032 9 9s-4.032 9-9 9-9-4.032-9-9 4.032-9 9-9zm0 16c3.867 0 7-3.133 7-7 0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7zm8.485.071l2.829 2.828-1.415 1.415-2.828-2.829 1.414-1.414z"
+                                    fill="rgba(50,152,219,1)" /></svg>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="m-4 p-4">
+            <div>
                 <button class="btn btn mr-3 sort-by active">personal</button>
                 <button class="btn btn mr-3 sort-by">Channel</button>
+                 <div class="flex flex-wrap w-full mb-3 mt-4 relative">
+                     <div>
+                        <span> Sort by </span>
+                     </div>
+                     <div class="more-options">
+                        <span class="more-icon">
+                            <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z" /><path d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="rgba(255,255,255,1)" /></svg>
+                            </button>
+                        </span>
+                     </div>
+                 </div>
             </div>
         </div>
-        <div class="my-contacts p-4">
+        <div class="my-contacts">
             <div v-for="contact in contacts" :key="contact._id">
-                <img :src="contact.img" :alt="contact.name" width="38" height="38" class="w-7 d-inline-block h-7 rounded-full bg-gray-100 border-2 border-white" />
-               <span class="contact-name">  {{ contact.name }}</span>
-               <p class="contact-last-message">
-                   {{contact.lastMessage.message}}
-               </p>
+                <img :src="contact.img" :alt="contact.name" width="38" height="38"
+                    class="w-7 d-inline-block h-7 rounded-full bg-gray-100 border-2 border-white" />
+                <span class="contact-name"> {{ contact.name }}</span>
+                <p class="contact-last-message">
+                    {{contact.lastMessage.message}}
+                </p>
             </div>
         </div>
     </div>
@@ -258,14 +277,14 @@ export default {
         max-height: 100%;
         flex: 0 0 300px;
         background-color: #fff;
-        color: white;
         overflow-y: scroll;
     }
     .d-inline-block{
         display:inline-block;
     }
     .contact-name{
-        font-weight:500;
+        font-weight:200;
+        font-family: 'Roboto';
     }
     .contact-last-message{
         font-weight: 200;
@@ -276,5 +295,22 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-family: 'RobotoThin';
+    }
+    .sort-by.active{
+        background-color: white;
+        color: #1A94FF;
+        padding:4px 15px;
+        border-radius: 15px;
+    }
+    input{
+        color:rgb(46, 44, 44) !important;
+    }
+    button{
+        outline: none !important;
+    }
+    .more-options{
+        position: absolute;
+        right: 0 !important;
     }
 </style>
