@@ -1,59 +1,94 @@
 <template>
   <div id="login-view">
     <div class="login-content">
-        <div class="cont">
-          <div class="left">
-            <div>
-              <h2 class="font-bold app-title">RCONNECT</h2>
-              
-              <p class="mt-8 desc bring-more">
-                Bring your Teams,Companies,Schools and Other groups to join RCONNECT where 
-                sharing skills and ideas and your staffs made easier and secure.
-              </p>
-            </div>
-            <img class="img mt-4" src="../assets/images/Group Chat-amico.svg" alt="">
-          </div>
-          <div class="login-container focus right">
-            <form action="index.html">
-          
-                <h2 class="head font-medium">Sign In</h2>
-                  <span class="line"></span>
-                <div class="input-div one ">
-                    <div class="i">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 22H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/></svg>
-                        
-                </div>
-                <div>
-                    <h5>Email</h5>
-                    <input type="text" class="input" @focus="focusFunc" @blur="blurFunc">
-                </div>
-                </div>
-                <div class="input-div two ">
-                    <div class="i">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 10h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 1 1 14 0v1zm-2 0V9A5 5 0 0 0 7 9v1h10zm-6 4v4h2v-4h-2z"/></svg>
-                        
-                </div>
-                <div>
-                    <h5>Password</h5>
-                    <input type="password" class="input" @focus="focusFunc" @blur="blurFunc">
-                </div>
-                    </div>
-                <a href="#" >Forgot Password?</a>
-                <p v-if="errorMsg!=''" :class="[errorColor,'mt-2']">{{errorMsg}}</p>
-               
-                <button class="btn">Login</button>
+      <div class="cont">
+        <div class="left">
+          <div>
+            <h2 class="font-bold app-title">RCONNECT</h2>
 
-                  <p class="mt-3 mb-2 float-left no-account">Do you have account? <router-link to="/register" class="link">Sign Up.</router-link></p>
-                  
-            </form>
+            <p class="mt-8 desc bring-more">
+              Bring your Teams,Companies,Schools and Other groups to join
+              RCONNECT where sharing skills and ideas and your staffs made
+              easier and secure.
+            </p>
+          </div>
+          <img
+            class="img mt-4"
+            src="../assets/images/Group Chat-amico.svg"
+            alt=""
+          />
         </div>
+        <div class="login-container focus right">
+          <form action="index.html">
+            <h2 class="head font-medium">Sign In</h2>
+            <span class="line"></span>
+            <div class="input-div one">
+              <div class="i">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M20 22H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h5>Email</h5>
+                <input
+                  type="text"
+                  class="input"
+                  @focus="focusFunc"
+                  @blur="blurFunc"
+                />
+              </div>
+            </div>
+            <div class="input-div two">
+              <div class="i">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M19 10h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 1 1 14 0v1zm-2 0V9A5 5 0 0 0 7 9v1h10zm-6 4v4h2v-4h-2z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h5>Password</h5>
+                <input
+                  type="password"
+                  class="input"
+                  @focus="focusFunc"
+                  @blur="blurFunc"
+                />
+              </div>
+            </div>
+            <a href="#">Forgot Password?</a>
+            <p v-if="errorMsg != ''" :class="[errorColor, 'mt-2']">
+              {{ errorMsg }}
+            </p>
+
+            <button class="btn">Login</button>
+
+            <p class="mt-3 mb-2 float-left no-account">
+              Do you have account?
+              <router-link to="/register" class="link">Sign Up.</router-link>
+            </p>
+          </form>
         </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "Login",
   data() {
@@ -66,36 +101,35 @@ export default {
   },
   methods: {
     onSignIn() {
-      if(this.email=="" || this.password==""){
-        this.errorMsg = "* All fields are required *"
+      if (this.email == "" || this.password == "") {
+        this.errorMsg = "* All fields are required *";
         return 0;
       }
       return;
     },
-    focusFunc($event){
-        let parent = $event.target.parentNode.parentNode;
-        parent.classList.add('focus')
+    focusFunc($event) {
+      let parent = $event.target.parentNode.parentNode;
+      parent.classList.add("focus");
     },
-    blurFunc($event){
-        let parent = $event.target.parentNode.parentNode;
-        if($event.target.value == ""){
-            parent.classList.remove('focus')
-        }
-    }
+    blurFunc($event) {
+      let parent = $event.target.parentNode.parentNode;
+      if ($event.target.value == "") {
+        parent.classList.remove("focus");
+      }
+    },
   },
-  mounted(){
-  }
-}
+  mounted() {},
+};
 </script>
 
 <style scoped>
-.app-title{
-  font-family: 'PoppinsBold';
+.app-title {
+  font-family: "PoppinsBold";
   font-size: 30px;
   color: #4299e1;
 }
-.bring-more{
-  font-family: 'PoppinsThin';
+.bring-more {
+  font-family: "PoppinsThin";
   font-weight: 600 !important;
   font-size: 18px;
 }
@@ -146,7 +180,7 @@ export default {
 }
 .img {
   width: 80%;
-  margin:auto;
+  margin: auto;
   margin-top: 0;
 }
 .desc {
@@ -158,22 +192,22 @@ export default {
   margin: -23px -64px 0 0;
 }
 
-.login-container{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 1em;
-    height: 30em;
-    margin: 6.8em 0 0 0;
-    border: none;
-     box-shadow: 0 0 4px 1px rgb(219, 219, 219);
+.login-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 1em;
+  height: 30em;
+  margin: 6.8em 0 0 0;
+  border: none;
+  box-shadow: 0 0 4px 1px rgb(219, 219, 219);
 }
-form{
-    width: 360px;
-    margin: -4em 0 0 5em;
+form {
+  width: 360px;
+  margin: -4em 0 0 5em;
 }
-form h2{
-  color: #00A8FF;
+form h2 {
+  color: #00a8ff;
   font-weight: 100px;
   font-size: 110% !important;
   margin-top: 10%;
@@ -181,128 +215,126 @@ form h2{
 }
 form .line {
   display: block;
-    width: 45%;
-    background-color: #00A8FF;
-    height: 2px;
-    margin:auto;
-    margin-top: 1%;
-    margin-bottom: 12%;
+  width: 45%;
+  background-color: #00a8ff;
+  height: 2px;
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 12%;
 }
-.input-div{
-    position: relative;
-    display: grid;
-    grid-template-columns: 7% 93%;
-    margin: 25px 0;
-    padding: 5px 0;
-    border-bottom: 2px solid #d9d9d9;
+.input-div {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7% 93%;
+  margin: 25px 0;
+  padding: 5px 0;
+  border-bottom: 2px solid #d9d9d9;
 }
-.input-div::after, .input-div::before{
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background-color: #4299e1;
-    transition: .3s;
-    left: 0;
-    right: 0;
+.input-div::after,
+.input-div::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #4299e1;
+  transition: 0.3s;
+  left: 0;
+  right: 0;
 }
-.input-div::after{
-    right: 50%; 
+.input-div::after {
+  right: 50%;
 }
-.input-div::before{
-    right: 50%;
+.input-div::before {
+  right: 50%;
 }
-.input-div.one{
-    margin-bottom: 4px;
-}
-
-.i{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+.input-div.one {
+  margin-bottom: 4px;
 }
 
-.i svg{
-    fill: #d9d9d9 !important;
-    transition: .3s;
-}
-.input-div > div{
-    position: relative;
-    height: 45px;
-}
-.input-div.focus .i svg{
-    fill: #4299e1 !important;
-}
-.input-div.focus div h5{
-    top: -5px;
-    font-size: 15px;
-}
-.input-div.focus::after, .input-div.focus::before{
-    width: 100%;
-}
-.input-div > div h5{
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 18px;
-    transition: .3s;
-
-}
-.input{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border: none;
-    outline: none;
-    background: none;
-    padding: 0.5rem 0.7rem;
-    font-size: 1.2rem;
-    font-family: 'Poppins', sans-serif;
-    color: #555;
-}
-a{
-    display: block;
-    text-align: right;
-    text-decoration: none;
-     color: #0087ca;
-    font-size: 0.9rem;
-    transition: .3s;
-    margin: -18px 0 0 0;
-}
-a:hover{
-    color:  #0087ca;
+.i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.btn{
-    display: block;
-    width: 65%;
-    height: 45px;
-    border-radius: 25px;
-    outline: none;
-    border: none;
-    background-image: linear-gradient(to right,#4299e1, #4899e1, #4299e1);
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    text-transform: uppercase;
-    transition: .5s;
-    cursor: pointer;
-    margin: 14px 0 0 5em;
+.i svg {
+  fill: #d9d9d9 !important;
+  transition: 0.3s;
 }
-.btn:hover{
-    background-position: right;
+.input-div > div {
+  position: relative;
+  height: 45px;
+}
+.input-div.focus .i svg {
+  fill: #4299e1 !important;
+}
+.input-div.focus div h5 {
+  top: -5px;
+  font-size: 15px;
+}
+.input-div.focus::after,
+.input-div.focus::before {
+  width: 100%;
+}
+.input-div > div h5 {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 18px;
+  transition: 0.3s;
+}
+.input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  color: #555;
+}
+a {
+  display: block;
+  text-align: right;
+  text-decoration: none;
+  color: #0087ca;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  margin: -18px 0 0 0;
+}
+a:hover {
+  color: #0087ca;
 }
 
+.btn {
+  display: block;
+  width: 65%;
+  height: 45px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to right, #4299e1, #4899e1, #4299e1);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  transition: 0.5s;
+  cursor: pointer;
+  margin: 14px 0 0 5em;
+}
+.btn:hover {
+  background-position: right;
+}
 
-@media only screen and (max-width: 700px){
-  
+@media only screen and (max-width: 700px) {
   .login-content {
-    min-height:initial;
+    min-height: initial;
   }
   .cont {
     width: 100%;
@@ -321,13 +353,13 @@ a:hover{
     width: 100%;
   }
   form {
-   background-color: none;
-   box-shadow: 0 4px 8px 0 transparent;
-   border-radius: 0px;
-   width: 100%;
-   box-shadow: none;
+    background-color: none;
+    box-shadow: 0 4px 8px 0 transparent;
+    border-radius: 0px;
+    width: 100%;
+    box-shadow: none;
   }
-  .input-div{
+  .input-div {
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
@@ -335,18 +367,13 @@ a:hover{
   form h1 {
     margin-top: 0%;
   }
-  .btn{
-        margin: 14px 0 0 2em;
-        width: 54%;
+  .btn {
+    margin: 14px 0 0 2em;
+    width: 54%;
   }
- a{
-       margin: -19px 40px 0 0;
- }
+  a {
+    margin: -19px 40px 0 0;
+  }
 }
-
-
-
-
-
 </style>
 

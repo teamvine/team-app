@@ -1,79 +1,114 @@
 <template>
   <div id="register-view">
     <div class="register-content">
-        <div class="cont">
-          <div class="left">
-            <div>
-              <h2 class="text-2xl font-bold app-title">RCONNECT</h2>
-              <p class="mt-8 desc bring-more">
-                Bring your Teams,Companies,Schools and Other groups to join RCONNECT where 
-                sharing skills and ideas and your staffs made easier and secure.
-              </p>
-            </div>
-            <img class="img mt-4" src="../assets/images/Group Chat-amico.svg" alt="">
+      <div class="cont">
+        <div class="left">
+          <div>
+            <h2 class="text-2xl font-bold app-title">RCONNECT</h2>
+            <p class="mt-8 desc bring-more">
+              Bring your Teams,Companies,Schools and Other groups to join
+              RCONNECT where sharing skills and ideas and your staffs made
+              easier and secure.
+            </p>
           </div>
-          <div class="register-container right focus">
-            <form @submit.prevent="onSignIn" class="pt-4 pb-3">
-              <h1 class="f-md mb-3 mt-3 head">SIGN UP TO RCONNECT</h1>
-              <span class="line"></span>
-              <div class="in-field one">
-
-                <div class="icn"><i class="ri-account-pin-circle-line"></i></div>
-                <div class="inpt">
-                  <h5>Full Name</h5>
-                  <input type="text" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
-                  </div>
-                <div class="icn check-icon"><i class="ri-check-line"></i></div>
-              </div>
-
-
-
-              <div class="in-field">
-                <div class="icn"><i class="ri-price-tag-line"></i></div>
-                <div class="inpt">
-                  <h5>Display Name</h5>
-                  <input type="text" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
-                  </div>
-                <div class="icn check-icon" ><i class="ri-check-line"></i></div>
-              </div>
-              <div class="in-field">
-                <div class="icn"><i class="ri-at-line"></i></div>
-                <div class="inpt">
-                  <h5>Email</h5>
-                  <input type="email" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
-                  </div>
-                <div class="icn check-icon"><i class="ri-check-line"></i></div>
-              </div>
-              <div class="in-field">
-                <div class="icn"><i class="ri-lock-line"></i></div>
-                <div class="inpt">
-                  <h5>New Password</h5>
-                  <input type="password" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
-                  </div>
-                <div class="icn check-icon"><i class="ri-check-line"></i></div>
-              </div>
-              <div class="in-field">
-                <div class="icn">
-                  <i class="ri-lock-line"></i>
-                  </div>
-                <div class="inpt">
-                  <h5>Repeat Password</h5>
-                  <input type="password" class="input" @focus="onFocusFunc" @blur="onBlurFunc">
-                  </div>
-                <div class="icn check-icon"><i class="ri-check-line"></i></div>
-              </div>
-              <div class="agree-terms">
-                <input type="checkbox" id="check-b"> I agree to the terms and conditions of privacy.
-              </div>
-              <p v-if="errorMsg!=''" :class="[errorColor,'mt-2']">{{errorMsg}}</p>
-              <button class="bg-blue-500 btn-create hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full items-center mt-4 mb-2">
-                <i class="ri-check-line mr-2 mt-3"></i>
-                <span>New Account</span>
-              </button>
-              <p class="mt-3 mb-2  no-account">Do you have account? <router-link to="/login" class="link">Sign In.</router-link></p>
-            </form>
-          </div>
+          <img
+            class="img mt-4"
+            src="../assets/images/Group Chat-amico.svg"
+            alt=""
+          />
         </div>
+        <div class="register-container right focus">
+          <form @submit.prevent="onSignIn" class="pt-4 pb-3">
+            <h1 class="f-md mb-3 mt-3 head">SIGN UP TO RCONNECT</h1>
+            <span class="line"></span>
+            <div class="in-field one">
+              <div class="icn"><i class="ri-account-pin-circle-line"></i></div>
+              <div class="inpt">
+                <h5>Full Name</h5>
+                <input
+                  type="text"
+                  class="input"
+                  @focus="onFocusFunc"
+                  @blur="onBlurFunc"
+                />
+              </div>
+              <div class="icn check-icon"><i class="ri-check-line"></i></div>
+            </div>
+
+            <div class="in-field">
+              <div class="icn"><i class="ri-price-tag-line"></i></div>
+              <div class="inpt">
+                <h5>Display Name</h5>
+                <input
+                  type="text"
+                  class="input"
+                  @focus="onFocusFunc"
+                  @blur="onBlurFunc"
+                />
+              </div>
+              <div class="icn check-icon"><i class="ri-check-line"></i></div>
+            </div>
+            <div class="in-field">
+              <div class="icn"><i class="ri-at-line"></i></div>
+              <div class="inpt">
+                <h5>Email</h5>
+                <input
+                  type="email"
+                  class="input"
+                  @focus="onFocusFunc"
+                  @blur="onBlurFunc"
+                />
+              </div>
+              <div class="icn check-icon"><i class="ri-check-line"></i></div>
+            </div>
+            <div class="in-field">
+              <div class="icn"><i class="ri-lock-line"></i></div>
+              <div class="inpt">
+                <h5>New Password</h5>
+                <input
+                  type="password"
+                  class="input"
+                  @focus="onFocusFunc"
+                  @blur="onBlurFunc"
+                />
+              </div>
+              <div class="icn check-icon"><i class="ri-check-line"></i></div>
+            </div>
+            <div class="in-field">
+              <div class="icn">
+                <i class="ri-lock-line"></i>
+              </div>
+              <div class="inpt">
+                <h5>Repeat Password</h5>
+                <input
+                  type="password"
+                  class="input"
+                  @focus="onFocusFunc"
+                  @blur="onBlurFunc"
+                />
+              </div>
+              <div class="icn check-icon"><i class="ri-check-line"></i></div>
+            </div>
+            <div class="agree-terms">
+              <input type="checkbox" id="check-b" /> I agree to the terms and
+              conditions of privacy.
+            </div>
+            <p v-if="errorMsg != ''" :class="[errorColor, 'mt-2']">
+              {{ errorMsg }}
+            </p>
+            <button
+              class="bg-blue-500 btn-create hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full items-center mt-4 mb-2"
+            >
+              <i class="ri-check-line mr-2 mt-3"></i>
+              <span>New Account</span>
+            </button>
+            <p class="mt-3 mb-2 no-account">
+              Do you have account?
+              <router-link to="/login" class="link">Sign In.</router-link>
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -84,36 +119,35 @@ export default {
   data() {
     return {
       errorColor: "red",
-      errorMsg: ""
+      errorMsg: "",
     };
   },
   methods: {
     onSignIn() {
       return;
     },
-    onFocusFunc(e){
-      let parent = e.target.parentNode.parentNode
-      parent.classList.add('focus')
+    onFocusFunc(e) {
+      let parent = e.target.parentNode.parentNode;
+      parent.classList.add("focus");
     },
-    onBlurFunc($e){
-      let parent = $e.target.parentNode.parentNode
-      if($e.target.value == ""){
-        parent.classList.remove('focus')
-      } 
-    }
-  }
-}
+    onBlurFunc($e) {
+      let parent = $e.target.parentNode.parentNode;
+      if ($e.target.value == "") {
+        parent.classList.remove("focus");
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
-
-.app-title{
-  font-family: 'PoppinsBold';
+.app-title {
+  font-family: "PoppinsBold";
   font-size: 30px;
   color: #4299e1;
 }
-.bring-more{
-  font-family: 'PoppinsThin';
+.bring-more {
+  font-family: "PoppinsThin";
   font-weight: 600 !important;
   font-size: 18px;
 }
@@ -159,15 +193,12 @@ export default {
   padding: 10%;
   padding-bottom: 0%;
 }
-/* .left div h2 {
-  color: orange;
-} */
 .cont .right {
   width: 45%;
 }
 .img {
   width: 80%;
-  margin:auto;
+  margin: auto;
   margin-top: 0;
 }
 .desc {
@@ -184,21 +215,21 @@ export default {
   align-items: center;
   text-align: center;
 }
-.register-container{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 1em;
-    margin:3.8em 0 0 0;
-    border: none;
-     box-shadow: 0 0 4px 1px rgb(219, 219, 219);
+.register-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 1em;
+  margin: 3.8em 0 0 0;
+  border: none;
+  box-shadow: 0 0 4px 1px rgb(219, 219, 219);
 }
-form{
-    width: 360px;
-    margin: -17em 0 0 5em;
+form {
+  width: 360px;
+  margin: -17em 0 0 5em;
 }
 form h1 {
-  color: #00A8FF;
+  color: #00a8ff;
   font-weight: 100px;
   font-size: 110% !important;
   margin-top: 82%;
@@ -206,131 +237,101 @@ form h1 {
 }
 form .line {
   display: block;
-    width: 45%;
-    background-color: #00A8FF;
-    height: 2px;
-    margin:auto;
-    margin-top: 1%;
-    margin-bottom: 12%;
+  width: 45%;
+  background-color: #00a8ff;
+  height: 2px;
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 12%;
 }
 
 .in-field {
-  /* margin: 2% auto;
-  width: 70%;
-  height: 45px;
-  display: flex;
-  flex-direction: row;
-  border: 1px solid#00A8FF;
-  border-radius: 3px;
-  margin-top: 5%;
-  box-shadow: 0 0 2px 1px rgb(219, 219, 219);
-  background: none !important; */
-
   position: relative;
   display: grid;
   grid-template-columns: 7% 93%;
-    margin: 25px 0;
-    padding: 5px 0;
-    border-bottom: 2px solid #d9d9d9;
+  margin: 25px 0;
+  padding: 5px 0;
+  border-bottom: 2px solid #d9d9d9;
 }
-.in-field::after, .in-field::before{
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background-color: #4299e1;
-    transition: .3s;
-    left: 0;
-    right: 0;
+.in-field::after,
+.in-field::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #4299e1;
+  transition: 0.3s;
+  left: 0;
+  right: 0;
 }
-.in-field::after{
-    right: 50%; 
+.in-field::after {
+  right: 50%;
 }
-.in-field::before{
-    right: 50%;
+.in-field::before {
+  right: 50%;
 }
-.in-field.one{
-    margin-bottom: 4px;
+.in-field.one {
+  margin-bottom: 4px;
 }
-
 
 .in-field .icn {
-  /* flex: 12%;
-  font-size: 150%;
-  padding-top: 1%;
-  color: #00A8FF; */
-      display: flex;
-    justify-content: center;
-    align-items: center;
-} 
-.in-field .icn i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.in-field .icn i {
   color: #d9d9d9 !important;
-    transition: .3s;
+  transition: 0.3s;
 }
 
-
-.in-field > div{
-    position: relative;
-    height: 45px;
+.in-field > div {
+  position: relative;
+  height: 45px;
 }
-.in-field.focus .icn i{
-    color: #4299e1 !important;
-}
-
-.in-field.focus div h5{
-    top: -5px;
-    font-size: 15px;
-}
-.in-field.focus::after, .in-field.focus::before{
-    width: 100%;
-}
-.in-field > div h5{
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 18px;
-    transition: .3s;
-
+.in-field.focus .icn i {
+  color: #4299e1 !important;
 }
 
-.input{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border: none;
-    outline: none;
-    background: none;
-    padding: 0.5rem 0.7rem;
-    font-size: 1.2rem;
-    font-family: 'Poppins', sans-serif;
-    color: #555;
+.in-field.focus div h5 {
+  top: -5px;
+  font-size: 15px;
+}
+.in-field.focus::after,
+.in-field.focus::before {
+  width: 100%;
+}
+.in-field > div h5 {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 18px;
+  transition: 0.3s;
 }
 
-
+.input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  color: #555;
+}
 
 .check-icon {
-    margin: -50px 0 0 21em;
+  margin: -50px 0 0 21em;
 }
 .check-icon i {
-    margin: 18px 0 0 0;
+  margin: 18px 0 0 0;
 }
-/* 
-.in-field .inpt {
-  flex: 100%;
-}
-.in-field .inpt input {
-  height: 100%;
-  width: 100%;
-  padding-left: 3%;
-  padding-right: 3%;
-  border: none;
-  background: none !important;
-} */
 .btn-create {
   width: auto;
   display: block;
@@ -350,7 +351,8 @@ form .line {
 .no-account .link {
   color: #0087ca;
 }
-.or-line,.or {
+.or-line,
+.or {
   color: white;
   background-color: #0087ca;
 }
@@ -371,8 +373,6 @@ form .line {
   border-radius: 50%;
 }
 
-
-
 .d-block {
   display: block;
 }
@@ -382,39 +382,19 @@ form .line {
 .primary {
   color: #167df0;
 }
-/* @media only screen and (max-width: 700px){
-  .register-content {
-    min-height:initial;
-  }
+@media only screen and (max-width: 700px) {
   .cont {
     width: 100%;
-    flex-direction: column-reverse;
   }
   .cont .left {
-    width: 90%;
-    margin: 4% 5%;
     display: none;
   }
   .cont .right {
     margin-top: 10%;
     width: 100%;
   }
-  .img {
-    width: 100%;
+  .form {
+    align-items: center;
   }
-  form {
-   background-color: none;
-   box-shadow: 0 4px 8px 0 transparent;
-   border-radius: 0px;
-   width: 100%;
-  }
-  .in-field {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  form h1 {
-    margin-top: 0%;
-  }
-} */
+}
 </style>
