@@ -256,11 +256,7 @@ export default {
     .side-bar-view {
         min-height: 100%;
         max-height: 100%;
-        flex: 0 0 300px;
-<<<<<<< HEAD
-        /* background-color: rgb(99, 99, 99);
-        color: white; */
-=======
+        flex: 0 0 330px;
         background-color: #fff;
         color: white;
         overflow-y: scroll;
@@ -281,6 +277,5 @@ export default {
         width: 300px;
         overflow: hidden;
         text-overflow: ellipsis;
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
     }
 </style>

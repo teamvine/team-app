@@ -4,20 +4,22 @@
       <div class="cont">
         <div class="left">
           <div>
-            <h2 class="font-bold app-title">TEAM VINE</h2>
+            <h2 class="font-bold app-title">RCONNECT</h2>
+
             <p class="mt-8 desc bring-more">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur voluptatibus ipsam eaque
-              reprehenderit earum deleniti repellat totam, nobis adipisci unde aut voluptatum, eum, a laudantium libero?
-              Quas pariatur amet ipsum!
+              Bring your Teams,Companies,Schools and Other groups to join
+              RCONNECT where sharing skills and ideas and your staffs made
+              easier and secure.
             </p>
           </div>
-
-          <img class="img mt-4" src="../assets/images/group-chat-amico.svg" alt="">
-
+          <img
+            class="img mt-4"
+            src="../assets/images/Group Chat-amico.svg"
+            alt=""
+          />
         </div>
-<<<<<<< HEAD
         <div class="login-container focus right rounded-md">
-          <form action="/personal">
+          <form action="index.html">
             <h2 class="head font-medium">Sign In</h2>
             <span class="line"></span>
             <div class="input-div one">
@@ -35,46 +37,32 @@
                   @focus="focusFunc"
                   @blur="blurFunc"
                 />
-=======
-        <div class="right">
-          <form @submit.prevent="onSignIn" class="pt-4 pb-4">
-            <h1 class="f-md mb-3 mt-3 head">SIGN IN TO TEAMVINE</h1>
-            <span class="line"></span>
-            <div class="form-div">
-            <div class="flex flex-wrap items-stretch w-full mb-4 relative h-15 bg-blue items-center rounded mb-6 pr-10">
-              <div class="flex -mr-px justify-center w-15 p-4">
-                <span
-                  class="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path
-                      d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238 4.353 7.762l7.72 6.555 7.581-6.56-1.308-1.513-6.285 5.439z"
-                      fill="rgba(113,128,150,1)" /></svg>
-                </span>
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
               </div>
-              <input type="text"
-                class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px-3 self-center relative  font-roboto text-xl outline-none"
-                placeholder="Email adress" />
             </div>
-            <hr>
-
-            <div class="flex flex-wrap items-stretch w-full mb-4 relative h-15 bg-blue items-center rounded mb-6 pr-10">
-              <div class="flex -mr-px justify-center w-15 p-4">
-                <span
-                  class="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="none" d="M0 0h24v24H0z" />
-                    <path
-                      d="M19 10h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 1 1 14 0v1zm-2 0V9A5 5 0 0 0 7 9v1h10zm-6 4v4h2v-4h-2z"
-                      fill="rgba(113,128,150,1)" /></svg>
-                </span>
+            <div class="input-div two">
+              <div class="i">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M19 10h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 1 1 14 0v1zm-2 0V9A5 5 0 0 0 7 9v1h10zm-6 4v4h2v-4h-2z"
+                  />
+                </svg>
               </div>
-              <input type="text"
-                class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px-3 self-center relative  font-roboto text-xl outline-none"
-                placeholder="Password" />
+              <div>
+                <h5>Password</h5>
+                <input
+                  type="password"
+                  class="input"
+                  @focus="focusFunc"
+                  @blur="blurFunc"
+                />
+              </div>
             </div>
-<<<<<<< HEAD
             <a href="#" class="mt-4 text-md">Forgot Password?</a>
             <p v-if="errorMsg != ''" :class="[errorColor, 'mt-2']">
               {{ errorMsg }}
@@ -85,24 +73,7 @@
             <p class="mt-3 mb-2 float-left no-account">
               Do you have account?
               <router-link to="/register" class="link">Sign Up.</router-link>
-=======
-            <hr>
-            </div>
-            <p v-if="errorMsg!=''" :class="[errorColor,'mt-2']">{{errorMsg}}</p>
-            <button
-              class="bg-blue-500 s-in hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full items-center mt-4 mb-2">
-              <span>Sign In</span>
-            </button>
-            <p class="mt-3 mb-3 no-account">Don't have account? <router-link to="/register" class="link">Create one.
-              </router-link>
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
             </p>
-            <span class="or-line"><span class="or">OR</span></span>
-            <button
-              class="bg-blue-500 c-google hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-              <!-- <i class="ri-google-fill mr-2"></i> -->
-              <span>Continue with Google</span>
-            </button>
           </form>
         </div>
       </div>
@@ -111,7 +82,6 @@
 </template>
 
 <script>
-// import login from "../lib/login";
 export default {
   name: "Login",
   data() {
@@ -124,18 +94,28 @@ export default {
   },
   methods: {
     onSignIn() {
-      if(this.email=="" || this.password==""){
-        this.errorMsg = "* All fields are required *"
+      if (this.email == "" || this.password == "") {
+        this.errorMsg = "* All fields are required *";
         return 0;
       }
       return;
-    }
-  }
-}
+    },
+    focusFunc($event) {
+      let parent = $event.target.parentNode.parentNode;
+      parent.classList.add("focus");
+    },
+    blurFunc($event) {
+      let parent = $event.target.parentNode.parentNode;
+      if ($event.target.value == "") {
+        parent.classList.remove("focus");
+      }
+    },
+  },
+  mounted() {},
+};
 </script>
 
 <style scoped>
-<<<<<<< HEAD
 .app-title {
   font-family: "PoppinsBold";
   font-size: 30px;
@@ -157,21 +137,10 @@ export default {
 }
 #login-view::-webkit-scrollbar {
   width: 0px;
-=======
-.app-title{
-  font-family: 'PoppinsBold';
-  font-size: 40px;
-  color:#4299E1;
-}
-.bring-more{
-  font-family: 'PoppinsThin';
-  font-weight: 500 !important;
-  color:grey;
-  font-size: 17px;
-
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
 }
 .login-content {
+  width: 100%;
+  height: auto;
   min-height: 87%;
   display: flex;
   flex-direction: row;
@@ -204,10 +173,9 @@ export default {
 }
 .img {
   width: 80%;
-  margin:auto;
+  margin: auto;
   margin-top: 0;
 }
-<<<<<<< HEAD
 .desc {
   font-weight: bold;
 }
@@ -229,31 +197,17 @@ export default {
 }
 form {
   width: 70%;
-  margin: -4% 15%;
+  margin: -4em 15%;
 }
 form h2 {
   color: #2A68D3;
-=======
-form {
-   background-color: white;
-   border-radius: 7px;
-   width: 90%;
-   margin-top: 16%;
-   padding-bottom: 8%;
-   -webkit-box-shadow: 0 0 1.2px 2.4px rgb(219, 219, 219);
-   -moz-box-shadow: 0 0 1.2px 2.4px rgb(219, 219, 219);
-   box-shadow: 0 0 1.2px 2.4px rgb(219, 219, 219);
-}
-form h1 {
-  color: #00A8FF;
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
   font-weight: 100px;
   font-size: 150% !important;
   margin-top: 10%;
+  margin-bottom: 0;
 }
 form .line {
   display: block;
-<<<<<<< HEAD
   width: 30%;
   background-color: #2A68D3;
   height: 2px;
@@ -284,35 +238,17 @@ form .line {
 }
 .input-div::after {
   right: 50%;
-=======
-    width: 45%;
-    background-color: #00A8FF;
-    height: 2px;
-    margin:auto;
-    margin-top: 1%;
-    margin-bottom: 12%;
 }
-hr{
-  position: relative;
-  top:-5px;
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
+.input-div::before {
+  right: 50%;
 }
-/* --------------------------------- */
-.form-div{
-  width: 90%;
-  margin: 0 auto;
+.input-div.one {
+  margin-bottom: 4px;
 }
-.s-in {
-  width: 35%;
-  margin-left: auto;
-  margin-right: auto;
-  outline: none !important;
-}
-.c-google {
-  width: 70%;
-  text-align: center;
+
+.i {
+  display: flex;
   justify-content: center;
-<<<<<<< HEAD
   align-items: center;
 }
 
@@ -345,13 +281,16 @@ hr{
   100%{
     opacity: 1;
   }
-=======
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
 }
-.no-account .link {
-  color: #0087ca;
+.input-div > div h5 {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 18px;
+  transition: 0.3s;
 }
-<<<<<<< HEAD
 .input {
   position: absolute;
   width: 100%;
@@ -365,15 +304,9 @@ hr{
   font-size: 1.1rem;
   font-family: "Poppins", sans-serif;
   color: #555;
-=======
-.or-line,.or {
-  color: white;
-  background-color: #0087ca;
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
 }
-.or-line {
+a {
   display: block;
-<<<<<<< HEAD
   text-align: right;
   text-decoration: none;
   color:#2A68D3;
@@ -402,28 +335,15 @@ a:hover {
 }
 .btn:hover {
  background-image: linear-gradient(to right, #2668db,#2668db,#2668db);
-=======
-  width: 70%;
-  margin: auto;
-  margin-bottom: 5%;
-  margin-top: 5%;
-  position: relative;
-  height: 2px;
-}
-.or {
-  display: inline-block;
-  position: absolute;
-  top: -800%;
-  padding: 3px 5px;
-  border-radius: 50%;
 }
 
-.in-field .inpt input:focus{
-  border-bottom:2px solid #4299E1;
->>>>>>> 87bf2b9fe4e90cc2c2f610a29dfc6ded62e7e4e6
-}
-
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
+  .login-content {
+    min-height: initial;
+  }
+  .login-container {
+    box-shadow: none;
+  }
   .cont {
     width: 100%;
     flex-direction: column-reverse;
@@ -441,12 +361,13 @@ a:hover {
     width: 100%;
   }
   form {
-   background-color: none;
-   box-shadow: 0 4px 8px 0 transparent;
-   border-radius: 0px;
-   width: 100%;
+    background-color: none;
+    border-radius: 0px;
+    width: 90%;
+    margin: -4em 10%;
+    box-shadow: none;
   }
-  .in-field {
+  .input-div {
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
@@ -454,5 +375,13 @@ a:hover {
   form h1 {
     margin-top: 0%;
   }
+  .btn {
+    margin: 14px 20%;
+    width: 54%;
+  }
+  a {
+    margin: -19px 40px 0 0;
+  }
 }
 </style>
+

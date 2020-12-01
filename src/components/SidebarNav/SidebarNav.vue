@@ -20,7 +20,7 @@ export default {
     .sidebar-view {
         height: 100%;
         flex: 0 50px;
-        background: #F4FAFB;
+        background: #ffffff;
         color:black;
         position: relative;
     }

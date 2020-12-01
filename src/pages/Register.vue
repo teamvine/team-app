@@ -207,7 +207,7 @@ export default {
 .register-content {
   width: 100%;
   height: auto;
-  min-height: 87%;
+  /* min-height: 87%; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -224,16 +224,17 @@ export default {
   margin-bottom: 3%;
   border: none;
   box-shadow: 0 0 4px 1px rgb(219, 219, 219);
+  height: auto;
 }
 form {
-  width: 360px;
-  margin: -17em 0 0 5em;
+  width: 70%;
+  margin: 0% 15%;
 }
 form h1 {
   color:#2A68D3;
   font-weight: 100px;
   font-size: 130% !important;
-  margin-top: 82%;
+  margin-top: 4%;
   margin-bottom: 0;
 }
 form .line {
@@ -398,6 +399,13 @@ form .line {
   }
   .form {
     align-items: center;
+  }
+  form {
+    width: 80%;
+    margin: 0% 10%;
+  }
+  .register-container {
+    box-shadow: none;
   }
 }
 </style>
