@@ -1,7 +1,7 @@
 <template>
   <header class="header-view shadow-md">
     <div class="app-name p-3">
-      <h3>Team</h3>
+      <h3>RCONNECT</h3>
     </div>
     <div class="right-menu">
       <div class="notifications">

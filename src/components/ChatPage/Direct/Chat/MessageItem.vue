@@ -11,7 +11,7 @@
           necessitatibus accusamus nulla! Magnam odio ad id. Nobis, dolore
           numquam est molestiae consequatur id ducimus odit sed commodi laborum
           cupiditate?
-          <div class="w-full mt-2">
+          <div class="w-full mt-3">
             <div class="flex">
               <img
                 src="../../../../assets/images/avatar1.jpg"

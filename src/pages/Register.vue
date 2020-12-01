@@ -17,7 +17,7 @@
             alt=""
           />
         </div>
-        <div class="register-container right focus">
+        <div class="register-container right focus mb-4 rounded-md">
           <form @submit.prevent="onSignIn" class="pt-4 pb-3">
             <h1 class="f-md mb-3 mt-3 head">SIGN UP TO RCONNECT</h1>
             <span class="line"></span>
@@ -144,7 +144,7 @@ export default {
 .app-title {
   font-family: "PoppinsBold";
   font-size: 30px;
-  color: #4299e1;
+  color: #2A68D3;
 }
 .bring-more {
   font-family: "PoppinsThin";
@@ -221,6 +221,7 @@ export default {
   text-align: center;
   width: 1em;
   margin: 3.8em 0 0 0;
+  margin-bottom: 3%;
   border: none;
   box-shadow: 0 0 4px 1px rgb(219, 219, 219);
 }
@@ -229,16 +230,16 @@ form {
   margin: -17em 0 0 5em;
 }
 form h1 {
-  color: #00a8ff;
+  color:#2A68D3;
   font-weight: 100px;
-  font-size: 110% !important;
+  font-size: 130% !important;
   margin-top: 82%;
   margin-bottom: 0;
 }
 form .line {
   display: block;
-  width: 45%;
-  background-color: #00a8ff;
+  width: 70%;
+  background-color:#2A68D3;
   height: 2px;
   margin: auto;
   margin-top: 1%;
@@ -251,17 +252,18 @@ form .line {
   grid-template-columns: 7% 93%;
   margin: 25px 0;
   padding: 5px 0;
-  border-bottom: 2px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
 }
 .in-field::after,
 .in-field::before {
   content: "";
   position: absolute;
   bottom: -2px;
-  width: 0;
+  width: 100%;
+  display: none;
   height: 2px;
-  background-color: #4299e1;
-  transition: 0.3s;
+  background-color:#2A68D3;
+  transition: 1s;
   left: 0;
   right: 0;
 }
@@ -290,7 +292,7 @@ form .line {
   height: 45px;
 }
 .in-field.focus .icn i {
-  color: #4299e1 !important;
+  color: #2A68D3 !important;
 }
 
 .in-field.focus div h5 {
@@ -299,7 +301,8 @@ form .line {
 }
 .in-field.focus::after,
 .in-field.focus::before {
-  width: 100%;
+  /* width: 100%; */
+  display: initial;
 }
 .in-field > div h5 {
   position: absolute;
@@ -321,9 +324,9 @@ form .line {
   outline: none;
   background: none;
   padding: 0.5rem 0.7rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: "Poppins", sans-serif;
-  color: #555;
+  color: rgb(70, 70, 70);
 }
 
 .check-icon {
@@ -349,12 +352,12 @@ form .line {
   font-size: 120%;
 }
 .no-account .link {
-  color: #0087ca;
+  color: #2A68D3;
 }
 .or-line,
 .or {
   color: white;
-  background-color: #0087ca;
+  background-color: #2A68D3;
 }
 .or-line {
   display: block;
@@ -380,7 +383,7 @@ form .line {
   color: crimson;
 }
 .primary {
-  color: #167df0;
+  color: #2A68D3;
 }
 @media only screen and (max-width: 700px) {
   .cont {

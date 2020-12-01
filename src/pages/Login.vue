@@ -18,22 +18,15 @@
             alt=""
           />
         </div>
-        <div class="login-container focus right">
-          <form action="index.html">
+        <div class="login-container focus right rounded-md">
+          <form action="/personal">
             <h2 class="head font-medium">Sign In</h2>
             <span class="line"></span>
             <div class="input-div one">
               <div class="i">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path
-                    d="M20 22H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"
-                  />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="none" d="M0 0h24v24H0z"/>
+                  <path d="M14.256 21.744L12 24l-2.256-2.256C5.31 20.72 2 16.744 2 12 2 6.48 6.48 2 12 2s10 4.48 10 10c0 4.744-3.31 8.72-7.744 9.744zm-8.233-6.328C7.491 17.606 9.695 19 12.16 19c2.464 0 4.669-1.393 6.136-3.584A8.968 8.968 0 0 0 12.16 13a8.968 8.968 0 0 0-6.137 2.416zM12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                 </svg>
               </div>
               <div>
@@ -70,7 +63,7 @@
                 />
               </div>
             </div>
-            <a href="#">Forgot Password?</a>
+            <a href="#" class="mt-4 text-md">Forgot Password?</a>
             <p v-if="errorMsg != ''" :class="[errorColor, 'mt-2']">
               {{ errorMsg }}
             </p>
@@ -126,7 +119,7 @@ export default {
 .app-title {
   font-family: "PoppinsBold";
   font-size: 30px;
-  color: #4299e1;
+  color:#2A68D3;
 }
 .bring-more {
   font-family: "PoppinsThin";
@@ -176,7 +169,7 @@ export default {
   padding-bottom: 0%;
 }
 .cont .right {
-  width: 45%;
+  width: 40%;
 }
 .img {
   width: 80%;
@@ -188,7 +181,7 @@ export default {
 }
 
 .no-account .link {
-  color: #0087ca;
+  color:#2A68D3;
   margin: -23px -64px 0 0;
 }
 
@@ -203,20 +196,20 @@ export default {
   box-shadow: 0 0 4px 1px rgb(219, 219, 219);
 }
 form {
-  width: 360px;
-  margin: -4em 0 0 5em;
+  width: 70%;
+  margin: -4% 15%;
 }
 form h2 {
-  color: #00a8ff;
+  color: #2A68D3;
   font-weight: 100px;
-  font-size: 110% !important;
+  font-size: 150% !important;
   margin-top: 10%;
   margin-bottom: 0;
 }
 form .line {
   display: block;
-  width: 45%;
-  background-color: #00a8ff;
+  width: 30%;
+  background-color: #2A68D3;
   height: 2px;
   margin: auto;
   margin-top: 1%;
@@ -228,16 +221,17 @@ form .line {
   grid-template-columns: 7% 93%;
   margin: 25px 0;
   padding: 5px 0;
-  border-bottom: 2px solid #d9d9d9;
+  border-bottom: 1px solid rgb(175, 175, 175);
 }
 .input-div::after,
 .input-div::before {
   content: "";
   position: absolute;
   bottom: -2px;
-  width: 0;
+  width: 100%;
+  display: none;
   height: 2px;
-  background-color: #4299e1;
+  background-color: #2A68D3;
   transition: 0.3s;
   left: 0;
   right: 0;
@@ -267,7 +261,7 @@ form .line {
   height: 45px;
 }
 .input-div.focus .i svg {
-  fill: #4299e1 !important;
+  fill: #2A68D3 !important;
 }
 .input-div.focus div h5 {
   top: -5px;
@@ -276,6 +270,17 @@ form .line {
 .input-div.focus::after,
 .input-div.focus::before {
   width: 100%;
+  display: initial;
+  animation-name: fadeIn;
+  animation-duration: 1.5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }
 .input-div > div h5 {
   position: absolute;
@@ -296,7 +301,7 @@ form .line {
   outline: none;
   background: none;
   padding: 0.5rem 0.7rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: "Poppins", sans-serif;
   color: #555;
 }
@@ -304,13 +309,13 @@ a {
   display: block;
   text-align: right;
   text-decoration: none;
-  color: #0087ca;
+  color:#2A68D3;
   font-size: 0.9rem;
   transition: 0.3s;
   margin: -18px 0 0 0;
 }
 a:hover {
-  color: #0087ca;
+  color: #2A68D3;
 }
 
 .btn {
@@ -320,7 +325,7 @@ a:hover {
   border-radius: 25px;
   outline: none;
   border: none;
-  background-image: linear-gradient(to right, #4299e1, #4899e1, #4299e1);
+  background-image: linear-gradient(to right, #3f85fd,#3f85fd,#3f85fd);
   font-family: "Poppins", sans-serif;
   color: #fff;
   text-transform: uppercase;
@@ -329,7 +334,7 @@ a:hover {
   margin: 14px 0 0 5em;
 }
 .btn:hover {
-  background-position: right;
+ background-image: linear-gradient(to right, #2668db,#2668db,#2668db);
 }
 
 @media only screen and (max-width: 700px) {
