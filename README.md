@@ -5,7 +5,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   ##### Follow these steps
   - Clone the repository. (Done only once)
     ```
-    git clone https://github.com/sandberg-smith/teamvine
+    git clone https://github.com/teamvine/team-app.git
     ```
   - Branch felix, ediso have been created for you. Use your branch respectively.
       ```

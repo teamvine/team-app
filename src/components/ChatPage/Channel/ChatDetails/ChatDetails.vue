@@ -1,6 +1,6 @@
 <template>
   <div class="details">
-      channel chat details
+      <!-- channel chat details -->
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     .details {
         height: 100%;
         flex: 0 0 300px;
-        background-color: rgb(87, 87, 87);
-        color: white;
+        /* background-color: rgb(87, 87, 87);
+        color: white; */
     }
 </style>

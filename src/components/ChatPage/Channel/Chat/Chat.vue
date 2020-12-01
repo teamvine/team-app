@@ -1,6 +1,6 @@
 <template>
   <div class="chat">
-      channel Chat
+      <!-- channel Chat -->
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
         width: 100%;
         height: 100%;
         min-width: 400px;
-        background-color: aquamarine;
-        color: white;
+        /* background-color: aquamarine;
+        color: white; */
     }
 </style>

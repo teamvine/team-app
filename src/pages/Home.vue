@@ -21,19 +21,21 @@ export default {
 
 <style scoped>
     .home-view {
-        width: 100vw !important;
+        width: 100% !important;
         height: 100vh !important;
         overflow-y: auto;
         overflow-x: auto;
         display: flex;
         flex-direction: column;
-        background-color: rgb(223, 223, 223);
+        background-color: rgb(241, 245, 252);
+        /* background-color:#F3FAFB; */
     }
     .body-view {
         width: 100%;
-        flex: 0 100%;
-        background: rgb(28, 90, 148);
-        color: white;
+        height: 50pc;
+        min-height: 350px;
+        /* background: rgb(28, 90, 148);
+        color: white; */
     }
     .main-page {
         width: 100% !important;
@@ -42,6 +44,5 @@ export default {
         overflow-x: auto;
         display: flex;
         flex-direction: row;
-        background-color: rgb(211, 175, 175);
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-view">
-      NAV
+      <!-- NAV -->
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     .sidebar-view {
         height: 100%;
         flex: 0 50px;
-        background: rgb(143, 143, 143);
-        color: white;
+        /* background: rgb(143, 143, 143);
+        color: white; */
     }
 </style>

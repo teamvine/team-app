@@ -22,15 +22,16 @@ export default {
         height: 100%;
         flex: 0 100%;
         display: flex;
-        overflow-x: auto;
-        overflow-y: auto;
+        overflow: hidden;
         flex-direction: row;
-        background: rgb(0, 27, 116);
+        /* background: rgb(0, 27, 116); */
     }
     .main-chat-view {
         width: 100%;
-        flex: 0 100%;
-        background: rgb(139, 193, 243);
-        color: white;
+        height:100%;
+        max-height: 100% !important;
+        overflow: hidden;
+        /* background: rgb(139, 193, 243); */
+        /* color: white; */
     }
 </style>

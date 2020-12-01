@@ -24,7 +24,7 @@ export default {
         height: 100%;
         flex: 0 0 100%;
         /* background: rgb(107, 201, 230); */
-        color: white;
+        /* color: white; */
     }
     .main-channel-chat {
         width: 100% !important;
@@ -33,6 +33,6 @@ export default {
         overflow-x: auto;
         display: flex;
         flex-direction: row;
-        background-color: rgb(211, 175, 175);
+        /* background-color: rgb(211, 175, 175); */
     }
 </style>

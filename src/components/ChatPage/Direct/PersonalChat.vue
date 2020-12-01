@@ -24,15 +24,14 @@ export default {
         height: 100%;
         flex: 0 0 100%;
         /* background: rgb(52, 124, 146); */
-        color: white;
+        /* color: white; */
     }
     .main-personal-chat {
         width: 100% !important;
         height: 100% !important;
-        overflow-y: auto;
-        overflow-x: auto;
+        overflow: hidden;
         display: flex;
         flex-direction: row;
-        background-color: rgb(211, 175, 175);
+        /* background-color: rgb(211, 175, 175); */
     }
 </style>
