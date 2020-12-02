@@ -37,13 +37,13 @@ export default {
     .sidebar-view {
         height: 100%;
         flex: 0 50px;
-        background: #F4FAFB;
+        background: #ffffff;
         color:black;
         position: relative;        
         justify-content: center;
         align-items: center;
         display: flex;
-        border-right:1px solid #eee;
+        border-right:1px solid rgb(90, 86, 86);
     }
     .icon-div{
         margin-bottom: 30px;

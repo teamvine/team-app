@@ -275,7 +275,7 @@ export default {
     .side-bar-view {
         min-height: 100%;
         max-height: 100%;
-        flex: 0 0 300px;
+        flex: 0 0 330px;
         background-color: #fff;
         overflow-y: scroll;
     }
