@@ -74,6 +74,14 @@
               Do you have account?
               <router-link to="/register" class="link">Sign Up.</router-link>
             </p>
+            
+            <div class="google-div">
+              <span class="or-up-line"></span>
+              <h4 class="or-heading">OR</h4>
+                <span class="or-down-line"></span>              
+            </div>
+            <button class="google-button">Continue with google</button>
+
           </form>
         </div>
       </div>
@@ -172,7 +180,7 @@ export default {
   width: 40%;
 }
 .img {
-  width: 80%;
+  width:  80%;
   margin: auto;
   margin-top: 0;
 }
@@ -190,7 +198,7 @@ export default {
   align-items: center;
   text-align: center;
   width: 1em;
-  height: 30em;
+  height: 32em;
   margin: 6.8em 0 0 0;
   border: none;
   box-shadow: 0 0 4px 1px rgb(219, 219, 219);
@@ -274,6 +282,43 @@ form .line {
   animation-name: fadeIn;
   animation-duration: 1.5s;
 }
+.or-heading[data-v-15717af5] {
+    margin: -22px 0 0 145px;
+    background: #47abed;
+    width: 38px;
+    border: none;
+    border-radius: 100%;
+    height: 28px;
+    color: white;
+}
+.or-up-line {
+content: '';
+    width: 11em;
+    height: 3px;
+    background: #47abed;
+    display: block;
+    margin: -16px 0 0 -27px;
+}
+.or-down-line{
+    content: '';
+    width: 12em;
+    height: 3px;
+    background: #47abed;
+    display: block;
+    margin: -10px 1em 0 161px;
+}
+.google-div {
+    margin: 5em 0 0 0;
+}
+.google-button {
+    width: 17em;
+    height:2.5em;
+    background: #47abed;
+    margin: 1em 0 0 0;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -325,7 +370,7 @@ a:hover {
   border-radius: 25px;
   outline: none;
   border: none;
-  background-image: linear-gradient(to right, #3f85fd,#3f85fd,#3f85fd);
+  background-color:#47abed;
   font-family: "Poppins", sans-serif;
   color: #fff;
   text-transform: uppercase;
@@ -334,7 +379,7 @@ a:hover {
   margin: 14px 0 0 5em;
 }
 .btn:hover {
- background-image: linear-gradient(to right, #2668db,#2668db,#2668db);
+ background-color: #47abed;
 }
 
 @media only screen and (max-width: 700px) {
