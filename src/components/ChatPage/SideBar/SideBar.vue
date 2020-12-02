@@ -258,7 +258,7 @@ export default {
 
 <style scoped>
     .upper-part{
-        background-color: #1A94FF;
+        background-color: #4a81e2;
         color:white;
     }
     .sort-by{
@@ -275,7 +275,7 @@ export default {
     .side-bar-view {
         min-height: 100%;
         max-height: 100%;
-        flex: 0 0 330px;
+        flex: 0 0 320px;
         background-color: #fff;
         overflow-y: scroll;
     }
@@ -283,23 +283,22 @@ export default {
         display:inline-block;
     }
     .contact-name{
-        font-weight:200;
-        font-family: 'Roboto';
+        font-weight:600;
+        /* font-family: 'Roboto'; */
     }
     .contact-last-message{
-        font-weight: 200;
+        font-weight: 400;
         font-family: 'inter';
         margin-left: 38px;
         margin-top:-10px;
-
+        font-size: 95%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-family: 'RobotoThin';
     }
     .sort-by.active{
         background-color: white;
-        color: #1A94FF;
+        color: #4a81e2;
         padding:4px 15px;
         border-radius: 15px;
     }
@@ -312,5 +311,11 @@ export default {
     .more-options{
         position: absolute;
         right: 0 !important;
+    }
+    .side-bar-view::-webkit-scrollbar {
+        width: 6px;
+    }
+    .side-bar-view::-webkit-scrollbar-thumb {
+        background-color: rgb(212, 212, 212);
     }
 </style>

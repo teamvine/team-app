@@ -4,9 +4,9 @@
       <img src="../../../../assets/images/avatar2.jpg" class="wh-60 rounded-lg" />
       <div class="flex-1 px-3">
         <div class="text-md text-gray-900 mb-1">
-          <b class="font-bold">Dusengimana Felix</b>
+          <b class="font-bold inter">Dusengimana Felix</b>
         </div>
-        <span class="text-gray-800 text-md">
+        <span class="text-gray-800 text-md inter">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque veniam
           necessitatibus accusamus nulla! Magnam odio ad id. Nobis, dolore
           numquam est molestiae consequatur id ducimus odit sed commodi laborum
@@ -19,9 +19,9 @@
               />
               <div class="flex-1 px-3">
                 <div class="text-sm text-gray-900 mb-1">
-                  <b class="font-bold">Harerimana Egide</b>
+                  <b class="font-bold inter">Harerimana Egide</b>
                 </div>
-                <span class="text-gray-800 text-sm">
+                <span class="text-gray-800 text-sm inter">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
                   veniam necessitatibus accusamus nulla! Magnam odio ad id.
                   Nobis, dolore numquam est molestiae consequatur id ducimus
@@ -43,6 +43,10 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+.inter {
+  font-family: 'Inter', sans-serif;
+}
 .wh-60 {
   width: 3em;
   height: 3em;

@@ -4,10 +4,12 @@
       <div class="cont">
         <div class="left">
           <div>
-            <h2 class="font-bold app-title">TEAMVINE</h2>
+            <h2 class="font-bold app-title">RCONNECT</h2>
 
             <p class="mt-8 desc bring-more">
-             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente dicta libero dolorem omnis quo autem temporibus, incidunt provident ducimus harum non delectus vel. In laboriosam, reprehenderit omnis mollitia doloremque provident!
+              Bring your Teams,Companies,Schools and Other groups to join
+              RCONNECT where sharing skills and ideas and your staffs made
+              easier and secure.
             </p>
           </div>
           <img

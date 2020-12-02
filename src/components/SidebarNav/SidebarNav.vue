@@ -43,7 +43,7 @@ export default {
         justify-content: center;
         align-items: center;
         display: flex;
-        border-right:1px solid rgb(90, 86, 86);
+        border-right:1px solid rgb(194, 194, 194);
     }
     .icon-div{
         margin-bottom: 30px;

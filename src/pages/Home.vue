@@ -45,4 +45,10 @@ export default {
         display: flex;
         flex-direction: row;
     }
+    *::-webkit-scrollbar {
+        width: 6px;
+    }
+    *::-webkit-scrollbar-thumb {
+        background-color: rgb(212, 212, 212);
+    }
 </style>

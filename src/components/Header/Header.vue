@@ -1,7 +1,7 @@
 <template>
   <header class="header-view shadow-md">
     <div class="app-name p-3">
-      <h3>TEAMVINE</h3>
+      <h3>RCONNECT</h3>
     </div>
     <div class="right-menu">
       <div class="notifications">
@@ -34,12 +34,12 @@
             <div class="flex flex-wrap overflow-hidden">
               <div class="px-6 mt-2 hover:bg-white d-block w-full pt-0">
                 <div
-                  class="font-bold text-center d-block hover:bg-white tracking-wide w-full text-c2 mb-4"
+                  class="font-bold text-md text-center d-block hover:bg-white tracking-wide w-full text-c2 mb-4"
                 >
                   Dusengimana Felix
                 </div>
                 <div
-                  class="flex d-block item-hover cursor-pointer w-full px-4 py-2 font-bold text-sm text-grey-darkest border-b-0"
+                  class="flex d-block item-hover cursor-pointer w-full px-4 py-2 font-bold text-md text-grey-darkest border-b-0"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@
                   <div class="pl-2">Go Home</div>
                 </div>
                 <div
-                  class="flex item-hover d-block cursor-pointer px-4 py-2 text-sm text-grey-darkest border-b-0"
+                  class="flex item-hover d-block cursor-pointer px-4 py-2 text-md text-grey-darkest border-b-0"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@
                   <div class="pl-2">My Account</div>
                 </div>
                 <div
-                  class="d-block item-hover flex cursor-pointer px-4 py-2 text-sm text-grey-darkest"
+                  class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@
                   <div class="pl-2">Notifications</div>
                 </div>
                 <div
-                  class="d-block item-hover flex cursor-pointer px-4 py-2 text-sm text-grey-darkest"
+                  class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
