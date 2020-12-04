@@ -5,7 +5,7 @@
         <div class="relative">
           <div class="flex flex-wrap items-stretch w-full mb-4 relative">
             <input
-              type="text"
+              type="search"
               :disabled="false"
               name="searchtext"
               id="searchtext"

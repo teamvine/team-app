@@ -92,12 +92,7 @@
                   <div class="pl-2">Messages</div>
                 </div>
                 <div
-                  class="d-block uppercase tracking-wide text-center text-c2 mb-4 mt-8"
-                >
-                  APP SETTINGS
-                </div>
-                <div
-                  class="item-hover d-block flex cursor-pointer border px-4 py-2 text-md text-grey-darkest"
+                  class="item-hover d-block flex cursor-pointer border-bottom px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

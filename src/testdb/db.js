@@ -12,6 +12,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "online"
         },
         {
             _id: 2,
@@ -25,6 +26,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "online"
         },
         {
             _id: 3,
@@ -39,6 +41,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "offline"
         },
         {
             _id: 4,
@@ -53,6 +56,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "online"
         },
         {
             _id: 5,
@@ -68,6 +72,7 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "offline"
         },
         {
             _id: 6,
@@ -81,6 +86,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "offline"
         },
         {
             _id: 7,
@@ -94,6 +100,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "offline"
         },
         {
             _id: 8,
@@ -108,6 +115,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "online"
         },
         {
             _id: 9,
@@ -122,6 +130,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "online"
         },
         {
             _id: 10,
@@ -137,6 +146,7 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "offline"
         },
         {
             _id: 11,
@@ -150,6 +160,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "online"
         },
         {
             _id: 12,
@@ -163,6 +174,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "offline"
         },
         {
             _id: 13,
@@ -177,6 +189,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "online"
         },
         {
             _id: 14,
@@ -191,6 +204,7 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "offline"
         },
         {
             _id: 15,
@@ -206,6 +220,7 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
+            status: "online"
         },
     ],
     channels: [
