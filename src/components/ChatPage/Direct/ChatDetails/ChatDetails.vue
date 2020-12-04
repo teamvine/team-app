@@ -9,10 +9,10 @@
             alt="bg image"
           />
         </div>
-        <div class="mt-8 w-full pb-3">
-            <div class="mt-3 text-center">
+        <div class="mt-8 w-full h-full pb-3">
+            <div class="mt-3 text-center who-is-chating">
                 <h1 class="font-bold">Harerimana Egide</h1>
-                <span class="">Ui/Ux & backend developer</span>
+                <span class="">Ui/Ux &amp; backend developer</span>
             </div>
         </div>
       </div>
@@ -62,5 +62,8 @@ export default {
   border-radius: 50%;
   top: 35%;
   border: 3px solid white;
+}
+.who-is-chating{
+  min-height: 100%;
 }
 </style>
