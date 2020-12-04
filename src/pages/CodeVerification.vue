@@ -1,18 +1,17 @@
 <template>
-  <div>
-    <div class="main grid rounded-md">
-      <img class="avatar" src="../assets/images/codeavatar.png" alt="" />
-      <h1>Verification</h1>
-
-      <p>
-        For better account verification please enter the code we sent to you
-        email
+  <div class="Main-view">
+    <div class="main grid">
+      <img class="avatar" src="../assets/images/codeavatar.png" alt="">
+      <h1>Email Verification</h1>
+      <p class="mt-4">
+        For better account verification please enter the code we sent to your email
+        to verify that this is your email.
       </p>
       <div class="form-container">
         <div class="verification-code">
-          <form>
+          <form class="shadow">
             <label for="code">Enter the code</label>
-            <input type="text" id="code" />
+            <input type="text" id="code">
             <h4 class="resend">Resend code?</h4>
             <button>Verify</button>
           </form>
@@ -21,46 +20,60 @@
     </div>
   </div>
 </template>
-
+​
 <script>
-export default {
-  name: "CodeVerification",
-  data() {
-    return {
-      errorMssg: "",
-      code: "",
-      errorColor: "danger",
-    };
-  },
-};
+export default{
+  name:"CodeVerification",
+  data(){
+    return{
+      errorMssg:"",
+      code:"",
+      errorColor:"danger"
+    }
+  }
+}
 </script>
-
-<style  scoped>
+​
+<style scoped>
+.Main-view {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0;
+  display: block;
+  background-color: white;
+}
 .avatar {
   width: 10em;
   margin: 2em 0 0 10em;
 }
 input[type="text"] {
   width: 13em;
-  border-bottom: 2px solid;
+  border-bottom: 1px solid dotted;
   text-decoration: dashed;
   height: 36px;
-  border-bottom: dot-dot-dash;
+  border-bottom:dashed;
 }
 .main {
   width: 30em;
   height: 36em;
-  background: #ebeef5;
-  margin: 2em 0 0 25em;
+  /* background: #f4f6fc; */
+  background-color: white;
+  box-shadow: 0 1px 4px 1px #bdbdbd;
+  margin: auto;
+  margin-top: 3%;
+   border-radius: 10px;
+    /* box-shadow: 1px 6px 14px -10px; */
 }
 h1 {
   text-align: center;
   font-size: 23px;
   font-weight: bold;
-  text-transform: uppercase;
+  text-transform: uppercase
 }
 p {
-  margin: -54px 0 0 78px;
+  /* margin: -54px 0 0 78px; */
+  margin: auto;
   width: 22em;
   text-align: justify;
   font-weight: 350;
@@ -69,18 +82,21 @@ form {
   width: 21em;
   height: 12em;
   background: white;
-  margin: -2em 0 0 6em;
+  /* margin: -2em 0 0 6em; */
+  margin: auto;
+  margin-bottom: 5em;
+  margin-top: 2em;
   padding: 1em 0 0 3em;
-  box-shadow: 0 1px 4px 1px #bdbdbd;
+  /* box-shadow: 0 1px 4px 1px #bdbdbd; */
   border-radius: 8px;
 }
-.resend {
+.resend{
   float: left;
   margin: 29px 0 0 -10px;
   text-decoration: underline;
   cursor: pointer;
 }
-button {
+button{
   float: right;
   margin: 23px 28px 0 0;
   width: 6em;
@@ -93,29 +109,36 @@ button {
   cursor: pointer;
   outline: 0;
 }
-@media only screen and (max-width: 700px) {
-  .main {
+@media only screen and (max-width: 700px){
+  .main{
     margin: 0;
     padding: 0;
-    height: 47em;
+    height: 100vh;
+    box-shadow: 0 1px 4px 1px #ffffff;
+    border-radius:0;
+    background: none;
   }
 }
 @media only screen and (min-width: 748px) and (max-width: 1024px) {
-  .main {
+  .main{
     width: 100%;
-    height: 70em;
+    height: 100pc;
     margin: 0;
+    box-shadow: 0 1px 4px 1px #ffffff;
+    border-radius:0;
   }
-  .avatar {
+  .avatar{
     width: 18em;
     margin: 3em 0 0 16em;
   }
-  h1 {
+  h1{
     font-size: 50px;
   }
   p {
     margin: -98px 0 0 106px;
     font-size: 30px;
+    width: 100%;
+    padding-left: 3%;
   }
   form {
     width: 40em;
@@ -123,14 +146,14 @@ button {
   }
   input[type="text"] {
     width: 30em;
-    border-bottom: 2px solid;
+    border-bottom: 1px solid dashed;
     margin: 0 0 0 1em;
-    border-bottom: dot-dot-dash;
+    border-bottom:dotted ;
   }
-  .resend {
+  .resend{
     font-size: 28px;
   }
-  button {
+  button{
     width: 12em;
     height: 3.6em;
     font-size: 20px;

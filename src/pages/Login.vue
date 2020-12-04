@@ -209,7 +209,8 @@ export default {
 }
 form {
   width: 70%;
-  margin: -4em 15%;
+  /* margin: -4em 15%; */
+  margin: auto;
 }
 form h2 {
   color: #2a68d3;
@@ -317,7 +318,7 @@ form .line {
   height: 2.5em;
   background: #2f74eb;
   margin: 1.5em 0 0 0;
-  margin-bottom: 5%;
+  margin-bottom: 7%;
   color: white;
   border-radius: 2px;
   cursor: pointer;
@@ -377,7 +378,8 @@ a:hover {
   font-family: "Poppins", sans-serif;
   color: #fff;
   text-transform: uppercase;
-  transition: 0.5s;
+  transition: 0.3s;
+  transition-property: "background";
   cursor: pointer;
   margin: 14px 0 0 5em;
 }
@@ -400,7 +402,7 @@ a:hover {
     flex-direction: column-reverse;
   }
   .cont .left {
-    width: 90%;
+    width: 100%;
     margin: 4% 5%;
     display: none;
   }
@@ -414,14 +416,15 @@ a:hover {
   form {
     background-color: none;
     border-radius: 0px;
-    width: 90%;
+    width: 100%;
     margin: -4em 10%;
+    /* margin: auto; */
     box-shadow: none;
   }
   .input-div {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   form h1 {
     margin-top: 0%;
