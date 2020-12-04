@@ -9,11 +9,11 @@
         <span class="number">5</span>
       </div>
       <div class="user-menu">
-        <div class="drp-dwn-toggler" @click="showDropDown = !showDropDown">
+        <div class="drp-dwn-toggler pl-1" @click="showDropDown = !showDropDown">
           <img src="../../assets/images/avatar2.jpg" alt="user-pic" />
-          <span>Egide</span>
+          <span class="px-2">Egide</span>
         </div>
-        <div class="drop-down shadow" v-show="showDropDown">
+        <div class="drop-down shadow-md" v-show="showDropDown">
           <div
             class="drop-content origin-top-right absolute right-0 mt-2 w-full rounded-sm shadow-md bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100"
             role="menu"
@@ -176,6 +176,8 @@ export default {
 .right-menu {
   float: right;
   height: 100%;
+  padding: 0;
+  margin-top: -0.2%;
 }
 .right-menu * {
   display: inline-block;
@@ -207,22 +209,34 @@ export default {
   position: absolute;
 }
 .user-menu {
-  padding-right: 40px;
+  margin-right: 30px;
   position: relative;
   height: 100%;
-  /* background: rgb(110, 110, 110); */
+  height: auto;
+  width: auto;
+  background-color: rgb(0.3, 0.3, 0.3, 0.05);
+  border-radius: 7px;
+}
+.user-menu:hover {
+  background-color: rgb(0.3, 0.3, 0.3, 0.1);
 }
 .user-menu .drp-dwn-toggler {
   cursor: pointer;
+  display: inline-block !important;
 }
 .drp-dwn-toggler img {
-  width: 35px;
+  width: 32px;
+  height: 32px;
+  margin: 2px;
   border-radius: 50%;
+}
+.user-menu .drp-dwn-toggler span {
+  font-weight: bold;
 }
 .drop-down {
   display: block;
   position: absolute;
-  right: 20px;
+  right: 0px;
   top: 35px;
   width: auto;
   word-break: unset;
@@ -278,7 +292,7 @@ img.user-pic:hover {
 @media only screen and (max-width: 600px) {
   .drop-down,.drop-content {
     width: 100vw;
-    right: 0;
+    right: -6.6%;
   }
 }
 </style>
