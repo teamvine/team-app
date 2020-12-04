@@ -5,11 +5,6 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path:"/try/chat",
-    name:"Trying new chat layout",
-    component: () =>import('../pages/try_general_chat_view.vue'),
-  },
-  {
     path: "/",
     name: "Home",
     component: () => import(/* webpackChunkName: "about" */ '../pages/Home.vue'),
@@ -46,7 +41,7 @@ const routes = [
         //   return next({ name: "Login" });
         // }
       },
-      redirect: to => ({
+      redirect: () => ({ //@param {} to
         name: 'ChannelChat'
       }),
       children: [{
@@ -75,6 +70,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: () => import(/* webpackChunkName: "register" */ '../pages/Register.vue')
+  },
+  {
+    path: "/email-verification",
+    name: "EmailVerifiaction",
+    component: () => import(/* webpackChunkName: "email_verification" */ '../pages/CodeVerification.vue')
   },
   {
     path: '*',

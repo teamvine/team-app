@@ -5,24 +5,13 @@
     </div>
     <div class="right-menu">
       <div class="notifications">
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-        >
-          <path fill="none" d="M0 0h24v24H0z" />
-          <path
-            d="M20 18.667l.4.533a.5.5 0 0 1-.4.8H4a.5.5 0 0 1-.4-.8l.4-.533V10a8 8 0 1 1 16 0v8.667zM9.5 21h5a2.5 2.5 0 1 1-5 0z"
-          />
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 17h2v2H2v-2h2v-7a8 8 0 1 1 16 0v7zm-2 0v-7a6 6 0 1 0-12 0v7h12zm-9 4h6v2H9v-2z"/></svg>
         <span class="number">5</span>
       </div>
       <div class="user-menu">
         <div class="drp-dwn-toggler" @click="showDropDown = !showDropDown">
           <img src="../../assets/images/avatar2.jpg" alt="user-pic" />
-          <span></span>
+          <span>Egide</span>
         </div>
         <div class="drop-down shadow" v-show="showDropDown">
           <div

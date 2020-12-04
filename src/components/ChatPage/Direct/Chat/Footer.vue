@@ -1,8 +1,20 @@
 <template>
   <div class="chat-foot rounded-xl shadow-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0">
       <form @submit.prevent="alert('hi')">
-          <div class="icon">
+          <div class="icon" @click="showEmojis=!showEmojis" @dblclick="showEmojis=!showEmojis">
               <img src="https://img.icons8.com/emoji/48/000000/slightly-smiling-face.png"/>
+          </div>
+          <div class="emoji-pickr" v-show="showEmojis">
+                <VEmojiPicker
+                labelSearch="Search"
+                lang="pt-BR"
+                @select="onSelectEmoji"
+                @click.prevent
+                :i18n="i18n"
+                :emojiWithBorder="false"
+                :showCategories="true"
+                :continuousList="true"
+                />
           </div>
           <div class="field">
               <input type="text" placeholder="Write to John...">
@@ -25,13 +37,25 @@
 
 <script>
 export default {
-    name: "Footer"
+    name: "Footer",
+    data(){
+        return {
+            showEmojis: false
+        }
+    },
+    methods: {
+        onSelectEmoji(emoji){
+            let unicodeEmoji = emoji.data
+            console.log(emoji);
+        }
+    }
 }
 </script>
 
 <style scoped>
 .chat-foot {
     height: 50px;
+    position: relative;
 }
 form {
     width: 100%;
@@ -39,6 +63,15 @@ form {
     display: flex;
     flex-direction: row;
     padding: 0.5% 0;
+    position: relative;
+}
+form .emoji-pickr {
+    position: absolute;
+    bottom: 101%;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    color: white !important;
 }
 form .icon {
     height: 100%;

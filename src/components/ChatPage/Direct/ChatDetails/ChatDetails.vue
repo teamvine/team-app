@@ -62,5 +62,6 @@ export default {
   border-radius: 50%;
   top: 35%;
   border: 3px solid white;
+  background-color: rgb(0, 0, 0,0.1);
 }
 </style>
