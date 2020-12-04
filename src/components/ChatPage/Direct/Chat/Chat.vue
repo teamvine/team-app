@@ -5,7 +5,7 @@
           <Header/>
       </div>
       <div class="chat-messages p-4">
-          <div class="messages">
+          <div class="messages px-2">
               <MessageItem v-for="(message,index) in sampleSMS" :key="index"/>
               
           </div>
@@ -106,10 +106,15 @@ export default {
 .messages::-webkit-scrollbar-thumb {
   width: 6px;
   background-color: rgb(0, 0, 0,0.2);
+  border-radius: 6px;
 }
-.chat-footer {
+/* .chat-footer {
     min-height: 60px;
     max-height: 60px;
+} */
+.chat-footer {
+    min-height: 120px;
+    max-height: 120px;
     /* background-color: rgb(186, 195, 247); */
 }
 </style>

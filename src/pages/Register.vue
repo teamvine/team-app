@@ -97,9 +97,8 @@
               {{ errorMsg }}
             </p>
             <button
-              class="bg-blue-500 btn-create hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full items-center mt-4 mb-2"
+              class="btn-create text-white font-bold py-2 px-4 rounded-full items-center mt-4 mb-2"
             >
-              <i class="ri-check-line mr-2 mt-3"></i>
               <span>New Account</span>
             </button>
             <p class="mt-3 mb-2 no-account">
@@ -342,6 +341,10 @@ form .line {
   margin-left: auto;
   margin-right: auto;
   outline: none !important;
+  background-color:  #2a68d3;
+}
+.btn-create:hover {
+  background-color:  #1751b4;
 }
 .c-google {
   width: 70%;

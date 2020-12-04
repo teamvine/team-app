@@ -1,30 +1,19 @@
 <template>
   <header class="header-view shadow-md">
     <div class="app-name p-3">
-      <h3>TEAMVINE</h3>
+      <h3>RCONNECT</h3>
     </div>
     <div class="right-menu">
       <div class="notifications">
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-        >
-          <path fill="none" d="M0 0h24v24H0z" />
-          <path
-            d="M20 18.667l.4.533a.5.5 0 0 1-.4.8H4a.5.5 0 0 1-.4-.8l.4-.533V10a8 8 0 1 1 16 0v8.667zM9.5 21h5a2.5 2.5 0 1 1-5 0z"
-          />
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 17h2v2H2v-2h2v-7a8 8 0 1 1 16 0v7zm-2 0v-7a6 6 0 1 0-12 0v7h12zm-9 4h6v2H9v-2z"/></svg>
         <span class="number">5</span>
       </div>
       <div class="user-menu">
-        <div class="drp-dwn-toggler" @click="showDropDown = !showDropDown">
+        <div class="drp-dwn-toggler pl-1" @click="showDropDown = !showDropDown">
           <img src="../../assets/images/avatar2.jpg" alt="user-pic" />
-          <span></span>
+          <span class="px-2">Egide</span>
         </div>
-        <div class="drop-down shadow" v-show="showDropDown">
+        <div class="drop-down shadow-md" v-show="showDropDown">
           <div
             class="drop-content origin-top-right absolute right-0 mt-2 w-full rounded-sm shadow-md bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100"
             role="menu"
@@ -34,12 +23,12 @@
             <div class="flex flex-wrap overflow-hidden">
               <div class="px-6 mt-2 hover:bg-white d-block w-full pt-0">
                 <div
-                  class="font-bold text-center d-block hover:bg-white tracking-wide w-full text-c2 mb-4"
+                  class="font-bold text-md text-center d-block hover:bg-white tracking-wide w-full text-c2 mb-4"
                 >
                   Dusengimana Felix
                 </div>
                 <div
-                  class="flex d-block item-hover cursor-pointer w-full px-4 py-2 font-bold text-sm text-grey-darkest border-b-0"
+                  class="flex d-block item-hover cursor-pointer w-full px-4 py-2 font-bold text-md text-grey-darkest border-b-0"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +44,7 @@
                   <div class="pl-2">Go Home</div>
                 </div>
                 <div
-                  class="flex item-hover d-block cursor-pointer px-4 py-2 text-sm text-grey-darkest border-b-0"
+                  class="flex item-hover d-block cursor-pointer px-4 py-2 text-md text-grey-darkest border-b-0"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +60,7 @@
                   <div class="pl-2">My Account</div>
                 </div>
                 <div
-                  class="d-block item-hover flex cursor-pointer px-4 py-2 text-sm text-grey-darkest"
+                  class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +76,7 @@
                   <div class="pl-2">Notifications</div>
                 </div>
                 <div
-                  class="d-block item-hover flex cursor-pointer px-4 py-2 text-sm text-grey-darkest"
+                  class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -103,12 +92,7 @@
                   <div class="pl-2">Messages</div>
                 </div>
                 <div
-                  class="d-block uppercase tracking-wide text-center text-c2 mb-4 mt-8"
-                >
-                  APP SETTINGS
-                </div>
-                <div
-                  class="item-hover d-block flex cursor-pointer border px-4 py-2 text-md text-grey-darkest"
+                  class="item-hover d-block flex cursor-pointer border-bottom px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -187,6 +171,8 @@ export default {
 .right-menu {
   float: right;
   height: 100%;
+  padding: 0;
+  margin-top: -0.2%;
 }
 .right-menu * {
   display: inline-block;
@@ -218,22 +204,34 @@ export default {
   position: absolute;
 }
 .user-menu {
-  padding-right: 40px;
+  margin-right: 30px;
   position: relative;
   height: 100%;
-  /* background: rgb(110, 110, 110); */
+  height: auto;
+  width: auto;
+  background-color: rgb(0.3, 0.3, 0.3, 0.05);
+  border-radius: 7px;
+}
+.user-menu:hover {
+  background-color: rgb(0.3, 0.3, 0.3, 0.1);
 }
 .user-menu .drp-dwn-toggler {
   cursor: pointer;
+  display: inline-block !important;
 }
 .drp-dwn-toggler img {
-  width: 35px;
+  width: 32px;
+  height: 32px;
+  margin: 2px;
   border-radius: 50%;
+}
+.user-menu .drp-dwn-toggler span {
+  font-weight: bold;
 }
 .drop-down {
   display: block;
   position: absolute;
-  right: 20px;
+  right: 0px;
   top: 35px;
   width: auto;
   word-break: unset;
@@ -289,7 +287,7 @@ img.user-pic:hover {
 @media only screen and (max-width: 600px) {
   .drop-down,.drop-content {
     width: 100vw;
-    right: 0;
+    right: -6.6%;
   }
 }
 </style>
