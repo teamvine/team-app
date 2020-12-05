@@ -12,7 +12,7 @@
         <div class="mt-8 w-full h-full pb-3">
             <div class="mt-3 text-center who-is-chating">
                 <h1 class="font-bold">Harerimana Egide</h1>
-                <span class="text-gray-700">Ui/Ux &amp; backend developer</span>
+                <span class="text-gray-700 persons-role">Ui/Ux &amp; backend developer</span>
             </div>
             <hr class="mt-5 mb-2"/>
             <div class="more-info mt-3">
@@ -24,8 +24,8 @@
               </div>
               <div class="phone">
                 <p class="border-bottom p-3 pt-1">
-                  <svg class="svg-icon text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.364 17.364L12 23.728l-6.364-6.364a9 9 0 1 1 12.728 0zM12 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
-                  <span class="ml-3 text-gray-700 ">Gatenga - Kigali,Rwanda</span>
+                  <svg class="svg-icon address text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.364 17.364L12 23.728l-6.364-6.364a9 9 0 1 1 12.728 0zM12 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                  <span class="ml-3 text-gray-700 persons-address">An address is a collection of information, presented in a mostly fixed format, used to give the location of a building, apartment, or other structure or a plot of</span>
                 </p>
               </div>
             </div>
@@ -128,5 +128,15 @@ export default {
 }
 button{
   outline: none !important;
+}
+.persons-role,.persons-address{  
+  display: inline-block;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.svg-icon.address{
+  margin-top: -15px;
 }
 </style>
