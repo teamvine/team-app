@@ -32,10 +32,9 @@
             <hr class="m-3" />
             <div class="recent-atachments p-4">
                <v-tabs>
-      <v-tab>Item One</v-tab>
-      <v-tab>Item Two</v-tab>
-      <v-tab>Item Three</v-tab>
-    </v-tabs>
+                <v-tab>Photos &amp; media <span class="num rounded rounded-full"></span> </v-tab>
+                <v-tab>Documents<span class="num rounded rounded-full"></span> </v-tab>
+              </v-tabs>
               <ul>
                 <li class="text-gray-700 p-2">
                   <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 22H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1zm-1-2V4H5v16h14zm-5-8v5h-4v-3h2v-2h2zm-2-8h2v2h-2V4zm-2 2h2v2h-2V6zm2 2h2v2h-2V8zm-2 2h2v2h-2v-2z" fill="rgba(18,184,0,1)"/></svg>
@@ -56,6 +55,37 @@
                   SDL_slides_unit5.docx
                 </li>
               </ul>
+              <div class="images gap-4">
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+                
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+                
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+                <div class="shared-image">
+                  <img src="../../../../assets/images/avatar1.jpg" alt="you sent this image to Gashumba on 28 Jan 2020">
+                </div>
+              </div>
             </div>
         </div>
       </div>
@@ -73,7 +103,18 @@ export default {
 .details {
   height: 100%;
   flex: 0 0 320px;
+  
+  overflow-y: auto;
+  scrollbar-width: 7px !important;
+  scrollbar-color: rgb(212, 212, 212) !important;
 }
+.details::-webkit-scrollbar {
+  width: 6px;
+}
+.details::-webkit-scrollbar-thumb {
+  background-color: rgb(212, 212, 212);
+}
+
 .chat-detls {
   height: 100%;
   width: 100%;
@@ -107,11 +148,26 @@ export default {
   border: 3px solid white;
   background-color: rgb(0, 0, 0,0.1);
 }
-.who-is-chating{
-  min-height: 100%;
-}
 .svg-icon{
   display: inline-block;
   margin-right: 4px;
 }
+.images{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.images .shared-image{
+  width:40% !important;
+}
+
+.shared-image img{
+  display:block;
+  max-width: 100%;
+  border-radius: 10px;
+}
+/* span.num{
+  padding:7px;
+  background: #4a81e2;
+} */
 </style>
