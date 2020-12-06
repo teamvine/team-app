@@ -1,9 +1,10 @@
 <template>
-<!-- chat-foot -->
   <div
-    class="chat-foot-extended rounded-xl shadow-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
+    :class="[editorType=='extended'? 'chat-foot-extended':'chat-foot']"
+    class="rounded-xl shadow-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
   >
-    <div class="editor">text</div>
+    <div class="edit" id="editor" contenteditable="true" v-if="editorType=='extended'">
+    </div>
     <form @submit.prevent="alert('hi')">
       <div
         class="icon"
@@ -23,10 +24,108 @@
           :continuousList="true"
         />
       </div>
-      <!-- <div class="field">
+      <div class="field" v-if="editorType=='minimal'">
         <input type="text" placeholder="Write to John..." />
-      </div> -->
-      <div class="field bg-blue-400">dshsjkd</div>
+      </div>
+      <div class="field" v-else>
+          <div class="menubar format-buttons">
+            <button
+              class="menubar__button"
+              :class="format('bold')"
+              @click="alert('hi')"
+            >
+              <i class="ri-bold"></i>
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="format('italic')"
+            >
+              <i class="ri-italic"></i>
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="alert('hi')"
+            >
+              <i class="ri-strikethrough"></i>
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="alert('hi')"
+            >
+              <i class="ri-underline"></i>
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="alert('hi')"
+            >
+              <i class="ri-paragraph"></i>
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="alert('hi')"
+            >
+              H1
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="alert('hi')"
+            >
+              H2
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="alert('hi')"
+            >
+              H3
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="format('insertunorderedlist')"
+              @click="alert('hi')"
+            >
+              <i class="ri-list-unordered"></i>
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="format('insertorderedlist')"
+              @click="alert('hi')"
+            >
+              <i class="ri-list-ordered"></i>
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="alert('hi')"
+            >
+              <i class="ri-link"></i>
+            </button>
+
+            <button
+              class="menubar__button"
+              :class="''"
+              @click="alert('hi')"
+            >
+              <i class="ri-code-s-slash-line"></i>
+            </button>
+      </div>
+      </div>
       <div class="icon chat-options"
         @click="showAdvancedOptions = !showAdvancedOptions"
         @dblclick="showAdvancedOptions = !showAdvancedOptions"
@@ -47,12 +146,13 @@
             <h2 class="font-bold text-left">Advanced options</h2>
           </div>
           <span
+            @click="changeEditorType"
             class="flex items-center px-3 py-1 font-bold cursor-pointer hover:bg-gray-200 font-light text-sm focus:outline-none"
           >
             <div class="mr-2">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="none" d="M0 0H24V24H0z"/><path d="M13 20h-2v-7H4v7H2V4h2v7h7V4h2v16zm8-12v12h-2v-9.796l-2 .536V8.67L19.5 8H21z"/></svg>
             </div>
-            Text Formatting
+            Toggle Formatting
           </span>
           <span
             class="flex items-center px-3 py-1 font-bold cursor-pointer hover:bg-gray-200 font-light text-sm focus:outline-none"
@@ -106,19 +206,94 @@
 </template>
 
 <script>
+import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import {
+  Blockquote,
+  CodeBlock,
+  HardBreak,
+  Heading,
+  HorizontalRule,
+  OrderedList,
+  BulletList,
+  ListItem,
+  TodoItem,
+  TodoList,
+  Bold,
+  Code,
+  Italic,
+  Link,
+  Strike,
+  Underline,
+  History,
+} from 'tiptap-extensions'
 export default {
   name: "Footer",
+  components: {
+    EditorContent,
+    EditorMenuBar
+  },
+  props: {
+    changeFooter: Function
+  },
   data() {
     return {
       showEmojis: false,
-      showAdvancedOptions: false
+      showAdvancedOptions: false,
+      editorType: localStorage.getItem("editor_type") || "minimal",
+      editorEl: null,
+      editor: new Editor({
+        extensions: [
+          new Blockquote(),
+          new BulletList(),
+          new CodeBlock(),
+          new HardBreak(),
+          new Heading({ levels: [4, 5, 6] }),
+          new HorizontalRule(),
+          new ListItem(),
+          new OrderedList(),
+          new TodoItem(),
+          new TodoList(),
+          new Link(),
+          new Bold(),
+          new Code(),
+          new Italic(),
+          new Strike(),
+          new Underline(),
+          new History(),
+        ],
+        content: ``,
+      })
     };
+  },
+  mounted(){
+    this.editorEl = document.getElementById("editor")
   },
   methods: {
     onSelectEmoji(emoji) {
       let unicodeEmoji = emoji.data;
       console.log(emoji);
     },
+    format(command, value) {
+      document.execCommand(command, false, value);
+      // alert(this.editorEl.getSelection())
+		},
+		setUrl() {
+			var url = document.getElementById('txtFormatUrl').value;
+			var sText = document.getSelection();
+			document.execCommand('insertHTML', false, '<a href="' + url + '" target="_blank">' + sText + '</a>');
+			document.getElementById('txtFormatUrl').value = '';
+    },
+    changeEditorType(){
+      if(this.editorType=="minimal"){
+        this.changeFooter("extended");
+        this.editorType="extended";
+        localStorage.setItem("editor_type","extended");
+      }else{
+        this.changeFooter("minimal");
+        this.editorType="minimal";
+        localStorage.setItem("editor_type","minimal");
+      };
+    }
   },
 };
 </script>
@@ -196,14 +371,32 @@ form .field input {
   height: 115px;
   position: relative;
 }
-.chat-foot-extended .editor{
+.chat-foot-extended .edit{
   height: 70px;
   position: relative;
   width: 100%;
-  background: #000;
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow-y: auto;
+  background: rgb(241, 241, 241);
+  outline: none;
 }
 .chat-foot-extended form{
   height: 40px;
   position: relative;
+}
+.format-buttons button{
+  width: 8.33333333333%;
+  outline: none;
+  margin-top: 1%;
+}
+.format-buttons button.is-active,.format-buttons button:hover{
+  background-color: #2f74eb2c;
+}
+
+.editor__content div {
+  display: block;
+  height: 100%;
+  outline: none;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="details">
     <div class="chat-detls flex flex-wrap">
-      <div class="user-card shadow-md bg-white ml-2 mr-2 rounded-md">
+      <div class="user-card shadow-md bg-white mr-2 rounded-md">
         <div class="user-picture rounded-t-md">
           <img
             src="../../../../assets/images/avatar1.jpg"
@@ -77,7 +77,6 @@ export default {
 .details {
   height: 100%;
   flex: 0 0 320px;
-  
   overflow-y: auto;
   scrollbar-width: 7px !important;
   scrollbar-color: rgb(212, 212, 212) !important;
@@ -105,7 +104,7 @@ export default {
   height: 15vh;
   width: 100%;
   overflow: visible;
-  background: #4a81e2;
+  background-color: rgb(0, 0, 0,0.07);
   position: relative;
   display: flex;
   flex-direction: row;

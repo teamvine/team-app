@@ -1,37 +1,24 @@
 <template>
-  <div class="message-item mt-2">
-    <div class="flex">
-      <img src="../../../../assets/images/avatar2.jpg" class="wh-60 rounded-lg img" />
+  <div class="message-item mt-4">
+    <div class="flex msg-item-content" v-if="message.type=='received'">
+      <img :src="message.img" class="wh-40 img" />
       <div class="flex-1 px-3">
-        <div class="text-md text-gray-900 mb-1">
-          <b class="font-bold inter">Dusengimana Felix</b>
-        </div>
-        <span class="text-gray-800 msg-body inter">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque veniam
-          necessitatibus accusamus nulla! Magnam odio ad id. Nobis, dolore
-          numquam est molestiae consequatur id ducimus odit sed commodi laborum
-          cupiditate?
-          <div class="w-full mt-3">
-            <div class="flex">
-              <img
-                src="../../../../assets/images/avatar1.jpg"
-                class="w-10 h-10 rounded-lg img"
-              />
-              <div class="flex-1 px-3">
-                <div class="text-sm text-gray-900 mb-1">
-                  <b class="font-bold inter reply-name">Harerimana Egide</b>
-                </div>
-                <span class="text-gray-800 text-sm inter">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-                  veniam necessitatibus accusamus nulla! Magnam odio ad id.
-                  Nobis, dolore numquam est molestiae consequatur id ducimus
-                  odit sed commodi laborum cupiditate?
-                </span>
-              </div>
-            </div>
-          </div>
+        <span class="text-gray-800 msg-body py-2 inter px-4">
+         {{message.content}}
         </span>
+        <span class="msg-date mt-2">10:05 AM</span>
       </div>
+    </div>
+    <div class="flex msg-item-content sent-msg" v-else>
+      <div class="flex-1 px-3">
+        <span class="msg-body py-2 inter px-4">
+          <span class="inter">
+            {{message.content}}
+          </span>
+        </span>
+        <span class="msg-date mt-2">10:05 AM</span>
+      </div>
+      <img :src="message.img" class="wh-40 img" />
     </div>
   </div>
 </template>
@@ -39,11 +26,23 @@
 <script>
 export default {
   name: "MessageItem",
+  props: {
+    message: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+.message-item {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.msg-item-content {
+  position: relative;
+}
 .inter {
   font-size: 14;
   font-family: Arial, Helvetica, sans-serif !important;
@@ -52,12 +51,25 @@ export default {
   font-size: 12;
 }
 .msg-body {
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 14px;
+  background-color: #fff;
+  display: inline-block;
+  width: auto;
+  max-width: 70%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
-.wh-60 {
-  width: 3em;
-  height: 3em;
+.msg-date {
+  width: 100%;
+  display: block;
+  font-size: 12px;
+}
+.wh-40 {
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 50%;
+  margin-top: auto;
 }
 .media-body {
   flex: 1;
@@ -67,6 +79,32 @@ export default {
   margin-bottom: 0;
 }
 .img {
+  /* position: absolute; */
   background-color: rgb(0, 0, 0,0.1);
+  bottom: 0;
+}
+
+
+.sent-msg {
+  text-align: right;
+}
+.sent-msg div .msg-body {
+  background-color: rgb(0, 123, 224);
+  color: white;
+  display: inline-block;
+  max-width: 70%;
+  margin-left: auto;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.sent-msg div .msg-body span {
+  font-weight: normal;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 </style>
