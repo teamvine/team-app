@@ -4,7 +4,7 @@
       v-if="channel.type=='public'"
       width="38"
       height="38" 
-      class="w-7 icon d-inline-block h-7 rounded-full bg-gray-200 border-2 border-white"
+      class="w-7 icon d-inline-block h-7 rounded-full border-2 border-white"
       src='../../../assets/images/group.svg'
     />
     <img
@@ -12,7 +12,7 @@
       src='../../../assets/images/lock.svg'
       width="38"
       height="38"
-      class="w-7 d-inline-block h-7 icon rounded-full bg-gray-200 border-2 border-white"
+      class="w-7 d-inline-block h-7 icon rounded-full border-2 border-white"
     />
     <span class="contact-name"> {{ channel.name }}</span>
     <p class="contact-last-message">

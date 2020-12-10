@@ -30,6 +30,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "css": "^3.0.0",
+    "nprogress": "^0.2.0",
     "register-service-worker": "^1.7.1",
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.9.6",

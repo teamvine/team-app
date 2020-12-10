@@ -97,6 +97,7 @@ export default {
 }
 .user-card {
   margin-top: 10px;
+  min-height: 100%;
 }
 .user-picture {
   flex: none;

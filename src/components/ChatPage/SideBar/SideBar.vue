@@ -102,7 +102,7 @@ export default {
   },
   data() {
     return {
-      display_cont: "personal",
+      display_cont: this.$route.name=="ChannelChat"? "channel":"personal",
       contacts: contacts,
       channels: channels
     };

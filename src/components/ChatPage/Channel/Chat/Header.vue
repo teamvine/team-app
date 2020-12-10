@@ -2,12 +2,12 @@
   <div
     class="chat-head rounded-xl lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
   >
-    <div class="flex-1 flex justify-between items-center user-pic">
-      <div class="user-picture">
-          <img class="rounded-lg" src="../../../../assets/images/avatar1.jpg" alt="">
+    <div class="flex-1 flex justify-between items-center channel-ic">
+      <div class="channel-icon">
+          <img class="rounded-lg" src="../../../../assets/images/group.svg" alt="">
           <div class="names">
-                <h6 class="p-0">Harerimana Egide</h6>
-                <small>Student at Rwanda coding academy</small>
+                <h6 class="p-0">general</h6>
+                <small>Workspace wide communication</small>
           </div>
       </div>
     </div>
@@ -75,25 +75,25 @@ export default {
   box-shadow: 0 0 6px rgb(0.3, 0.3, 0.3,0.3);
   position: relative;
 }
-.user-pic {
+.channel-ic {
     height: 90%;
     margin-top: -1%;
 }
-.user-pic .user-picture{
+.channel-ic .channel-icon{
     display: block;
     height: 100%;
     display: flex;
     flex-direction: row;
     /* background: #000; */
 }
-.user-picture img {
-    width: 40px;
-    height: 40px;
+.channel-icon img {
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     margin-left: 3%;
     margin-top: 2%;
 }
-.user-pic .names {
+.channel-ic .names {
     display: inline-block;
     width: 250px;
     padding: 2% 1%;

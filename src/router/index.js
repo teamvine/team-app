@@ -45,14 +45,14 @@ const routes = [
         name: 'ChannelChat'
       }),
       children: [{
-        path: "",
+        path: "/channel",
         name: "ChannelChat",
         component: () => {
           return import("../components/ChatPage/Channel/ChannelChat")
         }
       },
       {
-        path: "/personal",
+        path: "/direct",
         name: "PersonalChat",
         component: () => {
           return import("../components/ChatPage/Direct/PersonalChat")

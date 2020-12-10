@@ -78,6 +78,9 @@ export default {
       border-right: 0px;
       margin-bottom: 28px;
     }
+    .icon-div.active:hover {
+      margin-bottom: 30px;
+    }
     .icon-div:hover svg path:nth-child(1){
         fill: none;
     }

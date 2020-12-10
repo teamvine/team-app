@@ -50,7 +50,7 @@ export default {
   max-height: 100%;
   min-width: 400px;
   overflow: hidden;
-  background-color: rgba(224, 224, 224, 0.274);
+  background-color: rgba(224, 224, 224, 0.1);
   /* color: white; */
 }
 .chat-content {
