@@ -164,7 +164,6 @@ export default {
 .chat-list-upper .w-full .btn-item {
   width: 43%;
   background-color: #4a82e209;
-  border-radius: 3px;
   padding: 6px 15px;
   transition-duration: 0.5s;
   /* background-color: rgb(0, 0, 0,0.2); */

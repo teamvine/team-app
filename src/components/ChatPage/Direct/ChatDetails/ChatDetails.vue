@@ -105,7 +105,7 @@ export default {
   height: 15vh;
   width: 100%;
   overflow: visible;
-  background-color: rgb(0, 0, 0,0.07);
+  background-color:#ddefff;
   position: relative;
   display: flex;
   flex-direction: row;
