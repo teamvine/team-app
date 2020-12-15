@@ -1,6 +1,6 @@
 <template>
   <div
-    class="chat-head rounded-xl lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
+    class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
   >
     <div class="flex-1 flex justify-between items-center user-pic">
       <div class="user-picture">
