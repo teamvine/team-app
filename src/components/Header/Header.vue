@@ -9,9 +9,9 @@
         <span class="number">5</span>
       </div>
       <div class="user-menu">
-        <div class="drp-dwn-toggler pl-1" @click="showDropDown = !showDropDown">
+        <div class="drp-dwn-toggler pl-2" @click="showDropDown = !showDropDown">
           <img src="../../assets/images/avatar2.jpg" alt="user-pic" />
-          <span class="px-2">Egide</span>
+          <span class="px-2 pr-3">Egide</span>
         </div>
         <div class="drop-down shadow-md" v-show="showDropDown">
           <div
@@ -159,6 +159,7 @@ export default {
   max-height: 50px;
   min-height: 50px;
   background-color: white;
+  z-index: 1000;
 }
 .app-name {
   padding: auto;
@@ -209,11 +210,11 @@ export default {
   height: 100%;
   height: auto;
   width: auto;
-  background-color: rgb(0.3, 0.3, 0.3, 0.05);
-  border-radius: 7px;
+  background-color:#e6f4ff;
+  border-radius: 30px;
 }
 .user-menu:hover {
-  background-color: rgb(0.3, 0.3, 0.3, 0.1);
+  background-color:#cedce7;
 }
 .user-menu .drp-dwn-toggler {
   cursor: pointer;
@@ -241,6 +242,7 @@ export default {
 }
 .drop-content {
   min-width: 300px;
+  border-radius: 5px;
 }
 .drop-content * {
   display: block;

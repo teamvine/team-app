@@ -27,7 +27,7 @@ export default {
         overflow-x: auto;
         display: flex;
         flex-direction: column;
-        background-color: rgb(252, 252, 252);
+        background: #F8FCFF;
         /* background-color:#F3FAFB; */
     }
     .body-view {

@@ -139,6 +139,7 @@ export default {
   -moz-box-shadow: 0px 1px 3px 4px rgb(231, 231, 231);
   -webkit-box-shadow: 0px 1px 3px 4pxrgb (231, 231, 231);
   box-shadow: 0px 1px 3px 4px rgb(231, 231, 231);
+  background: white;
 }
 .sidebar-content {
   width: 100%;
