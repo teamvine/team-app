@@ -38,7 +38,7 @@ export default {
     border-bottom: 1px solid rgb(0, 0, 0, 0.05);
 }
 .contact:hover {
-    background-color: rgb(0, 0, 0, 0.04);
+    background: #f0f6fc;
     cursor: pointer;
 }
 .d-inline-block {

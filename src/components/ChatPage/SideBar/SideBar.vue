@@ -57,7 +57,7 @@
           </div>
           <div class="flex flex-wrap w-full mt-2 relative py-1 pl-8 pr-8">
             <div>
-              <span style="color: #2f74eb"> Sort by </span>
+              <span class="srt-by-txt"> Sort by </span>
             </div>
             <div class="more-options">
               <span class="more-icon">
@@ -159,7 +159,9 @@ export default {
   position: relative;
 }
 .chat-list-upper {
-  background-color: rgb(0, 0, 0, 0.04);
+  background: #f0f6fc;
+  border-top: 1px solid rgb(116, 116, 116,0.1);
+  border-bottom: 1px solid rgb(116, 116, 116,0.1);
 }
 .chat-list-upper .w-full .btn-item {
   width: 43%;
@@ -190,6 +192,15 @@ export default {
 .chat-list-upper .w-full .btn-item.active:hover {
   background-color: #2f74eb;
   color: white;
+}
+.srt-by-txt {
+  color: #2f74eb;
+  font-size: 14px;
+}
+.more-icon button svg {
+  background: #cde4ff;
+  padding: 3px;
+  border-radius: 50%;
 }
 .my-contacts {
   background-color: white;
