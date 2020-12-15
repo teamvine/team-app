@@ -1,7 +1,7 @@
 <template>
   <div class="side-bar-view">
-    <div class="sidebar-content">
-      <div class="upper-part p-4">
+    <div class="sidebar-content relative">
+      <div class="upper-part p-4 relative">
         <div class="relative">
           <div class="flex flex-wrap items-stretch w-full mb-4 relative">
             <input
@@ -80,14 +80,24 @@
           </div>
         </div>
         <div class="my-contacts">
-          <div v-if="display_cont=='personal'">
+          <div v-if="display_cont=='personal'" class="contacts-list">
             <Person v-for="contact in contacts" :contact="contact" :key="contact._id"/>
           </div>
-          <div v-if="display_cont=='channel'">
+          <div v-if="display_cont=='channel'" class="contacts-list">
             <Channel v-for="channel in channels" :channel="channel" :key="channel._id"/>
           </div>
         </div>
       </div>
+      <div v-if="display_cont=='personal'" class="new-btn">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path fill="white" d="M14 14.252v2.09A6 6 0 0 0 6 22l-2-.001a8 8 0 0 1 10-7.748zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm6 6v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z"/></svg>
+          </button>
+        </div>
+        <div v-if="display_cont=='channel'" class="new-btn">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path fill="white" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
+          </button>
+        </div>
     </div>
   </div>
 </template>
@@ -145,6 +155,7 @@ export default {
   overflow-y: auto;
   scrollbar-width: 7px;
   scrollbar-color: rgb(212, 212, 212);
+  position: relative;
 }
 .chat-list-upper {
   background-color: rgb(0, 0, 0, 0.04);
@@ -154,6 +165,7 @@ export default {
   background-color: #4a82e209;
   border-radius: 3px;
   padding: 6px 15px;
+  transition-duration: 0.5s;
   /* background-color: rgb(0, 0, 0,0.2); */
 }
 .chat-list-upper .w-full .btn-item:nth-child(1){
@@ -183,6 +195,29 @@ export default {
   background-color: white;
   color: black;
   position: relative;
+}
+.new-btn {
+  position: absolute;
+  bottom: 2%;
+  right: 10%;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  color: white;
+}
+.new-btn button {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #2f74eb;
+  box-shadow: 0 0 2px black;
+}
+.new-btn button:hover {
+  background-color: #154eb1;
+}
+.new-btn  button svg {
+  margin: auto;
+  font-weight: bold;
 }
 input {
   color: rgb(46, 44, 44) !important;
