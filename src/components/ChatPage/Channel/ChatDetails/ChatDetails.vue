@@ -46,7 +46,7 @@ export default {
 <style scoped>
     .details {
         height: 100%;
-        flex: 0 0 300px;
+        flex: 0 0 320px;
         overflow: auto;
     }
     .details::-webkit-scrollbar {
