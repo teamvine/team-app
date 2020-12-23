@@ -1,7 +1,7 @@
 <template>
   <div class="details">
     <div class="chat-detls flex flex-wrap">
-      <div class="user-card shadow-md bg-white mr-2 rounded-md">
+      <div class="user-card shadow-md bg-white border mr-2 rounded-md">
         <div class="user-picture rounded-t-md">
           <img
             src="../../../../assets/images/avatar1.jpg"

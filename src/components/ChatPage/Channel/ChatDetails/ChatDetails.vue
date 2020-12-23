@@ -1,37 +1,10 @@
 <template>
   <div class="details">
         <div class="chat-detls flex flex-wrap">
-            <div class="channel-card shadow-md bg-white mr-2 rounded-md">
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
-                <p>Hello world</p>
+            <div class="channel-card border shadow-md bg-white mr-2 rounded-md">
+                <div>
+                    
+                </div>
             </div>
         </div>
   </div>

@@ -11,11 +11,11 @@
       <div class="user-menu">
         <div class="drp-dwn-toggler pl-2" @click="showDropDown = !showDropDown">
           <img src="../../assets/images/avatar2.jpg" alt="user-pic" />
-          <span class="px-2 pr-3">Egide</span>
+          <!-- <span class="px-2 pr-3">Egide</span> -->
         </div>
         <div class="drop-down shadow-md" v-show="showDropDown">
           <div
-            class="drop-content origin-top-right absolute right-0 mt-2 w-full rounded-sm shadow-md bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100"
+            class="drop-content border origin-top-right absolute right-0 mt-2 w-full rounded-sm shadow-md bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="options-menu"
@@ -23,7 +23,7 @@
             <div class="flex flex-wrap overflow-hidden">
               <div class="px-6 mt-2 hover:bg-white d-block w-full pt-0">
                 <div
-                  class="font-bold text-md text-center d-block hover:bg-white tracking-wide w-full text-c2 mb-4"
+                  class="font-bold text-md text-center border-0 d-block hover:bg-white tracking-wide w-full text-c2 mb-4"
                 >
                   Dusengimana Felix
                 </div>
@@ -108,9 +108,8 @@
                   <div class="pl-2">Change Settings</div>
                 </div>
                 <div
-                  class="item-hover d-block flex font-bold cursor-pointer text-center px-4 py-0 text-md text-grey-darkest"
+                  class="item-hover d-block flex font-bold cursor-pointer text-left px-2 py-0 text-md text-grey-darkest"
                 >
-                  <div class="pl-2 font-bold">Log Out</div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -123,6 +122,7 @@
                       d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2a9.985 9.985 0 0 1 8 4h-2.71a8 8 0 1 0 .001 12h2.71A9.985 9.985 0 0 1 12 22zm7-6v-3h-8v-2h8V8l5 4-5 4z"
                     />
                   </svg>
+                  <div class="pl-2 font-bold py-3">Log Out</div>
                 </div>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default {
 }
 .item-hover:hover {
   background-color: rgb(241, 245, 252);
-  border-left: 4px solid #e2624b !important;
+  border-left: 4px solid orange !important;
 }
 .header-view {
   width: 100%;
@@ -210,11 +210,11 @@ export default {
   height: 100%;
   height: auto;
   width: auto;
-  background-color:#e6f4ff;
+  /* background-color:#e6f4ff; */
   border-radius: 30px;
 }
 .user-menu:hover {
-  background-color:#cedce7;
+  /* background-color:#cedce7; */
 }
 .user-menu .drp-dwn-toggler {
   cursor: pointer;
@@ -225,6 +225,7 @@ export default {
   height: 32px;
   margin: 2px;
   border-radius: 50%;
+  border: 2px solid orangered;
 }
 .user-menu .drp-dwn-toggler span {
   font-weight: bold;
@@ -249,7 +250,7 @@ export default {
   cursor: pointer;
   /* min-width: 250px; */
 }
-.drop-content div div:not(:nth-last-child(1)) {
+.drop-content div div:not(:nth-last-child(1)):not(:nth-child(1)) {
   border-bottom: 1px solid rgb(0.3, 0.3, 0.3, 0.05);
 }
 .drop-content div div:nth-child(1) {

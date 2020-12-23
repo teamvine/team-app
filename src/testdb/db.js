@@ -228,7 +228,7 @@ module.exports = {
             _id:"5f4a70e45880b6658026c1f0",
             type:"public",
             name:"general",
-            description:"Workspace wide communication channel.",
+            description:"Workspace wide comm",
             admin_id:"5f4a70e45880b6658026c1f0",
             workspace_id:"5f56972339b83b56fb15f77e",
             created:"2020-09-07T20:25:08.000+00:00"
@@ -255,7 +255,7 @@ module.exports = {
             _id:"5f56972339b83b55fb15f77d",
             type:"public",
             name:"2nd_general",
-            description:"Workspace wide communication channel.",
+            description:"Workspace wide channel;",
             admin_id:"5f4a70e45880b6658026c1f0",
             workspace_id:"5f56972339b83b56fb15f77e",
             created:"2020-09-07T20:25:08.000+00:00"

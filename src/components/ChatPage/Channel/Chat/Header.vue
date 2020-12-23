@@ -97,7 +97,7 @@ export default {
   margin-top: 10px;
   position: relative;
   padding: 0 !important;
-  box-shadow: 0 0 6px rgb(0.3, 0.3, 0.3, 0.3);
+  box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
   position: relative;
 }
 .channel-ic {
