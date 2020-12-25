@@ -24,7 +24,13 @@ const routes = [
     redirect: to => ({
       name: 'ChatPage'
     }),
-    children: [{
+    children: [
+      {
+        path: "/start",
+        name: "StartPage",
+        component: () => import(/* webpackChunkName: "about" */ '../components/StartPage/StartPage')
+      },
+      {
       path: "",
       name: "ChatPage",
       component: () => {

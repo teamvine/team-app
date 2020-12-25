@@ -1,7 +1,13 @@
 <template>
   <div class="details">
-    <div class="chat-detls flex flex-wrap">
-      <div class="user-card shadow-md bg-white border mr-2 rounded-md">
+    <div class="chat-detls pl-2 pb-2 flex flex-wrap">
+      <div class="user-card shadow-md rounded-md bg-white mr-2">
+        <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
+          <div class="w-full md:w-auto py-3 pl-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
+          </div>
+          <div class="w-full md:w-full font-bold py-2 text-center">Chat Details</div>
+        </div>
         <div class="user-picture rounded-t-md">
           <img
             src="../../../../assets/images/avatar1.jpg"
@@ -10,9 +16,9 @@
           />
         </div>
         <div class="mt-8 w-full h-full pb-3">
-            <div class="mt-3 text-center who-is-chating">
+            <div class="mt-4 text-center pt-3 who-is-chating">
                 <h1 class="font-bold">Harerimana Egide</h1>
-                <span class="text-gray-700 persons-role">Ui/Ux &amp; backend developer</span>
+                <span class="text-gray-800 text-sm persons-role font-bold">Ui/Ux &amp; backend developer</span>
             </div>
             <hr class="mt-5 mb-2"/>
             <div class="more-info mt-3">
@@ -33,10 +39,10 @@
             <div class="recent-atachments px-4">
               <div class="flex justify-between mb-3">
                 <div :class="(this.fileToShow == 'media' ? 'active ':'') + ' files hover:bg-blue-100 p-3 '">
-                  <button @click="changeFileToShow('media')">Photos &amp; media</button>                    
+                  <button @click="changeFileToShow('media')" class="text-sm font-bold">Photos &amp; media</button>                    
                 </div>
                 <div :class="(this.fileToShow == 'docs' ? 'active ':'') + 'files hover:bg-blue-100 p-3'">
-                  <button @click="changeFileToShow('docs')"> Documents</button>
+                  <button @click="changeFileToShow('docs')" class="text-sm font-bold"> Documents</button>
                 </div>
               </div>
               <div class="real-files">
@@ -76,7 +82,7 @@ export default {
 <style scoped>
 .details {
   height: 100%;
-  flex: 0 0 320px;
+  flex: 0 0 350px;
   overflow-y: auto;
   scrollbar-width: 7px !important;
   scrollbar-color: rgb(212, 212, 212) !important;
@@ -98,6 +104,10 @@ export default {
 .user-card {
   margin-top: 10px;
   min-height: 100%;
+  /* border-radius: 6px; */
+  /* border: 1px solid rgb(0, 0, 0, 0.18); */
+  background-color: #fff;
+  box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
 }
 .user-picture {
   flex: none;
@@ -105,7 +115,8 @@ export default {
   height: 15vh;
   width: 100%;
   overflow: visible;
-  background-color:#ddefff;
+  /* background-color:rgb(0, 0, 0, 0.05); */
+  /* background-color: rgb(0, 117, 235); */
   position: relative;
   display: flex;
   flex-direction: row;

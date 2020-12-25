@@ -10,7 +10,7 @@
               
           </div>
       </div>
-      <div :class="[chat_footer=='minimal'? 'chat-footer':'chat-footer-extended']">
+      <div :class="[chat_footer=='minimal'? 'chat-footer':'chat-footer-extended']" class="cht-foot">
           <Footer :changeFooter="changeFooter"/>
       </div>
     </div>

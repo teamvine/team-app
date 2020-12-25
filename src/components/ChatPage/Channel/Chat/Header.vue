@@ -5,13 +5,13 @@
     <div class="flex-1 flex justify-between items-center channel-ic">
       <div class="channel-icon">
         <img
-          class="rounded-lg"
-          src="../../../../assets/images/group.svg"
+          class="rounded-md"
+          src="../../../../assets/images/public.png"
           alt=""
         />
-        <div class="names">
-          <h6 class="p-0">general</h6>
-          <small>Workspace wide communication</small>
+        <div class="names ml-2">
+          <h6 class="p-0">#general</h6>
+          <small class="font-bold">Workspace wide communication</small>
         </div>
       </div>
     </div>
@@ -112,9 +112,8 @@ export default {
   /* background: #000; */
 }
 .channel-icon img {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   margin-left: 3%;
   margin-top: 2%;
 }
@@ -151,11 +150,11 @@ export default {
   margin-right: 40px;
 }
 .btns * svg {
-  fill: #2f74eb;
+  fill: rgb(0, 81, 255);
   fill: linear-gradient(180deg, #2f74eb 0%, #83eaf1 74%);
 }
 .btns * svg:hover {
-  fill: #1f59bd;
+  fill: rgb(5, 66, 197);
   fill: linear-gradient(180deg, #1f59bd 0%, #83eaf1 74%);
   cursor: pointer;
   size: 24px;

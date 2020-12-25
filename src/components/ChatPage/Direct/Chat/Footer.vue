@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[editorType=='extended'? 'chat-foot-extended':'chat-foot']"
-    class="rounded-xl shadow-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
+    class="rounded-md shadow-md bord lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
   >
     <div class="edit" id="editor" contenteditable="true" v-if="editorType=='extended'">
     </div>
@@ -249,7 +249,7 @@ export default {
         this.changeFooter("minimal");
         this.editorType="minimal";
         localStorage.setItem("editor_type","minimal");
-      };
+      }
     }
   },
 };
@@ -259,6 +259,10 @@ export default {
 .chat-foot {
   height: 50px;
   position: relative;
+  border-radius: 60px;
+}
+.bord {
+  border: 1px solid rgba(0, 5, 77, 0.2);
 }
 form {
   width: 100%;

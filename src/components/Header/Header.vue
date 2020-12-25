@@ -1,7 +1,7 @@
 <template>
   <header class="header-view shadow-md">
     <div class="app-name p-3">
-      <h3>RCONNECT</h3>
+      <h3 class="font-bold">RCONNECT</h3>
     </div>
     <div class="right-menu">
       <div class="notifications">
@@ -10,7 +10,7 @@
       </div>
       <div class="user-menu">
         <div class="drp-dwn-toggler pl-2" @click="showDropDown = !showDropDown">
-          <img src="../../assets/images/avatar2.jpg" alt="user-pic" />
+          <img src="../../assets/images/avatar1.jpg" alt="user-pic" />
           <!-- <span class="px-2 pr-3">Egide</span> -->
         </div>
         <div class="drop-down shadow-md" v-show="showDropDown">
@@ -28,6 +28,7 @@
                   Dusengimana Felix
                 </div>
                 <div
+                  v-if="pageName!='StartPage'"
                   class="flex d-block item-hover cursor-pointer w-full px-4 py-2 font-bold text-md text-grey-darkest border-b-0"
                 >
                   <svg
@@ -41,7 +42,7 @@
                       d="M19 20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9H0l10.327-9.388a1 1 0 0 1 1.346 0L22 11h-3v9zm-8-5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"
                     />
                   </svg>
-                  <div class="pl-2">Go Home</div>
+                  <div class="pl-2 text-md font-bold">Go Home</div>
                 </div>
                 <div
                   class="flex item-hover d-block cursor-pointer px-4 py-2 text-md text-grey-darkest border-b-0"
@@ -57,7 +58,7 @@
                       d="M14 21l-2 2-2-2H4.995A1.995 1.995 0 0 1 3 19.005V4.995C3 3.893 3.893 3 4.995 3h14.01C20.107 3 21 3.893 21 4.995v14.01A1.995 1.995 0 0 1 19.005 21H14zm-7.643-3h11.49a6.992 6.992 0 0 0-5.745-3 6.992 6.992 0 0 0-5.745 3zM12 13a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
                     />
                   </svg>
-                  <div class="pl-2">My Account</div>
+                  <div class="pl-2 text-md font-bold">My Account</div>
                 </div>
                 <div
                   class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
@@ -73,9 +74,10 @@
                       d="M20 18.667l.4.533a.5.5 0 0 1-.4.8H4a.5.5 0 0 1-.4-.8l.4-.533V10a8 8 0 1 1 16 0v8.667zM9.5 21h5a2.5 2.5 0 1 1-5 0z"
                     />
                   </svg>
-                  <div class="pl-2">Notifications</div>
+                  <div class="pl-2 text-md font-bold">Notifications</div>
                 </div>
                 <div
+                  v-if="pageName!='StartPage'"
                   class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
@@ -89,7 +91,7 @@
                       d="M14.45 19L12 22.5 9.55 19H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-6.55z"
                     />
                   </svg>
-                  <div class="pl-2">Messages</div>
+                  <div class="pl-2 text-md font-bold">Messages</div>
                 </div>
                 <div
                   class="item-hover d-block flex cursor-pointer border-bottom px-4 py-2 text-md text-grey-darkest"
@@ -105,7 +107,7 @@
                       d="M9.954 2.21a9.99 9.99 0 0 1 4.091-.002A3.993 3.993 0 0 0 16 5.07a3.993 3.993 0 0 0 3.457.261A9.99 9.99 0 0 1 21.5 8.876 3.993 3.993 0 0 0 20 12c0 1.264.586 2.391 1.502 3.124a10.043 10.043 0 0 1-2.046 3.543 3.993 3.993 0 0 0-3.456.261 3.993 3.993 0 0 0-1.954 2.86 9.99 9.99 0 0 1-4.091.004A3.993 3.993 0 0 0 8 18.927a3.993 3.993 0 0 0-3.457-.26A9.99 9.99 0 0 1 2.5 15.121 3.993 3.993 0 0 0 4 11.999a3.993 3.993 0 0 0-1.502-3.124 10.043 10.043 0 0 1 2.046-3.543A3.993 3.993 0 0 0 8 5.071a3.993 3.993 0 0 0 1.954-2.86zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
                     />
                   </svg>
-                  <div class="pl-2">Change Settings</div>
+                  <div class="pl-2 text-md font-bold">Change Settings</div>
                 </div>
                 <div
                   class="item-hover d-block flex font-bold cursor-pointer text-left px-2 py-0 text-md text-grey-darkest"
@@ -119,10 +121,11 @@
                   >
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path
+                      fill="orangered"
                       d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2a9.985 9.985 0 0 1 8 4h-2.71a8 8 0 1 0 .001 12h2.71A9.985 9.985 0 0 1 12 22zm7-6v-3h-8v-2h8V8l5 4-5 4z"
                     />
                   </svg>
-                  <div class="pl-2 font-bold py-3">Log Out</div>
+                  <div class="pl-2 font-bold py-3">Sign Out</div>
                 </div>
               </div>
             </div>
@@ -139,6 +142,7 @@ export default {
   data() {
     return {
       showDropDown: false,
+      pageName: this.$route.name
     };
   },
 };
@@ -158,7 +162,7 @@ export default {
   flex: 0 50px;
   max-height: 50px;
   min-height: 50px;
-  background-color: white;
+  background-color: #ffffff;
   z-index: 1000;
 }
 .app-name {
@@ -225,7 +229,7 @@ export default {
   height: 32px;
   margin: 2px;
   border-radius: 50%;
-  border: 2px solid orangered;
+  /* border: 2px solid orangered; */
 }
 .user-menu .drp-dwn-toggler span {
   font-weight: bold;

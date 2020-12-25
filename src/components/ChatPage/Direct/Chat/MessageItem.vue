@@ -89,7 +89,7 @@ export default {
   text-align: right;
 }
 .sent-msg div .msg-body {
-  background-color: rgb(0, 123, 224);
+  background-color: rgba(0, 90, 224, 0.863);
   color: white;
   display: inline-block;
   max-width: 70%;

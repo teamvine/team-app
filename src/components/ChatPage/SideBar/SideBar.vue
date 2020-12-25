@@ -37,21 +37,21 @@
         <div class="chat-list-upper pb-3">
           <div class="w-full p-2">
             <button 
-              class="btn btn btn-item mr-3 sort-by" 
+              class="btn btn btn-item mr-3 sort-by font-bold" 
               :class="[display_cont=='personal'? 'active':'']"
               @click="switchChatType('personal')"
               @dblclick="switchChatType('personal')"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M14 21l-2 2-2-2H4.995A1.995 1.995 0 0 1 3 19.005V4.995C3 3.893 3.893 3 4.995 3h14.01C20.107 3 21 3.893 21 4.995v14.01A1.995 1.995 0 0 1 19.005 21H14zm5-2V5H5v14h5.828L12 20.172 13.172 19H19zm-11.028-.82a9.983 9.983 0 0 1-1.751-.978A6.994 6.994 0 0 1 12.102 14c2.4 0 4.517 1.207 5.778 3.047a9.995 9.995 0 0 1-1.724 1.025A4.993 4.993 0 0 0 12.102 16c-1.715 0-3.23.864-4.13 2.18zM12 13a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm0-2a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
-              Personal
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 22H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/></svg>
+              Private
             </button>
             <button 
-              class="btn btn btn-item mr-3 sort-by" 
+              class="btn btn btn-item mr-3 sort-by font-bold" 
               :class="[display_cont=='channel'? 'active':'']"
               @click="switchChatType('channel')"
               @dblclick="switchChatType('channel')"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.55 11.5a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5zm.45 8.248V16.4c0-.488.144-.937.404-1.338a6.473 6.473 0 0 0-5.033 1.417A8.012 8.012 0 0 0 10 19.749zM4.453 14.66A8.462 8.462 0 0 1 9.5 13c1.043 0 2.043.188 2.967.532.878-.343 1.925-.532 3.033-.532 1.66 0 3.185.424 4.206 1.156a8 8 0 1 0-15.253.504zm14.426 1.426C18.486 15.553 17.171 15 15.5 15c-2.006 0-3.5.797-3.5 1.4V20a7.996 7.996 0 0 0 6.88-3.914zM12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm3.5-9.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 22a8 8 0 1 1 16 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm7.363 2.233A7.505 7.505 0 0 1 22.983 22H20c0-2.61-1-4.986-2.637-6.767zm-2.023-2.276A7.98 7.98 0 0 0 18 7a7.964 7.964 0 0 0-1.015-3.903A5 5 0 0 1 21 8a4.999 4.999 0 0 1-5.66 4.957z"/></svg>
               Channel
             </button>
           </div>
@@ -135,11 +135,11 @@ export default {
   max-height: 100%;
   flex: 0 0 320px;
   overflow: hidden;
-  /* border-right:1px solid rgb(236, 236, 236); */
-  -moz-box-shadow: 0px 1px 3px 4px rgb(231, 231, 231);
-  -webkit-box-shadow: 0px 1px 3px 4pxrgb (231, 231, 231);
-  box-shadow: 0px 1px 3px 4px rgb(231, 231, 231);
-  background: white;
+  /* border-right: 1px solid rgb(0, 0, 0, 0.1); */
+  -moz-box-shadow: 0px 1px 2px 3px rgb(231, 231, 231);
+  -webkit-box-shadow: 0px 1px 2px 3px rgb (231, 231, 231);
+  box-shadow: 0px 1px 2px 3px rgb(231, 231, 231);
+  background: #ffffff
 }
 .sidebar-content {
   width: 100%;
@@ -147,6 +147,7 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: #fff;
 }
 .upper-part {
   overflow: hidden;
@@ -157,17 +158,22 @@ export default {
   scrollbar-width: 7px;
   scrollbar-color: rgb(212, 212, 212);
   position: relative;
+  background-color: #fff;
 }
 .chat-list-upper {
-  background: #f0f6fc;
+  /* background: #f0f6fc; */
+  background-color: #fff;
   border-top: 1px solid rgb(116, 116, 116,0.1);
   border-bottom: 1px solid rgb(116, 116, 116,0.1);
 }
 .chat-list-upper .w-full .btn-item {
   width: 43%;
-  background-color: #4a82e209;
+  /* background-color: #4a82e209; */
   padding: 6px 15px;
   transition-duration: 0.5s;
+  color:  #1464ec;
+  border: 1px solid #1464ec;
+  /* border-radius: 3px; */
   /* background-color: rgb(0, 0, 0,0.2); */
 }
 .chat-list-upper .w-full .btn-item:nth-child(1){
@@ -182,6 +188,7 @@ export default {
 }
 .chat-list-upper .w-full .btn-item svg {
   display: inline-block;
+  fill:  #2f74eb;
 }
 .chat-list-upper .w-full .btn-item.active svg {
   fill: white;
@@ -220,11 +227,11 @@ export default {
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  background-color: #2f74eb;
-  box-shadow: 0 0 2px black;
+  background-color:rgba(30, 97, 243, 0.993);
+  /* box-shadow: 0 0 2px black; */
 }
 .new-btn button:hover {
-  background-color: #154eb1;
+  background-color:rgba(0, 81, 255, 0.993);
 }
 .new-btn  button svg {
   margin: auto;

@@ -59,7 +59,7 @@ export default {
     }
     .icon-div.active {
       border: 1px solid rgb(219, 219, 219);
-      border-left: 5px solid  #2f74eb;
+      border-left: 5px solid orangered;
       border-right: 0px;
     }
     .icon-div svg path:nth-child(1){
@@ -73,7 +73,7 @@ export default {
     }
     .icon-div:hover {
       border: 1px solid rgb(219, 219, 219);
-      border-left: 5px solid  #2f74eb;
+      border-left: 5px solid  orangered;
       cursor: pointer;
       border-right: 0px;
       margin-bottom: 28px;

@@ -40,9 +40,10 @@ export default {
 .contact {
   border-bottom: 1px solid rgb(0, 0, 0, 0.05);
 }
-.contact:hover {
-  background: #f0f6fc;
+.contact:hover,.contact:hover div .contact-last-message,.contact:hover div .contact-name {
+  background:#3881fff3;
   cursor: pointer;
+  color: white;
 }
 .d-inline-block {
   display: inline-block;
@@ -52,15 +53,14 @@ export default {
   /* font-family: 'Roboto'; */
 }
 .contact-last-message {
-  font-weight: 400;
-  font-family: "inter";
+  font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif !important;
   margin-left: 38px;
   margin-top: -10px;
   font-size: 90%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: rgba(0, 0, 0, 0.884);
 }
 .contact div {
   display: inline-block;

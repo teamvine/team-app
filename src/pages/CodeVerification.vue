@@ -2,7 +2,7 @@
   <div class="Main-view">
     <div class="main grid">
       <img class="avatar" src="../assets/images/codeavatar.png" alt="">
-      <h1>Email Verification</h1>
+      <h1 class="py-3">Email Verification</h1>
       <p class="mt-4">
         For better account verification please enter the code we sent to your email
         to verify that this is your email.
@@ -36,12 +36,22 @@ export default{
 ​
 <style scoped>
 .Main-view {
+  position: fixed;
+  z-index: 1;
   width: 100%;
   height: 100%;
   padding: 0px;
   margin: 0;
   display: block;
-  background-color: white;
+  overflow: auto;
+  /* background-color: white; */
+  /* background-image: url("../assets/images/email-marketing-campaign-flat-illustration_183665-67.jpg"); */
+  /* background-image: url(../assets/images/group_illustration.jpg); */
+  /* background-image: url(../assets/images/wrkspc.png); */
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;
+  /* background-attachment: fixed; */
 }
 .avatar {
   width: 10em;
@@ -101,13 +111,16 @@ button{
   margin: 23px 28px 0 0;
   width: 6em;
   height: 2.6em;
-  background: blue;
+  background: rgb(22, 96, 255);
   border: none;
   border-radius: 5px;
   color: white;
   text-transform: uppercase;
   cursor: pointer;
   outline: 0;
+}
+button:hover {
+  background: rgb(0, 59, 187);
 }
 @media only screen and (max-width: 700px){
   .main{
@@ -116,7 +129,7 @@ button{
     height: 100vh;
     box-shadow: 0 1px 4px 1px #ffffff;
     border-radius:0;
-    background: none;
+    background: #ffffff;
   }
 }
 @media only screen and (min-width: 748px) and (max-width: 1024px) {

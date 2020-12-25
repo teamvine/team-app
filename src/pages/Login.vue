@@ -14,13 +14,13 @@
           </div>
           <img
             class="img mt-4"
-            src="../assets/images/Group Chat-amico.svg"
+            src="../assets/images/marketing_img.png"
             alt=""
           />
         </div>
         <div class="login-container focus right rounded-md">
           <form action="/personal">
-            <h2 class="head font-medium">Sign In</h2>
+            <h2 class="head font-bold">Sign In</h2>
             <span class="line"></span>
             <div class="input-div one">
               <div class="i">
@@ -206,6 +206,7 @@ export default {
   margin: 6.8em 0 0 0;
   border: none;
   box-shadow: 0 0 4px 1px rgb(219, 219, 219);
+  /* border: 1px solid rgb(0, 0, 0, 0.2); */
 }
 form {
   width: 70%;
@@ -371,7 +372,7 @@ a:hover {
   display: block;
   width: 65%;
   height: 45px;
-  border-radius: 25px;
+  border-radius: 5px;
   outline: none;
   border: none;
   background-color: #2f74eb;

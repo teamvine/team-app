@@ -3,7 +3,7 @@
         <AppHeader/>
         <div class="body-view">
             <div class="main-page">
-                <SideBarNav/>
+                <SideBarNav v-if="pageName!='StartPage'"/>
                 <router-view/>
             </div>
         </div>
@@ -15,7 +15,14 @@ import AppHeader from "../components/Header/Header"
 import SideBarNav from "../components/SidebarNav/SidebarNav"
 export default {
   components: { SideBarNav,AppHeader },
-    name: "Home"
+    name: "Home",
+    data(){
+        return {
+            pageName: this.$route.name
+        }
+    },
+    mounted(){
+    }
 }
 </script>
 
@@ -27,7 +34,7 @@ export default {
         overflow-x: auto;
         display: flex;
         flex-direction: column;
-        background: #F8FCFF;;
+        background:#ffffff;
         /* background-color:#F3FAFB; */
     }
     .body-view {

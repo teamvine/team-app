@@ -1,14 +1,14 @@
 <template>
     <div>
         <ul>
-            <li class="text-gray-700 p-2">
+            <li class="p-2 font-bold">
                 <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path
                         d="M20 22H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1zm-1-2V4H5v16h14zm-5-8v5h-4v-3h2v-2h2zm-2-8h2v2h-2V4zm-2 2h2v2h-2V6zm2 2h2v2h-2V8zm-2 2h2v2h-2v-2z"
                         fill="rgba(18,184,0,1)" /></svg>
                 Making_more_money.zip</li>
-            <li class="text-gray-700 p-2">
+            <li class="p-2 font-bold">
                 <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path
@@ -16,7 +16,7 @@
                         fill="rgba(18,184,0,1)" /></svg>
                 Making_more_money.zip
             </li>
-            <li class="text-gray-700 p-2">
+            <li class="p-2 font-bold">
                 <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="24.886" height="22.472"
                     viewBox="0 0 24.886 22.472">
                     <path id="Icon_simple-microsoftword" data-name="Icon simple-microsoftword"
@@ -25,7 +25,7 @@
                 </svg>
                 SDL_slides_unit5.docx
             </li>
-            <li class="text-gray-700 p-2">
+            <li class="p-2 font-bold">
                 <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
                     <path fill="none" d="M0 0h24v24H0z" />
                     <path
@@ -49,5 +49,7 @@ export default {
   display: inline-block;
   margin-right: 4px;
 }
-
+li {
+    font-size: 14px;
+}
 </style>

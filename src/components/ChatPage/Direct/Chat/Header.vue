@@ -151,11 +151,11 @@ export default {
   margin-right: 40px;
 }
 .btns * svg {
-  fill: #2f74eb;
+  fill:rgb(0, 81, 255);
   fill: linear-gradient(180deg, #2f74eb 0%, #83eaf1 74%);
 }
 .btns * svg:hover {
-  fill: #1f59bd;
+  fill: rgb(0, 59, 187);
   fill: linear-gradient(180deg, #1f59bd 0%, #83eaf1 74%);
   cursor: pointer;
   size: 24px;
