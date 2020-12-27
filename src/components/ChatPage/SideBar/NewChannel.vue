@@ -32,7 +32,7 @@
                 <input type="text" id="members" class="border-none" >
               </div>
                 <div class="search-suggestion bg-white border-2 border-gray-100 border-top-none rounded-lg">
-                    <p class="suggested hover:bg-gray-300 p-2" v-for="contact in suggestedContacts" :key="contact._id" @click="addMember(JSON.stringfy(contact))">
+                    <p class="suggested hover:bg-gray-300 p-2 mb-3" v-for="contact in suggestedContacts" :key="contact._id" @click="addMember(contact._id)">
                         <img :src="contact.img" :alt="contact.name" class="rounded-full inline" width="30" height="30">
                         <span class="ml-2">{{contact.name}}</span>
                     </p>
@@ -54,21 +54,19 @@ export default {
     data(){
         return {
             suggestedContacts:contacts.filter(user => user._id < 5),
-            addedMembers:[
-                {id:1,name:"Jacques",},
-                {id:2,name:"Kamala",},
-                {id:3,name:"The one and only",},
-                {id:4,name:"Jamaica",},
-                {id:5,name:"Shallon",},
-            ]
+            addedMembers:[]
         }
     },
     methods:{
         suggestContact(searchQuery){
             this.suggestedContacts = contacts.filter(contact => contact.name == searchQuery)
         },
-        addMember(newMember){
-          this.addedMembers.push(JSON.parse(newMember))  
+        addMember(contactId){            
+            //check if contact was already added
+             if( (this.addedMembers.filter(user => user._id == contactId)).length > 0 ) return
+
+            let contact = contacts.filter(user => user._id == contactId)[0]
+            this.addedMembers.push(contact)  
         },
         removeMember(memberId){
             this.addedMembers = this.addedMembers.filter(member => member.id != memberId)
