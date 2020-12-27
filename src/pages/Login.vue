@@ -14,19 +14,26 @@
           </div>
           <img
             class="img mt-4"
-            src="../assets/images/Group Chat-amico.svg"
+            src="../assets/images/marketing_img.png"
             alt=""
           />
         </div>
         <div class="login-container focus right rounded-md">
-          <form action="index.html">
-            <h2 class="head font-medium">Sign In</h2>
+          <form action="/personal">
+            <h2 class="head font-bold">Sign In</h2>
             <span class="line"></span>
             <div class="input-div one">
               <div class="i">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path fill="none" d="M0 0h24v24H0z"/>
-                  <path d="M14.256 21.744L12 24l-2.256-2.256C5.31 20.72 2 16.744 2 12 2 6.48 6.48 2 12 2s10 4.48 10 10c0 4.744-3.31 8.72-7.744 9.744zm-8.233-6.328C7.491 17.606 9.695 19 12.16 19c2.464 0 4.669-1.393 6.136-3.584A8.968 8.968 0 0 0 12.16 13a8.968 8.968 0 0 0-6.137 2.416zM12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M14.256 21.744L12 24l-2.256-2.256C5.31 20.72 2 16.744 2 12 2 6.48 6.48 2 12 2s10 4.48 10 10c0 4.744-3.31 8.72-7.744 9.744zm-8.233-6.328C7.491 17.606 9.695 19 12.16 19c2.464 0 4.669-1.393 6.136-3.584A8.968 8.968 0 0 0 12.16 13a8.968 8.968 0 0 0-6.137 2.416zM12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                  />
                 </svg>
               </div>
               <div>
@@ -74,6 +81,11 @@
               Do you have account?
               <router-link to="/register" class="link">Sign Up.</router-link>
             </p>
+
+            <div class="google-div mt-3">
+              <h4 class="or-heading">OR</h4>
+            </div>
+            <button class="google-button mt-3">Continue with google</button>
           </form>
         </div>
       </div>
@@ -119,7 +131,7 @@ export default {
 .app-title {
   font-family: "PoppinsBold";
   font-size: 30px;
-  color:#2A68D3;
+  color: #2a68d3;
 }
 .bring-more {
   font-family: "PoppinsThin";
@@ -181,7 +193,7 @@ export default {
 }
 
 .no-account .link {
-  color:#2A68D3;
+  color: #2a68d3;
   margin: -23px -64px 0 0;
 }
 
@@ -190,17 +202,19 @@ export default {
   align-items: center;
   text-align: center;
   width: 1em;
-  height: 30em;
+  height: 32em;
   margin: 6.8em 0 0 0;
   border: none;
   box-shadow: 0 0 4px 1px rgb(219, 219, 219);
+  /* border: 1px solid rgb(0, 0, 0, 0.2); */
 }
 form {
   width: 70%;
-  margin: -4em 15%;
+  /* margin: -4em 15%; */
+  margin: auto;
 }
 form h2 {
-  color: #2A68D3;
+  color: #2a68d3;
   font-weight: 100px;
   font-size: 150% !important;
   margin-top: 10%;
@@ -208,8 +222,8 @@ form h2 {
 }
 form .line {
   display: block;
-  width: 30%;
-  background-color: #2A68D3;
+  width: 27%;
+  background-color: #2763ca;
   height: 2px;
   margin: auto;
   margin-top: 1%;
@@ -231,7 +245,7 @@ form .line {
   width: 100%;
   display: none;
   height: 2px;
-  background-color: #2A68D3;
+  background-color: #2f74eb;
   transition: 0.3s;
   left: 0;
   right: 0;
@@ -261,7 +275,7 @@ form .line {
   height: 45px;
 }
 .input-div.focus .i svg {
-  fill: #2A68D3 !important;
+  fill: #2f74eb !important;
 }
 .input-div.focus div h5 {
   top: -5px;
@@ -274,11 +288,47 @@ form .line {
   animation-name: fadeIn;
   animation-duration: 1.5s;
 }
+.or-heading[data-v-15717af5] {
+  margin-left: -4% !important;
+  top: -15px;
+  background: #2f74eb;
+  width: 30px;
+  border: none;
+  border-radius: 50%;
+  height: 30px;
+  color: white;
+  position: absolute;
+  display: inline-block;
+  text-align: center;
+  padding: 1%;
+  font-size: 100%;
+}
+
+.google-div {
+  margin: 5em 0 0 0;
+  position: relative;
+  background: #2f74eb;
+  width: 100%;
+  height: 3px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+.google-button {
+  width: 17em;
+  height: 2.5em;
+  background: #2f74eb;
+  margin: 1.5em 0 0 0;
+  margin-bottom: 7%;
+  color: white;
+  border-radius: 2px;
+  cursor: pointer;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
@@ -309,35 +359,39 @@ a {
   display: block;
   text-align: right;
   text-decoration: none;
-  color:#2A68D3;
+  color: #2a68d3;
   font-size: 0.9rem;
   transition: 0.3s;
   margin: -18px 0 0 0;
 }
 a:hover {
-  color: #2A68D3;
+  color: #2a68d3;
 }
 
 .btn {
   display: block;
   width: 65%;
   height: 45px;
-  border-radius: 25px;
+  border-radius: 5px;
   outline: none;
   border: none;
-  background-image: linear-gradient(to right, #3f85fd,#3f85fd,#3f85fd);
+  background-color: #2f74eb;
   font-family: "Poppins", sans-serif;
   color: #fff;
   text-transform: uppercase;
-  transition: 0.5s;
+  transition: 0.3s;
+  transition-property: "background";
   cursor: pointer;
   margin: 14px 0 0 5em;
 }
 .btn:hover {
- background-image: linear-gradient(to right, #2668db,#2668db,#2668db);
+  background-color: #1852b6;
 }
 
 @media only screen and (max-width: 700px) {
+  .or-heading[data-v-15717af5] {
+    margin-left: -4% !important;
+  }
   .login-content {
     min-height: initial;
   }
@@ -349,7 +403,7 @@ a:hover {
     flex-direction: column-reverse;
   }
   .cont .left {
-    width: 90%;
+    width: 100%;
     margin: 4% 5%;
     display: none;
   }
@@ -363,14 +417,15 @@ a:hover {
   form {
     background-color: none;
     border-radius: 0px;
-    width: 90%;
+    width: 100%;
     margin: -4em 10%;
+    /* margin: auto; */
     box-shadow: none;
   }
   .input-div {
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   form h1 {
     margin-top: 0%;

@@ -2,16 +2,16 @@
   <div
     class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
   >
-    <div class="flex-1 flex justify-between items-center user-pic">
-      <div class="user-picture">
+    <div class="flex-1 flex justify-between items-center channel-ic">
+      <div class="channel-icon">
         <img
-          class="rounded-lg"
-          src="../../../../assets/images/avatar1.jpg"
+          class="rounded-md"
+          src="../../../../assets/images/public.png"
           alt=""
         />
-        <div class="names">
-          <h6 class="p-0">Harerimana Egide</h6>
-          <small>Student at Rwanda coding academy</small>
+        <div class="names ml-2">
+          <h6 class="p-0">#general</h6>
+          <small class="font-bold">Workspace wide communication</small>
         </div>
       </div>
     </div>
@@ -100,25 +100,24 @@ export default {
   box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
   position: relative;
 }
-.user-pic {
+.channel-ic {
   height: 90%;
   margin-top: -1%;
 }
-.user-pic .user-picture {
+.channel-ic .channel-icon {
   display: block;
   height: 100%;
   display: flex;
   flex-direction: row;
   /* background: #000; */
 }
-.user-picture img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.channel-icon img {
+  width: 30px;
+  height: 30px;
   margin-left: 3%;
   margin-top: 2%;
 }
-.user-pic .names {
+.channel-ic .names {
   display: inline-block;
   width: 250px;
   padding: 2% 1%;
@@ -151,11 +150,11 @@ export default {
   margin-right: 40px;
 }
 .btns * svg {
-  fill:rgb(0, 81, 255);
+  fill: rgb(0, 81, 255);
   fill: linear-gradient(180deg, #2f74eb 0%, #83eaf1 74%);
 }
 .btns * svg:hover {
-  fill: rgb(0, 59, 187);
+  fill: rgb(5, 66, 197);
   fill: linear-gradient(180deg, #1f59bd 0%, #83eaf1 74%);
   cursor: pointer;
   size: 24px;

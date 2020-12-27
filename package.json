@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-e2e-cypress": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -30,10 +31,15 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "css": "^3.0.0",
+    "nprogress": "^0.2.0",
     "register-service-worker": "^1.7.1",
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.9.6",
+    "tiptap": "^1.30.0",
+    "tiptap-extensions": "^1.33.2",
+    "v-emoji-picker": "^2.3.1",
     "vue": "^2.6.11",
+    "vue-js-modal": "^2.0.0-rc.6",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },

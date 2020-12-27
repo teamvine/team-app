@@ -3,7 +3,7 @@
     <div class="register-content">
       <div class="cont">
         <div class="left">
-          <div>
+          <div class="mb-4">
             <h2 class="text-2xl font-bold app-title">RCONNECT</h2>
             <p class="mt-8 desc bring-more">
               Bring your Teams,Companies,Schools and Other groups to join
@@ -11,20 +11,21 @@
               easier and secure.
             </p>
           </div>
+          <br>
           <img
-            class="img mt-4"
-            src="../assets/images/Group Chat-amico.svg"
+            class="img mt-8 w-100"
+            src="../assets/images/group_illustration.jpg"
             alt=""
           />
         </div>
         <div class="register-container right focus mb-4 rounded-md">
           <form @submit.prevent="onSignIn" class="pt-4 pb-3">
-            <h1 class="f-md mb-3 mt-3 head">SIGN UP TO RCONNECT</h1>
+            <h1 class="f-md mb-3 mt-3 head font-bold">SIGN UP TO RCONNECT</h1>
             <span class="line"></span>
             <div class="in-field one">
               <div class="icn"><i class="ri-account-pin-circle-line"></i></div>
               <div class="inpt">
-                <h5>Full Name</h5>
+                <h6>Full Name</h6>
                 <input
                   type="text"
                   class="input"
@@ -38,7 +39,7 @@
             <div class="in-field">
               <div class="icn"><i class="ri-price-tag-line"></i></div>
               <div class="inpt">
-                <h5>Display Name</h5>
+                <h6>Display Name</h6>
                 <input
                   type="text"
                   class="input"
@@ -51,7 +52,7 @@
             <div class="in-field">
               <div class="icn"><i class="ri-at-line"></i></div>
               <div class="inpt">
-                <h5>Email</h5>
+                <h6>Email</h6>
                 <input
                   type="email"
                   class="input"
@@ -64,7 +65,7 @@
             <div class="in-field">
               <div class="icn"><i class="ri-lock-line"></i></div>
               <div class="inpt">
-                <h5>New Password</h5>
+                <h6>New Password</h6>
                 <input
                   type="password"
                   class="input"
@@ -79,7 +80,7 @@
                 <i class="ri-lock-line"></i>
               </div>
               <div class="inpt">
-                <h5>Repeat Password</h5>
+                <h6>Repeat Password</h6>
                 <input
                   type="password"
                   class="input"
@@ -97,9 +98,8 @@
               {{ errorMsg }}
             </p>
             <button
-              class="bg-blue-500 btn-create hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full items-center mt-4 mb-2"
+              class="btn-create text-white font-bold py-2 px-4 rounded-full items-center mt-4 mb-2"
             >
-              <i class="ri-check-line mr-2 mt-3"></i>
               <span>New Account</span>
             </button>
             <p class="mt-3 mb-2 no-account">
@@ -296,22 +296,22 @@ form .line {
   color: #2A68D3 !important;
 }
 
-.in-field.focus div h5 {
+.in-field.focus div h6 {
   top: -5px;
-  font-size: 15px;
+  font-size: 14px;
 }
 .in-field.focus::after,
 .in-field.focus::before {
   /* width: 100%; */
   display: initial;
 }
-.in-field > div h5 {
+.in-field > div h6 {
   position: absolute;
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
   color: #999;
-  font-size: 18px;
+  font-size: 16px;
   transition: 0.3s;
 }
 
@@ -342,6 +342,10 @@ form .line {
   margin-left: auto;
   margin-right: auto;
   outline: none !important;
+  background-color:  #2a68d3;
+}
+.btn-create:hover {
+  background-color:  #1751b4;
 }
 .c-google {
   width: 70%;

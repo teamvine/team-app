@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[editorType=='extended'? 'chat-foot-extended':'chat-foot']"
-    class="rounded-md shadow-md bord lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
+    class="rounded-md bord shadow-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
   >
     <div class="edit" id="editor" contenteditable="true" v-if="editorType=='extended'">
     </div>
@@ -25,7 +25,7 @@
         />
       </div>
       <div class="field" v-if="editorType=='minimal'">
-        <input type="text" placeholder="Write to Harerimana Egide..." />
+        <input type="text" placeholder="send to #general" />
       </div>
       <div class="field" v-else>
           <div class="menubar format-buttons">
@@ -147,7 +147,7 @@
           </div>
           <span
             @click="changeEditorType"
-            class="flex items-center px-3 py-1 font-bold cursor-pointer hover:bg-gray-200 font-light text-sm focus:outline-none"
+            class="flex items-center px-3 py-1 font-bold cursor-pointer hover:bg-gray-300 font-light text-sm focus:outline-none"
           >
             <div class="mr-2">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="none" d="M0 0H24V24H0z"/><path d="M13 20h-2v-7H4v7H2V4h2v7h7V4h2v16zm8-12v12h-2v-9.796l-2 .536V8.67L19.5 8H21z"/></svg>
@@ -256,13 +256,13 @@ export default {
 </script>
 
 <style scoped>
+.bord {
+  border: 1px solid rgba(0, 5, 77, 0.2);
+}
 .chat-foot {
   height: 50px;
   position: relative;
   border-radius: 60px;
-}
-.bord {
-  border: 1px solid rgba(0, 5, 77, 0.2);
 }
 form {
   width: 100%;
@@ -279,7 +279,7 @@ form .emoji-pickr {
   height: auto;
   border-radius: 5px;
   color: white !important;
-  border: 1px solid rgba(207, 195, 195, 0.9);
+  border: 1px solid rgba(207, 195, 195, 0.5);
 }
 form .icon {
   height: 100%;
