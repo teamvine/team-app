@@ -99,25 +99,25 @@
           </button>
         </div>
     </div>
-    <vue-modal style="z-index: 2500" class="py-6" name="newChannel" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
+    <vue-modal style="z-index: 2500" class="py-6 col-lg-9" name="newChannel" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
       <nav class="flex drag-handler border-b items-center justify-between flex-wrap bg-teal p-6 py-2">
         <div class="flex items-center flex-no-shrink text-black mr-6">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 8.994A5.99 5.99 0 0 1 8 3h8c3.313 0 6 2.695 6 5.994V21H8c-3.313 0-6-2.695-6-5.994V8.994zM20 19V8.994A4.004 4.004 0 0 0 16 5H8a3.99 3.99 0 0 0-4 3.994v6.012A4.004 4.004 0 0 0 8 19h12zm-6-8h2v2h-2v-2zm-6 0h2v2H8v-2z"/></svg>
-          <span class="text-2xl tracking-tight ml-3 font-bold">Add New Channel</span>
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 8.994A5.99 5.99 0 0 1 8 3h8c3.313 0 6 2.695 6 5.994V21H8c-3.313 0-6-2.695-6-5.994V8.994zM20 19V8.994A4.004 4.004 0 0 0 16 5H8a3.99 3.99 0 0 0-4 3.994v6.012A4.004 4.004 0 0 0 8 19h12zm-6-8h2v2h-2v-2zm-6 0h2v2H8v-2z"/></svg> -->
+          <span class="text-2xl tracking-tight ml-3 font-bold">Browse Channels</span>
         </div>
         <div class="block">
-          <button @click="$modal.hide('newChannel')" title="cancel" class="flex ring-0 bg-red-600 text-white items-center px-3 py-1 font-bold border rounded text-teal-lighter border-teal-ligh hover:text-white hover:border-white">
-            Cancel
+          <button @click="$modal.hide('newChannel')" title="cancel" class="flex ring-0 border-none items-center px-3 py-1 font-bold hover:text-gray-500">
+           x
           </button>
         </div>
       </nav>
-      <new-channel></new-channel>
+      <NewChannel />
     </vue-modal>
     <vue-modal style="z-index: 2500" class="py-6" name="newContact" :scrollable="true" height="auto" draggable=".drag-handler" :reset="true" :classes="[]" :adaptive="true">
       <nav class="flex drag-handler border-b items-center justify-between flex-wrap bg-teal p-6 py-2">
         <div class="flex items-center flex-no-shrink text-black mr-6">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 7h5v2h-5V7zm-2 5h7v2h-7v-2zm3 5h4v2h-4v-2zM2 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/></svg>
-          <span class="text-2xl tracking-tight ml-3 font-bold">Add New Contact</span>
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 7h5v2h-5V7zm-2 5h7v2h-7v-2zm3 5h4v2h-4v-2zM2 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/></svg> -->
+          <span class="text-2xl tracking-tight ml-3 font-bold">Browse contacts</span>
         </div>
         <div class="block">
           <button @click="$modal.hide('newContact')" title="cancel" class="flex bg-red-600 text-white items-center px-3 py-1 font-bold border rounded text-teal-lighter border-teal-ligh hover:text-white hover:border-white">

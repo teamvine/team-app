@@ -13,7 +13,7 @@
         class="left-0 top-0 w-full h-full rounded-full object-cover"
       />
       <div
-        :class="[contact.status=='online'? 'bg-green-400':'bg-red-600']"
+        :class="[contact.status=='online'? 'bg-green-400':'']"
         class="absolute rounded-full right-0 bottom-0 w-2 h-2"
       ></div>
     </div>
