@@ -5,7 +5,7 @@
                 <header class="flex items-center justify-between leading-tight w-full border-b">
                     <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
-                        <span class="ml-2 font-bold">New Organization</span>
+                        <span class="ml-2 font-bold text-xl">New Organization</span>
                     </h1>
                 </header>
                 <div class="pg-form w-full px-2">
@@ -72,8 +72,13 @@
                             <!-- end search -->
                             <hr />
                             <!-- search results -->
+                            <!-- ==========No results============== -->
+                            <!-- <div class="flex flex-wrap justify-center content-center px-2 lg:px-4 mt-3 w-full">
+                                <span class="font-bold text-md py-8 w-full text-center bg-gray-200 text-gray-800">Results Will Appear Here.</span>
+                            </div> -->
+                            <!-- ============ -->
                             <div class='px-3 py-3'>
-                                <h3 class="font-bold text-sm" >Search Results</h3>
+                                <h3 class="font-bold text-sm" >Search Results (click to add)</h3>
                                 <!-- ======V-for================ -->
                                 <div class="flex flex-wrap items-stretch w-full relative hover:bg-gray-300 rounded cursor-pointer">
                                     <div class="flex -mr-px h-auto">
