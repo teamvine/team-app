@@ -1,6 +1,6 @@
 <template>
-  <header class="header-view shadow-md">
-    <div class="app-name p-3">
+  <header class="header-view">
+    <div class="app-name p-3 cursor-pointer" @click="navigate({name: 'Start'})">
       <h3 class="font-bold">RCONNECT</h3>
     </div>
     <div class="right-menu">
@@ -10,7 +10,7 @@
       </div>
       <div class="user-menu">
         <div class="drp-dwn-toggler pl-2" @click="showDropDown = !showDropDown">
-          <img src="../../assets/images/avatar1.jpg" alt="user-pic" />
+          <img src="../../assets/images/avatar3.png" alt="user-pic" />
           <!-- <span class="px-2 pr-3">Egide</span> -->
         </div>
         <div class="drop-down shadow-md" v-show="showDropDown">
@@ -145,6 +145,13 @@ export default {
       pageName: this.$route.name
     };
   },
+  methods: {
+    navigate(path){
+      if(this.$route.name!=path.name){
+        this.$router.push(path)
+      }
+    }
+  }
 };
 </script>
 
@@ -164,6 +171,7 @@ export default {
   min-height: 50px;
   background-color: #ffffff;
   z-index: 1000;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.39)
 }
 .app-name {
   padding: auto;
@@ -185,8 +193,8 @@ export default {
 }
 .notifications {
   display: inline-block;
-  width: 80px;
-  padding: 8% 4%;
+  width: 60px;
+  padding: 9% 4%;
   position: relative;
 }
 .notifications svg {
@@ -217,18 +225,19 @@ export default {
   /* background-color:#e6f4ff; */
   border-radius: 30px;
 }
-.user-menu:hover {
-  /* background-color:#cedce7; */
-}
+/* .user-menu:hover {
+  background-color:#cedce7;
+} */
 .user-menu .drp-dwn-toggler {
   cursor: pointer;
   display: inline-block !important;
 }
 .drp-dwn-toggler img {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   margin: 2px;
   border-radius: 50%;
+  background-color: rgb(0, 0, 0,0.08);
   /* border: 2px solid orangered; */
 }
 .user-menu .drp-dwn-toggler span {
@@ -254,9 +263,9 @@ export default {
   cursor: pointer;
   /* min-width: 250px; */
 }
-.drop-content div div:not(:nth-last-child(1)):not(:nth-child(1)) {
+/* .drop-content div div:not(:nth-last-child(1)):not(:nth-child(1)) {
   border-bottom: 1px solid rgb(0.3, 0.3, 0.3, 0.05);
-}
+} */
 .drop-content div div:nth-child(1) {
   padding: 4% 0%;
   padding-left: 3%;

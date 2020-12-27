@@ -8,7 +8,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import(/* webpackChunkName: "about" */ '../pages/Home.vue'),
+    component: () => import(/* webpackChunkName: "home" */ '../pages/Home.vue'),
     beforeEnter(to, from, next) {
       // let token = localStorage.getItem("teamToken") || "";
       // if (token != "") {
@@ -28,7 +28,33 @@ const routes = [
       {
         path: "/start",
         name: "StartPage",
-        component: () => import(/* webpackChunkName: "about" */ '../components/StartPage/StartPage')
+        component: () => import(/* webpackChunkName: "startpage" */ '../components/StartPage/StartPage'),
+        beforeEnter(to, from, next) {
+          const isRedirection = to.name !== 'StartPage'
+          return next(isRedirection ? true : {
+            name: 'Start'
+          })
+        },
+        redirect: to => ({
+          name: 'Start'
+        }),
+        children: [
+          {
+            path: "",
+            name: "Start",
+            component: () => import(/* webpackChunkName: "start" */ '../components/StartPage/Start/Start')
+          },
+          {
+            path: "/new",
+            name: "NewWorkspace",
+            component: () => import(/* webpackChunkName: "newWorkspace" */ '../components/StartPage/NewWorkspace/NewWorkspace')
+          },
+          {
+            path: "/search",
+            name: "FindWorkspace",
+            component: () => import(/* webpackChunkName: "FindWorkspace" */ '../components/StartPage/FindWorkspace/FindWorkspace')
+          }
+        ]
       },
       {
       path: "",

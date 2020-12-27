@@ -3,7 +3,7 @@
         <AppHeader/>
         <div class="body-view">
             <div class="main-page">
-                <SideBarNav v-if="pageName!='StartPage'"/>
+                <SideBarNav v-if="pageName!='Start' && pageName!='NewWorkspace' && pageName!='FindWorkspace'"/>
                 <router-view/>
             </div>
         </div>
@@ -35,6 +35,7 @@ export default {
         display: flex;
         flex-direction: column;
         background:#ffffff;
+        /* background: #000; */
         /* background-color:#F3FAFB; */
     }
     .body-view {
