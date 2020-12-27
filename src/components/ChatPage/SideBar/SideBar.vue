@@ -94,24 +94,24 @@
           </button>
         </div>
         <div v-if="display_cont=='channel'" class="new-btn">
-          <button class="" @click="newChannel">
+          <button class="" @click="browseChannel">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path fill="white" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
           </button>
         </div>
     </div>
-    <vue-modal style="z-index: 2500" class="py-6 col-lg-9" name="newChannel" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
+    <vue-modal style="z-index: 2500" class="py-6 col-lg-9" name="browseChannel" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
       <nav class="flex drag-handler border-b items-center justify-between flex-wrap bg-teal p-6 py-2">
         <div class="flex items-center flex-no-shrink text-black mr-6">
           <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 8.994A5.99 5.99 0 0 1 8 3h8c3.313 0 6 2.695 6 5.994V21H8c-3.313 0-6-2.695-6-5.994V8.994zM20 19V8.994A4.004 4.004 0 0 0 16 5H8a3.99 3.99 0 0 0-4 3.994v6.012A4.004 4.004 0 0 0 8 19h12zm-6-8h2v2h-2v-2zm-6 0h2v2H8v-2z"/></svg> -->
           <span class="text-2xl tracking-tight ml-3 font-bold">Browse Channels</span>
         </div>
         <div class="block">
-          <button @click="$modal.hide('newChannel')" title="cancel" class="flex ring-0 border-none items-center px-3 py-1 font-bold hover:text-gray-500">
+          <button @click="$modal.hide('browseChannel')" title="cancel" class="flex ring-0 border-none items-center px-3 py-1 font-bold hover:text-gray-500">
            x
           </button>
         </div>
       </nav>
-      <NewChannel />
+      <BrowseChannel />
     </vue-modal>
     <vue-modal style="z-index: 2500" class="py-6" name="newContact" :scrollable="true" height="auto" draggable=".drag-handler" :reset="true" :classes="[]" :adaptive="true">
       <nav class="flex drag-handler border-b items-center justify-between flex-wrap bg-teal p-6 py-2">
@@ -137,7 +137,7 @@ export default {
   components: {
     Person: ()=> import("./Person"),
     Channel: ()=> import("./Channel"),
-    NewChannel: ()=> import("./NewChannel"),
+    BrowseChannel: ()=> import("./BrowseChannel"),
     NewContact: ()=> import("./NewContact")
   },
   data() {
@@ -159,9 +159,9 @@ export default {
       this.$modal.hideAll()
       this.$modal.show("newContact")
     },
-    newChannel(){
+    browseChannel(){
       this.$modal.hideAll()
-      this.$modal.show("newChannel")
+      this.$modal.show("browseChannel")
     }
   }
 };
