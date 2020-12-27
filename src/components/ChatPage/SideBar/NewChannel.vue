@@ -1,6 +1,46 @@
 <template>
-  <div>
+  <div class="text-blue-600 h-auto">
       <!-- Content for new channel here -->
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
+      <p>hek</p>
   </div>
 </template>
 
