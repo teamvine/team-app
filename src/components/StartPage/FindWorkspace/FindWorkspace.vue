@@ -1,6 +1,6 @@
 <template>
     <main class="flex-1 ">
-        <div class="w-full flex-row flex content-center justify-center flex-wrap py-3">
+        <div class="w-full flex-row flex content-center justify-center flex-wrap py-3 px-2">
             <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-2/4 md:w-3/4 lg:w-3/6 border">
                 <header class="flex items-center justify-between leading-tight w-full border-b">
                     <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
@@ -10,20 +10,18 @@
                     </h1>
                 </header>
                 <div class="find-organs w-ful px-2">
-                    <div class="px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-                      <div class="-mx-3 md:flex mb-6">
-                        <!-- <div class="md:w-full px-3">
-                          <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-password">
-                            Start 
-                          </label>
-                          <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="grid-search-text" type="search" placeholder="Search text...">
-                          <p class="text-grey-dark text-xs italic">Hit Search button to get results.</p>
-                        </div> -->
+                    <div class="px-8 pt-6 pb-2 mb-2 flex flex-col my-2">
+                      <div class="-mx-3 md:flex mb-0">
                         <div class="flex flex-wrap items-stretch w-full mb-4 relative">
                           <label class="block w-full tracking-wide text-grey-darker text-md font-bold mb-2" for="grid-password">
                             Find Public Organizations
                           </label>
-                          <input type="search" class="flex-shrink flex-grow flex-auto py-2 leading-normal w-px flex-1 border border-grey-light rounded rounded-r-none px-3 relative" placeholder="Search text...">
+                          <div class="flex -mr-px">
+                            <span class="flex items-center leading-normal border-0 button bg-grey-lighter rounded rounded-r-none border border-r-0 py-2 border-grey-light px-2 pr-0 whitespace-no-wrap text-grey-dark text-md">
+                              <svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 2c4.968 0 9 4.032 9 9s-4.032 9-9 9-9-4.032-9-9 4.032-9 9-9zm0 16c3.867 0 7-3.133 7-7 0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7zm8.485.071l2.829 2.828-1.415 1.415-2.828-2.829 1.414-1.414z"/></svg>
+                            </span>
+                          </div>
+                          <input type="search" class="flex-shrink flex-grow flex-auto py-2 leading-normal w-px flex-1 border border-l-0 border-grey-light rounded-l-none rounded-r-none px-3 relative" placeholder="Search text...">
                           <div class="flex -mr-px">
                             <button class="flex items-center leading-normal border-0 button bg-grey-lighter rounded rounded-l-none border border-l-0 py-2 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-md bg-green-600 text-white">Search</button>
                           </div>
@@ -31,6 +29,36 @@
                         </div>	
                       </div>
                     </div>
+                    <!-- ===============No results============= -->
+                    <div class="flex flex-wrap justify-center content-center lg:px-20 w-full" v-if="workspaces.length<1">
+                      <span class="font-bold text-xl py-8 w-full text-center bg-gray-200 text-gray-800">Results Will Appear Here.</span>
+                    </div>
+                    <!-- =============== results================ -->
+                    <div class="flex flex-col md:px-12" v-else>
+                      <h1 class="w-full font-bold text-2xl mb-3">{{workspaces.length}} Results</h1>
+                      <div class="flex bg-gray-200 w-full mb-4"
+                        v-for="(organization,index) in workspaces" 
+                        :key="index"
+                        >
+                          <div class="w-auto bg-yellow">
+                              <div class="p-4 pr-0">
+                                  <svg class="h-10 w-10 text-dark fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
+                              </div>
+                          </div>
+                          <div class="w-auto text-grey-darker items-center p-4 pb-3">
+                              <span class="text-lg organization-name w-full font-bold pb-4 pr-4">
+                                {{organization.name}}
+                              </span>
+                              <p class="leading-tight">
+                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                              </p>
+                              <div class="flex flex-wrap w-full content-end justify-end pt-3">
+                                <button class="py-1 rounded px-6 new-organ text-white">Join</button>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  <!-- ============================= -->
                 </div>
                 <div class="btns w-full content-center justify-center flex-wrap flex pb-5 pt-2">
 		            <button @click="$router.push({name: 'Start'})" type="button" class="w-4/6 mt-3 rounded-sm sm:w-4/6 md:w-3/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline border find-organ text-blue-800 font-bold hover:text-white font-normal py-2 px-4 mr-1 ml-1">My Organizations</button>
@@ -45,6 +73,28 @@
 export default {
     name: "FindOrganization",
     props: {
+    },
+    data(){
+      return {
+        workspaces: [
+                {
+                    name: "RCA Group",
+                    type: "private"
+                },
+                {
+                    name: "NYABIHU TVET",
+                    type: "private"
+                },
+                {
+                    name: "FT Group",
+                    type: "public"
+                },
+                {
+                    name: "Coders Hub",
+                    type: "public"
+                }
+            ]
+      }
     },
     filters: {
         /**
