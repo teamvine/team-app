@@ -3,6 +3,7 @@
       <div class="main-channel-chat">
             <Chat/>
             <ChatDetails/>
+            <router-view></router-view>
       </div>
   </div>
 </template>
