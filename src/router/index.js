@@ -1,33 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NProgress from 'nprogress'
+import store from "../store"
 
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path:"/channel/new",
-  //   name:"NewChannel",
-  //   component:() => import(/* webpackChunkName: "NewChannel" */ '../components/ChatPage/SideBar/NewChannel.vue'),
-  // },
   {
     path: "/",
     name: "Home",
     component: () => import(/* webpackChunkName: "home" */ '../pages/Home.vue'),
     beforeEnter(to, from, next) {
-      // let token = localStorage.getItem("teamToken") || "";
-      // if (token != "") {
-      //   store.commit("all/setToken", localStorage.getItem("teamToken"));
-      const isRedirection = to.name !== 'Home'
-      return next(isRedirection ? true : {
-        name: 'ChatPage'
-      })
-      // } else {
-      //   return next({ name: "Login" });
-      // }
+      let token = localStorage.getItem("rconnectToken") || "";
+      if (token != "") {
+        store.commit("all/setToken", localStorage.getItem("rconnectToken"));
+        const isRedirection = to.name !== 'Home'
+        return next(isRedirection ? true : {
+          name: 'StartPage'
+        })
+      } else {
+        return next({ name: "Login" });
+      }
     },
     redirect: to => ({
-      name: 'ChatPage'
+      name: 'StartPage'
     }),
     children: [
       {
@@ -104,16 +100,41 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "about" */ '../pages/Login.vue')
-  }, {
+    component: () => import(/* webpackChunkName: "about" */ '../pages/Login.vue'),
+    beforeEnter(to, from, next) {
+      let token = localStorage.getItem("rconnectToken") || "";
+      if (token != "") {
+        return next({ name: 'Home' })
+      } else {
+        return next();
+      }
+    },
+  }, 
+  {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../pages/Register.vue')
+    component: () => import(/* webpackChunkName: "register" */ '../pages/Register.vue'),
+    beforeEnter(to, from, next) {
+      let token = localStorage.getItem("rconnectToken") || "";
+      if (token != "") {
+        return next({ name: 'Home' })
+      } else {
+        return next();
+      }
+    },
   },
   {
     path: "/email-verification",
     name: "EmailVerifiaction",
-    component: () => import(/* webpackChunkName: "email_verification" */ '../pages/CodeVerification.vue')
+    component: () => import(/* webpackChunkName: "email_verification" */ '../pages/CodeVerification.vue'),
+    beforeEnter(to, from, next) {
+      let userInfo = localStorage.getItem("user-data") || false
+      if(!userInfo){
+        return next({name: "Login"})
+      }else {
+        return next()
+      }
+    },
   },
   {
     path: '/**',
@@ -129,16 +150,13 @@ const router = new VueRouter({
 })
 
 router.beforeResolve((to, from, next) => {
-  // If this isn't an initial page load.
   if (to.name || to.path) {
-    // Start the route progress bar.
     NProgress.start()
   }
   next()
 })
 
 router.afterEach((to, from) => {
-  // Complete the animation of the route progress bar.
   NProgress.done()
 })
 

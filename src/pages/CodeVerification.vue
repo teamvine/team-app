@@ -11,9 +11,10 @@
         <div class="verification-code">
           <form class="shadow">
             <label for="code">Enter the code</label>
-            <input type="text" id="code">
-            <h4 class="resend">Resend code?</h4>
-            <button>Verify</button>
+            <input type="text" v-model="enteredCode" id="code">
+            <p class="mt-3 w-full pt-2 font-bold text-sm" :class="[errorColor]">{{errorMsg}}</p>
+            <h4 class="resend" @click="reload">Resend code?</h4>
+            <button type="button" :disabled="gotCode? false:true" @click="verifyCode">Verify</button>
           </form>
         </div>
       </div>
@@ -22,13 +23,66 @@
 </template>
 ​
 <script>
+import {VerifyEmail,registerUser} from "../lib/user"
 export default{
   name:"CodeVerification",
   data(){
     return{
-      errorMssg:"",
+      user_data: localStorage.getItem("user-data") || false,
+      gotCode: false,
       code:"",
-      errorColor:"danger"
+      enteredCode: "",
+      errorMsg:"",
+      errorColor:"text-red-700"
+    }
+  },
+  mounted(){
+    this.sendCode()
+  },
+  methods:{
+    reload(){
+      location.reload(true)
+    },
+    sendCode(){
+      VerifyEmail(JSON.parse(localStorage.getItem("user-data")))
+      .then(response=>{
+        this.code = response.data.code
+        this.gotCode = true
+      })
+      .catch(err=>{
+        console.log(err);
+        alert("Error occured: "+err.message)
+      })
+    },
+    verifyCode(){
+      this.errorMsg=""
+      if(this.code.trim()==this.enteredCode.trim()) {
+        this.errorColor ="text-green-700 text-md"
+        this.errorMsg=" Creating Account... "
+        registerUser(JSON.parse(localStorage.getItem("user-data")))
+        .then((data) => {
+          if(data.data.err){
+            this.errorColor="text-red-600"
+            this.errorMsg = data.data.message
+            if(data.data.message.trim()=="That email was already taken!"){
+              alert(data.data.message.trim())
+              localStorage.removeItem("user-data")
+              this.$router.push({name: "Register"});
+            }
+            return;
+          }else{
+            alert("Account created successfully!")
+            localStorage.removeItem("user-data")
+            this.$router.push({name: "Login"});
+          }
+        })
+        .catch((err) => {
+          this.errorColor="text-red-600"
+          this.errorMsg = err.message;
+        });
+      }else{
+        this.errorMsg="* Incorrect code *"
+      }
     }
   }
 }
