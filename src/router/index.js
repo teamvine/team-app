@@ -6,6 +6,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path:"/channel/new",
+    name:"NewChannel",
+    component:() => import(/* webpackChunkName: "NewChannel" */ '../components/ChatPage/SideBar/NewChannel.vue'),
+  },
+  {
     path: "/",
     name: "Home",
     component: () => import(/* webpackChunkName: "home" */ '../pages/Home.vue'),
