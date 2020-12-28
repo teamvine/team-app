@@ -3,9 +3,8 @@
     <div class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4">
       <header class="flex items-center justify-between">
         <h2 class="text-lg leading-6 font-medium text-black">Channels</h2>
-        <router-link  to="/channel/new">
         <button
-          
+          @click="newChannel"
           class="border-solid border-2 border-blue-500 hover:bg-blue-500 hover:text-white group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2">
           <svg class="group-hover:text-light-blue-600 text-light-blue-500 mr-2" width="12" height="20"
             fill="currentColor">
@@ -14,7 +13,6 @@
           </svg>
           New
         </button>
-        </router-link>
       </header>
       <form class="relative">
         <svg width="20" height="20" fill="currentColor"
@@ -46,7 +44,7 @@
               <div class="col-start-2 row-start-1 row-end-3">
                 <dt class="sr-only">Members</dt>
                 <dd class="flex justify-end sm:justify-start lg:justify-end xl:justify-start -space-x-2">
-                  <img v-for="member in channel.users" :key="member" :src="member.profile" :alt="member.name" width="30" height="30"
+                  <img v-for="member in channel.users" :key="member._id" :src="member.profile" :alt="member.name" width="30" height="30"
                     class="w-7 h-7 rounded-full bg-gray-100 border-2 border-white" />
                 </dd>
               </div>
@@ -54,7 +52,7 @@
          </router-link>
         </li>
         <li class="hover:shadow-lg flex rounded-lg">
-          <router-link to="/channel/new"
+          <router-link to="/chat/channel/new-channel"
             class="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4">
             New Channel
           </router-link>
@@ -70,82 +68,97 @@ export default {
     data(){
       return {
         channels:[
-          {
-            _id:1,
+            {
+            _id:11,
             name:"General",
             description:"company wide communication group",
             users:[
               {
+                _id: "a",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "b",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "c",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id:"d",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "e",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
             ]
           },
           {
-            _id:2,
+            _id:22,
             name:"RCA YACU",
             description:"company wide communication group",
             users:[
               {
+                _id: "f",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "g",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "h",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id:"i",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "j",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
             ]
           },
           {
-            _id:3,
+            _id:33,
             name:"You presence",
             description:"company wide communication group",
             users:[
               {
+                _id: "k",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "l",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "m",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id:"n",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
               {
+                _id: "o",
                 name:"Jacques",
                 profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
               },
@@ -154,6 +167,12 @@ export default {
         ]
       }
     },
+    methods: {
+      newChannel(){
+        this.$modal.hide('browseChannel')
+        this.$router.push({name: "NewChannel"})
+      }
+    }
 }
 
 </script>
