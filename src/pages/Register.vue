@@ -98,9 +98,9 @@
               {{ errorMsg }}
             </p>
             <button
-              class="btn-create text-white font-bold py-2 px-4 rounded-full items-center mt-4 mb-2"
+              class="btn-create text-white font-bold py-2 px-4 rounded items-center mt-4 mb-2"
             >
-              <span>New Account</span>
+              <span>Create Account</span>
             </button>
             <p class="mt-3 mb-2 no-account">
               Do you have account?

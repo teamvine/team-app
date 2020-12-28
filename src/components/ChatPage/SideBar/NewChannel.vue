@@ -1,7 +1,7 @@
 <template>
     <div class="new-channel-page">
         <div class="flex flex-col bg-white px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full">
-            <h1 class="font-medium text-xl sm:text-2xl text-gray-800 mt-5 mb-5">Create channel</h1>
+            <h1 class="font-medium text-xl sm:text-2xl text-gray-700 mt-5 mb-5">new channel</h1>
             <div class="flex flex-col mb-6">
                 <label for="c-name" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Channel Name:</label>
                 <div>
