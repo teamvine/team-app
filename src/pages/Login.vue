@@ -19,10 +19,10 @@
           />
         </div>
         <div class="login-container focus right rounded-md">
-          <form action="/personal">
+          <form @submit.prevent="onSignIn">
             <h2 class="head font-bold">Sign In</h2>
             <span class="line"></span>
-            <div class="input-div one">
+            <!-- <div class="input-div one">
               <div class="i">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -69,13 +69,22 @@
                   @blur="blurFunc"
                 />
               </div>
-            </div>
-            <a href="#" class="mt-4 text-md">Forgot Password?</a>
+            </div> -->
+            <label class="block w-full text-left">
+              <span class="text-dark font-bold">Email</span>
+              <input type="email" v-model="email" class="form-input mt-1 block w-full border border border-gray-500" placeholder="">
+            </label>
+            <label class="block w-full text-left mt-4">
+              <span class="text-dark font-bold">Password</span>
+              <input type="password" v-model="password" class="form-input mt-1 block w-full border border-gray-500" placeholder="">
+            </label>
+            <br>
+            <a href="#" class="mt-4 text-md font-bold">Forgot Password?</a>
             <p v-if="errorMsg != ''" :class="[errorColor, 'mt-2']">
               {{ errorMsg }}
             </p>
 
-            <button class="btn">Login</button>
+            <button class="btn font-bold">Login</button>
 
             <p class="mt-4 mb-2 float-left no-account">
               Do you have account?
@@ -85,7 +94,7 @@
             <div class="google-div mt-3">
               <h4 class="or-heading">OR</h4>
             </div>
-            <button class="google-button mt-3">Continue with google</button>
+            <button class="google-button mt-3 font-bold">Continue with google</button>
           </form>
         </div>
       </div>
@@ -94,6 +103,7 @@
 </template>
 
 <script>
+import {authorize} from "../lib/login"
 export default {
   name: "Login",
   data() {
@@ -101,16 +111,35 @@ export default {
       email: "",
       password: "",
       errorMsg: "",
-      errorColor: "danger",
+      errorColor: "text-red-600",
     };
   },
   methods: {
     onSignIn() {
+      this.errorMsg = ""
       if (this.email == "" || this.password == "") {
+        this.errorColor="text-red-600"
         this.errorMsg = "* All fields are required *";
         return 0;
       }
-      return;
+      authorize(this.email, this.password)
+        .then((response) => {
+          if(response.data.err){
+            this.errorColor = "text-red-600"
+            this.errorMsg = response.data.message
+          }else{
+            this.errorColor = "text-green-600"
+            this.errorMsg = "Logging In..."
+            localStorage.setItem("rconnectToken",response.data.data.token)
+            // this.$store.commit("all/setUser", JSON.stringify(response.data.data.user));
+            // this.$store.commit("all/setToken", response.data.data.token);
+            this.$router.push({ name: "Home" });
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+          this.errorMsg ="Wrong email/password or the server isn't available. :'(";
+        });
     },
     focusFunc($event) {
       let parent = $event.target.parentNode.parentNode;
@@ -202,7 +231,7 @@ export default {
   align-items: center;
   text-align: center;
   width: 1em;
-  height: 32em;
+  height: 34em;
   margin: 6.8em 0 0 0;
   border: none;
   box-shadow: 0 0 4px 1px rgb(219, 219, 219);
@@ -212,6 +241,7 @@ form {
   width: 70%;
   /* margin: -4em 15%; */
   margin: auto;
+  height: auto;
 }
 form h2 {
   color: #2a68d3;

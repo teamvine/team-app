@@ -19,7 +19,7 @@
           />
         </div>
         <div class="register-container right focus mb-4 rounded-md">
-          <form @submit.prevent="onSignIn" class="pt-4 pb-3">
+          <form @submit.prevent="onSignUp" class="pt-4 pb-3">
             <h1 class="f-md mb-3 mt-3 head font-bold">SIGN UP TO RCONNECT</h1>
             <span class="line"></span>
             <div class="in-field one">
@@ -27,13 +27,13 @@
               <div class="inpt">
                 <h6>Full Name</h6>
                 <input
+                  v-model="full_name"
                   type="text"
                   class="input"
                   @focus="onFocusFunc"
                   @blur="onBlurFunc"
                 />
               </div>
-              <div class="icn check-icon"><i class="ri-check-line"></i></div>
             </div>
 
             <div class="in-field">
@@ -41,39 +41,40 @@
               <div class="inpt">
                 <h6>Display Name</h6>
                 <input
+                  v-model="display_name"
                   type="text"
                   class="input"
                   @focus="onFocusFunc"
                   @blur="onBlurFunc"
                 />
               </div>
-              <div class="icn check-icon"><i class="ri-check-line"></i></div>
             </div>
             <div class="in-field">
               <div class="icn"><i class="ri-at-line"></i></div>
               <div class="inpt">
                 <h6>Email</h6>
                 <input
+                  v-model="email"
                   type="email"
                   class="input"
                   @focus="onFocusFunc"
                   @blur="onBlurFunc"
+                  required
                 />
               </div>
-              <div class="icn check-icon"><i class="ri-check-line"></i></div>
             </div>
             <div class="in-field">
               <div class="icn"><i class="ri-lock-line"></i></div>
               <div class="inpt">
                 <h6>New Password</h6>
                 <input
+                  v-model="password"
                   type="password"
                   class="input"
                   @focus="onFocusFunc"
                   @blur="onBlurFunc"
                 />
               </div>
-              <div class="icn check-icon"><i class="ri-check-line"></i></div>
             </div>
             <div class="in-field">
               <div class="icn">
@@ -82,29 +83,31 @@
               <div class="inpt">
                 <h6>Repeat Password</h6>
                 <input
+                  v-model="confirmPassword"
                   type="password"
                   class="input"
                   @focus="onFocusFunc"
                   @blur="onBlurFunc"
                 />
               </div>
-              <div class="icn check-icon"><i class="ri-check-line"></i></div>
             </div>
-            <div class="agree-terms">
-              <input type="checkbox" id="check-b" /> I agree to the terms and
-              conditions of privacy.
+            <div class="flex mt-6">
+              <label class="flex items-center">
+                <input type="checkbox" v-model="termscheckBox" id="checkbox" class="form-checkbox h-5 w-5">
+                <span class="ml-2">I agree to the privacy policy</span>
+              </label>
             </div>
-            <p v-if="errorMsg != ''" :class="[errorColor, 'mt-2']">
+            <p v-if="errorMsg != ''" :class="[errorColor, 'mt-2 text-sm font-bold']">
               {{ errorMsg }}
             </p>
             <button
-              class="btn-create text-white font-bold py-2 px-4 rounded items-center mt-4 mb-2"
+              class="btn-create text-white font-bold py-3 px-6 rounded items-center mt-4 mb-2"
             >
-              <span>Create Account</span>
+              <span class="font-bold">New Account</span>
             </button>
             <p class="mt-3 mb-2 no-account">
               Do you have account?
-              <router-link to="/login" class="link">Sign In.</router-link>
+              <router-link to="/login" class="link font-bold">Sign In.</router-link>
             </p>
           </form>
         </div>
@@ -114,17 +117,71 @@
 </template>
 
 <script>
+import userAPI, { checkIfEmailUsed } from "../lib/user";
+import { regExp } from "../config/constants";
 export default {
   name: "Login",
   data() {
     return {
-      errorColor: "red",
+      errorColor: "text-red-600",
       errorMsg: "",
+      full_name: "",
+      display_name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      termscheckBox: false
     };
   },
   methods: {
-    onSignIn() {
-      return;
+    onSignUp() {
+      if(this.termscheckBox==false){
+        this.errorColor = "text-red-600"
+        this.errorMsg = "* You must agree to terms of  privacy *"
+        return;
+      }
+      if(this.full_name.trim()=="" || this.display_name.trim()=="" || this.password.trim()==""){
+        this.errorColor = "text-red-600"
+        this.errorMsg = "* All Fields Are Required *"
+        return;
+      }
+      if(this.full_name.trim().length<4 || this.display_name.trim().length<4){
+        this.errorColor = "text-red-600"
+        this.errorMsg = "* Full Name or Display Name must be at least 4 characters length *"
+        return;
+      }
+      if(this.password.trim()!=this.confirmPassword.trim()){
+        this.errorColor = "text-red-600"
+        this.errorMsg = "* Passwords don't match *"
+        return;
+      }
+      if (!regExp.VALID_PASSWORD.test(this.password)) {
+        this.errorColor = "text-red-600"
+        this.errorMsg = "* Password must contain at least 6 characters *";
+        return;
+      }
+      checkIfEmailUsed(this.email.trim())
+      .then(response=>{
+        if(response.data.success){
+          if(response.data.emailUsed){
+            this.errorColor = "text-red-600"
+            this.errorMsg = "* That Email was already taken *";
+            return;
+          }else{
+            this.errorColor = "text-green-600"
+            this.errorMsg="* Redirecting... *"
+            let newUser = {
+              full_name: this.full_name.trim(),
+              display_name: this.display_name.trim().toLowerCase(),
+              email: this.email.trim(),
+              password: this.password.trim()
+            };
+            let jsonString = JSON.stringify(newUser)
+            localStorage.setItem("user-data",jsonString)
+            this.$router.push({name: "EmailVerifiaction"})
+          }
+        }
+      })
     },
     onFocusFunc(e) {
       let parent = e.target.parentNode.parentNode;
@@ -252,14 +309,14 @@ form .line {
   display: grid;
   grid-template-columns: 7% 93%;
   margin: 25px 0;
-  padding: 5px 0;
-  border-bottom: 1px solid #d9d9d9;
+  padding: 2px 0;
+  border-bottom: 1px solid #0000004d;
 }
 .in-field::after,
 .in-field::before {
   content: "";
   position: absolute;
-  bottom: -2px;
+  bottom: -1px;
   width: 100%;
   display: none;
   height: 2px;
@@ -284,7 +341,7 @@ form .line {
   align-items: center;
 }
 .in-field .icn i {
-  color: #d9d9d9 !important;
+  color: #b6b6b6 !important;
   transition: 0.3s;
 }
 
@@ -310,9 +367,10 @@ form .line {
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #999;
+  color: rgba(51, 51, 51, 0.76);
   font-size: 16px;
   transition: 0.3s;
+  font-weight: bold;
 }
 
 .input {
@@ -327,15 +385,10 @@ form .line {
   padding: 0.5rem 0.7rem;
   font-size: 1.1rem;
   font-family: "Poppins", sans-serif;
-  color: rgb(70, 70, 70);
+  color: rgb(0, 0, 0);
 }
 
-.check-icon {
-  margin: -50px 0 0 21em;
-}
-.check-icon i {
-  margin: 18px 0 0 0;
-}
+
 .btn-create {
   width: auto;
   display: block;

@@ -44,7 +44,7 @@
               <div class="">
                 <input type="text" id="members" ref="searchMember" class="border-none" @focus="focused()" v-model="search" v-on:keyup="suggestContact(search)" />
               </div>
-                <div :class="searching ? 'search-suggestion bg-white border-2 border-gray-100 border-top-none rounded-lg':'d-none'">
+                <div :class="searching ? 'search-suggestion bg-white border-2 border-gray-100 border-top-none h-auto rounded-lg':'d-none'">
                     <p class="suggested hover:bg-gray-300 p-2 mb-3" v-for="contact in suggestedContacts" :key="contact._id" @click="addMember(contact._id)">
                         <img :src="contact.img" :alt="contact.name" class="rounded-full inline" width="30" height="30" />
                         <span class="ml-2">{{contact.name}}</span>
@@ -52,9 +52,13 @@
                 </div>
           </div>
         </div>
-        <div class="create">
+        <div class="create w-full flex flex-wrap content-end justify-end pr-4">
+            <button @click="closeAndGoBack" class="border-solid border-2 border-red-700 bg-red-700 hover:bg-red-800 hover:border-red-800 mr-4 text-white group flex items-center rounded-md text-sm font-medium px-4 py-2">
+                Cancel
+            </button>
             <button class="border-solid border-2 border-blue-500 bg-blue-500 text-white group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2">
-                Create</button>
+                Create
+            </button>
         </div>
         </div>
     </div>

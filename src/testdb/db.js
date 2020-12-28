@@ -13,7 +13,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 2,
@@ -28,7 +27,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 3,
@@ -36,7 +34,6 @@ module.exports = {
             name: "John Doe",
             img:
                 "https://www.best4geeks.com/wp-content/uploads/2018/08/50-cute-girl-profile-picture.jpg",
-            status: "active",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -52,7 +49,7 @@ module.exports = {
             name: "Ange divine",
             img:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMBIK4eAtEa9PyvXSW29AGTc0hARu74KkOCA&usqp=CAU",
-            status: "active",
+            status: "offline",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -60,7 +57,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 5,
@@ -77,14 +73,12 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "offline"
         },
         {
             _id: 6,
             role:"Frontend Developer",
             name: "Makuza Verite",
             img: "https://cdn.vuetifyjs.com/images/john.jpg",
-            status: "active",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -99,7 +93,6 @@ module.exports = {
             role:"Fullstack Developer",
             name: "Daniel.uidesign",
             img: "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-            status: "active",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -123,7 +116,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 9,
@@ -131,7 +123,7 @@ module.exports = {
             name: "Innocent Munyengabe",
             img:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMBIK4eAtEa9PyvXSW29AGTc0hARu74KkOCA&usqp=CAU",
-            status: "active",
+            status: "offline",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -139,7 +131,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 10,
@@ -147,7 +138,7 @@ module.exports = {
             name: "That cute lady",
             img:
                 "https://save-ohno.s3.amazonaws.com/uploads/team/image/9/babson-code.png",
-            status: "active",
+            status: "offline",
             totalUnreads: 10,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -156,7 +147,6 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "offline"
         },
         {
             _id: 11,
@@ -171,7 +161,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 12,
@@ -186,7 +175,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "offline"
         },
         {
             _id: 13,
@@ -194,7 +182,7 @@ module.exports = {
             name: "Anselme Irumva",
             img:
                 "https://www.best4geeks.com/wp-content/uploads/2018/08/50-cute-girl-profile-picture.jpg",
-            status: "active",
+            status: "offline",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -202,7 +190,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 14,
@@ -218,7 +205,6 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "offline"
         },
         {
             _id: 15,
@@ -235,7 +221,6 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
     ],
     channels: [
