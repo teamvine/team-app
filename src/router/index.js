@@ -5,6 +5,11 @@ import NProgress from 'nprogress'
 Vue.use(VueRouter)
 
 const routes = [
+  // {
+  //   path:"/channel/new",
+  //   name:"NewChannel",
+  //   component:() => import(/* webpackChunkName: "NewChannel" */ '../components/ChatPage/SideBar/NewChannel.vue'),
+  // },
   {
     path: "/",
     name: "Home",
@@ -45,19 +50,19 @@ const routes = [
             component: () => import(/* webpackChunkName: "start" */ '../components/StartPage/Start/Start')
           },
           {
-            path: "/new",
+            path: "new-organization",
             name: "NewWorkspace",
             component: () => import(/* webpackChunkName: "newWorkspace" */ '../components/StartPage/NewWorkspace/NewWorkspace')
           },
           {
-            path: "/search",
+            path: "search-organization",
             name: "FindWorkspace",
             component: () => import(/* webpackChunkName: "FindWorkspace" */ '../components/StartPage/FindWorkspace/FindWorkspace')
           }
         ]
       },
       {
-      path: "",
+      path: "chat",
       name: "ChatPage",
       component: () => {
         return import("../components/ChatPage/ChatPage")
@@ -72,14 +77,21 @@ const routes = [
         name: 'ChannelChat'
       }),
       children: [{
-        path: "/channel",
+        path: "channel",
         name: "ChannelChat",
         component: () => {
           return import("../components/ChatPage/Channel/ChannelChat")
-        }
+        },
+        children: [{
+          path: "new-channel",
+          name: "NewChannel",
+          component: () => {
+            return import("../components/ChatPage/Channel/NewChannel")
+          }
+        }]
       },
       {
-        path: "/direct",
+        path: "direct",
         name: "PersonalChat",
         component: () => {
           return import("../components/ChatPage/Direct/PersonalChat")

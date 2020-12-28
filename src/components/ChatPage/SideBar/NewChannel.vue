@@ -1,169 +1,112 @@
 <template>
-  <div class="text-gray-600 h-auto">
-    <div class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4">
-      <header class="flex items-center justify-between">
-        <h2 class="text-lg leading-6 font-medium text-black">Channels</h2>
-        <router-link  to="/channel/new">
-        <button
-          
-          class="border-solid border-2 border-blue-500 hover:bg-blue-500 hover:text-white group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2">
-          <svg class="group-hover:text-light-blue-600 text-light-blue-500 mr-2" width="12" height="20"
-            fill="currentColor">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M6 5a1 1 0 011 1v3h3a1 1 0 110 2H7v3a1 1 0 11-2 0v-3H2a1 1 0 110-2h3V6a1 1 0 011-1z" />
-          </svg>
-          New
-        </button>
-        </router-link>
-      </header>
-      <form class="relative">
-        <svg width="20" height="20" fill="currentColor"
-          class="absolute text-gray-400 filter-icon" dat-class="left-3 top-1/3 transform -translate-y-2/2">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
-        </svg>
-        <input
-          class="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-10"
-          type="text" aria-label="Filter projects" placeholder="Search channels" />
-      </form>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
-        <li v-for="channel in channels" :key="channel._id">
-         <router-link :to="'/channel/'+channel._id"
-            class="hover:bg-light-blue-500 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200">
-            <dl class="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center">
-              <div>
-                <dt class="sr-only">Title</dt>
-                <dd class="group-hover:text-white leading-6 font-medium text-black">
-                  {{channel.name}}
-                </dd>
+    <div class="new-channel-page ml-5 mt-3 flex flex-col items-center justify-center bg-gray-300 w-1/2">
+        <div class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full">
+            <h1 class="font-medium text-xl sm:text-2xl text-gray-800 mt-5 mb-5">Create channel</h1>
+            <div class="flex flex-col mb-6">
+                <label for="c-name" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Channel Name:</label>
+                <div>
+                    <input id="c-name" type="text" name="channelName"
+                        class="text-sm sm:text-base rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
+                </div>
+            </div>
+
+            <div class="flex flex-col mb-6">
+                <label for="description" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Description</label>
+                <div>
+                    <textarea name="description" id="description" cols="30" rows="4"
+                        class="text-sm sm:text-base rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
+                    </div>
+        </div>
+
+        
+        <div class="flex flex-col mb-6">
+          <label  class="mb-1 rounded text-xs sm:text-sm tracking-wide text-gray-600">Add members:</label>
+          <div class="members text-sm sm:text-base rounded pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 py-4">
+              <div class="recently-added">
+                  <div v-for="member in addedMembers" :key="member._id"  class="member">                      
+                    <span class="added-member">{{member.name}}</span>
+                    <button class="remove-member ml-3 text-red-600 hover:text-red-400" @click="removeMember(member._id)">X</button>
+                  </div>
               </div>
-              <div>
-                <dt class="sr-only">Category</dt>
-                <dd class="group-hover:text-light-blue-200 text-sm font-medium sm:mb-4 lg:mb-0 xl:mb-4">
-                  {{channel.description}}
-                </dd>
+              <div class="mt-4 mb-4">
+                <input type="text" id="members" class="border-none" @focus="focused()" v-model="search" v-on:keyup="suggestContact(search)">
               </div>
-              <div class="col-start-2 row-start-1 row-end-3">
-                <dt class="sr-only">Members</dt>
-                <dd class="flex justify-end sm:justify-start lg:justify-end xl:justify-start -space-x-2">
-                  <img v-for="member in channel.users" :key="member" :src="member.profile" :alt="member.name" width="30" height="30"
-                    class="w-7 h-7 rounded-full bg-gray-100 border-2 border-white" />
-                </dd>
-              </div>
-            </dl>
-         </router-link>
-        </li>
-        <li class="hover:shadow-lg flex rounded-lg">
-          <router-link to="/channel/new"
-            class="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4">
-            New Channel
-          </router-link>
-        </li>
-      </ul>
+                <div :class="searching ? 'search-suggestion bg-white border-2 border-gray-100 border-top-none rounded-lg':'d-none'">
+                    <p class="suggested hover:bg-gray-300 p-2 mb-3" v-for="contact in suggestedContacts" :key="contact._id" @click="addMember(contact._id)">
+                        <img :src="contact.img" :alt="contact.name" class="rounded-full inline" width="30" height="30">
+                        <span class="ml-2">{{contact.name}}</span>
+                    </p>
+                </div>
+          </div>
+        </div>
+        <div class="create">
+            <button class="border-solid border-2 border-blue-500 bg-blue-500 text-white group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2">
+                Create</button>
+        </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
+const { contacts } = require('../../../testdb/db')
 export default {
-    name: "NewChannel",    
+    name:"NewChannel",
     data(){
-      return {
-        channels:[
-          {
-            _id:1,
-            name:"General",
-            description:"company wide communication group",
-            users:[
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-            ]
-          },
-          {
-            _id:2,
-            name:"RCA YACU",
-            description:"company wide communication group",
-            users:[
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-            ]
-          },
-          {
-            _id:3,
-            name:"You presence",
-            description:"company wide communication group",
-            users:[
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-            ]
-          },
-        ]
-      }
-    },
-}
 
+        return {
+            search:" ",
+            searching:false,
+            suggestedContacts:[],
+            addedMembers:[]
+        }
+    },
+    methods:{
+        suggestContact(searchQuery){
+            this.suggestedContacts = contacts.filter(contact => contact.name != searchQuery)
+        },
+        focused(){
+            this.searching = true
+        },
+        addMember(contactId){            
+            //check if contact was already added
+            if( (this.addedMembers.filter(user => user._id == contactId)).length > 0 ) return
+
+            let contact = contacts.filter(user => user._id == contactId)[0]
+            this.addedMembers.push(contact) 
+            
+            this.searching = false
+            this.search = ""
+        },
+        removeMember(memberId){
+            console.log(memberId)
+            this.addedMembers = this.addedMembers.filter(member => member._id != memberId)
+        }
+    }
+}
 </script>
 
 <style scoped>
-  .filter-icon{
-    left: 5px;
-    top:10px;
-  }
-  button:focus{
-    outline: none !important;
-  }
+    button:focus{
+        outline: none;
+    }
+    textarea{
+        resize: none;
+    }
+    .recently-added .member{
+        display: inline-block;
+        background: #cee9eb;
+        padding: 5px;
+        border-radius: 5px;
+        margin-right: 4px;
+    }
+    .suggested{
+        cursor: pointer;        
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .d-none{
+        display: none;
+    }
+    
 </style>
