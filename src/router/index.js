@@ -116,7 +116,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "email_verification" */ '../pages/CodeVerification.vue')
   },
   {
-    path: '**',
+    path: '/**',
     name: 'NotFound',
     component: () => import(/* webpackChunkName: "register" */ '../pages/NotFound.vue')
   },
