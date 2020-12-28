@@ -23,15 +23,15 @@
           <label  class="mb-1 rounded text-xs sm:text-sm tracking-wide text-gray-600">Add members:</label>
           <div class="members text-sm sm:text-base rounded pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 py-4">
               <div class="recently-added">
-                  <div v-for="member in addedMembers" :key="member.id" class="member">                      
+                  <div v-for="member in addedMembers" :key="member._id"  class="member">                      
                     <span class="added-member">{{member.name}}</span>
-                    <button class="remove-member ml-3 text-red-600 hover:text-red-400" @click="removeMember(member.id)">X</button>
+                    <button class="remove-member ml-3 text-red-600 hover:text-red-400" @click="removeMember(member._id)">X</button>
                   </div>
               </div>
               <div class="mt-4 mb-4">
-                <input type="text" id="members" class="border-none" >
+                <input type="text" id="members" class="border-none" @focus="focused()" v-model="search" v-on:keyup="suggestContact(search)">
               </div>
-                <div class="search-suggestion bg-white border-2 border-gray-100 border-top-none rounded-lg">
+                <div :class="searching ? 'search-suggestion bg-white border-2 border-gray-100 border-top-none rounded-lg':'d-none'">
                     <p class="suggested hover:bg-gray-300 p-2 mb-3" v-for="contact in suggestedContacts" :key="contact._id" @click="addMember(contact._id)">
                         <img :src="contact.img" :alt="contact.name" class="rounded-full inline" width="30" height="30">
                         <span class="ml-2">{{contact.name}}</span>
@@ -52,24 +52,34 @@ const { contacts } = require('../../../testdb/db')
 export default {
     name:"NewChannel",
     data(){
+
         return {
-            suggestedContacts:contacts.filter(user => user._id < 5),
+            search:" ",
+            searching:false,
+            suggestedContacts:[],
             addedMembers:[]
         }
     },
     methods:{
         suggestContact(searchQuery){
-            this.suggestedContacts = contacts.filter(contact => contact.name == searchQuery)
+            this.suggestedContacts = contacts.filter(contact => contact.name != searchQuery)
+        },
+        focused(){
+            this.searching = true
         },
         addMember(contactId){            
             //check if contact was already added
-             if( (this.addedMembers.filter(user => user._id == contactId)).length > 0 ) return
+            if( (this.addedMembers.filter(user => user._id == contactId)).length > 0 ) return
 
             let contact = contacts.filter(user => user._id == contactId)[0]
-            this.addedMembers.push(contact)  
+            this.addedMembers.push(contact) 
+            
+            this.searching = false
+            this.search = ""
         },
         removeMember(memberId){
-            this.addedMembers = this.addedMembers.filter(member => member.id != memberId)
+            console.log(memberId)
+            this.addedMembers = this.addedMembers.filter(member => member._id != memberId)
         }
     }
 }
@@ -94,6 +104,9 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    .d-none{
+        display: none;
     }
     
 </style>
