@@ -14,7 +14,7 @@
       
     <div class="new-channel-page">
         <div class="flex flex-col bg-white px-4 sm:px-6 md:px-8 lg:px-10 py-4 rounded-md w-full">
-            <h1 class="font-medium text-xl sm:text-2xl text-gray-800 mb-5">Create channel</h1>
+            <h4 class="text-sm sm:text-xl text-gray-700 mb-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias facere quisquam quas, incidunt officia</h4>
             <div class="flex flex-col mb-6">
                 <label for="c-name" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Channel Name:</label>
                 <div>

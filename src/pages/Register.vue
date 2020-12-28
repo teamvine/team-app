@@ -101,7 +101,7 @@
               {{ errorMsg }}
             </p>
             <button
-              class="btn-create text-white font-bold py-3 px-6 rounded-full items-center mt-4 mb-2"
+              class="btn-create text-white font-bold py-3 px-6 rounded items-center mt-4 mb-2"
             >
               <span class="font-bold">New Account</span>
             </button>

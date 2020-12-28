@@ -2,6 +2,7 @@ module.exports = {
     contacts: [
         {
             _id: 1,
+            role:"UX/UX Developer",
             name: "Felix wazekwa",
             img: "https://cdn.vuetifyjs.com/images/john.jpg",
             status: "active",
@@ -12,11 +13,11 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 2,
-            name: "Kwizera Emmy",
+            role:"Chief executive officer CEO",
+            name: "Jacques Sandberg",
             img: "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
             status: "active",
             totalUnreads: 2,
@@ -26,14 +27,13 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 3,
+            role:"Marketing Manager",
             name: "John Doe",
             img:
                 "https://www.best4geeks.com/wp-content/uploads/2018/08/50-cute-girl-profile-picture.jpg",
-            status: "active",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -45,10 +45,11 @@ module.exports = {
         },
         {
             _id: 4,
+            role:"Senior software engineer",
             name: "Ange divine",
             img:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMBIK4eAtEa9PyvXSW29AGTc0hARu74KkOCA&usqp=CAU",
-            status: "active",
+            status: "offline",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -56,11 +57,11 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 5,
-            name: "Felix wazekwa",
+            role:"Backend Developer",
+            name: "Irakiza Divin",
             img:
                 "https://save-ohno.s3.amazonaws.com/uploads/team/image/9/babson-code.png",
             status: "active",
@@ -72,13 +73,12 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "offline"
         },
         {
             _id: 6,
-            name: "Felix wazekwa",
+            role:"Frontend Developer",
+            name: "Makuza Verite",
             img: "https://cdn.vuetifyjs.com/images/john.jpg",
-            status: "active",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -90,9 +90,9 @@ module.exports = {
         },
         {
             _id: 7,
-            name: "Felix wazekwa",
+            role:"Fullstack Developer",
+            name: "Daniel.uidesign",
             img: "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-            status: "active",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -104,7 +104,8 @@ module.exports = {
         },
         {
             _id: 8,
-            name: "Felix wazekwa",
+            role:"Software architect",
+            name: "Karamage crescent",
             img:
                 "https://www.best4geeks.com/wp-content/uploads/2018/08/50-cute-girl-profile-picture.jpg",
             status: "active",
@@ -115,14 +116,14 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 9,
-            name: "Felix wazekwa",
+            role:"Hardware engineer",
+            name: "Innocent Munyengabe",
             img:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMBIK4eAtEa9PyvXSW29AGTc0hARu74KkOCA&usqp=CAU",
-            status: "active",
+            status: "offline",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -130,14 +131,14 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 10,
-            name: "Felix wazekwa",
+            role:"Project Manager",
+            name: "That cute lady",
             img:
                 "https://save-ohno.s3.amazonaws.com/uploads/team/image/9/babson-code.png",
-            status: "active",
+            status: "offline",
             totalUnreads: 10,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -146,11 +147,11 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "offline"
         },
         {
             _id: 11,
-            name: "Felix wazekwa",
+            role:"Frontend Developer",
+            name: "Yassin Hagenimana",
             img: "https://cdn.vuetifyjs.com/images/john.jpg",
             status: "active",
             totalUnreads: 2,
@@ -160,11 +161,11 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 12,
-            name: "Felix wazekwa",
+            role:"Software Tester",
+            name: "Sauve JeanLuc",
             img: "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
             status: "active",
             totalUnreads: 2,
@@ -174,14 +175,14 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "offline"
         },
         {
             _id: 13,
-            name: "Felix wazekwa",
+            role:"Fullstack Dev",
+            name: "Anselme Irumva",
             img:
                 "https://www.best4geeks.com/wp-content/uploads/2018/08/50-cute-girl-profile-picture.jpg",
-            status: "active",
+            status: "offline",
             totalUnreads: 2,
             lastMessage: {
                 sender: "817678hnabgah",
@@ -189,11 +190,11 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
         {
             _id: 14,
-            name: "Felix wazekwa",
+            role:"Sales manager",
+            name: "Constance Nimuhire",
             img:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMBIK4eAtEa9PyvXSW29AGTc0hARu74KkOCA&usqp=CAU",
             status: "active",
@@ -204,11 +205,11 @@ module.exports = {
                 message: "Talking to each other now",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "offline"
         },
         {
             _id: 15,
-            name: "Felix wazekwa",
+            role:"Receptionist",
+            name: "Kamikazi Ornella",
             img:
                 "https://save-ohno.s3.amazonaws.com/uploads/team/image/9/babson-code.png",
             status: "active",
@@ -220,7 +221,6 @@ module.exports = {
                     "I'm having one of those days",
                 createdAt: "29/11/2020T18:20:20:67",
             },
-            status: "online"
         },
     ],
     channels: [
