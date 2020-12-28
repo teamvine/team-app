@@ -1,6 +1,6 @@
 <template>
-    <div class="new-channel-page ml-5 mt-3 flex flex-col items-center justify-center bg-gray-300 w-1/2">
-        <div class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full">
+    <div class="new-channel-page">
+        <div class="flex flex-col bg-white px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full">
             <h1 class="font-medium text-xl sm:text-2xl text-gray-800 mt-5 mb-5">Create channel</h1>
             <div class="flex flex-col mb-6">
                 <label for="c-name" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Channel Name:</label>
@@ -28,12 +28,12 @@
                     <button class="remove-member ml-3 text-red-600 hover:text-red-400" @click="removeMember(member._id)">X</button>
                   </div>
               </div>
-              <div class="mt-4 mb-4">
-                <input type="text" id="members" class="border-none" @focus="focused()" v-model="search" v-on:keyup="suggestContact(search)">
+              <div class="">
+                <input type="text" id="members" ref="searchMember" class="border-none" @focus="focused()" v-model="search" v-on:keyup="suggestContact(search)" />
               </div>
                 <div :class="searching ? 'search-suggestion bg-white border-2 border-gray-100 border-top-none rounded-lg':'d-none'">
                     <p class="suggested hover:bg-gray-300 p-2 mb-3" v-for="contact in suggestedContacts" :key="contact._id" @click="addMember(contact._id)">
-                        <img :src="contact.img" :alt="contact.name" class="rounded-full inline" width="30" height="30">
+                        <img :src="contact.img" :alt="contact.name" class="rounded-full inline" width="30" height="30" />
                         <span class="ml-2">{{contact.name}}</span>
                     </p>
                 </div>
@@ -52,7 +52,6 @@ const { contacts } = require('../../../testdb/db')
 export default {
     name:"NewChannel",
     data(){
-
         return {
             search:" ",
             searching:false,
@@ -76,6 +75,7 @@ export default {
             
             this.searching = false
             this.search = ""
+            this.$refs.searchMember.focus()
         },
         removeMember(memberId){
             console.log(memberId)
