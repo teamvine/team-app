@@ -1,5 +1,5 @@
 import moment from "moment";
-import { event } from '../../../config/constants'
+import { event } from '../config/constants'
 export const Filters = {}
 export const Functions = {}
 
@@ -60,6 +60,6 @@ Functions.signOut = (self, workspace_id = "", user_id = "") => {
         Functions.leaveWorkspaceSocketRooms(self, workspace_id, user_id)
     }
     if (user_id != "") self.$socket.client.emit(event.UNIDENTIFY_SOCKET, user_id);
-    localStorage.removeItem("teamToken")
+    localStorage.removeItem("rconnectToken")
     self.$router.push({ name: "Login" })
 }

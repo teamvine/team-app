@@ -110,6 +110,8 @@
                   <div class="pl-2 text-md font-bold">Change Settings</div>
                 </div>
                 <div
+                @click="onLogOut"
+                @dblclick="onLogOut"
                   class="item-hover d-block flex font-bold cursor-pointer text-left px-2 py-0 text-md text-grey-darkest"
                 >
                   <svg
@@ -127,6 +129,8 @@
                   </svg>
                   <div class="pl-2 font-bold py-3">Sign Out</div>
                 </div>
+                <input type="text" v-model="currentWorkspace._id" id="wrspc-id" hidden>
+                <input type="text" v-model="user._id" id="usr-id" hidden>
               </div>
             </div>
           </div>
@@ -137,20 +141,38 @@
 </template>
 
 <script>
+import { mapState,mapActions } from "vuex"
+import { Functions } from "../../lib/functions"
 export default {
   name: "Header",
   data() {
     return {
       showDropDown: false,
       pageName: this.$route.name
-    };
+    }
+  },
+  computed: {
+    ...mapState({
+      user: state=> state.all.user,
+      userAppFlow: state=> state.all.userAppFlow,
+      currentWorkspace: state=> state.all.currentWorkspace
+    })
   },
   methods: {
+    ...mapActions("all",["resetAllModuleState"]),
+    ...mapActions("chat",["resetChatModuleState"]),
     navigate(path){
       if(this.$route.name!=path.name){
         this.$router.push(path)
       }
-    }
+    },
+    onLogOut() {
+      let w_id = String(this.$el.querySelector("#wrspc-id").value)
+      let u_id = String(this.$el.querySelector("#usr-id").value)
+      this.resetAllModuleState()
+      this.resetChatModuleState()
+      Functions.signOut(this,w_id,u_id)
+    },
   }
 };
 </script>
