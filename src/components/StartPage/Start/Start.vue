@@ -1,7 +1,7 @@
 <template>
     <div class="start">
-        <!-- <NoWorkspace></NoWorkspace> -->
-        <Organizations :organizations="workspaces"></Organizations>
+        <NoWorkspace></NoWorkspace>
+        <!-- <Organizations :organizations="workspaces"></Organizations> -->
     </div>
 </template>
 
