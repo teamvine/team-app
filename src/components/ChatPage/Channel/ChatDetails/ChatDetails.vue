@@ -97,9 +97,13 @@
 </template>
 
 <script>
-export default {
-    name: "ChatDetails"
-}
+    import { component as CodeHighlighter} from 'vue-code-highlight'
+    export default {
+        name: "ChatDetails",
+        components:{
+            CodeHighlighter
+        }
+    }
 </script>
 
 <style scoped>

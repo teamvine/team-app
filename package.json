@@ -41,6 +41,7 @@
     "tiptap-extensions": "^1.33.2",
     "v-emoji-picker": "^2.3.1",
     "vue": "^2.6.11",
+    "vue-code-highlight": "^0.7.6",
     "vue-js-modal": "^2.0.0-rc.6",
     "vue-router": "^3.2.0",
     "vue-socket.io-extended": "^4.0.5",

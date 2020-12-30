@@ -9,6 +9,9 @@ import 'nprogress/nprogress.css'
 import VModal from 'vue-js-modal'
 import io from "socket.io-client";
 import VueSocketIOExt from 'vue-socket.io-extended';
+import VueCodeHighlight from 'vue-code-highlight';
+ 
+Vue.use(VueCodeHighlight) //registers the v-highlight directive
 
 Vue.config.productionTip = false
 Vue.use(VEmojiPicker);

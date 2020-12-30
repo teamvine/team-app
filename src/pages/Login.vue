@@ -115,7 +115,8 @@ export default {
     };
   },
   methods: {
-    onSignIn() {
+    onSignIn(e) {
+      e.preventDefault()
       this.errorMsg = ""
       if (this.email == "" || this.password == "") {
         this.errorColor="text-red-600"
@@ -138,7 +139,7 @@ export default {
         })
         .catch((err) => {
           console.log(err)
-          this.errorMsg ="Wrong email/password or the server isn't available. :'(";
+          this.errorMsg ="Unknown error occured";
         });
     },
     focusFunc($event) {
