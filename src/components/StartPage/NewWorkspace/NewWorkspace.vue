@@ -112,6 +112,14 @@
                 </div>
             </div>
         </div>
+        <t-dialog name="register-dialog" :icon="dialog.icon" type="alert">
+            <template slot="title"> <!-- or icon-->
+                <h4 class="w-full py-3 text-center text-md" :class="[dialog.type=='info'? 'text-blue-600':'text-red-700']">
+                    {{dialog.title}}
+                </h4>
+            </template>
+            <p class="w-full text-center py-4" v-html="dialog.text"></p>
+        </t-dialog>
     </main>
 </template>
 
@@ -142,7 +150,13 @@ export default {
             },
             searchText: "",
             filteredUsers: [],
-            loadingData: false
+            loadingData: false,
+            dialog: {
+                icon: "info",
+                text: "",
+                title: "",
+                type: "info"
+            }
         }
     },
     computed: {
@@ -157,7 +171,7 @@ export default {
         ...mapMutations("all",["setUserAppFlow","setUserWorkspaces"]),
         removeMember(member){
             this.newworkspace.members.splice(this.newworkspace.members.indexOf(member),1)
-            this.filteredUsers.push(member)
+            if(member._id!=this.user._id) this.filteredUsers.push(member)
         },
         addMember(member){
             //check if the member is already added
@@ -178,6 +192,8 @@ export default {
             }
         },
         createWorkspace(){
+            this.searchText=""
+            this.filteredUsers=[]
             this.newworkspace.info_has_err = false
             if(!this.user._id) {
                 this.newworkspace.info_has_err =true
@@ -209,72 +225,72 @@ export default {
             this.newworkspace.info_has_err = false
             this.newworkspace.creating = true
             let added = this.newworkspace.members.find((user)=> user._id==this.user._id) || null
-            if(added == null ) this.newworkspace.members.push(this.user);
+            if(added == null ) this.newworkspace.members.push({
+                _id: this.user._id,
+                full_name: this.user.full_name,
+                country: this.user.country,
+                profile_pic: this.user.profile_pic
+            });
             this.newworkspace.basic_info.admin_id = this.user._id
             const Workspace = {
                 info: this.newworkspace.basic_info,
                 members: this.newworkspace.members
             }
-            Workspace.info.name.trim()
-            let array = Workspace.info.name.split(" ")
-            Workspace.info.name=""
-            for(let i=0; i<array.length;i++){
-                Workspace.info.name = i!=array.length-1? Workspace.info.name+array[i]+"_":Workspace.info.name+array[i] 
-            }
+            Workspace.info.name=Workspace.info.name.trim()
+            // let array = Workspace.info.name.split(" ")
+            // Workspace.info.name=""
+            // for(let i=0; i<array.length;i++){
+            //     Workspace.info.name = i!=array.length-1? Workspace.info.name+array[i]+"_":Workspace.info.name+array[i] 
+            // }
             this.newworkspace.info = "* Creating your Workspace... *"
-            log(Workspace)
             this.newworkspace.creating = false
-            // createNewWorkspace(this.token,Workspace)
-            // .then(response=>{
-            //     if(response.data.err){
-            //         // this.$buefy.snackbar.open({
-            //         //     message: response.data.message,
-            //         //     type: "is-danger",
-            //         //     position: "is-top",
-            //         //     actionText: "OK",
-            //         //     duration: 3000
-            //         // })
-            //         this.newworkspace.info_has_err = false
-            //         this.newworkspace.creating = false
-            //     }else{
-            //         let appFlow = this.userAppFlow
-            //         let userworkspaces = this.userWorkspaces
-            //         userworkspaces.push(response.data.data.info)
-            //         appFlow.hasWorkspaces = true
-            //         this.setUserAppFlow(appFlow)
-            //         this.setUserWorkspaces(userworkspaces)
-            //         this.newworkspace ={
-            //             info_has_err: false,
-            //             info_err_msg: "",
-            //             creating: false,
-            //             info: "",
-            //             basic_info: {
-            //                 name: "",
-            //                 description: "",
-            //                 admin_id: "",
-            //                 type: ""
-            //             },
-            //             members: []
-            //         }
-            //         // this.$buefy.dialog.alert({
-            //         //     message: `<b style='color: black;'>${response.data.message}</b>`,
-            //         //     type: "is-info",
-            //         //     animation: "dialog",
-            //         //     container: "#home-view",
-            //         //     closeOnConfirm: true,
-            //         //     canCancel: false,
-            //         //     onConfirm: ()=>{
-            //         //         Router.push({name: "SwitchWorkspace"})
-            //         //     }
-            //         // })
-            //     }
-            // })
-            // .catch((err)=>{
-            //     this.newworkspace.info_has_err = true
-            //     this.newworkspace.creating = false
-            //     this.newworkspace.info_err_msg = "Something went wrong!"
-            //     console.log(err)
-            // })
+            createNewWorkspace(this.token,{info: Workspace.info, members:  Workspace.members.sort(() => Math.random() - 0.5)})
+            .then(response=>{
+                if(response.data.err){
+                    this.dialog.icon="warning"
+                    this.dialog.text=response.data.message
+                    this.dialog.title="ERROR"
+                    this.dialog.type="error"
+                    this.$dialog.show('register-dialog')
+                    this.newworkspace.info_has_err = false
+                    this.newworkspace.creating = false
+                }else{
+                    this.newworkspace.info_has_err = false
+                    this.newworkspace.creating = false
+                    let appFlow = this.userAppFlow
+                    let userworkspaces = this.userWorkspaces
+                    userworkspaces.push(response.data.data.info)
+                    appFlow.hasWorkspaces = true
+                    this.setUserAppFlow(appFlow)
+                    this.setUserWorkspaces(userworkspaces)
+                    this.newworkspace = {
+                        info_has_err: false,
+                        info_err_msg: "",
+                        creating: false,
+                        info: "",
+                        basic_info: {
+                            name: "",
+                            description: "",
+                            admin_id: "",
+                            type: "public"
+                        },
+                        members: []
+                    }
+                    this.dialog.icon="info"
+                    this.dialog.text=response.data.message
+                    this.dialog.title="SUCCESSFULL"
+                    this.dialog.type="info"
+                    this.$dialog.show('register-dialog').then((resul) => {
+                        //next operations
+                    })
+                }
+            })
+            .catch((err)=>{
+                this.newworkspace.info_has_err = true
+                this.newworkspace.creating = false
+                this.newworkspace.info_err_msg = "* Something went wrong! *"
+                console.log(err)
+            })
         },
         getFilteredUsers() {
             let text = this.searchText

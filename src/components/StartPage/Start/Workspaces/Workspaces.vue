@@ -79,7 +79,7 @@ export default {
         height: auto;
     }
     .organs {
-        min-height: 25pc;
+        min-height: 20pc;
     }
     .organ-name {
         font-weight: bold;

@@ -129,8 +129,6 @@
                   </svg>
                   <div class="pl-2 font-bold py-3">Sign Out</div>
                 </div>
-                <input type="text" v-model="currentWorkspace._id" id="wrspc-id" hidden>
-                <input type="text" v-model="user._id" id="usr-id" hidden>
               </div>
             </div>
           </div>
@@ -167,11 +165,9 @@ export default {
       }
     },
     onLogOut() {
-      let w_id = String(this.$el.querySelector("#wrspc-id").value)
-      let u_id = String(this.$el.querySelector("#usr-id").value)
       this.resetAllModuleState()
       this.resetChatModuleState()
-      Functions.signOut(this,w_id,u_id)
+      Functions.signOut(this,this.currentWorkspace._id,this.user._id)
     },
   }
 };
@@ -192,7 +188,7 @@ export default {
   max-height: 50px;
   min-height: 50px;
   background-color: #ffffff;
-  z-index: 1000;
+  z-index: 10;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.39)
 }
 .app-name {

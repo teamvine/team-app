@@ -1,11 +1,12 @@
 <template>
     <div class="start">
-        <NoWorkspace></NoWorkspace>
-        <!-- <Organizations :organizations="workspaces"></Organizations> -->
+        <NoWorkspace v-if="userWorkspaces.length<1"></NoWorkspace>
+        <Organizations :organizations="userWorkspaces" v-else></Organizations>
     </div>
 </template>
 
 <script>
+import { mapState } from "vuex"
 import NoWorkspace from "./NoWorkspace/NoWorkspace"
 import Organizations from "./Workspaces/Workspaces"
 export default {
@@ -14,40 +15,15 @@ export default {
         NoWorkspace,Organizations
     },
     data(){
-        return {
-            workspaces: [
-                {
-                    name: "RCA Group",
-                    type: "private"
-                },
-                {
-                    name: "NYABIHU TVET",
-                    type: "private"
-                },
-                {
-                    name: "FT Group",
-                    type: "public"
-                },
-                {
-                    name: "Coders Hub",
-                    type: "public"
-                },
-                {
-                    name: "RCA Forum",
-                    type: "private"
-                },
-                {
-                    name: "Gamers League",
-                    type: "public"
-                }
-            ]
-        }
+        return {}
     },
+    computed: {
+        ...mapState({
+            userWorkspaces: state=> state.all.userWorkspaces
+        })
+    }
 }
 </script>
 
 <style scoped>
-.start {
-    /* all: inherit; */
-}
 </style>

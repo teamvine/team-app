@@ -26,7 +26,8 @@ module.exports = {
         getAllChannels: "/workspace/all-channels/",
         getAllMembers: "/workspace/all-members/",
         searchMembersByName: "/workspace/search-members-by-name",
-        searchPublicWorkspaces: "/workspace/public-by-name/"
+        searchPublicWorkspaces: "/workspace/public-by-name/",
+        joinWorkspace: "/workspace/add-members/"
     },
     channelAPI: {
         getAllMembers: "/channel/all-members",

@@ -30,33 +30,13 @@
                       </div>
                     </div>
                     <!-- ===============No results============= -->
-                    <div class="flex flex-wrap justify-center content-center lg:px-20 w-full" v-if="workspaces.length<1">
+                    <div class="flex flex-wrap justify-center content-center lg:px-20 w-full" v-if="filteredWorkspaces.length<1">
                       <span class="font-bold text-xl py-8 w-full text-center bg-gray-200 text-gray-800">Results Will Appear Here.</span>
                     </div>
                     <!-- =============== results================ -->
                     <div class="flex flex-col md:px-12" v-else>
-                      <h1 class="w-full font-bold text-2xl mb-3">{{workspaces.length}} Results</h1>
-                      <div class="flex bg-gray-200 w-full mb-4"
-                        v-for="(organization,index) in workspaces" 
-                        :key="index"
-                        >
-                          <div class="w-auto bg-yellow">
-                              <div class="p-4 pr-0">
-                                  <svg class="h-10 w-10 text-dark fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
-                              </div>
-                          </div>
-                          <div class="w-auto text-grey-darker items-center p-4 pb-3">
-                              <span class="text-lg organization-name w-full font-bold pb-4 pr-4">
-                                {{organization.name}}
-                              </span>
-                              <p class="leading-tight">
-                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                              </p>
-                              <div class="flex flex-wrap w-full content-end justify-end pt-3">
-                                <button class="py-1 rounded px-6 new-organ text-white">Join</button>
-                              </div>
-                          </div>
-                      </div>
+                      <h1 class="w-full font-bold text-2xl mb-3">{{filteredWorkspaces.length}} Results</h1>
+                      <OrganizationItem v-for="(organization,index) in filteredWorkspaces" :userJoin="userJoinedOrganization" :organization="organization" :key="index"/>
                     </div>
                   <!-- ============================= -->
                 </div>
@@ -72,9 +52,11 @@
 <script>
 import { mapState } from "vuex"
 import { searchPublicWorkspaces } from "../../../lib/workspace"
+import _ from "lodash"
 export default {
     name: "FindOrganization",
-    props: {
+    components: {
+      OrganizationItem: ()=> import('./OrganizationItem')
     },
     data(){
       return {
@@ -82,25 +64,7 @@ export default {
         loadingData: false,
         filteredWorkspaces: [],
         gotError: false,
-        ErrorMsg: "",
-        workspaces: [
-                {
-                    name: "RCA Group",
-                    type: "private"
-                },
-                {
-                    name: "NYABIHU TVET",
-                    type: "private"
-                },
-                {
-                    name: "FT Group",
-                    type: "public"
-                },
-                {
-                    name: "Coders Hub",
-                    type: "public"
-                }
-            ]
+        ErrorMsg: ""
       }
     },
     computed: {
@@ -112,6 +76,9 @@ export default {
         })
     },
     methods: {
+      userJoinedOrganization(organization){
+        this.filteredWorkspaces[this.filteredWorkspaces.indexOf(organization)].joined=true
+      },
       searchOrganizations(){
         let text=this.searchText;
         this.gotError = false
@@ -121,9 +88,22 @@ export default {
         .then(response=>{
           this.loadingData = false;
           if(response.data.data.success){
-            //to do: classify them as joined or not joined for join or joined button
-            this.filteredWorkspaces = response.data.data.results
-            console.log(response.data.data)
+            let results = response.data.data.results;
+            if(this.userWorkspaces.length>0){
+              for(let i=0;i<results.length;i++){
+                let addedWorkspace = this.userWorkspaces.filter(wrkspc=> wrkspc.code.trim()==results[i].code.trim())
+                if(addedWorkspace.length>0){
+                  results[i].joined = true
+                }else{
+                  results[i].joined=false
+                }
+              }
+            }else{
+              for(let i=0;i<results.length;i++){
+                results[i].joined = false
+              }
+            } 
+            this.filteredWorkspaces = results
           }else{
             this.gotError = true
             this.ErrorMsg = "Oooops! Something went wrong!"

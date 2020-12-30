@@ -19,6 +19,14 @@
         </div>
       </div>
     </div>
+    <t-dialog name="email-verification-dialog" :icon="dialog.icon" type="alert">
+      <template slot="title"> <!-- or icon-->
+        <h4 class="w-full py-3 text-center text-md" :class="[dialog.type=='info'? 'text-blue-600':'text-red-700']">
+          {{dialog.title}}
+        </h4>
+      </template>
+      <p class="w-full text-center py-4" v-html="dialog.text"></p>
+    </t-dialog>
   </div>
 </template>
 ​
@@ -33,7 +41,13 @@ export default{
       code:"",
       enteredCode: "",
       errorMsg:"",
-      errorColor:"text-red-700"
+      errorColor:"text-red-700",
+      dialog: {
+        icon: "info",
+        text: "",
+        title: "",
+        type: "info"
+      }
     }
   },
   mounted(){
@@ -71,9 +85,12 @@ export default{
             }
             return;
           }else{
-            alert("Account created successfully!")
-            localStorage.removeItem("user-data")
-            this.$router.push({name: "Login"});
+            this.dialog.text="Account created successfully!"
+            this.dialog.title="ACCOUNT CREATED"
+            this.$dialog.show('email-verification-dialog').then(()=>{
+              localStorage.removeItem("user-data")
+              this.$router.push({name: "Login"});
+            })
           }
         })
         .catch((err) => {
