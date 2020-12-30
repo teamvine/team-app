@@ -23,7 +23,7 @@ Vue.use(
     VueSocketIOExt,
     io(ioURL, {
         autoConnect: false,
-        // secure: true //uncomment if it is hosted or uses https://
+        secure: true, //uncomment if it is hosted or uses https://
         reconnectionDelay: 3000,
         transportOptions: { //add headers,query etc
             headers: {

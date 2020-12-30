@@ -22,54 +22,6 @@
           <form @submit.prevent="onSignIn">
             <h2 class="head font-bold">Sign In</h2>
             <span class="line"></span>
-            <!-- <div class="input-div one">
-              <div class="i">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path
-                    d="M14.256 21.744L12 24l-2.256-2.256C5.31 20.72 2 16.744 2 12 2 6.48 6.48 2 12 2s10 4.48 10 10c0 4.744-3.31 8.72-7.744 9.744zm-8.233-6.328C7.491 17.606 9.695 19 12.16 19c2.464 0 4.669-1.393 6.136-3.584A8.968 8.968 0 0 0 12.16 13a8.968 8.968 0 0 0-6.137 2.416zM12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h5>Email</h5>
-                <input
-                  type="text"
-                  class="input"
-                  @focus="focusFunc"
-                  @blur="blurFunc"
-                />
-              </div>
-            </div>
-            <div class="input-div two">
-              <div class="i">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                >
-                  <path fill="none" d="M0 0h24v24H0z" />
-                  <path
-                    d="M19 10h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 1 1 14 0v1zm-2 0V9A5 5 0 0 0 7 9v1h10zm-6 4v4h2v-4h-2z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h5>Password</h5>
-                <input
-                  type="password"
-                  class="input"
-                  @focus="focusFunc"
-                  @blur="blurFunc"
-                />
-              </div>
-            </div> -->
             <label class="block w-full text-left">
               <span class="text-dark font-bold">Email</span>
               <input type="email" v-model="email" class="form-input mt-1 block w-full border border border-gray-500" placeholder="">

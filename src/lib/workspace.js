@@ -44,9 +44,20 @@ function searchMembersByName(token,workspace_id,user_id,search_text) {
   });
 }
 
+function searchPublicWorkspaces(token,text) {
+  return axios.request({
+    url: baseURL + workspaceAPI.searchPublicWorkspaces+text,
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
 module.exports = {
   createNewWorkspace,
   getWorkspaceAllChannels,
   getWorkspaceAllMembers,
-  searchMembersByName
+  searchMembersByName,
+  searchPublicWorkspaces
 };

@@ -4,7 +4,7 @@ import getters from "../getters/all";
 export default {
     namespaced: true,
     state: () => ({
-        token: null,
+        token: localStorage.getItem("rconnectToken") || null,
         pageLoadingProcess: {
             isLoading: true,
             gotInfo: false,

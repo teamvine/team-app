@@ -22,6 +22,12 @@ export default {
         }
     },
     mounted(){
+        this.$socket.client.open()
+        //to do: change the user's status to online
+    },
+    beforeDestroy() {
+        this.$socket.client.close();
+        //to do: change the user's status to offline
     }
 }
 </script>

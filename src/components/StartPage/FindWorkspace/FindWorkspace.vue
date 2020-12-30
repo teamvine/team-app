@@ -1,7 +1,7 @@
 <template>
     <main class="flex-1 ">
         <div class="w-full flex-row flex content-center justify-center flex-wrap py-3 px-2">
-            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-2/4 md:w-3/4 lg:w-3/6 border">
+            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-2/4 md:w-3/4 lg:w-3/6 border border-gray-400">
                 <header class="flex items-center justify-between leading-tight w-full border-b">
                     <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg> -->
@@ -21,11 +21,11 @@
                               <svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 2c4.968 0 9 4.032 9 9s-4.032 9-9 9-9-4.032-9-9 4.032-9 9-9zm0 16c3.867 0 7-3.133 7-7 0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7zm8.485.071l2.829 2.828-1.415 1.415-2.828-2.829 1.414-1.414z"/></svg>
                             </span>
                           </div>
-                          <input type="search" class="flex-shrink flex-grow flex-auto py-2 leading-normal w-px flex-1 border border-l-0 border-grey-light rounded-l-none rounded-r-none px-3 relative" placeholder="Search text...">
+                          <input v-model="searchText" @keyup="searchOrganizations" type="search" class="flex-shrink flex-grow flex-auto py-2 leading-normal w-px flex-1 border border-l-0 border-grey-light rounded-l-none rounded-r-none px-3 relative" placeholder="Search text...">
                           <div class="flex -mr-px">
-                            <button type="button" class="flex items-center leading-normal border-none rounded rounded-l-none border border-l-0 py-2 border-grey-light px-3 whitespace-no-wrap text-md btn-blue text-white">Search</button>
+                            <button @click="searchOrganizations" @dblclick="searchOrganizations" type="button" class="flex items-center leading-normal border-none rounded rounded-l-none border border-l-0 py-2 border-grey-light px-3 whitespace-no-wrap text-md btn-blue text-white">Search</button>
                           </div>
-                          <p class="text-gray-700 text-xs italic w-full mt-2">Hit Search button to get results.</p>
+                          <p class="text-xs italic w-full mt-2" :class="[gotError? 'text-red-600':'text-gray-700']">{{gotError? ErrorMsg+" RETRY.":"Hit Search button to get results." }}</p>
                         </div>	
                       </div>
                     </div>
@@ -60,7 +60,7 @@
                     </div>
                   <!-- ============================= -->
                 </div>
-                <div class="btns w-full content-center justify-center flex-wrap flex pb-5 pt-2">
+              <div class="btns w-full content-center justify-center flex-wrap flex pb-5 pt-2">
 		            <button @click="$router.push({name: 'Start'})" type="button" class="w-4/6 mt-3 rounded-sm sm:w-4/6 md:w-3/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline border find-organ text-blue-800 font-bold hover:text-white font-normal py-2 px-4 mr-1 ml-1">My Organizations</button>
                 <button @click="$router.push({name: 'NewWorkspace'})" type="button" class="w-4/6 mt-3 rounded-sm sm:w-4/6 md:w-3/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline font-bold new-organ text-white font-normal py-2 px-4 mr-1 ml-1">New Organization</button>
               </div>
@@ -70,12 +70,19 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+import { searchPublicWorkspaces } from "../../../lib/workspace"
 export default {
     name: "FindOrganization",
     props: {
     },
     data(){
       return {
+        searchText: "",
+        loadingData: false,
+        filteredWorkspaces: [],
+        gotError: false,
+        ErrorMsg: "",
         workspaces: [
                 {
                     name: "RCA Group",
@@ -94,6 +101,39 @@ export default {
                     type: "public"
                 }
             ]
+      }
+    },
+    computed: {
+        ...mapState({
+            token: state=> state.all.token,
+            user: state=> state.all.user,
+            userAppFlow: state=> state.all.userAppFlow,
+            userWorkspaces: state=> state.all.userWorkspaces
+        })
+    },
+    methods: {
+      searchOrganizations(){
+        let text=this.searchText;
+        this.gotError = false
+        if(!text || text==null  || text=="") return;
+        this.loadingData = true;
+        searchPublicWorkspaces(this.token,text)
+        .then(response=>{
+          this.loadingData = false;
+          if(response.data.data.success){
+            //to do: classify them as joined or not joined for join or joined button
+            this.filteredWorkspaces = response.data.data.results
+            console.log(response.data.data)
+          }else{
+            this.gotError = true
+            this.ErrorMsg = "Oooops! Something went wrong!"
+          }
+        })
+        .catch(err=>{
+          this.loadingData = false;
+          this.gotError = true
+          this.ErrorMsg = err.message+"."
+        })
       }
     },
     filters: {
