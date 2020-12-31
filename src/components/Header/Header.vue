@@ -77,7 +77,7 @@
                   <div class="pl-2 text-md font-bold">Notifications</div>
                 </div>
                 <div
-                  @click="navigate({name: 'ChatPage'})"
+                  @click="navigate({name: 'ChannelChat',params: {channel_code: currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}})"
                   class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
@@ -153,7 +153,8 @@ export default {
     ...mapState({
       user: state=> state.all.user,
       userAppFlow: state=> state.all.userAppFlow,
-      currentWorkspace: state=> state.all.currentWorkspace
+      currentWorkspace: state=> state.all.currentWorkspace,
+      currentWorkspaceJoinedChannels: state=> state.all.currentWorkspaceJoinedChannels
     })
   },
   methods: {

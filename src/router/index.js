@@ -73,7 +73,7 @@ const routes = [
         name: 'ChannelChat'
       }),
       children: [{
-        path: "channel/:channel_id",
+        path: "channel/:channel_code",
         name: "ChannelChat",
         component: () => {
           return import("../components/ChatPage/Channel/ChannelChat")

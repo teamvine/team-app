@@ -17,7 +17,9 @@
                                 v-for="(organization,index) in organizations"
                                 :key="index"
                             >
-                                <article class="overflow-hidden rounded-md shadow-md bg-white">
+                                <article 
+                                :class="[currentWorkspace.code==organization.code? 'border-blue-500 border':'shadow-md']" 
+                                class="overflow-hidden rounded-md bg-white">
                                     <a href="#" class="workspace-img">
                                         <!-- <img alt="Placeholder" class="block h-auto w-full" src=""> -->
                                     </a>
@@ -47,16 +49,24 @@
                     <!-- ============================== -->
                 </div>
                 <div class="btns w-full content-center justify-center flex-wrap flex pb-5 pt-2">
-                    <button type="button" @click="$router.push({name: 'NewWorkspace'})" class="w-full mt-3 rounded-sm sm:w-full md:w-2/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline font-bold new-organ text-white font-normal py-3 px-4 mr-1 ml-1">New Organization</button>
-		            <button type="button" @click="$router.push({name: 'FindWorkspace'})" class="w-full mt-3 rounded-sm sm:w-full md:w-2/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline border find-organ text-blue-800 font-bold hover:text-white font-normal py-3 px-4 mr-1 ml-1">Find Organization</button>
-                </div>
+                    <button @click="$router.push({name: 'NewWorkspace'})" type="button" class="w-4/6 mt-3 rounded-sm sm:w-4/6 md:w-3/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline font-bold new-organ text-white font-normal py-2 px-4 mr-1 ml-1">New Organization</button>
+		            <button @click="$router.push({name: 'FindWorkspace'})" type="button" class="w-4/6 mt-3 rounded-sm sm:w-4/6 md:w-3/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline border find-organ text-blue-800 font-bold hover:text-white font-normal py-2 px-4 mr-1 ml-1">Find Organizations</button>
+              </div>
             </div>
         </div>
+        <t-dialog name="switch-dialog" icon="info" type="alert">
+            <template slot="title"> <!-- or icon-->
+                <h4 class="w-full py-3 text-center text-md text-blue-600 font-bold">
+                    INFORMATION
+                </h4>
+            </template>
+            <p class="w-full text-center py-4 font-md">{{dialog.message}}</p>
+        </t-dialog>
     </main>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import { switchCurrentWorkspace } from '../../../../lib/user'
 import { Functions } from '../../../../lib/functions'
 import _ from "lodash"
@@ -65,36 +75,90 @@ export default {
     props: {
         organizations: Array
     },
+    data(){
+        return {
+            dialog: {
+                message: ""
+            }
+        }
+    },
     computed: {
         ...mapState({
             token: state=> state.all.token,
             userAppFlow: state=> state.all.userAppFlow,
             currentWorkspace: state=> state.all.currentWorkspace,
             user: state=> state.all.user,
+            currentWorkspaceJoinedChannels: state=> state.all.currentWorkspaceJoinedChannels
         })
     },
     methods: {
-        ...mapMutations("all",["setToken","setUserAppFlow","setCurrentWorkspace","setCurrentWorkspaceJoinedChannels"]),
+        ...mapMutations("all", [
+            "setToken",
+            "setUserAppFlow",
+            "setCurrentWorkspace",
+            "setCurrentWorkspaceMembers",
+            "setCurrentWorkspaceAllChannels",
+            "setCurrentWorkspaceJoinedChannels",
+            "setAppFlowGotUserJoinedChannels",
+            "setAppFlowGotUserDirectChatReceivers",
+            "setUserDirectChatReceivers"
+        ]),
+        ...mapActions("chat",["resetChatModuleState"]),
+        ...mapActions("all",["resetAllOnWorkspaceSwitch"]),
         switchOrganization(newOrganization){
-            let hasCurrent = _.isEmpty(this.currentWorkspace)
+            let hasCurrent = !_.isEmpty(this.currentWorkspace)
             let isCurrent = this.currentWorkspace.code==newOrganization.code
             if(isCurrent) {
                 this.$router.push({name: "ChannelChat",params: {
-                    channel_id: "general"
+                    channel_code: this.currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code
                 }})
             }else{
                 //change token and retrieve current workspace info
                 switchCurrentWorkspace(this.token,newOrganization,this.user._id,true)
                 .then(res=>{
-                    console.log(res.data)
+                    if(res.data.err){
+                        this.dialog.message = "Oooops! Something went wrong."
+                        this.$dialog.show("switch-dialog")
+                    }else{
+                        if(hasCurrent){
+                            this.resetChatModuleState()
+                            this.resetAllOnWorkspaceSwitch()
+                            this.$socket.client.emit(event.LEAVE_WORKSPACE, this.currentWorkspace._id)
+                            this.$socket.client.emit(event.LEAVE_DIRECT_CHAT_ROOM, {
+                                workspace_id: this.currentWorkspace._id,
+                                user_id: this.user._id
+                            })
+                        }
+                        let AppFlow = this.userAppFlow
+                        AppFlow.switchedWorkspaces = true
+                        AppFlow.currentWorkspace_id = newOrganization._id
+                        this.setUserAppFlow(AppFlow)
+                        this.setCurrentWorkspace(newOrganization)
+                        this.setCurrentWorkspaceJoinedChannels(res.data.data.userChannels)
+                        this.setAppFlowGotUserJoinedChannels(true)
+                        this.setUserDirectChatReceivers(res.data.data.userContacts)
+                        this.setAppFlowGotUserDirectChatReceivers(true)
+                        this.setToken(res.data.data.token)
+                        localStorage.setItem("rconnectToken",res.data.data.token)
+                        this.$socket.client.emit(event.JOIN_WORKSPACE, newOrganization._id)
+                        this.$socket.client.emit(event.JOIN_DIRECT_CHAT_ROOM,{
+                            workspace_id: newOrganization._id,
+                            user_id: this.user._id
+                        })
+                        this.dialog.message = "You switched to "+newOrganization.name
+                        this.$dialog.show("switch-dialog").then(()=>{
+                            this.$router.push({
+                                name: "ChannelChat",
+                                params: {channel_code: res.data.data.userChannels.find(channel=> channel.gen==true).channel_code}
+                            })
+                        })
+                    }
                 })
                 .catch(err=>{
-                    alert(err.message)
+                    console.log(err)
+                    this.dialog.message = "Oooops! Something went wrong."
+                    this.$dialog.show("switch-dialog")
                 })
-                if(hasCurrent){
-                    //leave all rooms in current workspace
-                    Functions.leaveWorkspaceSocketRooms(this,this.currentWorkspace._id,this.user._id)
-                }
             }
         }
     },
@@ -148,5 +212,11 @@ export default {
     }
     .organ-type {
         margin-top: -1%;
+    }
+    @media only screen and (max-width: 768px) {
+        .new-organ,.find-organ {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+        }
     }
 </style>
