@@ -3,7 +3,7 @@
         <AppHeader/>
         <div class="body-view">
             <div class="main-page">
-                <SideBarNav v-if="pageName!='Start' && pageName!='NewWorkspace' && pageName!='FindWorkspace'"/>
+                <SideBarNav v-if="$route.fullPath.toString().split('/')[1]=='chat'"/>
                 <router-view/>
             </div>
         </div>
@@ -24,7 +24,6 @@ export default {
     name: "Home",
     data(){
         return {
-            pageName: this.$route.name,
             isActive: true
         }
     },
@@ -66,77 +65,7 @@ export default {
             "getCurrentWorkspaceJoinedChannels",
             "getUserDirectChatReceivers"
         ]),
-        ...mapActions("all",["resetpageLoadingProcess"]),
-        initializeChat(){
-            //***************get joined channel list
-            Axios.request({
-                url: baseURL + userAPI.joinedChannelList,
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${this.getToken()}`
-                },
-                data:{
-                    user_id: this.getUser()._id,
-                    workspace_id: this.getCurrentWorkspace()._id
-                }
-            }).then(res=>{
-                if(res.data.err) {
-                    //here not allowed to chat because didn't get his/her channels
-                    console.log(res.data.err)
-                    this.setpageLoadingProcess({isLoading: false,gotInfo: false, errorOccured: true})
-                }else{
-                    this.setCurrentWorkspaceJoinedChannels(res.data.data.channels)
-                    this.setAppFlowGotUserJoinedChannels(true)
-                    //*********************get user contacts
-                    Axios.request({
-                        url: baseURL + userAPI.getUserChatsList+"?user_id="+this.getUser()._id.toString()+"&&workspace_id="+this.getCurrentWorkspace()._id.toString(),
-                        method: "get",
-                        headers: {
-                            Authorization: `Bearer ${this.getToken()}`
-                        }
-                    }).then(result=>{
-                        if(result.data.err!=true){
-                            this.setUserDirectChatReceivers(result.data.data.chats)
-                            this.setAppFlowGotUserDirectChatReceivers(true)
-                        }
-                        this.setpageLoadingProcess({isLoading: false,gotInfo: true, errorOccured: false})
-                    })
-                    //other requests will be done in background
-                    //************************** get all channels
-                    Axios.request({
-                        url: baseURL + workspaceAPI.getAllChannels+this.getCurrentWorkspace()._id,
-                        method: "get",
-                        headers: {
-                            Authorization: `Bearer ${this.getToken()}`
-                        }
-                    }).then(result=>{
-                        if(result.data.err!=true){
-                        this.setCurrentWorkspaceAllChannels(result.data.data.workspace_channels)
-                        }
-                    }).catch(err=>{
-                        console.log(err)
-                    })
-                    //**************************get workspace's all members
-                    Axios.request({
-                        url: baseURL + workspaceAPI.getAllMembers+this.getCurrentWorkspace()._id,
-                        method: "get",
-                        headers: {
-                            Authorization: `Bearer ${this.getToken()}`
-                        }
-                    }).then(result=>{
-                        if(result.data.err!=true){
-                        this.setCurrentWorkspaceMembers(result.data.data.workspace_members)
-                        }
-                    }).catch(err=>{
-                        console.log(err)
-                    })
-
-                }
-            }).catch(err=>{
-                console.log(err)
-                this.setpageLoadingProcess({isLoading: false,gotInfo: false, errorOccured: true})
-            })
-        }
+        ...mapActions("all",["resetpageLoadingProcess"])
     },
     beforeMount(){
         this.$socket.client.open()
@@ -150,6 +79,10 @@ export default {
                 this.setUserAppFlow(response.data.data.userAppFlow)
                 this.setUserWorkspaces(response.data.data.userWorkspaces)
                 this.setCurrentWorkspace(response.data.data.currentWorkspace)
+                this.setCurrentWorkspaceJoinedChannels(response.data.data.userChannels)
+                this.setAppFlowGotUserJoinedChannels(true)
+                this.setUserDirectChatReceivers(response.data.data.userContacts)
+                this.setAppFlowGotUserDirectChatReceivers(true)
                 this.setpageLoadingProcess({isLoading: false,gotInfo: true, errorOccured: false})
                 //join personal workspace free room, workspace direct chat room and workspace's room
                 this.$socket.client.emit(event.IDENTIFY_SOCKET, this.user._id);
@@ -159,9 +92,6 @@ export default {
                         workspace_id: this.getCurrentWorkspace()._id,
                         user_id: this.getUser()._id
                     })
-                    if(_.isEmpty(this.getCurrentWorkspaceJoinedChannels())){
-                        this.initializeChat()
-                    }
                 }
             }).catch(err=>{
                 console.log(err)
@@ -176,9 +106,6 @@ export default {
                     workspace_id: this.getCurrentWorkspace()._id,
                     user_id: this.getUser()._id
                 })
-                if(_.isEmpty(this.getCurrentWorkspaceJoinedChannels())){
-                    this.initializeChat()
-                }
             }
             this.setpageLoadingProcess({isLoading: false,gotInfo: true, errorOccured: false})
         }

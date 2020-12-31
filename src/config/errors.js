@@ -1,2 +1,2 @@
-class InputError extends Error {};
+class InputError extends Error {}
 exports.InputError = InputError;

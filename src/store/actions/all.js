@@ -19,6 +19,10 @@ const actions = {
         commit("setCurrentWorkspaceAllChannels", [])
         commit("setCurrentWorkspaceJoinedChannels", [])
         commit("setUserDirectChatReceivers", [])
+    },
+    resetAllOnWorkspaceSwitch: ({commit})=>{
+        commit("setCurrentWorkspaceMembers", [])
+        commit("setCurrentWorkspaceAllChannels", [])
     }
 }
 

@@ -1,7 +1,7 @@
 <template>
     <main class="flex-1 ">
         <div class="w-full flex-row flex content-center justify-center flex-wrap py-3 px-2">
-            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-2/4 md:w-3/4 lg:w-3/6 border border-gray-400">
+            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-2/4 md:w-3/4 lg:w-3/6 border border-gray-400 rounded-sm md:rounded-lg mt-3 mb-4">
                 <header class="flex items-center justify-between leading-tight w-full border-b">
                     <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg> -->
