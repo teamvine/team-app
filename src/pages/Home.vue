@@ -3,7 +3,7 @@
         <AppHeader/>
         <div class="body-view">
             <div class="main-page">
-                <SideBarNav v-if="pageName!='Start' && pageName!='NewWorkspace' && pageName!='FindWorkspace'"/>
+                <SideBarNav v-if="$route.fullPath.toString().split('/')[1]=='chat'"/>
                 <router-view/>
             </div>
         </div>
@@ -24,7 +24,6 @@ export default {
     name: "Home",
     data(){
         return {
-            pageName: this.$route.name,
             isActive: true
         }
     },
