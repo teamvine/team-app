@@ -18,7 +18,7 @@
                                 :key="index"
                             >
                                 <article 
-                                :class="[currentWorkspace.code==organization.code? 'border-blue-500 border':'shadow-md']" 
+                                :class="[currentWorkspace.code==organization.code? 'border-green-500 border':'shadow-md']" 
                                 class="overflow-hidden rounded-md bg-white">
                                     <a href="#" class="workspace-img">
                                         <!-- <img alt="Placeholder" class="block h-auto w-full" src=""> -->

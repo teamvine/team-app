@@ -1,7 +1,13 @@
 <template>
-  <header class="header-view">
+  <header class="header-view flex">
     <div class="app-name p-3 cursor-pointer" @click="navigate({name: 'Start'})">
       <h3 class="font-bold">RCONNECT</h3>
+    </div>
+    <div class="organization py-1 bg-gray-0 flex flex-grow content-center justify-center">
+      <h2 class="m-auto bg-gray-200 cursor-pointer font-lg name px-3 py-2 text-blue-500 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline; margin-top: -3%" ><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
+        <span class="font-bold font-lg ml-1">{{currentWorkspace.name}}</span>
+      </h2>
     </div>
     <div class="right-menu">
       <div class="notifications">
@@ -200,6 +206,21 @@ export default {
   height: 100%;
   font-size: 120%;
 }
+.organization {
+  padding: auto;
+  font-weight: bold;
+  width: auto;
+  float: left;
+  height: 100%;
+  font-size: 100%;
+}
+.organization .name {
+  margin-top: 0.1%;
+  margin-bottom: 0.1%;
+}
+.organization .name span {
+  font-weight: bolder !important;
+}
 .right-menu {
   float: right;
   height: 100%;
@@ -216,10 +237,13 @@ export default {
   padding: 9% 4%;
   position: relative;
 }
-.notifications svg {
+.organization .name svg,.notifications svg {
   cursor: pointer;
-  fill: #2f74eb;
+  fill: #1e69eb;
   fill: linear-gradient(180deg, #2f74eb 0%, #83eaf1 74%);
+}
+.organization .name {
+  color: #1e69eb;
 }
 .notifications span {
   color: white;
@@ -241,12 +265,8 @@ export default {
   height: 100%;
   height: auto;
   width: auto;
-  /* background-color:#e6f4ff; */
   border-radius: 30px;
 }
-/* .user-menu:hover {
-  background-color:#cedce7;
-} */
 .user-menu .drp-dwn-toggler {
   cursor: pointer;
   display: inline-block !important;
@@ -257,7 +277,6 @@ export default {
   margin: 2px;
   border-radius: 50%;
   background-color: rgb(0, 0, 0,0.08);
-  /* border: 2px solid orangered; */
 }
 .user-menu .drp-dwn-toggler span {
   font-weight: bold;
@@ -280,11 +299,7 @@ export default {
 .drop-content * {
   display: block;
   cursor: pointer;
-  /* min-width: 250px; */
 }
-/* .drop-content div div:not(:nth-last-child(1)):not(:nth-child(1)) {
-  border-bottom: 1px solid rgb(0.3, 0.3, 0.3, 0.05);
-} */
 .drop-content div div:nth-child(1) {
   padding: 4% 0%;
   padding-left: 3%;
@@ -315,7 +330,7 @@ export default {
   border-radius: 50%;
 }
 img.user-pic:hover {
-  *all: unset;
+  all: unset;
   width: 50px !important;
   height: 42px;
 }
@@ -323,6 +338,20 @@ img.user-pic:hover {
   .drop-down,.drop-content {
     width: 100vw;
     right: -6.6%;
+  }
+}
+@media only screen and (max-width: 433px) {
+  .organization .name span {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 329px) {
+  .notifications {
+    display: none;
+  }
+  .drp-dwn-toggler img {
+    margin-top: 15%;
   }
 }
 </style>
