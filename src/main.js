@@ -10,12 +10,15 @@ import 'nprogress/nprogress.css'
 import VModal from 'vue-js-modal'
 import io from "socket.io-client";
 import VueSocketIOExt from 'vue-socket.io-extended';
-import VueTailwind from 'vue-tailwind'
+import VueTailwind from "vue-tailwind"
+import VueCodeHighlight from 'vue-code-highlight';
+
 
 Vue.config.productionTip = false
 Vue.use(VEmojiPicker);
 Vue.use(VModal, {componentName: 'VueModal', dynamicDefault: { draggable: true, resizable: false } })
 Vue.use(VueTailwind, Vue_t_settings)
+Vue.use(VueCodeHighlight)
 
 
 import {ioURL} from "./lib/api"
@@ -25,7 +28,7 @@ Vue.use(
         autoConnect: false,
         secure: true, //uncomment if it is hosted or uses https://
         reconnectionDelay: 3000,
-        transportOptions: { //add headers,query etc
+        transportOptions: {
             headers: {
                 Authorization: `Bearer ${store.state.all.token}`
             },
@@ -35,6 +38,8 @@ Vue.use(
       store
     }
 );
+
+
 
 new Vue({
   router,

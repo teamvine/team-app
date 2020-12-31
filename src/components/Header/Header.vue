@@ -25,10 +25,10 @@
                 <div
                   class="font-bold text-md text-center border-0 d-block hover:bg-white tracking-wide w-full text-c2 mb-4"
                 >
-                  Dusengimana Felix
+                  {{user.full_name||''}}
                 </div>
                 <div
-                  v-if="pageName!='StartPage'"
+                  @click="navigate({name: 'Start'})"
                   class="flex d-block item-hover cursor-pointer w-full px-4 py-2 font-bold text-md text-grey-darkest border-b-0"
                 >
                   <svg
@@ -77,7 +77,7 @@
                   <div class="pl-2 text-md font-bold">Notifications</div>
                 </div>
                 <div
-                  v-if="pageName!='StartPage'"
+                  @click="navigate({name: 'ChatPage'})"
                   class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg

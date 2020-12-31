@@ -34,8 +34,8 @@
                                         <span class="font-bold ml-1">{{organization.type | CamelCase}}</span>
                                     </div>
                                     <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                                        <button type="button" class="font-bold flex content-center justify-center text-center w-full transition duration-300 ease-in-out focus:outline-none focus:shadow-outline open-btn text-white font-normal py-3 px-4 rounded">
-                                            Open
+                                        <button @click="switchOrganization(organization)" type="button" class="font-bold flex content-center justify-center text-center w-full transition duration-300 ease-in-out focus:outline-none focus:shadow-outline open-btn text-white font-normal py-3 px-4 rounded">
+                                            Launch
                                         </button>
                                     </footer>
 
@@ -47,8 +47,8 @@
                     <!-- ============================== -->
                 </div>
                 <div class="btns w-full content-center justify-center flex-wrap flex pb-5 pt-2">
-                    <button type="button" @click="$router.push({name: 'NewWorkspace'})" class="w-full mt-3 rounded-sm sm:w-full md:w-2/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline font-bold new-organ text-white font-normal py-2 px-4 mr-1 ml-1">New Organization</button>
-		            <button type="button" @click="$router.push({name: 'FindWorkspace'})" class="w-full mt-3 rounded-sm sm:w-full md:w-2/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline border find-organ text-blue-800 font-bold hover:text-white font-normal py-2 px-4 mr-1 ml-1">Find Organization</button>
+                    <button type="button" @click="$router.push({name: 'NewWorkspace'})" class="w-full mt-3 rounded-sm sm:w-full md:w-2/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline font-bold new-organ text-white font-normal py-3 px-4 mr-1 ml-1">New Organization</button>
+		            <button type="button" @click="$router.push({name: 'FindWorkspace'})" class="w-full mt-3 rounded-sm sm:w-full md:w-2/6 lg:w-auto transition duration-300 text-md ease-in-out focus:outline-none focus:shadow-outline border find-organ text-blue-800 font-bold hover:text-white font-normal py-3 px-4 mr-1 ml-1">Find Organization</button>
                 </div>
             </div>
         </div>
@@ -56,10 +56,47 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
+import { switchCurrentWorkspace } from '../../../../lib/user'
+import { Functions } from '../../../../lib/functions'
+import _ from "lodash"
 export default {
     name: "Organizations",
     props: {
         organizations: Array
+    },
+    computed: {
+        ...mapState({
+            token: state=> state.all.token,
+            userAppFlow: state=> state.all.userAppFlow,
+            currentWorkspace: state=> state.all.currentWorkspace,
+            user: state=> state.all.user,
+        })
+    },
+    methods: {
+        ...mapMutations("all",["setToken","setUserAppFlow","setCurrentWorkspace","setCurrentWorkspaceJoinedChannels"]),
+        switchOrganization(newOrganization){
+            let hasCurrent = _.isEmpty(this.currentWorkspace)
+            let isCurrent = this.currentWorkspace.code==newOrganization.code
+            if(isCurrent) {
+                this.$router.push({name: "ChannelChat",params: {
+                    channel_id: "general"
+                }})
+            }else{
+                //change token and retrieve current workspace info
+                switchCurrentWorkspace(this.token,newOrganization,this.user._id,true)
+                .then(res=>{
+                    console.log(res.data)
+                })
+                .catch(err=>{
+                    alert(err.message)
+                })
+                if(hasCurrent){
+                    //leave all rooms in current workspace
+                    Functions.leaveWorkspaceSocketRooms(this,this.currentWorkspace._id,this.user._id)
+                }
+            }
+        }
     },
     filters: {
         /**
