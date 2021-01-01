@@ -4,14 +4,15 @@
       <h3 class="font-bold">RCONNECT</h3>
     </div>
     <div class="organization py-1 bg-gray-0 flex flex-grow content-center justify-center">
-      <h2 v-if="userAppFlow.switchedWorkspaces && currentWorkspace.name" class="m-auto bg-gray-200 cursor-pointer font-lg name px-3 py-2 text-blue-500 rounded-full">
+      <h2 v-if="userAppFlow.switchedWorkspaces" class="m-auto bg-gray-200 cursor-pointer font-lg name px-3 py-2 text-blue-500 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline; margin-top: -3%" ><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
         <span class="font-bold font-lg ml-1">{{currentWorkspace.name}}</span>
       </h2>
     </div>
     <div class="right-menu">
       <div class="notifications">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 17h2v2H2v-2h2v-7a8 8 0 1 1 16 0v7zm-2 0v-7a6 6 0 1 0-12 0v7h12zm-9 4h6v2H9v-2z"/></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bell" class="w-8 h-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#8f8f8d" d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z"></path></svg>
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 17h2v2H2v-2h2v-7a8 8 0 1 1 16 0v7zm-2 0v-7a6 6 0 1 0-12 0v7h12zm-9 4h6v2H9v-2z"/></svg> -->
         <span class="number">5</span>
       </div>
       <div class="user-menu">
@@ -83,6 +84,7 @@
                   <div class="pl-2 text-md font-bold">Notifications</div>
                 </div>
                 <div
+                  v-if="userAppFlow.switchedWorkspaces"
                   @click="navigate({name: 'ChannelChat',params: {channel_code: currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}})"
                   class="d-block item-hover flex cursor-pointer px-4 py-2 text-md text-grey-darkest"
                 >
@@ -237,10 +239,18 @@ export default {
   padding: 9% 4%;
   position: relative;
 }
-.organization .name svg,.notifications svg {
+.organization .name svg{
   cursor: pointer;
   fill: #1e69eb;
   fill: linear-gradient(180deg, #2f74eb 0%, #83eaf1 74%);
+}
+.notifications svg {
+  /* height: 1% !important; */
+  width: 50% !important;
+}
+.notifications svg path  {
+  cursor: pointer;
+  fill:#1e69eb;
 }
 .organization .name {
   color: #1e69eb;
@@ -272,9 +282,10 @@ export default {
   display: inline-block !important;
 }
 .drp-dwn-toggler img {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   margin: 2px;
+  margin-top: 1px;
   border-radius: 50%;
   background-color: rgb(0, 0, 0,0.08);
 }

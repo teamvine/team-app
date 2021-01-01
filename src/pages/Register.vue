@@ -199,12 +199,14 @@ export default {
 
 <style scoped>
 .app-title {
-  font-family: "PoppinsBold";
+  /* font-family: "PoppinsBold"; */
+  font-family: 'Inter', sans-serif !important;
   font-size: 30px;
   color: #2A68D3;
 }
 .bring-more {
-  font-family: "PoppinsThin";
+  /* font-family: "PoppinsThin"; */
+  font-family: 'Inter', sans-serif !important;
   font-weight: 600 !important;
   font-size: 18px;
 }

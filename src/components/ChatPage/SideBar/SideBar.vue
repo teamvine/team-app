@@ -147,6 +147,9 @@ export default {
       channels: channels
     };
   },
+  mounted(){
+    alert(this.$route.fullPath)
+  },
   methods: {
     /**
      * switching between personal and channel chat types

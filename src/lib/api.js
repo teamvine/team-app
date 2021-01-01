@@ -1,7 +1,7 @@
 module.exports = {
-    // baseURL: "http://localhost:3000", //api server base url
+    baseURL: "http://localhost:3000", //api server base url
     // ioURL: "http://localhost:3001", //socket server url
-    baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL
+    // baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL
     ioURL: "https://rconnect-backend-socket.herokuapp.com", //socket server url
     loginAPI: {
         authorize: "/user/login"
@@ -19,8 +19,7 @@ module.exports = {
         checkIfToChat: "/user/check-user-for-chat",
         updateAccount: "/user/update-account",
         verifyEmail: "/user/verify_email",
-        checkIfEmailUsed: "/user/check-email-taken/",
-        test: "123"
+        checkIfEmailUsed: "/user/check-email-taken/"
     },
     workspaceAPI: {
         createNewWorkspace: "/workspace/new-workspace",
