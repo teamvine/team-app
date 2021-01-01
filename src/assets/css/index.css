@@ -1,40 +1,39 @@
-@font-face { 
-    font-family: "Roboto";
-    src: url('../fonts/Roboto/Roboto-Medium.ttf');
-}
-@font-face { 
-    font-family: "RobotoBold";
-    src: url('../fonts/Roboto/Roboto-Black.ttf');
-}
-
-@font-face { 
-    font-family: "RobotoThin";
-    src: url('../fonts/Roboto/Roboto-Thin.ttf');
-}
-/* Poppins font */
-
-@font-face { 
-    font-family: "Poppins";
-    src: url('../fonts/Poppins/Poppins-Light.ttf');
-}
-@font-face { 
-    font-family: "PoppinsBold";
-    src: url('../fonts/Poppins/Poppins-ExtraBold.ttf');
-}
-
-@font-face { 
-    font-family: "PoppinsThin";
-    src: url('../fonts/Poppins/Poppins-ExtraLight.ttf');
-}
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 *{
     box-sizing: border-box;
-    /* font-family: 'Poppins',sans-serif; */
-    font-family: 'Inter', sans-serif !important;
+    /* font-family: 'Inter', sans-serif !important; */
     font-weight: 500;
 }
 html,body{
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
+}
+
+/* nprogress */
+#nprogress {
+    pointer-events: none;
+  }
+  
+  #nprogress .bar {
+    background: rgb(0, 109, 211);
+  
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+  }
+  #nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px rgb(0, 109, 211), 0 0 5px rgb(0, 109, 211);
+    opacity: 1.0;
+  
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+        -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px);
 }
