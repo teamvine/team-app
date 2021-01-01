@@ -36,16 +36,15 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 .message-item {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Lato";
 }
 .msg-item-content {
   position: relative;
 }
 .inter {
   font-size: 14;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: "Lato";
 }
 .reply-name{
   font-size: 12;

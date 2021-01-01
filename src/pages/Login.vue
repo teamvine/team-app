@@ -111,12 +111,12 @@ export default {
 
 <style scoped>
 .app-title {
-  font-family: "PoppinsBold";
+  font-family: "LatoBold";
   font-size: 30px;
   color: #2a68d3;
 }
 .bring-more {
-  font-family: "PoppinsThin";
+  font-family: "Lato";
   font-weight: 550 !important;
   font-size: 18px;
 }

@@ -1,37 +1,22 @@
 @font-face { 
-    font-family: "Roboto";
-    src: url('../fonts/Roboto/Roboto-Medium.ttf');
+    font-family: "Lato";
+    src: url('../fonts/Lato/Lato-Regular.ttf');
 }
 @font-face { 
-    font-family: "RobotoBold";
-    src: url('../fonts/Roboto/Roboto-Black.ttf');
+    font-family: "LatoLight";
+    src: url('../fonts/Lato/Lato-Light.ttf');
 }
 
 @font-face { 
-    font-family: "RobotoThin";
-    src: url('../fonts/Roboto/Roboto-Thin.ttf');
-}
-/* Poppins font */
-
-@font-face { 
-    font-family: "Poppins";
-    src: url('../fonts/Poppins/Poppins-Light.ttf');
-}
-@font-face { 
-    font-family: "PoppinsBold";
-    src: url('../fonts/Poppins/Poppins-ExtraBold.ttf');
+    font-family: "LatoBold";
+    src: url('../fonts/Lato/Lato-Bold.ttf');
 }
 
-@font-face { 
-    font-family: "PoppinsThin";
-    src: url('../fonts/Poppins/Poppins-ExtraLight.ttf');
-}
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 *{
     box-sizing: border-box;
     /* font-family: 'Poppins',sans-serif; */
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 500;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
 html,body{
     width: 100% !important;
