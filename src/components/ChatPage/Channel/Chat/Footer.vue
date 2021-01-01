@@ -25,7 +25,7 @@
         />
       </div>
       <div class="field" v-if="editorType=='minimal'">
-        <input type="text" placeholder="send to #general" />
+        <input type="text" :placeholder="'send to #'+currentChannel.name" />
       </div>
       <div class="field" v-else>
           <div class="menubar format-buttons">
@@ -206,6 +206,7 @@
 </template>
 
 <script>
+import {mapState} from "vuex"
 export default {
   name: "Footer",
   components: {
@@ -219,6 +220,11 @@ export default {
       showAdvancedOptions: false,
       editorType: localStorage.getItem("editor_type") || "minimal"
     };
+  },
+  computed: {
+    ...mapState({
+      currentChannel: state=> state.chat.currentChannel
+    })
   },
   mounted(){
    let editor = document.getElementById('editor')

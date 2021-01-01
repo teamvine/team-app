@@ -10,8 +10,8 @@
           alt=""
         />
         <div class="names ml-2">
-          <h6 class="p-0">#general</h6>
-          <small class="font-bold">Workspace wide communication</small>
+          <h6 class="p-0">#{{currentChannel.name}}</h6>
+          <small class="font-bold">{{currentChannel.description}}</small>
         </div>
       </div>
     </div>
@@ -82,8 +82,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 export default {
   name: "Header",
+  computed: {
+    ...mapState({
+      currentChannel: state=> state.chat.currentChannel
+    })
+  }
 };
 </script>
 

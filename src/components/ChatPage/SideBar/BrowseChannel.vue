@@ -31,12 +31,12 @@
             <dl class="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center">
               <div>
                 <dt class="sr-only">Title</dt>
-                <dd class="group-hover:text-white leading-6 font-medium text-black">
+                <dd class="group-hover:text-white leading-6 font-bold text-black">
                   #{{channel.name}}
                 </dd>
               </div>
               <div>
-                <dt class="sr-only">Category</dt>
+                <dt class="sr-only">Description</dt>
                 <dd class="group-hover:text-light-blue-200 text-sm font-medium sm:mb-4 lg:mb-0 xl:mb-4">
                   {{channel.description}}
                 </dd>

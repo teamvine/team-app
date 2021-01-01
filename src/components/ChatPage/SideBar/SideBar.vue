@@ -57,7 +57,7 @@
           </div>
           <div class="flex flex-wrap w-full mt-2 relative py-1 pl-8 pr-8">
             <div>
-              <span class="srt-by-txt"> Sort by </span>
+              <span class="srt-by-txt font-bold"> Sort by </span>
             </div>
             <div class="more-options">
               <span class="more-icon">
@@ -84,7 +84,7 @@
             <Person v-for="contact in contacts" :contact="contact" :key="contact._id"/>
           </div>
           <div v-if="display_cont=='channel'" class="contacts-list">
-            <Channel v-for="channel in channels" :channel="channel" :key="channel._id"/>
+            <Channel v-for="channel in currentWorkspaceJoinedChannels" :channel="channel" :isCurrent="isCurrentChannel" :switchChannel="onChannelClick" :key="channel._id"/>
           </div>
         </div>
       </div>
@@ -116,8 +116,8 @@
     <vue-modal style="z-index: 2500" class="py-2" name="newContact" :scrollable="true" height="auto" draggable=".drag-handler" :reset="true" :classes="[]" :adaptive="true">
       <nav class="flex drag-handler items-center justify-between flex-wrap p-3 py-2">
         <div class="flex items-center flex-no-shrink text-black mr-6">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 7h5v2h-5V7zm-2 5h7v2h-7v-2zm3 5h4v2h-4v-2zM2 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/></svg> -->
-          <!-- <span class="text-2xl tracking-tight ml-3 font-bold">Browse contacts</span> -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 7h5v2h-5V7zm-2 5h7v2h-7v-2zm3 5h4v2h-4v-2zM2 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/></svg>
+          <span class="text-2xl tracking-tight ml-3 font-bold">Browse contacts</span>
         </div>
         <div class="block">
           <button @click="$modal.hide('newContact')" title="cancel" class="flex items-center px-3 py-1 font-bold hover:text-red-700">
@@ -145,14 +145,14 @@ export default {
     return {
       display_cont: this.$route.name=="ChannelChat"? "channel":"personal",
       contacts: contacts,
-      channels: channels
     };
   },
   computed: {
     ...mapState({
       currentChatType: state=> state.chat.currentChatType,
       currentChannel: state=> state.chat.currentChannel,
-      currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver
+      currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver,
+      currentWorkspaceJoinedChannels: state=> state.all.currentWorkspaceJoinedChannels
     })
   },
   methods: {

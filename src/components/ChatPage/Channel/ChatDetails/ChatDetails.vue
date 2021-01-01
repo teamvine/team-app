@@ -6,14 +6,14 @@
                     <div class="w-full md:w-auto py-3 pl-3">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
                     </div>
-                    <div class="w-full md:w-full font-bold py-2 text-center">Channel Description</div>
+                    <div class="w-full md:w-full font-bold py-2 text-center text-lg">More &nbsp;Activity</div>
                 </div>
-                <div class="channel-icn bg-gray-50">
+                <div class="channel-icn bg-gray-100">
                     <span class="mt-4 py-8">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" class="display-block" viewBox="0 0 24 24" width="72" height="72"><path fill="none" d="M0 0L24 0 24 24 0 24z"/><path fill="rgb(4, 85, 207)" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.702 0-3.305-.425-4.708-1.175L2 22l1.176-5.29C2.426 15.306 2 13.703 2 12 2 6.477 6.477 2 12 2zm0 5c-1.598 0-3 1.34-3 3v1H8v5h8v-5h-1v-1c0-1.657-1.343-3-3-3zm2 6v1h-4v-1h4zm-2-4c.476 0 1 .49 1 1v1h-2v-1c0-.51.487-1 1-1z"/></svg> -->
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill="none" d="M0 0h24v24H0z"/><path fill="rgb(4, 85, 207)" d="M7.784 14l.42-4H4V8h4.415l.525-5h2.011l-.525 5h3.989l.525-5h2.011l-.525 5H20v2h-3.784l-.42 4H20v2h-4.415l-.525 5h-2.011l.525-5H9.585l-.525 5H7.049l.525-5H4v-2h3.784zm2.011 0h3.99l.42-4h-3.99l-.42 4z"/></svg> -->
-                        <span class="text-2xl mt-3 font-bold p-0">#general</span><br class="p-0">
-                        <small class="font-bold">Workspace wide communication</small>
+                        <span class="text-2xl mt-3 font-bold p-0">{{currentChannel.name}}</span><br class="p-0">
+                        <!-- <small class="font-bold">Workspace wide communication</small> -->
                     </span>
                 </div>
                 <div class="w-full mb-4">
@@ -21,7 +21,7 @@
                         <div class="border-b-0 px-5 py-4 border-bottom headingOne">
                             <button @click="show=!show" class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
                                 <svg class="icn1" xmlns="http://www.w3.org/2000/svg" style="display: inline-block" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
-                                <b class="font-bold ml-2 text-md">About #general</b>
+                                <b class="font-bold ml-2 text-md">About #{{currentChannel.name}}</b>
                                 <svg class="icn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z"/></svg>
                             </button>
                         </div>
@@ -98,10 +98,16 @@
 
 <script>
     import { component as CodeHighlighter} from 'vue-code-highlight'
+    import {mapState} from "vuex"
     export default {
         name: "ChatDetails",
         components:{
             CodeHighlighter
+        },
+        computed: {
+            ...mapState({
+                currentChannel: state=> state.chat.currentChannel
+            })
         }
     }
 </script>
