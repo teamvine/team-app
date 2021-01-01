@@ -18,9 +18,9 @@
       ></div>
     </div>
     <span class="contact-name"> {{ contact.name }}</span>
-    <p class="contact-last-message">
+    <!-- <p class="contact-last-message">
       {{ contact.lastMessage.message }}
-    </p>
+    </p> -->
   </div>
 </template>
 
@@ -54,7 +54,7 @@ export default {
 }
 .contact-last-message {
   font-weight: normal;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: 'Lato',sans-serif !important;
   margin-left: 38px;
   margin-top: -10px;
   font-size: 90%;

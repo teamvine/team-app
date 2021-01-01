@@ -26,18 +26,17 @@ export default {
 </script>
 
 <style scoped>
-.message-item {
-  font-family: "Lato";
+.message-item,.txt,.msg-body  {
+  font-family: "Lato",sans-serif !important;
 }
 .msg-item-content {
   position: relative;
 }
 .txt {
-  font-size: 14px;
-  font-family: "Lato" !important;
+  font-size: 16px;
 }
 .msg-body {
-  font-size: 14px;
+  font-size: 15px;
   display: inline-block;
   width: auto;
   max-width: 90%;
