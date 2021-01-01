@@ -1,9 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap'); */
+@font-face { 
+    font-family: "Lato";
+    src: url('../fonts/Lato/Lato-Regular.ttf');
+}
+@font-face { 
+    font-family: "LatoLight";
+    src: url('../fonts/Lato/Lato-Light.ttf');
+}
+
+@font-face { 
+    font-family: "LatoBold";
+    src: url('../fonts/Lato/Lato-Bold.ttf');
+}
 
 *{
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif !important;
-    font-weight: 500;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
 html,body{
     width: 100% !important;
