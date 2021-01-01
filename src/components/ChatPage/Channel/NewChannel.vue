@@ -11,20 +11,32 @@
           </button>
         </div>
       </nav>
-      
     <div class="new-channel-page">
         <div class="flex flex-col bg-white px-4 sm:px-6 md:px-8 lg:px-10 py-4 rounded-md w-full">
-            <h4 class="text-sm sm:text-xl text-gray-700 mb-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias facere quisquam quas, incidunt officia</h4>
-            <div class="flex flex-col mb-6">
-                <label for="c-name" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Channel Name:</label>
-                <div>
-                    <input id="c-name" type="text" name="channelName"
-                        class="text-sm sm:text-base rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
+            <h4 class="text-gray-700 mb-5">
+                Channels helps the teams in the organization to communicate easily.
+                They're groups of specific members in whole the organization.
+            </h4>
+            <div class="flex flex-col md:flex-row w-full">
+                <div class="flex flex-col w-full mb-6 mr-0 md:mr-2">
+                    <label for="c-name" class="mb-1 text-md tracking-wide text-gray-800 font-bold">Channel Name:</label>
+                    <div>
+                        <input id="c-name" type="text" name="channelName"
+                            class="text-sm sm:text-base rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
+                    </div>
+                </div>
+                <div class="flex flex-col w-full mb-6 ml-0 md:ml-2">
+                    <label for="c-name" class="mb-1 text-md tracking-wide text-gray-800 font-bold">Channel Type:</label>
+                    <div>
+                        <select class="text-sm sm:text-base rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                            <option value="public" class="py-4">Public</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-
             <div class="flex flex-col mb-6">
-                <label for="description" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Description</label>
+                <label for="description" class="mb-1 text-md tracking-wide text-gray-800 font-bold">Description</label>
                 <div>
                     <textarea name="description" id="description" cols="30" rows="4"
                         class="text-sm sm:text-base rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
@@ -33,12 +45,12 @@
 
         
         <div class="flex flex-col mb-6">
-          <label  class="mb-1 rounded text-xs sm:text-sm tracking-wide text-gray-600">Add members:</label>
+          <label  class="mb-1 rounded text-md tracking-wide text-gray-800 font-bold">Add members:</label>
           <div class="members text-sm sm:text-base rounded pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 py-4">
               <div class="recently-added">
-                  <div v-for="member in addedMembers" :key="member._id"  class="member">                      
+                  <div v-for="member in addedMembers" :key="member._id"  class="member px-3">                      
                     <span class="added-member">{{member.name}}</span>
-                    <button class="remove-member ml-3 text-red-600 hover:text-red-400" @click="removeMember(member._id)">X</button>
+                    <button class="remove-member ml-1 text-red-600 hover:text-red-400 font-lg" @click="removeMember(member._id)">&times;</button>
                   </div>
               </div>
               <div class="">
@@ -112,7 +124,7 @@ export default {
 </script>
 
 <style scoped>
-button:focus{
+    button:focus{
         outline: none;
     }
     textarea{
@@ -120,10 +132,12 @@ button:focus{
     }
     .recently-added .member{
         display: inline-block;
-        background: #cee9eb;
+        background: #3a3a3a;
         padding: 5px;
         border-radius: 5px;
         margin-right: 4px;
+        color: white;
+        font-weight: bold;
     }
     .suggested{
         cursor: pointer;        

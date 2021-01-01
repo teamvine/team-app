@@ -132,6 +132,7 @@
 
 <script>
 const { contacts, channels } = require('../../../testdb/db')
+import { mapActions, mapMutations, mapState } from 'vuex'
 export default {
   name: "SideBar",
   components: {
@@ -147,10 +148,16 @@ export default {
       channels: channels
     };
   },
-  mounted(){
-    alert(this.$route.fullPath)
+  computed: {
+    ...mapState({
+      currentChatType: state=> state.chat.currentChatType,
+      currentChannel: state=> state.chat.currentChannel,
+      currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver
+    })
   },
   methods: {
+    ...mapMutations("chat",["setCurrentChannel","setCurrentChatType","setCurrentDirectChatReceiver"]),
+    ...mapActions("chat",["changeAndSetUpRoom","resetCurrentThread"]),
     /**
      * switching between personal and channel chat types
      * @param {String} chat_type chat type-personal or channel
@@ -165,6 +172,34 @@ export default {
     browseChannel(){
       this.$modal.hideAll()
       this.$modal.show("browseChannel")
+    },
+    isCurrentChannel(channel){
+      return this.currentChannel._id == channel._id && this.currentChatType === "channel"
+    },
+    isCurrentDirectReceiver(user){
+      return this.currentDirectChatReceiver._id == user._id && this.currentChatType === "direct"
+    },
+    onChannelClick(channel){
+      if (this.isCurrentChannel(channel)) return;
+      this.resetCurrentThread()
+      this.setCurrentChannel(channel)
+      this.setCurrentChatType("channel")
+      this.changeAndSetUpRoom()
+      this.$router.push({
+        name: "ChannelChat",
+        params: { channel_code: channel.channel_code }
+      });
+    },
+    onUserClick(user){
+      if (this.isCurrentDirectReceiver(user)) return;
+      this.resetCurrentThread()
+      this.setCurrentDirectChatReceiver(user)
+      this.setCurrentChatType("direct")
+      this.changeAndSetUpRoom()
+      this.$router.push({
+        name: "PersonalChat",
+        params: {contact_id: user._id }
+      });
     }
   }
 };

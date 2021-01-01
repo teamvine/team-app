@@ -67,9 +67,6 @@ export default {
         ]),
         ...mapActions("all",["resetpageLoadingProcess"])
     },
-    beforeMount(){
-        this.$socket.client.open()
-    },
     mounted(){
         this.resetpageLoadingProcess()
         if (_.isEmpty(this.user)) {
@@ -110,8 +107,13 @@ export default {
             this.setpageLoadingProcess({isLoading: false,gotInfo: true, errorOccured: false})
         }
     },
-    beforeDestroy() {
-        this.$socket.client.close();
+    sockets: {
+        disconnect(){
+            alert("You are disconnected from the chat server")
+        },
+        connect(){
+            alert("You are connected to the server")
+        }
     }
 }
 </script>

@@ -1,19 +1,5 @@
 <template>
   <div class="contact py-2 px-2">
-    <!-- <img
-      v-if="channel.type=='public'"
-      width="38"
-      height="38" 
-      class="w-7 icon d-inline-block h-7 rounded-md border-2 border-white"
-      src='../../../assets/images/public.png'
-    />
-    <img
-      v-else
-      src='../../../assets/images/private.png'
-      width="38"
-      height="38"
-      class="w-7 d-inline-block h-7 icon rounded-md border-2 border-white"
-    /> -->
     <span class="contact-name font-bold px-3"> #{{ channel.name }}</span><br>
     <p class="contact-last-message px-3 mt-3 pt-3 font-bold">
       {{ channel.description }}

@@ -25,14 +25,14 @@
           type="text" aria-label="Filter projects" placeholder="Search channels" />
       </form>
       <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
-        <li v-for="channel in channels" :key="channel._id">
-         <router-link :to="'/channel/'+channel._id"
+        <li v-for="channel in currentWorkspaceJoinedChannels" :key="channel._id">
+         <router-link :to="'/chat/channel/'+channel.channel_code"
             class="hover:bg-light-blue-500 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200">
             <dl class="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center">
               <div>
                 <dt class="sr-only">Title</dt>
                 <dd class="group-hover:text-white leading-6 font-medium text-black">
-                  {{channel.name}}
+                  #{{channel.name}}
                 </dd>
               </div>
               <div>
@@ -44,7 +44,7 @@
               <div class="col-start-2 row-start-1 row-end-3">
                 <dt class="sr-only">Members</dt>
                 <dd class="flex justify-end sm:justify-start lg:justify-end xl:justify-start -space-x-2">
-                  <img v-for="member in channel.users" :key="member._id" :src="member.profile" :alt="member.name" width="30" height="30"
+                  <img v-for="member in users" :key="member._id" :src="member.profile" :alt="member.name" width="30" height="30"
                     class="w-7 h-7 rounded-full bg-gray-100 border-2 border-white" />
                 </dd>
               </div>
@@ -63,109 +63,44 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 export default {
     name: "NewChannel",    
     data(){
       return {
-        channels:[
-            {
-            _id:11,
-            name:"General",
-            description:"company wide communication group",
-            users:[
-              {
-                _id: "a",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "b",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "c",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id:"d",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "e",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-            ]
+        users:[
+          {
+            _id: "a",
+            name:"Jacques",
+            profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
           },
           {
-            _id:22,
-            name:"RCA YACU",
-            description:"company wide communication group",
-            users:[
-              {
-                _id: "f",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "g",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "h",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id:"i",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "j",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-            ]
+            _id: "b",
+            name:"Jacques",
+            profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
           },
           {
-            _id:33,
-            name:"You presence",
-            description:"company wide communication group",
-            users:[
-              {
-                _id: "k",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "l",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "m",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id:"n",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-              {
-                _id: "o",
-                name:"Jacques",
-                profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
-              },
-            ]
+            _id: "c",
+            name:"Jacques",
+            profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
           },
+          {
+            _id:"d",
+            name:"Jacques",
+            profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
+          },
+          {
+            _id: "e",
+            name:"Jacques",
+            profile:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=48&h=48&q=80",                
+          }
         ]
       }
+    },
+    computed: {
+      ...mapState({
+        currentWorkspaceJoinedChannels: state=> state.all.currentWorkspaceJoinedChannels
+      })
     },
     methods: {
       newChannel(){

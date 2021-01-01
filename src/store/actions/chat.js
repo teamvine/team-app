@@ -81,20 +81,6 @@ const actions = {
     changeAndSetUpRoom: ({ commit, dispatch, state, rootState }) => {
         //if is channel
         if (state.currentChatType == "channel") {
-            if (state.currentChannel.name == 'general') {
-                commit("setMembers", {
-                    channel: state.currentChannel,
-                    members: rootState.all.currentWorkspaceMembers
-                })
-                commit("setCurrentChannelMembers", {
-                    channel: state.currentChannel
-                })
-            } else {
-                commit("setCurrentChannelMembers", {
-                    channel: state.currentChannel
-                })
-            }
-
             if (state.messages[state.currentChannel._id]) {
                 if (state.messages[state.currentChannel._id].messages.length > 0) {
                     commit("setCurrentChatMessages", state.currentChannel._id.toString())

@@ -7,7 +7,13 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  mounted(){
+    this.$socket.client.open()
+  },
+  beforeDestroy() {
+    this.$socket.client.close();
+  },
 }
 </script>
 

@@ -5,7 +5,7 @@
           <Header/>
       </div>
       <div class="chat-messages p-4">
-          <div class="messages px-2 py-3">
+          <div class="messages px-2 py-3" id="messages">
               <MessageItem v-for="(message,index) in sampleSMS" :message="message" :key="index"/>
               
           </div>
