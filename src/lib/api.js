@@ -19,7 +19,8 @@ module.exports = {
         checkIfToChat: "/user/check-user-for-chat",
         updateAccount: "/user/update-account",
         verifyEmail: "/user/verify_email",
-        checkIfEmailUsed: "/user/check-email-taken/"
+        checkIfEmailUsed: "/user/check-email-taken/",
+        test: "123"
     },
     workspaceAPI: {
         createNewWorkspace: "/workspace/new-workspace",
