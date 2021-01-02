@@ -1,16 +1,17 @@
 <template>
-  <div class="contact py-2 px-2">
+  <div class="contact py-2 px-2" :class="[isCurrent(contact)? 'active':'']" @click="switchDirectChat(contact)">
     <div class="">
       <img
-        :src="contact.img"
+        src="../../../assets/images/avatar3.png"
         class="left-0 top-0 w-full h-full rounded-full object-cover"
       />
       <div
+        v-if="contact.status"
         :class="[contact.status=='online'? 'bg-green-400':'']"
         class="absolute rounded-full right-0 bottom-0 w-2 h-2"
       ></div>
     </div>
-    <span class="contact-name ml-1"> {{ contact.name }}</span>
+    <span class="contact-name ml-1"> {{ contact.full_name }}</span>
     <!-- <p class="contact-last-message text">
       {{ contact.lastMessage.message }}
     </p> -->
@@ -25,6 +26,14 @@ export default {
       type: Object,
       required: true,
     },
+    switchDirectChat: {
+      type: Function,
+      required: true
+    },
+    isCurrent: {
+      type: Function,
+      required: true
+    }
   },
 };
 </script>

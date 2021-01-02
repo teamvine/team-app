@@ -81,7 +81,13 @@
         </div>
         <div class="my-contacts">
           <div v-if="display_cont=='personal'" class="contacts-list">
-            <Person v-for="contact in contacts" :contact="contact" :key="contact._id"/>
+            <div class="no-contacts w-full h-full flex flex-wrap justify-center content-center" v-if="userDirectChatReceivers.length<1">
+              <div class="mt-20 w-full flex flex-wrap justify-center content-center">
+                <p class="font-bold text-gray-700 d-block w-full text-center">You have no contacts.</p>
+                <button class="py-1 px-4 rounded mt-3 add-new-cntct" @click="newContact">Add New</button>
+              </div>
+            </div>
+            <Person v-for="contact in userDirectChatReceivers" :contact="contact" :isCurrent="isCurrentDirectReceiver" :switchDirectChat="onUserClick" :key="contact._id"/>
           </div>
           <div v-if="display_cont=='channel'" class="contacts-list">
             <Channel v-for="channel in currentWorkspaceJoinedChannels" :channel="channel" :isCurrent="isCurrentChannel" :switchChannel="onChannelClick" :key="channel._id"/>
@@ -125,13 +131,12 @@
           </button>
         </div>
       </nav>
-      <new-contact></new-contact>
+      <new-contact :closeAllModals="closeAllModals"></new-contact>
     </vue-modal>
   </div>
 </template>
 
 <script>
-const { contacts, channels } = require('../../../testdb/db')
 import { mapActions, mapMutations, mapState } from 'vuex'
 export default {
   name: "SideBar",
@@ -143,8 +148,7 @@ export default {
   },
   data() {
     return {
-      display_cont: this.$route.name=="ChannelChat"? "channel":"personal",
-      contacts: contacts,
+      display_cont: this.$route.name=="ChannelChat"? "channel":"personal"
     };
   },
   computed: {
@@ -152,6 +156,7 @@ export default {
       currentChatType: state=> state.chat.currentChatType,
       currentChannel: state=> state.chat.currentChannel,
       currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver,
+      userDirectChatReceivers: state=> state.all.userDirectChatReceivers,
       currentWorkspaceJoinedChannels: state=> state.all.currentWorkspaceJoinedChannels
     })
   },
@@ -168,6 +173,9 @@ export default {
     newContact(){
       this.$modal.hideAll()
       this.$modal.show("newContact")
+    },
+    closeAllModals(){
+      this.$modal.hideAll()
     },
     browseChannel(){
       this.$modal.hideAll()
@@ -224,6 +232,16 @@ export default {
   flex-direction: column;
   overflow: hidden;
   background-color: #fff;
+}
+.add-new-cntct {
+  border: 2px solid #1a65e6;
+  color: #1a65e6;
+  font-weight: bold;
+}
+.add-new-cntct:hover {
+  border: 2px solid #0948b6;
+  color: white;
+  background:  #0948b6;
 }
 .upper-part {
   overflow: hidden;

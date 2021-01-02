@@ -11,7 +11,7 @@
         @click="showEmojis = !showEmojis"
         @dblclick="showEmojis = !showEmojis"
       >
-        <img src="../../../../assets/images/slightly-smiling-face.png" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-4-6h8v2H8v-2zm0-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm8 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
       </div>
       <div class="emoji-pickr" v-show="showEmojis">
         <VEmojiPicker
@@ -25,7 +25,7 @@
         />
       </div>
       <div class="field" v-if="editorType=='minimal'">
-        <input type="text" placeholder="Write to Harerimana Egide..." />
+        <input type="text" :placeholder="'Write to @'+currentDirectChatReceiver.full_name+'...'" />
       </div>
       <div class="field" v-else>
           <div class="menubar format-buttons">
@@ -206,6 +206,7 @@
 </template>
 
 <script>
+import {mapState} from "vuex"
 export default {
   name: "Footer",
   components: {
@@ -219,6 +220,11 @@ export default {
       showAdvancedOptions: false,
       editorType: localStorage.getItem("editor_type") || "minimal"
     };
+  },
+  computed: {
+    ...mapState({
+      currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver
+    })
   },
   mounted(){
    let editor = document.getElementById('editor')

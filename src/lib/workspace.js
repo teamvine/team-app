@@ -56,7 +56,7 @@ function getWorkspaceAllMembers(token,workspace_id) {
 
 
 /**
- * 
+ * Search workspace members by full name or display name
  * @param {String} token user token
  * @param {String} workspace_id workspace id
  * @param {String} user_id user id
