@@ -11,7 +11,7 @@ import VueTailwind from "vue-tailwind"
 import VueCodeHighlight from 'vue-code-highlight';
 import VueSocketIOExt from 'vue-socket.io-extended';
 import io from 'socket.io-client';
-import {ioURL} from "./lib/api"
+import {messagesServer} from "./lib/api"
 
 Vue.config.productionTip = false
 Vue.use(VEmojiPicker);
@@ -21,16 +21,17 @@ Vue.use(VueCodeHighlight)
 
 Vue.use(
     VueSocketIOExt,
-    io(ioURL, {
+    io(messagesServer, {
         autoConnect: false,
         // secure: true //uncomment if it is hosted or uses https://
         reconnectionDelay: 3000,
-        transportOptions: { //add headers,query etc
+        transportOptions: {
             headers: {
                 Authorization: `Bearer ${store.state.all.token}`
             },
             sameSite: false
         },
+        transports: ["websocket"]
     }), {
         store
     }

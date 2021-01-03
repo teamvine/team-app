@@ -25,7 +25,7 @@
         />
       </div>
       <div class="field" v-if="editorType=='minimal'">
-        <input type="text" :placeholder="'send to #'+currentChannel.name" />
+        <input :disabled="inputDisabled" v-model="newMessage.content" type="text" :placeholder="'send to #'+currentChannel.name" />
       </div>
       <div class="field" v-else>
           <div class="menubar format-buttons">
@@ -188,7 +188,7 @@
           </span>
         </div>
       </div>
-      <div class="icon">
+      <div class="icon" @click="sendMessage">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -206,7 +206,8 @@
 </template>
 
 <script>
-import {mapState} from "vuex"
+import {mapGetters, mapState} from "vuex"
+import { sendChannelMessage } from "../../../../lib/message"
 export default {
   name: "Footer",
   components: {
@@ -218,7 +219,19 @@ export default {
     return {
       showEmojis: false,
       showAdvancedOptions: false,
-      editorType: localStorage.getItem("editor_type") || "minimal"
+      editorType: localStorage.getItem("editor_type") || "minimal",
+      inputDisabled: false,
+      newMessage: {
+        sender_id: "",
+        channel_id: "",
+        workspace_id: this.getCurrentWorkspace()._id,
+        content: "",
+        attachments: {
+            files: [],
+            attached: false,
+        },
+        sent_at: null
+      }
     };
   },
   computed: {
@@ -242,9 +255,38 @@ export default {
    }
   },
   methods: {
+    ...mapGetters("all",["getToken","getUser","getCurrentWorkspace"]),
     onSelectEmoji(emoji) {
       let unicodeEmoji = emoji.data;
-      console.log(emoji);
+      this.newMessage.content = this.newMessage.content+unicodeEmoji
+    },
+    sendMessage(){
+      this.newMessage.content.replace(/\n/i,"")
+      if(this.newMessage.content=="" || this.newMessage.content.trim()===""){
+        this.newMessage.content=""
+        return 0;
+      }
+      this.inputDisabled = true
+      this.newMessage.sender_id = this.getUser()._id,
+      this.newMessage.channel_id = this.currentChannel._id
+      this.newMessage.workspace_id = this.getCurrentWorkspace()._id
+      this.newMessage.sent_at = Date()
+      sendChannelMessage(this.getToken(),this.newMessage).then(response=>{
+        if(!response.data.success){
+          alert(response.data.message)
+        }else{
+          console.log(response.data.data.message)
+        }
+      }).catch(err=>{
+        alert(err.message)
+      })
+      // this.$socket.client.emit(event.MESSAGE, this.newMessage);
+      this.newMessage.content = ""
+      this.newMessage.attachments = {
+        files: [],
+        attached: false
+      }
+      this.inputDisabled = false
     },
     changeEditorType(){
       if(this.editorType=="minimal"){
