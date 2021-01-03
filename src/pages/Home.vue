@@ -109,10 +109,13 @@ export default {
     },
     sockets: {
         disconnect(){
-            alert("You are disconnected from the chat server")
+            console.log("Disconnected to the socket!")
         },
         connect(){
-            alert("You are connected to the server")
+            console.log("You are connected to the server!")
+        },
+        test(msg){
+            console.log(msg)
         }
     }
 }

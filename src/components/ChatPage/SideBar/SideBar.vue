@@ -83,8 +83,10 @@
           <div v-if="display_cont=='personal'" class="contacts-list">
             <div class="no-contacts w-full h-full flex flex-wrap justify-center content-center" v-if="userDirectChatReceivers.length<1">
               <div class="mt-20 w-full flex flex-wrap justify-center content-center">
-                <p class="font-bold text-gray-700 d-block w-full text-center">You have no contacts.</p>
-                <button class="py-1 px-4 rounded mt-3 add-new-cntct" @click="newContact">Add New</button>
+                <p class="d-block w-full text-center flex flex-wrap justify-center content-center">
+                  <span class="font-bold text-gray-700">NO CONTACTS</span>
+                </p>
+                <button class="py-1 px-4 rounded mt-4 add-new-cntct" @click="newContact">Add New</button>
               </div>
             </div>
             <Person v-for="contact in userDirectChatReceivers" :contact="contact" :isCurrent="isCurrentDirectReceiver" :switchDirectChat="onUserClick" :key="contact._id"/>
