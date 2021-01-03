@@ -4,7 +4,7 @@
       <img :src="message.img" class="wh-40 img" />
       <div class="flex-1 px-3">
         <b class="px-1 txt">{{message.name}}</b>
-        <span class="text-gray-800 msg-body py-0 txt px-1">
+        <span class="msg-body py-0 txt px-1">
          {{message.content}}
         </span>
         <span class="msg-date mt-2 px-2">10:05 AM</span>
@@ -26,27 +26,28 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 .message-item {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Lato";
 }
 .msg-item-content {
   position: relative;
 }
 .txt {
   font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: "Lato";
 }
 .msg-body {
-  font-size: 14px;
+  font-size: 16px;
   display: inline-block;
   width: auto;
   max-width: 90%;
+  font-family: "Lato";
 }
 .msg-date {
   width: 100%;
   display: block;
   font-size: 12px;
+  font-family: "LatoBold";
 }
 .wh-40 {
   width: 2.4em;

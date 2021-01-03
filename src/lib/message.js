@@ -1,6 +1,6 @@
 const axios = require("./axios");
 const Axios = require('axios')
-const { baseURL, messageAPI, personalChatAPI } = require("./api");
+const { baseURL, messageAPI, personalChatAPI,messages, messagesServer } = require("./api");
 
 // function uploadAttachment(file) {
 //   if (!file) return null;
@@ -100,11 +100,88 @@ function getDirectChatOlderMessages(token, workspace_id, user_id, partner_id, qu
     })
 }
 
+
+/**
+ * send a channel message
+ * @param {String} token user token
+ * @param {Object} message message to send
+ */
+function sendChannelMessage(token,message){
+    return axios.request({
+        url: messagesServer+messages.newChannelMessage,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            message: message
+        }
+    });
+}
+
+/**
+ * send a channel message reply
+ * @param {String} token user token
+ * @param {Object} reply reply object
+ */
+function sendChannelReply(token,reply){
+    return axios.request({
+        url: messagesServer+messages.newChannelReply,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            reply: reply
+        }
+    });
+}
+
+
+/**
+ * send a direct message
+ * @param {String} token user token
+ * @param {Object} message message object
+ */
+function sendDirectMessage(token,message){
+    return axios.request({
+        url: messagesServer+messages.newDirectMessage,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            message: message
+        }
+    });
+}
+
+/**
+ * send a direct message reply
+ * @param {String} token user token
+ * @param {Object} reply reply object
+ */
+function sendDirectReply(token,reply){
+    return axios.request({
+        url: messagesServer+messages.newDirectReply,
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            reply: reply
+        }
+    });
+}
 module.exports = {
     getAllMessagesInChannel,
     getOlderMessagesInChannel,
     getPersonalChatMessages,
-    getDirectChatOlderMessages
+    getDirectChatOlderMessages,
+    sendChannelMessage,
+    sendDirectMessage,
+    sendChannelReply,
+    sendDirectReply
     // uploadAttachment,
     // findMessage
 };

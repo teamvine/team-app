@@ -1,26 +1,20 @@
 <template>
-  <div class="contact py-1 px-2">
-    <!-- <img
-      :src="contact.img"
-      :alt="contact.name"
-      width="38"
-      height="38"
-      class="w-7 d-inline-block h-7 rounded-full bg-gray-400 border-2 border-white"
-    /> -->
+  <div class="contact py-2 px-2" :class="[isCurrent(contact)? 'active':'']" @click="switchDirectChat(contact)">
     <div class="">
       <img
-        :src="contact.img"
+        src="../../../assets/images/avatar3.png"
         class="left-0 top-0 w-full h-full rounded-full object-cover"
       />
       <div
+        v-if="contact.status"
         :class="[contact.status=='online'? 'bg-green-400':'']"
         class="absolute rounded-full right-0 bottom-0 w-2 h-2"
       ></div>
     </div>
-    <span class="contact-name"> {{ contact.name }}</span>
-    <p class="contact-last-message">
+    <span class="contact-name ml-1"> {{ contact.full_name }}</span>
+    <!-- <p class="contact-last-message text">
       {{ contact.lastMessage.message }}
-    </p>
+    </p> -->
   </div>
 </template>
 
@@ -32,6 +26,14 @@ export default {
       type: Object,
       required: true,
     },
+    switchDirectChat: {
+      type: Function,
+      required: true
+    },
+    isCurrent: {
+      type: Function,
+      required: true
+    }
   },
 };
 </script>
@@ -40,10 +42,10 @@ export default {
 .contact {
   border-bottom: 1px solid rgb(0, 0, 0, 0.05);
 }
-.contact:hover,.contact:hover div .contact-last-message,.contact:hover div .contact-name {
-  background:#3881fff3;
+.contact.active,.contact:hover,.contact:hover div .contact-last-message,.contact:hover div .contact-name {
+  background: rgba(3, 61, 221, 0.103);
+  color: rgb(21, 75, 224);
   cursor: pointer;
-  color: white;
 }
 .d-inline-block {
   display: inline-block;
@@ -54,7 +56,7 @@ export default {
 }
 .contact-last-message {
   font-weight: normal;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: "Lato";
   margin-left: 38px;
   margin-top: -10px;
   font-size: 90%;

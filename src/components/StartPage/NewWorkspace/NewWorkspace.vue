@@ -1,8 +1,8 @@
 <template>
     <main class="flex-1 ">
         <div class="w-full flex-row flex content-center justify-center flex-wrap py-3">
-            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-3/4 md:w-2/4 lg:w-3/6 border border-gray-400 rounded-sm md:rounded-lg mt-3 mb-4">
-                <header class="flex items-center justify-between leading-tight w-full border-b">
+            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-3/4 md:w-2/4 lg:w-3/6 border-0 border-gray-400 shadow-none md:shadow-md rounded-sm md:rounded-lg mt-3 mb-4">
+                <header class="flex items-center justify-between leading-tight w-full border-0">
                     <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35" style="display: inline; margin-top: -1.5%" ><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
                         <span class="ml-2 font-bold text-2xl">New Organization</span>
@@ -12,19 +12,17 @@
                     <div class="bg-white px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
                       <div class="-mx-3 md:flex mb-6">
                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                          <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+                          <label class="block tracking-wide uppercase text-sm text-gray-800 font-bold mb-1" for="grid-first-name">
                             Name 
-                            <span class="text-red-500 text-xl">*</span>
                           </label>
-                          <input v-model="newworkspace.basic_info.name" class="appearance-none block border-gray-400 w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-first-name" type="text" placeholder="Organization Name...">
+                          <input v-model="newworkspace.basic_info.name" class="w-full bg-gray-200 text-gray-900 p-3 rounded-md focus:outline-none focus:shadow-outline" id="grid-first-name" type="text">
                           <!-- <p class="text-red text-xs italic">Please fill out this field.</p> -->
                         </div>
                         <div class="md:w-1/2 px-3">
-                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">
+                            <label class="block tracking-wide uppercase text-sm text-gray-800 font-bold mb-1" for="grid-last-name">
                                 Type
-                                <span class="text-red-500 text-xl">*</span>
                             </label>
-                            <select v-model="newworkspace.basic_info.type" class="form-select border-gray-400 mt-1 block w-full py-3">
+                            <select v-model="newworkspace.basic_info.type" class="w-full bg-gray-200 text-gray-900 p-3 rounded-md focus:outline-none focus:shadow-outline">
                                 <option value="public" class="py-4">Public</option>
                                 <option value="private">Private</option>
                             </select>
@@ -32,17 +30,16 @@
                       </div>
                       <div class="-mx-3 md:flex mb-6">
                         <div class="md:w-full px-3">
-                          <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                          <label class="block tracking-wide uppercase text-sm text-gray-800 font-bold mb-1">
                             Description
-                            <span class="text-red-500 text-xl">*</span>
                           </label>
-                          <textarea v-model="newworkspace.basic_info.description" class="form-textarea mt-1 block w-full border-gray-400" rows="4" placeholder="Description..."></textarea>
+                          <textarea v-model="newworkspace.basic_info.description" class="w-full bg-gray-200 text-gray-900 p-3 rounded-md focus:outline-none focus:shadow-outline" rows="4" placeholder="Description..."></textarea>
                           <!-- <p class="text-grey-dark text-xs italic mt-2">Enter a short and simple description below 200 characters.</p> -->
                         </div>
                       </div>
 
                       <!-- =====================start tags==================== -->
-                      <label class="w-full uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                      <label class="block tracking-wide uppercase text-sm text-gray-800 font-bold mb-1">
                         Add Few Members
                         <span class="text-red-500 text-xl">*</span>
                       </label>
