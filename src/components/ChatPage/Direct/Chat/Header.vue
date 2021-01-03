@@ -6,12 +6,12 @@
       <div class="user-picture">
         <img
           class="rounded-lg"
-          src="../../../../assets/images/avatar1.jpg"
+          src="../../../../assets/images/avatar3.png"
           alt=""
         />
         <div class="names">
-          <h6 class="p-0">Harerimana Egide</h6>
-          <small>Student at Rwanda coding academy</small>
+          <h6 class="p-0 py-0 my-0">{{currentDirectChatReceiver.full_name}}</h6>
+          <small class="font-bold py-0">@{{currentDirectChatReceiver.display_name}}</small>
         </div>
       </div>
     </div>
@@ -82,8 +82,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 export default {
   name: "Header",
+  computed: {
+    ...mapState({
+      currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver
+    })
+  }
 };
 </script>
 

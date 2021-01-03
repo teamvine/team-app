@@ -7,7 +7,14 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  mounted(){
+    this.$socket.client.open()
+    // this.$socket.client.emit("joinTest",{id: "123"})
+  },
+  beforeDestroy() {
+    this.$socket.client.close();
+  },
 }
 </script>
 

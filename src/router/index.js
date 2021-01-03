@@ -73,7 +73,7 @@ const routes = [
         name: 'ChannelChat'
       }),
       children: [{
-        path: "channel",
+        path: "channel/:channel_code",
         name: "ChannelChat",
         component: () => {
           return import("../components/ChatPage/Channel/ChannelChat")
@@ -87,7 +87,7 @@ const routes = [
         }]
       },
       {
-        path: "direct",
+        path: "direct/:contact_id",
         name: "PersonalChat",
         component: () => {
           return import("../components/ChatPage/Direct/PersonalChat")

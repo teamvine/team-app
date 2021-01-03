@@ -176,7 +176,7 @@ export default {
     }
     a {
         color: rgb(27, 27, 27,0.8);
-        font-family:"Lato" !important
+        font-family: "Lato" !important
     }
     @media (max-width: 642px) {
         .w-full,

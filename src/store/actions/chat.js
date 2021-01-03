@@ -5,7 +5,7 @@ const actions = {
      * reset chat module state
      * @param {Object} param0 vuex params
      */
-    resetChatModuleState: ({ commit, state }) => {
+    resetChatModuleState: ({ commit, dispatch, state }) => {
         commit("setMessagesLoadingProcess", {
             isLoadingMessages: true,
             gotMessages: false,
@@ -18,6 +18,8 @@ const actions = {
         commit("setCurrentDirectChatReceiver", {})
         state.messages = {}
         state.currentChatMessages = []
+        dispatch("resetCurrentThread")
+        dispatch("resetThreads")
     },
     /**
      * reset the current thread
@@ -79,20 +81,6 @@ const actions = {
     changeAndSetUpRoom: ({ commit, dispatch, state, rootState }) => {
         //if is channel
         if (state.currentChatType == "channel") {
-            if (state.currentChannel.name == 'general') {
-                commit("setMembers", {
-                    channel: state.currentChannel,
-                    members: rootState.all.currentWorkspaceMembers
-                })
-                commit("setCurrentChannelMembers", {
-                    channel: state.currentChannel
-                })
-            } else {
-                commit("setCurrentChannelMembers", {
-                    channel: state.currentChannel
-                })
-            }
-
             if (state.messages[state.currentChannel._id]) {
                 if (state.messages[state.currentChannel._id].messages.length > 0) {
                     commit("setCurrentChatMessages", state.currentChannel._id.toString())

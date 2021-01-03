@@ -11,7 +11,7 @@
         @click="showEmojis = !showEmojis"
         @dblclick="showEmojis = !showEmojis"
       >
-        <img src="../../../../assets/images/slightly-smiling-face.png" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-4-6h8v2H8v-2zm0-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm8 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
       </div>
       <div class="emoji-pickr" v-show="showEmojis">
         <VEmojiPicker
@@ -25,7 +25,7 @@
         />
       </div>
       <div class="field" v-if="editorType=='minimal'">
-        <input type="text" placeholder="send to #general" />
+        <input :disabled="inputDisabled" v-model="newMessage.content" type="text" :placeholder="'send to #'+currentChannel.name" />
       </div>
       <div class="field" v-else>
           <div class="menubar format-buttons">
@@ -188,7 +188,7 @@
           </span>
         </div>
       </div>
-      <div class="icon">
+      <div class="icon" @click="sendMessage">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -206,6 +206,8 @@
 </template>
 
 <script>
+import {mapGetters, mapState} from "vuex"
+import { sendChannelMessage } from "../../../../lib/message"
 export default {
   name: "Footer",
   components: {
@@ -217,8 +219,25 @@ export default {
     return {
       showEmojis: false,
       showAdvancedOptions: false,
-      editorType: localStorage.getItem("editor_type") || "minimal"
+      editorType: localStorage.getItem("editor_type") || "minimal",
+      inputDisabled: false,
+      newMessage: {
+        sender_id: "",
+        channel_id: "",
+        workspace_id: this.getCurrentWorkspace()._id,
+        content: "",
+        attachments: {
+            files: [],
+            attached: false,
+        },
+        sent_at: null
+      }
     };
+  },
+  computed: {
+    ...mapState({
+      currentChannel: state=> state.chat.currentChannel
+    })
   },
   mounted(){
    let editor = document.getElementById('editor')
@@ -236,9 +255,38 @@ export default {
    }
   },
   methods: {
+    ...mapGetters("all",["getToken","getUser","getCurrentWorkspace"]),
     onSelectEmoji(emoji) {
       let unicodeEmoji = emoji.data;
-      console.log(emoji);
+      this.newMessage.content = this.newMessage.content+unicodeEmoji
+    },
+    sendMessage(){
+      this.newMessage.content.replace(/\n/i,"")
+      if(this.newMessage.content=="" || this.newMessage.content.trim()===""){
+        this.newMessage.content=""
+        return 0;
+      }
+      this.inputDisabled = true
+      this.newMessage.sender_id = this.getUser()._id,
+      this.newMessage.channel_id = this.currentChannel._id
+      this.newMessage.workspace_id = this.getCurrentWorkspace()._id
+      this.newMessage.sent_at = Date()
+      sendChannelMessage(this.getToken(),this.newMessage).then(response=>{
+        if(!response.data.success){
+          alert(response.data.message)
+        }else{
+          console.log(response.data.data.message)
+        }
+      }).catch(err=>{
+        alert(err.message)
+      })
+      // this.$socket.client.emit(event.MESSAGE, this.newMessage);
+      this.newMessage.content = ""
+      this.newMessage.attachments = {
+        files: [],
+        attached: false
+      }
+      this.inputDisabled = false
     },
     changeEditorType(){
       if(this.editorType=="minimal"){

@@ -1,6 +1,12 @@
 const axios = require("./axios");
 const { baseURL,workspaceAPI } = require("./api");
 
+/**
+ * Create a new workspace
+ * @param {String} token user token
+ * @param {Object} workspace workspace object
+ * @returns Promise<AxiosResponse> axios response
+ */
 function createNewWorkspace(token,workspace) {
   return axios.request({
     url: baseURL + workspaceAPI.createNewWorkspace,
@@ -14,6 +20,13 @@ function createNewWorkspace(token,workspace) {
   });
 }
 
+
+/**
+ * Get all channels in a workspace
+ * @param { String } token user token
+ * @param { String } workspace_id workspace id
+ * @returns Promise<AxiosResponse> axios response
+ */
 function getWorkspaceAllChannels(token,workspace_id) {
   return axios.request({
     url: baseURL + workspaceAPI.getAllChannels+workspace_id,
@@ -24,6 +37,13 @@ function getWorkspaceAllChannels(token,workspace_id) {
   });
 }
 
+
+/**
+ * Get all members of a workspace using id
+ * @param {String} token user token
+ * @param {String} workspace_id workspace id
+ * @returns Promise<AxiosResponse> axios response
+ */
 function getWorkspaceAllMembers(token,workspace_id) {
   return axios.request({
     url: baseURL + workspaceAPI.getAllMembers+workspace_id,
@@ -34,6 +54,15 @@ function getWorkspaceAllMembers(token,workspace_id) {
   });
 }
 
+
+/**
+ * Search workspace members by full name or display name
+ * @param {String} token user token
+ * @param {String} workspace_id workspace id
+ * @param {String} user_id user id
+ * @param {String} search_text searching text
+ * @returns Promise<AxiosResponse> axios response
+ */
 function searchMembersByName(token,workspace_id,user_id,search_text) {
   return axios.request({
     url: baseURL + workspaceAPI.searchMembersByName+"?workspace_id="+workspace_id+"&&user_id="+user_id+"&&search_string="+search_text,
@@ -44,6 +73,13 @@ function searchMembersByName(token,workspace_id,user_id,search_text) {
   });
 }
 
+
+/**
+ * Search public workspaces by their names
+ * @param {String} token user token
+ * @param {String} text search query
+ * @returns Promise<AxiosResponse> axios response
+ */
 function searchPublicWorkspaces(token,text) {
   return axios.request({
     url: baseURL + workspaceAPI.searchPublicWorkspaces+text,
@@ -54,10 +90,32 @@ function searchPublicWorkspaces(token,text) {
   });
 }
 
+
+/**
+ * Adding new members to a workspace
+ * @param {String} token user token
+ * @param {String} workspace_id workspace id
+ * @param {Object} newMembers new members to add
+ */
+function joinWorkspace(token,workspace_id,newMembers){
+  return axios.request({
+    url: baseURL + workspaceAPI.joinWorkspace+workspace_id,
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    data: {
+      members: newMembers
+    }
+  });
+}
+
+
 module.exports = {
   createNewWorkspace,
   getWorkspaceAllChannels,
   getWorkspaceAllMembers,
   searchMembersByName,
-  searchPublicWorkspaces
+  searchPublicWorkspaces,
+  joinWorkspace
 };

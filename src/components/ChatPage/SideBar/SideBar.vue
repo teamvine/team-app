@@ -57,7 +57,7 @@
           </div>
           <div class="flex flex-wrap w-full mt-2 relative py-1 pl-8 pr-8">
             <div>
-              <span class="srt-by-txt"> Sort by </span>
+              <span class="srt-by-txt font-bold"> Sort by </span>
             </div>
             <div class="more-options">
               <span class="more-icon">
@@ -81,10 +81,18 @@
         </div>
         <div class="my-contacts">
           <div v-if="display_cont=='personal'" class="contacts-list">
-            <Person v-for="contact in contacts" :contact="contact" :key="contact._id"/>
+            <div class="no-contacts w-full h-full flex flex-wrap justify-center content-center" v-if="userDirectChatReceivers.length<1">
+              <div class="mt-20 w-full flex flex-wrap justify-center content-center">
+                <p class="d-block w-full text-center flex flex-wrap justify-center content-center">
+                  <span class="font-bold text-gray-700">NO CONTACTS</span>
+                </p>
+                <button class="py-1 px-4 rounded mt-4 add-new-cntct" @click="newContact">Add New</button>
+              </div>
+            </div>
+            <Person v-for="contact in userDirectChatReceivers" :contact="contact" :isCurrent="isCurrentDirectReceiver" :switchDirectChat="onUserClick" :key="contact._id"/>
           </div>
           <div v-if="display_cont=='channel'" class="contacts-list">
-            <Channel v-for="channel in channels" :channel="channel" :key="channel._id"/>
+            <Channel v-for="channel in currentWorkspaceJoinedChannels" :channel="channel" :isCurrent="isCurrentChannel" :switchChannel="onChannelClick" :key="channel._id"/>
           </div>
         </div>
       </div>
@@ -116,8 +124,8 @@
     <vue-modal style="z-index: 2500" class="py-2" name="newContact" :scrollable="true" height="auto" draggable=".drag-handler" :reset="true" :classes="[]" :adaptive="true">
       <nav class="flex drag-handler items-center justify-between flex-wrap p-3 py-2">
         <div class="flex items-center flex-no-shrink text-black mr-6">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 7h5v2h-5V7zm-2 5h7v2h-7v-2zm3 5h4v2h-4v-2zM2 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/></svg> -->
-          <!-- <span class="text-2xl tracking-tight ml-3 font-bold">Browse contacts</span> -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="none" d="M0 0h24v24H0z"/><path d="M19 7h5v2h-5V7zm-2 5h7v2h-7v-2zm3 5h4v2h-4v-2zM2 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/></svg>
+          <span class="text-2xl tracking-tight ml-3 font-bold">Browse contacts</span>
         </div>
         <div class="block">
           <button @click="$modal.hide('newContact')" title="cancel" class="flex items-center px-3 py-1 font-bold hover:text-red-700">
@@ -125,13 +133,13 @@
           </button>
         </div>
       </nav>
-      <new-contact></new-contact>
+      <new-contact :closeAllModals="closeAllModals"></new-contact>
     </vue-modal>
   </div>
 </template>
 
 <script>
-const { contacts, channels } = require('../../../testdb/db')
+import { mapActions, mapMutations, mapState } from 'vuex'
 export default {
   name: "SideBar",
   components: {
@@ -142,12 +150,21 @@ export default {
   },
   data() {
     return {
-      display_cont: this.$route.name=="ChannelChat"? "channel":"personal",
-      contacts: contacts,
-      channels: channels
+      display_cont: this.$route.name=="ChannelChat"? "channel":"personal"
     };
   },
+  computed: {
+    ...mapState({
+      currentChatType: state=> state.chat.currentChatType,
+      currentChannel: state=> state.chat.currentChannel,
+      currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver,
+      userDirectChatReceivers: state=> state.all.userDirectChatReceivers,
+      currentWorkspaceJoinedChannels: state=> state.all.currentWorkspaceJoinedChannels
+    })
+  },
   methods: {
+    ...mapMutations("chat",["setCurrentChannel","setCurrentChatType","setCurrentDirectChatReceiver"]),
+    ...mapActions("chat",["changeAndSetUpRoom","resetCurrentThread"]),
     /**
      * switching between personal and channel chat types
      * @param {String} chat_type chat type-personal or channel
@@ -159,9 +176,40 @@ export default {
       this.$modal.hideAll()
       this.$modal.show("newContact")
     },
+    closeAllModals(){
+      this.$modal.hideAll()
+    },
     browseChannel(){
       this.$modal.hideAll()
       this.$modal.show("browseChannel")
+    },
+    isCurrentChannel(channel){
+      return this.currentChannel._id == channel._id && this.currentChatType === "channel"
+    },
+    isCurrentDirectReceiver(user){
+      return this.currentDirectChatReceiver._id == user._id && this.currentChatType === "direct"
+    },
+    onChannelClick(channel){
+      if (this.isCurrentChannel(channel)) return;
+      this.resetCurrentThread()
+      this.setCurrentChannel(channel)
+      this.setCurrentChatType("channel")
+      this.changeAndSetUpRoom()
+      this.$router.push({
+        name: "ChannelChat",
+        params: { channel_code: channel.channel_code }
+      });
+    },
+    onUserClick(user){
+      if (this.isCurrentDirectReceiver(user)) return;
+      this.resetCurrentThread()
+      this.setCurrentDirectChatReceiver(user)
+      this.setCurrentChatType("direct")
+      this.changeAndSetUpRoom()
+      this.$router.push({
+        name: "PersonalChat",
+        params: {contact_id: user._id }
+      });
     }
   }
 };
@@ -186,6 +234,16 @@ export default {
   flex-direction: column;
   overflow: hidden;
   background-color: #fff;
+}
+.add-new-cntct {
+  border: 2px solid #1a65e6;
+  color: #1a65e6;
+  font-weight: bold;
+}
+.add-new-cntct:hover {
+  border: 2px solid #0948b6;
+  color: white;
+  background:  #0948b6;
 }
 .upper-part {
   overflow: hidden;

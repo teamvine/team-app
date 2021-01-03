@@ -1,23 +1,9 @@
 <template>
-  <div class="contact py-2 px-2">
-    <!-- <img
-      v-if="channel.type=='public'"
-      width="38"
-      height="38" 
-      class="w-7 icon d-inline-block h-7 rounded-md border-2 border-white"
-      src='../../../assets/images/public.png'
-    />
-    <img
-      v-else
-      src='../../../assets/images/private.png'
-      width="38"
-      height="38"
-      class="w-7 d-inline-block h-7 icon rounded-md border-2 border-white"
-    /> -->
+  <div class="contact py-4 px-2" :class="[isCurrent(channel)? 'active':'']" @click="switchChannel(channel)">
     <span class="contact-name font-bold px-3"> #{{ channel.name }}</span><br>
-    <p class="contact-last-message px-3 mt-3 pt-3 font-bold">
+    <!-- <p class="contact-last-message px-3 mt-3 pt-3 font-bold text-gray-700">
       {{ channel.description }}
-    </p>
+    </p> -->
   </div>
 </template>
 
@@ -28,6 +14,14 @@ export default {
       channel: {
           type: Object,
           required: true
+      },
+      switchChannel: {
+        type: Function,
+        required: true
+      },
+      isCurrent: {
+        type: Function,
+        required: true
       }
   }
 };
@@ -37,23 +31,21 @@ export default {
 .contact {
     border-bottom: 1px solid rgb(0, 0, 0, 0.05);
 }
-.contact:hover,.contact:hover div .contact-last-message,.contact:hover div .contact-name {
-  background:#3881fff3;
+.contact.active,.contact:hover,.contact:hover div .contact-last-message,.contact:hover div .contact-name {
+  background: rgba(3, 61, 221, 0.103);
+  color: rgb(21, 75, 224);
   cursor: pointer;
-  color: white;
+  /* color: white; */
 }
 .d-inline-block {
   display: inline-block;
 }
 .contact-name {
   font-weight: bolder;
-  font-size: 14 !important;
-  /* font-family: 'Roboto'; */
 }
 .contact-last-message {
   font-weight: normal;
-  font-family: Arial, Helvetica, sans-serif !important;
-  /* margin-left: 38px; */
+  font-family: "LatoBold";
   margin-top: -10px;
   font-size: 90%;
   white-space: nowrap;

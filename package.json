@@ -29,12 +29,13 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.2.1",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "css": "^3.0.0",
+    "lodash": "^4.17.20",
     "nprogress": "^0.2.0",
     "register-service-worker": "^1.7.1",
-    "socket.io-client": "^3.0.4",
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.9.6",
     "tiptap": "^1.30.0",
@@ -44,8 +45,10 @@
     "vue-code-highlight": "^0.7.6",
     "vue-js-modal": "^2.0.0-rc.6",
     "vue-router": "^3.2.0",
-    "vue-socket.io-extended": "^4.0.5",
-    "vuex": "^3.4.0"
+    "vue-tailwind": "^2.0.0",
+    "vuex": "^3.4.0",
+    "socket.io-client": "^2.3.0",
+    "vue-socket.io-extended": "^4.0.4"
   },
   "_id": "teamvine@0.1.0",
   "gitHooks": {

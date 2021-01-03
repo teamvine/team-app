@@ -1,8 +1,8 @@
 module.exports = {
-    // baseURL: "http://localhost:3000", //api server base url
-    // ioURL: "http://localhost:3001", //socket server url
-    baseURL: "https://rconnect-backend.herokuapp.com", //api server base url
-    ioURL: "https://rconnect-backend-socket.herokuapp.com", //socket server url
+    baseURL: "http://localhost:3000", //api server base url
+    messagesServer: "http://localhost:3001", //socket server url
+    // baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL
+    // messagesServer: "https://rconnect-backend-socket.herokuapp.com", //socket server url
     loginAPI: {
         authorize: "/user/login"
     },
@@ -26,7 +26,8 @@ module.exports = {
         getAllChannels: "/workspace/all-channels/",
         getAllMembers: "/workspace/all-members/",
         searchMembersByName: "/workspace/search-members-by-name",
-        searchPublicWorkspaces: "/workspace/public-by-name/"
+        searchPublicWorkspaces: "/workspace/public-by-name/",
+        joinWorkspace: "/workspace/add-members/"
     },
     channelAPI: {
         getAllMembers: "/channel/all-members",
@@ -42,5 +43,11 @@ module.exports = {
     personalChatAPI: { //direct chat
         getPersonalChatMessages: "/message/get-direct-chat-messages", //fetch latest few messages
         getOlderMessages: "/message/get-direct-chat-older-messages" //fetch older few messages
+    },
+    messages: {
+        newChannelMessage: "/channel/new-message",
+        newChannelReply: "/channel/new-reply",
+        newDirectMessage: "/direct/new-message",
+        newDirectReply: "/direct/new-reply"
     }
 };

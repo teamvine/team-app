@@ -37,6 +37,9 @@ const mutations = {
     },
     setUserDirectChatReceivers: (state,receivers)=>{
         state.userDirectChatReceivers = receivers
+    },
+    addUserDirectChatReceiver: (state,receiver)=>{
+        state.userDirectChatReceivers.push(receiver)
     }
 }
 

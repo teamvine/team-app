@@ -1,30 +1,28 @@
 <template>
     <main class="flex-1 ">
         <div class="w-full flex-row flex content-center justify-center flex-wrap py-3">
-            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-3/4 md:w-2/4 lg:w-3/6 border border-gray-400">
-                <header class="flex items-center justify-between leading-tight w-full border-b">
+            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-3/4 md:w-2/4 lg:w-3/6 border-0 border-gray-400 shadow-none md:shadow-md rounded-sm md:rounded-lg mt-3 mb-4">
+                <header class="flex items-center justify-between leading-tight w-full border-0">
                     <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>
-                        <span class="ml-2 font-bold text-xl">New Organization</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35" style="display: inline; margin-top: -1.5%" ><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
+                        <span class="ml-2 font-bold text-2xl">New Organization</span>
                     </h1>
                 </header>
                 <div class="pg-form w-full px-2">
-                    <div class="bg-white border border-gray-400 px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+                    <div class="bg-white px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
                       <div class="-mx-3 md:flex mb-6">
                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                          <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+                          <label class="block tracking-wide uppercase text-sm text-gray-800 font-bold mb-1" for="grid-first-name">
                             Name 
-                            <span class="text-red-500 text-xl">*</span>
                           </label>
-                          <input v-model="newworkspace.basic_info.name" class="appearance-none block border-gray-400 w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-first-name" type="text" placeholder="Organization Name...">
+                          <input v-model="newworkspace.basic_info.name" class="w-full bg-gray-200 text-gray-900 p-3 rounded-md focus:outline-none focus:shadow-outline" id="grid-first-name" type="text">
                           <!-- <p class="text-red text-xs italic">Please fill out this field.</p> -->
                         </div>
                         <div class="md:w-1/2 px-3">
-                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">
+                            <label class="block tracking-wide uppercase text-sm text-gray-800 font-bold mb-1" for="grid-last-name">
                                 Type
-                                <span class="text-red-500 text-xl">*</span>
                             </label>
-                            <select v-model="newworkspace.basic_info.type" class="form-select border-gray-400 mt-1 block w-full py-3">
+                            <select v-model="newworkspace.basic_info.type" class="w-full bg-gray-200 text-gray-900 p-3 rounded-md focus:outline-none focus:shadow-outline">
                                 <option value="public" class="py-4">Public</option>
                                 <option value="private">Private</option>
                             </select>
@@ -32,17 +30,16 @@
                       </div>
                       <div class="-mx-3 md:flex mb-6">
                         <div class="md:w-full px-3">
-                          <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                          <label class="block tracking-wide uppercase text-sm text-gray-800 font-bold mb-1">
                             Description
-                            <span class="text-red-500 text-xl">*</span>
                           </label>
-                          <textarea v-model="newworkspace.basic_info.description" class="form-textarea mt-1 block w-full" rows="4" placeholder="Description..."></textarea>
+                          <textarea v-model="newworkspace.basic_info.description" class="w-full bg-gray-200 text-gray-900 p-3 rounded-md focus:outline-none focus:shadow-outline" rows="4" placeholder="Description..."></textarea>
                           <!-- <p class="text-grey-dark text-xs italic mt-2">Enter a short and simple description below 200 characters.</p> -->
                         </div>
                       </div>
 
                       <!-- =====================start tags==================== -->
-                      <label class="w-full uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                      <label class="block tracking-wide uppercase text-sm text-gray-800 font-bold mb-1">
                         Add Few Members
                         <span class="text-red-500 text-xl">*</span>
                       </label>
@@ -112,6 +109,14 @@
                 </div>
             </div>
         </div>
+        <t-dialog name="register-dialog" :icon="dialog.icon" type="alert">
+            <template slot="title"> <!-- or icon-->
+                <h4 class="w-full py-3 text-center text-md" :class="[dialog.type=='info'? 'text-blue-600':'text-red-700']">
+                    {{dialog.title}}
+                </h4>
+            </template>
+            <p class="w-full text-center py-4" v-html="dialog.text"></p>
+        </t-dialog>
     </main>
 </template>
 
@@ -142,7 +147,13 @@ export default {
             },
             searchText: "",
             filteredUsers: [],
-            loadingData: false
+            loadingData: false,
+            dialog: {
+                icon: "info",
+                text: "",
+                title: "",
+                type: "info"
+            }
         }
     },
     computed: {
@@ -157,7 +168,7 @@ export default {
         ...mapMutations("all",["setUserAppFlow","setUserWorkspaces"]),
         removeMember(member){
             this.newworkspace.members.splice(this.newworkspace.members.indexOf(member),1)
-            this.filteredUsers.push(member)
+            if(member._id!=this.user._id) this.filteredUsers.push(member)
         },
         addMember(member){
             //check if the member is already added
@@ -178,6 +189,8 @@ export default {
             }
         },
         createWorkspace(){
+            this.searchText=""
+            this.filteredUsers=[]
             this.newworkspace.info_has_err = false
             if(!this.user._id) {
                 this.newworkspace.info_has_err =true
@@ -209,72 +222,72 @@ export default {
             this.newworkspace.info_has_err = false
             this.newworkspace.creating = true
             let added = this.newworkspace.members.find((user)=> user._id==this.user._id) || null
-            if(added == null ) this.newworkspace.members.push(this.user);
+            if(added == null ) this.newworkspace.members.push({
+                _id: this.user._id,
+                full_name: this.user.full_name,
+                country: this.user.country,
+                profile_pic: this.user.profile_pic
+            });
             this.newworkspace.basic_info.admin_id = this.user._id
             const Workspace = {
                 info: this.newworkspace.basic_info,
                 members: this.newworkspace.members
             }
-            Workspace.info.name.trim()
-            let array = Workspace.info.name.split(" ")
-            Workspace.info.name=""
-            for(let i=0; i<array.length;i++){
-                Workspace.info.name = i!=array.length-1? Workspace.info.name+array[i]+"_":Workspace.info.name+array[i] 
-            }
+            Workspace.info.name=Workspace.info.name.trim()
+            // let array = Workspace.info.name.split(" ")
+            // Workspace.info.name=""
+            // for(let i=0; i<array.length;i++){
+            //     Workspace.info.name = i!=array.length-1? Workspace.info.name+array[i]+"_":Workspace.info.name+array[i] 
+            // }
             this.newworkspace.info = "* Creating your Workspace... *"
-            log(Workspace)
             this.newworkspace.creating = false
-            // createNewWorkspace(this.token,Workspace)
-            // .then(response=>{
-            //     if(response.data.err){
-            //         // this.$buefy.snackbar.open({
-            //         //     message: response.data.message,
-            //         //     type: "is-danger",
-            //         //     position: "is-top",
-            //         //     actionText: "OK",
-            //         //     duration: 3000
-            //         // })
-            //         this.newworkspace.info_has_err = false
-            //         this.newworkspace.creating = false
-            //     }else{
-            //         let appFlow = this.userAppFlow
-            //         let userworkspaces = this.userWorkspaces
-            //         userworkspaces.push(response.data.data.info)
-            //         appFlow.hasWorkspaces = true
-            //         this.setUserAppFlow(appFlow)
-            //         this.setUserWorkspaces(userworkspaces)
-            //         this.newworkspace ={
-            //             info_has_err: false,
-            //             info_err_msg: "",
-            //             creating: false,
-            //             info: "",
-            //             basic_info: {
-            //                 name: "",
-            //                 description: "",
-            //                 admin_id: "",
-            //                 type: ""
-            //             },
-            //             members: []
-            //         }
-            //         // this.$buefy.dialog.alert({
-            //         //     message: `<b style='color: black;'>${response.data.message}</b>`,
-            //         //     type: "is-info",
-            //         //     animation: "dialog",
-            //         //     container: "#home-view",
-            //         //     closeOnConfirm: true,
-            //         //     canCancel: false,
-            //         //     onConfirm: ()=>{
-            //         //         Router.push({name: "SwitchWorkspace"})
-            //         //     }
-            //         // })
-            //     }
-            // })
-            // .catch((err)=>{
-            //     this.newworkspace.info_has_err = true
-            //     this.newworkspace.creating = false
-            //     this.newworkspace.info_err_msg = "Something went wrong!"
-            //     console.log(err)
-            // })
+            createNewWorkspace(this.token,{info: Workspace.info, members:  Workspace.members.sort(() => Math.random() - 0.5)})
+            .then(response=>{
+                if(response.data.err){
+                    this.dialog.icon="warning"
+                    this.dialog.text=response.data.message
+                    this.dialog.title="ERROR"
+                    this.dialog.type="error"
+                    this.$dialog.show('register-dialog')
+                    this.newworkspace.info_has_err = false
+                    this.newworkspace.creating = false
+                }else{
+                    this.newworkspace.info_has_err = false
+                    this.newworkspace.creating = false
+                    let appFlow = this.userAppFlow
+                    let userworkspaces = this.userWorkspaces
+                    userworkspaces.push(response.data.data.info)
+                    appFlow.hasWorkspaces = true
+                    this.setUserAppFlow(appFlow)
+                    this.setUserWorkspaces(userworkspaces)
+                    this.newworkspace = {
+                        info_has_err: false,
+                        info_err_msg: "",
+                        creating: false,
+                        info: "",
+                        basic_info: {
+                            name: "",
+                            description: "",
+                            admin_id: "",
+                            type: "public"
+                        },
+                        members: []
+                    }
+                    this.dialog.icon="info"
+                    this.dialog.text=response.data.message
+                    this.dialog.title="SUCCESSFULL"
+                    this.dialog.type="info"
+                    this.$dialog.show('register-dialog').then((resul) => {
+                        //next operations
+                    })
+                }
+            })
+            .catch((err)=>{
+                this.newworkspace.info_has_err = true
+                this.newworkspace.creating = false
+                this.newworkspace.info_err_msg = "* Something went wrong! *"
+                console.log(err)
+            })
         },
         getFilteredUsers() {
             let text = this.searchText

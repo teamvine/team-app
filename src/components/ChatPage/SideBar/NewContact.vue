@@ -11,20 +11,39 @@
           </span>
         </div>
         <input type="search"
+          :disabled="inputDisabled"
           class="flex-shrink flex-grow flex-auto py-2 leading-normal w-px flex-1 rounded-l-none rounded-r-none px-3 relative"
           placeholder="Type to search ..." v-on:keyup="search">
       </div>
       <div class="results">
+        <!-- SEARCH RESULTS -->
+        <p v-if="isSearching" class="text-sm tex-gray-600 font-bold py-3 px-4">Searching for Contacts...</p>
         <div v-for="result in results" :key="result._id"
-          class="flex flex-wrap items-stretch w-full relative hover:bg-gray-300 rounded cursor-pointer">
+          @click="startChat(result)"
+          class="flex flex-wrap items-stretch w-full relative hover:bg-gray-300 rounded cursor-pointer px-3">
           <div class="flex -mr-px h-auto">
             <span class="flex items-center leading-normal px-2 pr-0 whitespace-no-wrap text-grey-dark text-md">
-              <img :src="result.img" class="w-8 h-8 bg-gray-400 rounded-full  mx-auto" />
+              <img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460" class="w-8 h-8 bg-gray-400 rounded-full  mx-auto" />
             </span>
           </div>
           <div class="flex-shrink flex-grow flex-auto py-2 leading-normal w-px flex-1 px-3 relative">
-            <h3 class="font-bold text-black">{{result.name}}</h3>
-            <p class="text-gray-700">{{result.role}}</p>
+            <h3 class="font-bold text-black">{{result.full_name}}</h3>
+            <p class="text-gray-700">@{{result.display_name}}</p>
+          </div>
+        </div>
+        <!-- ===================User contacts========== -->
+        <h1 class="text-md tex-gray-600 font-bold py-3 px-4 mt-4 pb-2" v-if="userDirectChatReceivers.length>0">MY CONTACTS</h1>
+        <div v-for="contact in userDirectChatReceivers" :key="contact._id"
+          @click="startChat(contact)"
+          class="flex flex-wrap px-3 items-stretch w-full relative hover:bg-gray-300 rounded cursor-pointer">
+          <div class="flex -mr-px h-auto">
+            <span class="flex items-center leading-normal px-2 pr-0 whitespace-no-wrap text-grey-dark text-md">
+              <img src="../../../assets/images/avatar3.png" class="w-10 h-10 bg-gray-400 rounded-full  mx-auto" />
+            </span>
+          </div>
+          <div class="flex-shrink flex-grow flex-auto py-2 leading-normal w-px flex-1 px-3 relative">
+            <h3 class="font-bold text-black text-sm">{{contact.full_name}}</h3>
+            <p class="text-gray-700">@{{contact.display_name}}</p>
           </div>
         </div>
 
@@ -33,19 +52,93 @@
 </template>
 
 <script>
-const { contacts } = require('../../../testdb/db')
+import { mapGetters, mapMutations, mapState,mapActions } from "vuex"
+import {searchMembersByName} from "../../../lib/workspace"
+import { AddOrUpdateUserChats } from "../../../lib/user"
 export default {
     name: "NewContact",
-    data(){
-      return {
-        results : []
+    props: {
+      closeAllModals: {
+        type: Function,
+        required: true
       }
     },
+    data(){
+      return {
+        results : [],
+        isSearching: false,
+        inputDisabled: false
+      }
+    },
+    computed: {
+      ...mapState({
+        userDirectChatReceivers: state=> state.all.userDirectChatReceivers,
+        currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver,
+        currentChatType: state=> state.chat.currentChatType,
+      })
+    },
     methods:{
+      ...mapMutations("all",["addUserDirectChatReceiver"]),
+      ...mapGetters("all",["getToken","getUser","getCurrentWorkspace"]),
+      ...mapMutations("chat",["setCurrentChatType","setCurrentDirectChatReceiver"]),
+      ...mapActions("chat",["changeAndSetUpRoom","resetCurrentThread"]),
       search(e){
+        this.isSearching = true
         let query = e.target.value.toLowerCase()
-        this.results = contacts.filter(contact => contact.name.toLowerCase().includes(query) || contact.role.toLowerCase().includes(query))
+        searchMembersByName(this.getToken().toString(),this.getCurrentWorkspace()._id.toString(),this.getUser()._id.toString(),query)
+        .then(res=>{
+          this.isSearching = false
+          if(res.data.err){
+            console.log("Something is wrong")
+          }else{
+            this.results = res.data.data.filtered_members
+          }
+        })
+        .catch(err=>{
+          this.isSearching = false
+          console.log(err)
+          alert(err.message)
+        })
       },
+      startChat(user){
+        let isContact = this.userDirectChatReceivers.find(contact=> contact._id==user._id)
+        if(isContact!=undefined) {
+          //navigate to user chat
+          let isCurrentReceiver = this.currentDirectChatReceiver._id == user._id && this.currentChatType === "direct"
+          if(isCurrentReceiver && this.$route.params.contact_id==user._id) this.$modal.hide("newContact");
+          this.resetCurrentThread()
+          this.setCurrentDirectChatReceiver(user)
+          this.setCurrentChatType("direct")
+          this.changeAndSetUpRoom()
+          this.$modal.hide("newContact")
+          this.$router.push({
+            name: "PersonalChat",
+            params: {contact_id: user._id }
+          });
+        }else{
+          //add contact the navigate to chat
+          AddOrUpdateUserChats(this.getToken(),this.getCurrentWorkspace()._id,this.getUser()._id,[{
+            user_id: user._id.toString(),
+            active: true
+          }]).then(res=>{
+            if(res.data.err){
+              alert(res.data.message)
+            }else{
+              this.results.splice(this.results.indexOf(user),1)
+              this.addUserDirectChatReceiver(user)
+              this.resetCurrentThread()
+              this.setCurrentDirectChatReceiver(user)
+              this.setCurrentChatType("direct")
+              this.changeAndSetUpRoom()
+              this.$modal.hide("newContact")
+              this.$router.push({
+                name: "PersonalChat",
+                params: {contact_id: user._id }
+              });
+            }
+          })
+        }
+      }
     }
 }
 </script>
@@ -53,5 +146,9 @@ export default {
 <style scoped>
   .main-div{
     min-height:400px ;
+  }
+  .results {
+    height: 80vh;
+    overflow: auto;
   }
 </style>

@@ -2,11 +2,11 @@ module.exports = {
   lintOnSave: false,
 
   pwa: {
-    name: 'team',
-    themeColor: '#167df0',
-    msTileColor: '#167df0',
+    name: 'RCONNECT',
+    themeColor: '#2A68D3',
+    msTileColor: '#2A68D3',
     manifestOptions: {
-      background_color: '#167df0'
+      background_color: '#2A68D3'
     }
   }
 }

@@ -1,4 +1,4 @@
-const NProgress = require("nprogress");
+// const NProgress = require("nprogress");
 const axios = require("axios");
 
 const instance = axios.default.create();
