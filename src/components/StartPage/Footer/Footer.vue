@@ -156,7 +156,7 @@ export default {
         font-weight: bolder;
     }
     * {
-    font-family: "Nunito Sans";
+    font-family: "Lato";
     }
     .w-1\/4 {
     padding: 10px;
@@ -176,7 +176,7 @@ export default {
     }
     a {
         color: rgb(27, 27, 27,0.8);
-        font-family:Arial, Helvetica, sans-serif !important
+        font-family:"Lato" !important
     }
     @media (max-width: 642px) {
         .w-full,
