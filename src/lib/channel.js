@@ -39,8 +39,19 @@ function createNewChannel(token, channel) {
     });
 }
 
+function searchPublicChannels(token,workspace_id,text){
+    return axios.request({
+        url: baseURL + channelAPI.searchPulicChannels + "?workspace_id=" + workspace_id + "&text=" + text,
+        method: "get",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
 module.exports = {
     getMembersInChannel,
     createNewChannel,
-    addChannelMembers
+    addChannelMembers,
+    searchPublicChannels
 };

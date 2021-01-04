@@ -5,15 +5,17 @@
           <Header/>
       </div>
       <div class="chat-messages">
-        <div class="messages px-2 py-3" id="messages">
-          <div v-if="messagesLoadingProcess.isLoadingMessages">
-            Loading...
+        <div class="messages" id="messages">
+          <div v-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
+              <span class="mt-4 font-bold text-lg absolute">Loading...</span>
           </div>
-          <div class="msgs" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
+          <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
             <MessageItem v-for="(message,index) in currentChatMessages" :message="message" :key="index"/>
           </div>
-          <div v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length<1">
-            No messages
+          <div
+           class="nothing w-full h-full flex text-center justify-center content-center items-center"
+           v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length<1">
+            <div class="text-lg font-bold text-gray-700">No Messages.</div>
           </div>
         </div>
       </div>

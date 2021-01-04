@@ -56,7 +56,7 @@ export default {
   font-size: 12;
 }
 .msg-body {
-  font-size: 14px;
+  font-size: 16px;
   background-color: rgb(238, 238, 238);
   display: inline-block;
   width: auto;
