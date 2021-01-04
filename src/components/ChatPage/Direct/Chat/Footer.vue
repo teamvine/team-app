@@ -5,7 +5,7 @@
   >
     <div class="edit" id="editor" contenteditable="true" v-if="editorType=='extended'">
     </div>
-    <form>
+    <form @submit.prevent="sendMessage">
       <div
         class="icon"
         @click="showEmojis = !showEmojis"
