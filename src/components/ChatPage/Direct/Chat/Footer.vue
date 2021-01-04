@@ -5,7 +5,7 @@
   >
     <div class="edit" id="editor" contenteditable="true" v-if="editorType=='extended'">
     </div>
-    <form>
+    <form @submit.prevent="sendMessage">
       <div
         class="icon"
         @click="showEmojis = !showEmojis"
@@ -208,6 +208,7 @@
 <script>
 import {mapGetters, mapState} from "vuex"
 import {sendDirectMessage} from "../../../../lib/message"
+import {event} from "../../../../config/constants"
 export default {
   name: "Footer",
   components: {
@@ -278,12 +279,11 @@ export default {
         if(!response.data.success){
           alert(response.data.message)
         }else{
-          console.log(response.data.data.message)
+          this.$socket.client.emit(event.PERSONAL_MESSAGE, response.data.data.message);
         }
       }).catch(err=>{
         alert(err.message)
       })
-      // this.$socket.client.emit(event.PERSONAL_MESSAGE, this.newMessage);
       this.newMessage.content = ""
       this.newMessage.attachments = {
         files: [],

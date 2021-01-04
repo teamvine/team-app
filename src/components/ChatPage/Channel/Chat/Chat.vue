@@ -5,9 +5,22 @@
           <Header/>
       </div>
       <div class="chat-messages p-4">
-          <div class="messages px-2 py-3" id="messages">
-              <MessageItem v-for="(message,index) in sampleSMS" :message="message" :key="index"/>
+        <div class="messages" id="messages">
+          <div v-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
+              <span class="mt-4 font-bold text-lg absolute">Loading...</span>
           </div>
+<<<<<<< HEAD
+=======
+          <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
+            <MessageItem v-for="(message,index) in currentChatMessages" :message="message" :key="index"/>
+          </div>
+          <div
+           class="nothing w-full h-full flex text-center justify-center content-center items-center"
+           v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length<1">
+            <div class="text-lg font-bold text-gray-700">No Messages.</div>
+          </div>
+        </div>
+>>>>>>> 08b7027fe869a8651b72e6f54a113244c2527a90
       </div>
       <div :class="[chat_footer=='minimal'? 'chat-footer':'chat-footer-extended']">
           <Footer :changeFooter="changeFooter"/>
@@ -20,7 +33,7 @@
 import Header from './Header'
 import Footer from "./Footer"
 import MessageItem from './MessageItem'
-const {messages} = require('../../../../testdb/db')
+import {mapState} from "vuex"
 import { component as CodeHighlight } from 'vue-code-highlight'
 export default {
   name: "Chat",
@@ -32,9 +45,14 @@ export default {
   },
   data(){
     return {
-      chat_footer: localStorage.getItem("editor_type") || "minimal",
-      sampleSMS: messages
+      chat_footer: localStorage.getItem("editor_type") || "minimal"
     }
+  },
+  computed: {
+    ...mapState({
+      messagesLoadingProcess: state=>state.chat.messagesLoadingProcess,
+      currentChatMessages: state=> state.chat.currentChatMessages
+    })
   },
   methods: {
     changeFooter(str_type){
@@ -102,4 +120,5 @@ export default {
   overflow: hidden; 
   white-space: pre;
 }
+.nothing {}
 </style>

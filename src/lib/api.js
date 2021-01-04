@@ -33,6 +33,7 @@ module.exports = {
         getAllMembers: "/channel/all-members",
         addMembers: "/channel/add-members",
         createNewChannel: "/channel/new-channel",
+        searchPulicChannels: "/channel/search-public-by-name"
     },
     messageAPI: { //channel
         uploadAttachment: "/file/upload",

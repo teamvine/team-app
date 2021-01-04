@@ -4,11 +4,20 @@
       <div class="chat-header">
           <Header/>
       </div>
-      <div class="chat-messages p-4">
-          <div class="messages px-2 py-3" id="messages">
-              <MessageItem v-for="(message,index) in sampleSMS" :message="message" :key="index"/>
-              
+      <div class="chat-messages">
+        <div class="messages" id="messages">
+          <div v-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
+              <span class="mt-4 font-bold text-lg absolute">Loading...</span>
           </div>
+          <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
+            <MessageItem v-for="(message,index) in currentChatMessages" :message="message" :key="index"/>
+          </div>
+          <div
+           class="nothing w-full h-full flex text-center justify-center content-center items-center"
+           v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length<1">
+            <div class="text-lg font-bold text-gray-700">No Messages.</div>
+          </div>
+        </div>
       </div>
       <div :class="[chat_footer=='minimal'? 'chat-footer':'chat-footer-extended']" class="cht-foot">
           <Footer :changeFooter="changeFooter"/>
@@ -21,7 +30,7 @@
 import Header from './Header'
 import Footer from "./Footer"
 import MessageItem from './MessageItem'
-const {messages} = require('../../../../testdb/db')
+import {mapState} from "vuex"
 export default {
   name: "Chat",
   components: {
@@ -31,9 +40,14 @@ export default {
   },
   data(){
     return {
-      chat_footer: localStorage.getItem("editor_type") || "minimal",
-      sampleSMS: messages
+      chat_footer: localStorage.getItem("editor_type") || "minimal"
     }
+  },
+  computed: {
+    ...mapState({
+      messagesLoadingProcess: state=>state.chat.messagesLoadingProcess,
+      currentChatMessages: state=> state.chat.currentChatMessages
+    })
   },
   methods: {
     changeFooter(str_type){
