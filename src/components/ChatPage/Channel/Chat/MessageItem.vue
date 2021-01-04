@@ -1,9 +1,9 @@
 <template>
   <div class="message-item mt-4">
     <div class="flex msg-item-content">
-      <img :src="message.img" class="wh-40 img" />
+      <img src="../../../../assets/images/avatar3.png" class="wh-40 img" />
       <div class="flex-1 px-3">
-        <b class="px-1 txt">{{message.name}}</b>
+        <b class="px-1 txt">{{message.sender_info.full_name}}</b>
         <span class="msg-body py-0 txt px-1">
          {{message.content}}
         </span>
@@ -38,7 +38,7 @@ export default {
 }
 .msg-body {
   font-size: 16px;
-  display: inline-block;
+  display: block;
   width: auto;
   max-width: 90%;
   font-family: "Lato";

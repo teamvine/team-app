@@ -1,8 +1,8 @@
 module.exports = {
-    baseURL: "http://localhost:3000", //api server base url
-    messagesServer: "http://localhost:3001", //socket server url
-    // baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL
-    // messagesServer: "https://rconnect-backend-socket.herokuapp.com", //socket server url
+    // baseURL: "http://localhost:3000", //api server base url
+    // messagesServer: "http://localhost:3001", //socket server url
+    baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL
+    messagesServer: "https://rconnect-backend-socket.herokuapp.com", //socket server url
     loginAPI: {
         authorize: "/user/login"
     },

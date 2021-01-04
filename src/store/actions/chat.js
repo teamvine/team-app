@@ -169,6 +169,7 @@ const actions = {
      * @param {Object} message new message
      */
     socket_personalChatMessage({ state, rootState, commit, dispatch }, message) {
+        // alert("direct message")
         //this represents Store
         let user = message.receiver_id.toString() === rootState.all.user._id.toString() ? "receiver" : "sender"
         let isForMe = message.receiver_id.toString() === rootState.all.user._id.toString() || message.sender_id.toString() === rootState.all.user._id.toString()
