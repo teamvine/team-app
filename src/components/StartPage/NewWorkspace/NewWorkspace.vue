@@ -278,7 +278,7 @@ export default {
                     this.dialog.title="SUCCESSFULL"
                     this.dialog.type="info"
                     this.$dialog.show('register-dialog').then((resul) => {
-                        //next operations
+                        this.$router.push({name: "Start"})
                     })
                 }
             })

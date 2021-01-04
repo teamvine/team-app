@@ -4,11 +4,18 @@
       <div class="chat-header">
           <Header/>
       </div>
-      <div class="chat-messages p-4">
-          <div class="messages px-2 py-3" id="messages">
-              <MessageItem v-for="(message,index) in sampleSMS" :message="message" :key="index"/>
-              
+      <div class="chat-messages">
+        <div class="messages px-2 py-3" id="messages">
+          <div v-if="messagesLoadingProcess.isLoadingMessages">
+            Loading...
           </div>
+          <div class="msgs" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
+            <MessageItem v-for="(message,index) in currentChatMessages" :message="message" :key="index"/>
+          </div>
+          <div v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length<1">
+            No messages
+          </div>
+        </div>
       </div>
       <div :class="[chat_footer=='minimal'? 'chat-footer':'chat-footer-extended']" class="cht-foot">
           <Footer :changeFooter="changeFooter"/>
@@ -21,7 +28,7 @@
 import Header from './Header'
 import Footer from "./Footer"
 import MessageItem from './MessageItem'
-const {messages} = require('../../../../testdb/db')
+import {mapState} from "vuex"
 export default {
   name: "Chat",
   components: {
@@ -31,9 +38,14 @@ export default {
   },
   data(){
     return {
-      chat_footer: localStorage.getItem("editor_type") || "minimal",
-      sampleSMS: messages
+      chat_footer: localStorage.getItem("editor_type") || "minimal"
     }
+  },
+  computed: {
+    ...mapState({
+      messagesLoadingProcess: state=>state.chat.messagesLoadingProcess,
+      currentChatMessages: state=> state.chat.currentChatMessages
+    })
   },
   methods: {
     changeFooter(str_type){
