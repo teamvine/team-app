@@ -79,7 +79,7 @@
                         </div> -->
                     </div>
                     <div x-data={show:false} class="rounded-sm">
-                        <div class="px-5 py-4 headingOne">
+                        <div class="px-5 py-4 headingOne border-b">
                             <button @click="show=!show" class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
                                 <svg class="icn1" xmlns="http://www.w3.org/2000/svg" style="display: inline-block" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M22 11v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9h20zm0-2H2V4a1 1 0 0 1 1-1h7.414l2 2H21a1 1 0 0 1 1 1v3z"/></svg>
                                 <b class="font-bold ml-2 text-md">Shared Files</b>
@@ -91,7 +91,7 @@
                         </div> -->
                     </div>
                     <!-- ======================================================================= -->
-                    <div class="bg-gray-100 w-full rounded px-6">
+                    <!-- <div class="bg-gray-100 w-full rounded px-6">
                         <div class="border-l-4 border-red-400 -ml-6 pl-6 flex items-center justify-between my-4">
                             <div class="font-semibold text-gray-800">More Activity</div>
                             <div class="text-red-400">See all</div>
@@ -141,7 +141,7 @@
                             </div>
                             <div class="text-red-400">30 Posts</div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -174,6 +174,10 @@ button svg {
 }
 .headingOne {
     border: 1px solid rgb(0, 0, 0, 0.1);
+    border-bottom: 0px;
+}
+.border-b {
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1) !important;
 }
 .headingOne button{
     position: relative;
