@@ -26,8 +26,8 @@ export default {
 </script>
 
 <style scoped>
-.message-item {
-  font-family: "Lato";
+.message-item,.txt,.msg-body  {
+  font-family: "Lato",sans-serif !important;
 }
 .msg-item-content {
   position: relative;

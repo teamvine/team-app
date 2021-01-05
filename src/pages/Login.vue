@@ -7,7 +7,7 @@
             <h2 class="font-bold app-title">RCONNECT</h2>
 
             <p class="mt-8 desc bring-more">
-              Bring your Teams,Companies,Schools and Other groups to join
+              Bring your teams,companies,schools and all your groups to join
               RCONNECT where sharing skills and ideas and your staffs made
               easier and secure.
             </p>
