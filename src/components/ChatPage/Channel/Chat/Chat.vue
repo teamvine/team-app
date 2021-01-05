@@ -117,5 +117,4 @@ export default {
   overflow: hidden; 
   white-space: pre;
 }
-.nothing {}
 </style>
