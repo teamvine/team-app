@@ -29,11 +29,11 @@
       <h2 class="text-sm leading-6 font-bold text-gray-700" v-if="searching">Searching...</h2>
       <h2 class="text-lg leading-6 font-bold text-black" v-if="results.length>0">Search results ({{results.length}})</h2>
       <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4" v-if="results.length>0">
-        <ChannelItem v-for="channel in results" :searchResult="true" :channel="channel" :key="channel._id"/>
+        <ChannelItem :onChannelClick="onChannelClick" v-for="channel in results" :searchResult="true" :channel="channel" :key="channel._id"/>
       </ul>
       <h2 class="text-lg leading-6 font-bold text-black">My Channels</h2>
       <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
-        <ChannelItem v-for="channel in currentWorkspaceJoinedChannels" :channel="channel" :key="channel._id"/>
+        <ChannelItem v-for="channel in currentWorkspaceJoinedChannels" :channel="channel" :onChannelClick="onChannelClick" :key="channel._id"/>
         <li class="hover:shadow-lg flex rounded-lg">
           <div @click="newChannel"
             class="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4">
@@ -52,6 +52,12 @@ export default {
     name: "NewChannel", 
     components: {
       ChannelItem: ()=> import("./ChannelItem")
+    },
+    props: {
+      onChannelClick: {
+        type: Function,
+        required: true
+      }
     },   
     data(){
       return {

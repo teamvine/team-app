@@ -40,7 +40,10 @@ const mutations = {
     },
     addUserDirectChatReceiver: (state,receiver)=>{
         state.userDirectChatReceivers.push(receiver)
-    }
+    },
+    addCurrentWorkspaceJoinedChannel: (state,channel)=>{
+        state.currentWorkspaceJoinedChannels.push(channel)
+    },
 }
 
 export default mutations

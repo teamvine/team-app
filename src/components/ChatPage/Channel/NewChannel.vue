@@ -3,7 +3,7 @@
       <nav class="flex drag-handler border-b items-center justify-between flex-wrap bg-teal p-6 py-2">
         <div class="flex items-center flex-no-shrink text-black mr-6">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 8.994A5.99 5.99 0 0 1 8 3h8c3.313 0 6 2.695 6 5.994V21H8c-3.313 0-6-2.695-6-5.994V8.994zM20 19V8.994A4.004 4.004 0 0 0 16 5H8a3.99 3.99 0 0 0-4 3.994v6.012A4.004 4.004 0 0 0 8 19h12zm-6-8h2v2h-2v-2zm-6 0h2v2H8v-2z"/></svg>
-          <span class="text-2xl tracking-tight ml-3 font-bold">Create Channel</span>
+          <span class="text-2xl tracking-tight ml-3 font-bold heading">Create Channel</span>
         </div>
         <div class="block">
           <button @click="closeAndGoBack" title="cancel" class="flex text-2xl ring-0 border-none items-center px-3 py-1 font-bold hover:text-gray-500">
@@ -13,7 +13,7 @@
       </nav>
     <div class="new-channel-page h-auto">
         <div class="flex flex-col bg-white px-4 sm:px-6 md:px-8 lg:px-10 py-4 rounded-md w-full">
-            <h4 class="text-gray-700 mb-5">
+            <h4 class="text-gray-900 font-semibold mb-5 info">
                 Channels helps the teams in the organization to communicate easily.
                 They're groups of specific members in whole the organization.
             </h4>
@@ -45,31 +45,11 @@
             <div v-if="report" :class="[report_type]" class="flex text-center mb-3 py-3 px-4 flex-wrap content-center justify-center w-full">
                 {{report}}
             </div>
-            <!-- <div class="flex flex-col mb-6 h-auto">
-                <label  class="mb-1 rounded text-md tracking-wide text-gray-800 font-bold">Add members:</label>
-                <div class="members text-sm sm:text-base rounded pl-2 pr-2 border border-gray-400 w-full py-2 h-auto focus:outline-none focus:border-blue-400 py-4">
-                    <div class="recently-added">
-                        <div v-for="member in addedMembers" :key="member._id"  class="member px-3">                      
-                            <span class="added-member">{{member.name}}</span>
-                            <button class="remove-member ml-1 text-red-600 hover:text-red-400 font-lg" @click="removeMember(member._id)">&times;</button>
-                        </div>
-                    </div>
-                    <div class="">
-                        <input type="text" id="members" ref="searchMember" class="border-none w-full" v-model="search" @keyup="suggestContact(search)" />
-                    </div>
-                    <div :class="searching ? 'search-suggestion bg-white border-2 border-gray-100 border-top-none  mb-3 rounded-lg':'d-none'">
-                        <p class="suggested hover:bg-gray-300 p-2 mb-3" v-for="contact in suggestedContacts" :key="contact._id" @click="addMember(contact._id)">
-                            <img :src="contact.img" :alt="contact.name" class="rounded-full inline" width="30" height="30" />
-                            <span class="ml-2">{{contact.name}}</span>
-                        </p>
-                    </div>
-                </div>
-            </div> -->
             <div class="create w-full flex flex-wrap content-end justify-end pr-4">
-                <button @click="closeAndGoBack" class="border-solid border-2 border-red-700 bg-red-700 hover:bg-red-800 hover:border-red-800 mr-4 text-white group flex items-center rounded-md text-sm font-medium px-4 py-2">
+                <button @click="closeAndGoBack" class="border-solid border-2 border-red-700 bg-red-700 hover:bg-red-800 hover:border-red-800 mr-4 text-white group flex items-center rounded-md text-sm font-medium px-4 py-2 font-bold">
                     Cancel
                 </button>
-                <button :disabled="btnDisabled" @click="createChannel" class="border-solid border-2 border-blue-500 bg-blue-500 hover:bg-blue-700 text-white group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2">
+                <button :disabled="btnDisabled" @click="createChannel" class="border-solid border-2 border-blue-500 bg-blue-500 hover:bg-blue-700 text-white group flex items-center rounded-md bg-light-blue-100 text-light-blue-600 text-sm font-medium px-4 py-2 font-bold">
                     Create
                 </button>
             </div>
@@ -100,10 +80,6 @@ export default {
                 workspace_id: '',
                 workspace_code: ""
             },
-            // search:" ",
-            // searching:false,
-            // suggestedContacts:[],
-            // addedMembers:[]
         }
     },
     mounted(){
@@ -179,24 +155,6 @@ export default {
                 }
             })
         }
-        // suggestContact(searchQuery){
-        //     this.searching=true
-        //     this.suggestedContacts = contacts.filter(contact => contact.name != searchQuery)
-        // },
-        // addMember(contactId){            
-        //     //check if contact was already added
-        //     if( (this.addedMembers.filter(user => user._id == contactId)).length > 0 ) return
-
-        //     let contact = contacts.filter(user => user._id == contactId)[0]
-        //     this.addedMembers.push(contact) 
-            
-        //     this.searching = false
-        //     this.search = ""
-        //     this.$refs.searchMember.focus()
-        // },
-        // removeMember(memberId){
-        //     this.addedMembers = this.addedMembers.filter(member => member._id != memberId)
-        // }
     }
 }
 </script>
@@ -225,5 +183,11 @@ export default {
     }
     .d-none{
         display: none;
+    }
+    .info,.heading {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .info {
+        font-weight: normal;
     }
 </style>

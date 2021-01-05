@@ -1,9 +1,9 @@
 <template>
   <div class="message-item mt-4">
     <div class="flex msg-item-content">
-      <img src="../../../../assets/images/avatar3.png" class="wh-40 img" />
+      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" />
       <div class="flex-1 px-3">
-        <b class="px-1 txt">{{message.sender_info.full_name}}</b>
+        <b class="px-1 txt user-name">{{message.sender_info.full_name}}</b>
         <span class="msg-body py-0 txt px-1">
          {{message.content}}
         </span>
@@ -35,6 +35,10 @@ export default {
 .txt {
   font-size: 14px;
   font-family: "Lato";
+}
+.user-name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold !important;
 }
 .msg-body {
   font-size: 16px;

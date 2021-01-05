@@ -119,7 +119,7 @@
           </button>
         </div>
       </nav>
-      <BrowseChannel />
+      <BrowseChannel  :onChannelClick="onChannelClick"/>
     </vue-modal>
     <vue-modal style="z-index: 2500" class="py-2" name="newContact" :scrollable="true" height="auto" draggable=".drag-handler" :reset="true" :classes="[]" :adaptive="true">
       <nav class="flex drag-handler items-center justify-between flex-wrap p-3 py-2">
@@ -195,6 +195,7 @@ export default {
       this.setCurrentChannel(channel)
       this.setCurrentChatType("channel")
       this.changeAndSetUpRoom()
+      this.$modal.hide("browseChannel")
       this.$router.push({
         name: "ChannelChat",
         params: { channel_code: channel.channel_code }
