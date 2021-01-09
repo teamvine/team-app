@@ -148,10 +148,11 @@ export default {
                         this.dialog.message = "You switched to "+newOrganization.name
                         console.log(this.currentWorkspaceJoinedChannels);
                         this.$dialog.show("switch-dialog").then(()=>{
-                            this.$router.push({
-                                name: "ChannelChat",
-                                params: {channel_code: this.currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}
-                            })
+                            location.reload(true)
+                            // this.$router.push({
+                            //     name: "ChannelChat",
+                            //     params: {channel_code: this.currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}
+                            // })
                         })
                     }
                 })
