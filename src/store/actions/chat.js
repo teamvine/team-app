@@ -103,17 +103,22 @@ const actions = {
                     GotError: false
                 })
             }
+            let isCurrent = state.currentChannel._id
             getAllMessagesInChannel(rootState.all.token, rootState.all.currentWorkspace._id, state.currentChannel._id)
                 .then(res => {
                     // state.messagesLoadingProcess.noMore = res.data.data.noMore
                     let messages = res.data.data.messages
                     commit("setMessages", { access_id: state.currentChannel._id.toString(), messages: messages })
-                    commit("setCurrentChatMessages", state.currentChannel._id.toString())
-                    commit("setMessagesLoadingProcess", {
-                        isLoadingMessages: false,
-                        gotMessages: true,
-                        GotError: false
-                    })
+                    if(isCurrent == state.currentChannel._id) {
+                        let messageList = document.querySelector("#messages");
+                        commit("setCurrentChatMessages", state.currentChannel._id.toString())
+                        commit("setMessagesLoadingProcess", {
+                            isLoadingMessages: false,
+                            gotMessages: true,
+                            GotError: false
+                        })
+                        messageList.scrollTop = messageList.scrollHeight;
+                    }
                 })
                 .catch(err => {
                     alert("Something went wrong or the server is not currently available.")
@@ -144,17 +149,22 @@ const actions = {
                     GotError: false
                 })
             }
+            let isCurrent = state.currentDirectChatReceiver._id.toString()
             getPersonalChatMessages(rootState.all.token, rootState.all.currentWorkspace._id, rootState.all.user._id, state.currentDirectChatReceiver._id)
                 .then(res => {
                     // state.messagesLoadingProcess.noMore = res.data.data.noMore
                     let messages = res.data.data.messages
                     commit("setMessages", { access_id: state.currentDirectChatReceiver._id.toString(), messages: messages })
-                    commit("setCurrentChatMessages", state.currentDirectChatReceiver._id.toString())
-                    commit("setMessagesLoadingProcess", {
-                        isLoadingMessages: false,
-                        gotMessages: true,
-                        GotError: false
-                    })
+                    if(isCurrent == state.currentDirectChatReceiver._id.toString()){
+                        let messageList = document.querySelector("#messages");
+                        commit("setCurrentChatMessages", state.currentDirectChatReceiver._id.toString())
+                        commit("setMessagesLoadingProcess", {
+                            isLoadingMessages: false,
+                            gotMessages: true,
+                            GotError: false
+                        })
+                        messageList.scrollTop = messageList.scrollHeight;
+                    }
                 })
                 .catch(err => {
                     alert("Something went wrong or the server is not currently available.")

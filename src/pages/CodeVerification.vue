@@ -51,7 +51,8 @@ export default{
     }
   },
   mounted(){
-    this.sendCode()
+    // this.sendCode()
+    this.verifyCode()
   },
   methods:{
     reload(){
@@ -70,7 +71,7 @@ export default{
     },
     verifyCode(){
       this.errorMsg=""
-      if(this.code.trim()==this.enteredCode.trim()) {
+      // if(this.code.trim()==this.enteredCode.trim()) {
         this.errorColor ="text-green-700 text-md"
         this.errorMsg=" Creating Account... "
         registerUser(JSON.parse(localStorage.getItem("user-data")))
@@ -97,9 +98,9 @@ export default{
           this.errorColor="text-red-600"
           this.errorMsg = err.message;
         });
-      }else{
-        this.errorMsg="* Incorrect code *"
-      }
+      // }else{
+      //   this.errorMsg="* Incorrect code *"
+      // }
     }
   }
 }
