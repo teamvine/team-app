@@ -1,6 +1,7 @@
 <template>
   <div class="Main-view">
-    <div class="main grid">
+    <h1 class="mt-8 ml-4 font-bold text-green-600">Creating account...</h1>
+    <div class="main grid" v-show="false">
       <img class="avatar" src="../assets/images/codeavatar.png" alt="">
       <h1 class="py-3">Email Verification</h1>
       <p class="mt-4">
