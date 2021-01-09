@@ -209,9 +209,11 @@
 import {mapGetters, mapState} from "vuex"
 import {sendDirectMessage} from "../../../../lib/message"
 import {event} from "../../../../config/constants"
+import {VEmojiPicker} from 'v-emoji-picker';
 export default {
   name: "Footer",
   components: {
+    VEmojiPicker
   },
   props: {
     changeFooter: Function
