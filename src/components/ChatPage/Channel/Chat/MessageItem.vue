@@ -3,23 +3,28 @@
     <div class="flex msg-item-content">
       <img src="../../../../assets/images/avatar4.png" class="wh-40 img" />
       <div class="flex-1 px-3">
-        <b class="px-1 txt user-name">{{message.sender_info.full_name}}</b>
+        <b class="px-1 txt user-name">{{message.sender_info.full_name}}</b> <span class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>
         <span class="msg-body py-0 txt px-1">
          {{message.content}}
         </span>
-        <span class="msg-date mt-2 px-2">10:05 AM</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {Filters} from '../../../../lib/functions'
 export default {
   name: "MessageItem",
   props: {
     message: {
       type: Object,
       required: true
+    }
+  },
+  filters: {
+    formatDate: (value)=>{
+      return Filters.formatTimestamp_v2(value)
     }
   }
 };
@@ -37,7 +42,7 @@ export default {
   font-family: "Lato";
 }
 .user-name {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif !important;
   font-weight: bold !important;
 }
 .msg-body {
@@ -49,7 +54,7 @@ export default {
 }
 .msg-date {
   width: 100%;
-  display: block;
+  /* display: block; */
   font-size: 12px;
   font-family: "LatoBold";
 }
