@@ -3,7 +3,7 @@
         <div class="w-full h-full flex flex-wrap">
             <div class="w-full content-center flex-wrap h-full flex px-8 sm:px-20 sm:w-1/2 md:w-2/4 lg:w-2/4">
                 <h1 class="font-bold text-4xl w-full sm-txt-center mt-20 pt-8">Welcome</h1>
-                <h1 class="mt-3">
+                <h1 class="mt-3 text-lg">
                     Oraginze your Teams,Companies,Schools and Other groups on
                     RCONNECT where sharing skills and ideas and your work made
                     easier and secure. You haven't joined any Organization yet. Create
