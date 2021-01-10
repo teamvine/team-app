@@ -1,11 +1,12 @@
 <template>
-  <div class="message-item mt-4">
+  <div class="message-item" :class="[sameToPrevious? 'mt-1':'mt-4']">
     <div class="flex msg-item-content">
-      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" />
+      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToPrevious"/>
+      <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
-        <b class="px-1 txt user-name">{{message.sender_info.full_name}}</b> <span class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>
+        <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.full_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>
         <span class="msg-body py-0 txt px-1">
-         {{message.content}}
+          {{message.content}}
         </span>
       </div>
     </div>
@@ -20,7 +21,8 @@ export default {
     message: {
       type: Object,
       required: true
-    }
+    },
+    sameToPrevious: Boolean
   },
   filters: {
     formatDate: (value)=>{
@@ -63,6 +65,9 @@ export default {
   height: 2.4em;
   border-radius: 10px;
   margin-bottom: auto;
+}
+.w-40 {
+  width: 2.4em;
 }
 .media-body {
   flex: 1;

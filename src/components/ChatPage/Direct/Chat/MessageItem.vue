@@ -1,7 +1,8 @@
 <template>
   <div class="message-item mt-4">
     <div class="flex msg-item-content" v-if="message.sender_id!=user._id">
-      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" />
+      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToNext"/>
+      <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
         <span class="text-gray-800 msg-body py-2 inter px-4">
          {{message.content}}
@@ -18,7 +19,8 @@
         </span>
         <span class="msg-date mt-2">{{message.sent_at | formatDate}}</span>
       </div>
-      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" />
+      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToNext"/>
+      <span class="w-40" v-else>&emsp;</span>
     </div>
   </div>
 </template>
@@ -32,7 +34,8 @@ export default {
     message: {
       type: Object,
       required: true
-    }
+    },
+    sameToNext: Boolean
   },
   computed: {
     ...mapState({
@@ -82,6 +85,9 @@ export default {
   height: 2.4em;
   border-radius: 50%;
   margin-top: auto;
+}
+.w-40 {
+  width: 2.4em;
 }
 .media-body {
   flex: 1;
