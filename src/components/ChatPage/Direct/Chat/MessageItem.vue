@@ -1,7 +1,7 @@
 <template>
   <div class="message-item mt-4">
     <div class="flex msg-item-content" v-if="message.sender_id!=user._id">
-      <img src="../../../../assets/images/avatar3.png" class="wh-40 img" />
+      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" />
       <div class="flex-1 px-3">
         <span class="text-gray-800 msg-body py-2 inter px-4">
          {{message.content}}
@@ -18,7 +18,7 @@
         </span>
         <span class="msg-date mt-2">10:05 AM</span>
       </div>
-      <img src="../../../../assets/images/avatar3.png" class="wh-40 img" />
+      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" />
     </div>
   </div>
 </template>

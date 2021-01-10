@@ -52,7 +52,8 @@ export default {
 }
 .contact-name {
   font-weight: 600;
-  /* font-family: 'Roboto'; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold !important;
 }
 .contact-last-message {
   font-weight: normal;

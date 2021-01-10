@@ -1,13 +1,7 @@
 <template>
     <div class="flex flex-col justify-between w-screen h-screen">
-        <nav class="bg-transparent">
-            <div class="py-3 px-6">
-                <p class="font-bold">404 Not Found</p>
-            </div>
-        </nav>
-
-        <div class="flex">
-            <div class="w-full flex items-center justify-center sm:flex-row flex-col px-4 py-4">
+        <div class="flex m-auto">
+            <div class="w-full flex items-center justify-center sm:flex-row flex-col px-4 py-4 m-auto">
                 <div class="left flex">
                     <!-- <img src="./static/Scarecrow.png" class="md:h-80 h-64 mb-5 sm:mr-20" alt="image"> -->
                 </div>

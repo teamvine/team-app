@@ -9,8 +9,6 @@
           <div v-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
               <span class="mt-4 font-bold text-lg absolute">Loading...</span>
           </div>
-<<<<<<< HEAD
-=======
           <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
             <MessageItem v-for="(message,index) in currentChatMessages" :message="message" :key="index"/>
           </div>
@@ -20,7 +18,6 @@
             <div class="text-lg font-bold text-gray-700">No Messages.</div>
           </div>
         </div>
->>>>>>> 08b7027fe869a8651b72e6f54a113244c2527a90
       </div>
       <div :class="[chat_footer=='minimal'? 'chat-footer':'chat-footer-extended']">
           <Footer :changeFooter="changeFooter"/>
@@ -120,5 +117,4 @@ export default {
   overflow: hidden; 
   white-space: pre;
 }
-.nothing {}
 </style>

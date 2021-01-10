@@ -31,22 +31,23 @@
             <p class="text-gray-700">@{{result.display_name}}</p>
           </div>
         </div>
-        <!-- ===================User contacts========== -->
-        <h1 class="text-md tex-gray-600 font-bold py-3 px-4 mt-4 pb-2" v-if="userDirectChatReceivers.length>0">MY CONTACTS</h1>
-        <div v-for="contact in userDirectChatReceivers" :key="contact._id"
-          @click="startChat(contact)"
-          class="flex flex-wrap px-3 items-stretch w-full relative hover:bg-gray-300 rounded cursor-pointer">
-          <div class="flex -mr-px h-auto">
-            <span class="flex items-center leading-normal px-2 pr-0 whitespace-no-wrap text-grey-dark text-md">
-              <img src="../../../assets/images/avatar3.png" class="w-10 h-10 bg-gray-400 rounded-full  mx-auto" />
-            </span>
+        <!-- ===================USER CONTACTS========== -->
+        <div class="w-full rounded px-6 mt-4" v-if="userDirectChatReceivers.length>0">
+          <div class="pl-4 bg-gray-100 flex items-center justify-between mt-2">
+            <div class="text-md tex-gray-600 font-bold py-1 py-4">MY CONTACTS</div>
           </div>
-          <div class="flex-shrink flex-grow flex-auto py-2 leading-normal w-px flex-1 px-3 relative">
-            <h3 class="font-bold text-black text-sm">{{contact.full_name}}</h3>
-            <p class="text-gray-700">@{{contact.display_name}}</p>
+          <div class="flex items-center justify-between hover:bg-gray-100 py-3 px-6 border-b-1" 
+          v-for="contact in userDirectChatReceivers" :key="contact._id">
+            <div class="w-16">
+              <img class="w-12 h-12 rounded-full" src="https://source.unsplash.com/50x50/?nature">
+            </div>
+            <div class="flex-1 pl-2">
+              <div class="text-black font-semibold">{{contact.full_name}}</div>
+              <div class="text-gray-600 font-thin">@{{contact.display_name}}</div>
+            </div>
+            <button @click="startChat(contact)">Message</button>
           </div>
         </div>
-
       </div>
     </div>
 </template>

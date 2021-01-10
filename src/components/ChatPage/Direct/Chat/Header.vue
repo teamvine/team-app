@@ -135,6 +135,7 @@ export default {
   display: block;
   margin-bottom: 0px !important;
   margin-top: -4px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .names small {
   display: block;
