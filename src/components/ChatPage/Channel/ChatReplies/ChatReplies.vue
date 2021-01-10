@@ -1,7 +1,7 @@
 <template>
   <div class="replies">
     <div class="chat-detls flex flex-wrap ">
-
+      replies
     </div>
   </div>
 </template>
