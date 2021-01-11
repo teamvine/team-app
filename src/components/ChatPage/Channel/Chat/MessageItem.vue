@@ -1,5 +1,5 @@
 <template>
-  <div class="message-item" :class="[sameToPrevious? 'mt-1':'mt-4']">
+  <div class="message-item hover:bg-gray-100" :class="[sameToPrevious? 'mt-1':'mt-4']">
     <div class="flex msg-item-content">
       <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToPrevious"/>
       <span class="w-40" v-else>&emsp;</span>
@@ -9,6 +9,12 @@
           {{message.content}}
         </span>
       </div>
+    </div>
+    <div class="menu bg-indigo-100 flex px-3 py-1 rounded-lg">
+      <span class="hover:bg-indigo-200 cursor-pointer"><i class="ri-reply-line"></i></span>
+      <span class="hover:bg-indigo-200 cursor-pointer"><i class="ri-save-line"></i></span>
+      <span class="hover:bg-indigo-200 cursor-pointer"><i class="ri-delete-bin-6-line"></i></span>
+      <span class="hover:bg-indigo-200 cursor-pointer"><i class="ri-menu-2-line"></i></span>
     </div>
   </div>
 </template>
@@ -34,6 +40,7 @@ export default {
 
 <style scoped>
 .message-item,.txt,.msg-body  {
+  position: relative;
   font-family: "Lato",sans-serif !important;
 }
 .msg-item-content {
@@ -80,5 +87,23 @@ export default {
   /* position: absolute; */
   background-color: rgb(0, 0, 0,0.1);
   bottom: 0;
+}
+
+.menu {
+  position: absolute;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+}
+.menu span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+.message-item:hover .menu {
+  display: block;
 }
 </style>
