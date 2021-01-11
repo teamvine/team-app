@@ -1,37 +1,37 @@
 <template>
-  <div class="details">
+  <div class="details" v-if="show">
     <div class="chat-detls pl-2 pb-2 flex flex-wrap">
-      <div class="user-card shadow-md rounded-md bg-white mr-2">
+      <div class="user-card shadow-md rounded-sm bg-white mr-2">
         <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
-          <div class="w-full md:w-auto py-3 pl-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
+          <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar('')">
+            &times;
           </div>
-          <div class="w-full md:w-full font-bold py-2 text-center font-custom">Chat Details</div>
+          <div class="w-full md:w-full font-bold py-3 text-center font-custom">Chat Details</div>
         </div>
         <div class="user-picture rounded-t-md">
           <img
-            src="../../../../assets/images/avatar3.png"
-            class="opacity-50"
+            src="../../../../assets/images/avatar4.png"
+            class="opacity-80"
             :alt="currentDirectChatReceiver.full_name"
           />
         </div>
         <div class="mt-8 w-full h-full pb-3">
             <div class="mt-4 text-center pt-3 who-is-chating">
                 <h1 class="font-bold font-custom">{{currentDirectChatReceiver.full_name}}</h1>
-                <span class="text-gray-800 text-sm persons-role font-bold">Ui/Ux &amp; backend developer</span>
+                <!-- <span class="text-gray-800 text-sm persons-role font-bold">Ui/Ux &amp; backend developer</span> -->
             </div>
             <hr class="mt-5 mb-2"/>
             <div class="more-info mt-3">
               <div class="phone">
-                <p class="border-bottom p-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon text-gray-800" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm17 4.238l-7.928 7.1L4 7.216V19h16V7.238zM4.511 5l7.55 6.662L19.502 5H4.511z"/></svg>
-                  <span class="ml-3 text-gray-700">{{currentDirectChatReceiver.email}}</span>
+                <p class="border-bottom p-3 py-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon text-black" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm17 4.238l-7.928 7.1L4 7.216V19h16V7.238zM4.511 5l7.55 6.662L19.502 5H4.511z"/></svg>
+                  <span class="ml-3 text-gray-900">{{currentDirectChatReceiver.email}}</span>
                 </p>
               </div>
               <div class="phone">
-                <p class="border-bottom p-3 pt-1">
-                  <svg class="svg-icon address text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.364 17.364L12 23.728l-6.364-6.364a9 9 0 1 1 12.728 0zM12 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
-                  <span class="ml-3 text-gray-700 persons-address">Live in Rwanda</span>
+                <p class="border-bottom p-3 py-1">
+                  <svg class="svg-icon address text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.364 17.364L12 23.728l-6.364-6.364a9 9 0 1 1 12.728 0zM12 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                  <span class="ml-3 text-gray-900 persons-address">Live in Rwanda</span>
                 </p>
               </div>
             </div>
@@ -59,7 +59,11 @@
 <script>
 import {mapState} from "vuex"
 export default {
-  name: "ChatDetails", 
+  name: "ChatDetails",
+  props: {
+    toggleRightSidebar: Function,
+    show: Boolean
+  },
   components:{
     SharedDocs: ()=> import("./files/SharedDocs"),
     SharedImages: ()=> import("./files/SharedImages")

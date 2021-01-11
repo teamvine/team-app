@@ -1,8 +1,9 @@
 <template>
   <div class="channel-chat-view">
       <div class="main-channel-chat">
-            <Chat/>
-            <ChatDetails/>
+            <Chat :toggleChatDetails="toggleChatDetails"/>
+            <ChatDetails :show="showRightSidebar=='chatDetails'? true:false" :toggleRightSidebar="toggleRightSidebar"/>
+            <ChatReplies :show="showRightSidebar=='chatReplies'? true:false" :toggleRightSidebar="toggleRightSidebar"/>
             <router-view></router-view>
       </div>
   </div>
@@ -18,6 +19,12 @@ export default {
     components: {
         Chat,ChatDetails,ChatReplies
     },
+    data() {
+        return {
+            showRightSidebar: localStorage.getItem("showRightSidebar") || ""
+            // showRightSidebar: "chatReplies"
+        }
+    },
     mounted(){
         this.initializeChat()
     },
@@ -29,6 +36,19 @@ export default {
     methods: {
         ...mapMutations("chat",["setCurrentChannel","setCurrentChatType"]),
         ...mapActions("chat",["changeAndSetUpRoom","resetCurrentThread"]),
+        toggleRightSidebar(sidebar){
+            this.showRightSidebar = sidebar.toString()
+            if(sidebar.toString()=="chatDetails") localStorage.setItem("showRightSidebar","chatDetails")
+        },
+        toggleChatDetails(){
+            if(this.showRightSidebar!="chatDetails") {
+                this.showRightSidebar="chatDetails"
+                localStorage.setItem("showRightSidebar","chatDetails")
+            }else {
+                this.showRightSidebar = ""
+                localStorage.setItem("showRightSidebar","")
+            }
+        },
         initializeChat(){
             let channel = this.currentWorkspaceJoinedChannels.find(channel=> channel.channel_code==this.$route.params.channel_code)
             if(channel==undefined){
