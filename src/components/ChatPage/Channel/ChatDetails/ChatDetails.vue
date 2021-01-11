@@ -44,7 +44,7 @@
                     </div>
                     <div x-data={show:false} class="rounded-sm">
                         <div class="px-5 py-4 headingOne">
-                            <button @click="show=!show" class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
+                            <button @click="addMembers" class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
                                 <svg class="icn1" xmlns="http://www.w3.org/2000/svg" style="display: inline-block" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M14 14.252V22H4a8 8 0 0 1 10-7.748zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm6 4v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z"/></svg>
                                 <b class="font-bold ml-2 text-md">Add Members</b>
                                 <svg class="icn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z"/></svg>
@@ -145,25 +145,48 @@
                 </div>
             </div>
         </div>
+        
+    <vue-modal style="z-index: 2500" class="py-6 col-lg-9" name="addMembers" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
+      <nav class="flex drag-handler border-b items-center justify-between flex-wrap bg-teal p-6 py-2">
+        <div class="flex items-center flex-no-shrink text-black mr-6">
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 8.994A5.99 5.99 0 0 1 8 3h8c3.313 0 6 2.695 6 5.994V21H8c-3.313 0-6-2.695-6-5.994V8.994zM20 19V8.994A4.004 4.004 0 0 0 16 5H8a3.99 3.99 0 0 0-4 3.994v6.012A4.004 4.004 0 0 0 8 19h12zm-6-8h2v2h-2v-2zm-6 0h2v2H8v-2z"/></svg> -->
+          <span class="text-2xl tracking-tight ml-3 font-bold">Add Members</span>
+        </div>
+        <div class="block">
+          <button @click="$modal.hide('addMembers')" title="cancel" class="flex text-2xl ring-0 border-none items-center px-3 py-1 font-bold hover:text-gray-500">
+           &times;
+          </button>
+        </div>
+      </nav>
+      <invite-member />
+      <!-- <BrowseChannel  :onChannelClick="onChannelClick"/> -->
+    </vue-modal>
   </div>
 </template>
 
 <script>
-    import { component as CodeHighlighter} from 'vue-code-highlight'
-    import {mapState} from "vuex"
-    export default {
-        name: "ChatDetails",
-        components:{
-            CodeHighlighter
-        },
-        computed: {
-            ...mapState({
-                currentChannel: state=> state.chat.currentChannel
-            })
+import { mapState } from "vuex"
+
+import InviteMember from '../InviteMember.vue'
+export default {
+    name: "ChatDetails",
+    components: {
+        InviteMember
+    },
+    computed: {
+        ...mapState({
+            currentChannel: state => state.chat.currentChannel
+        })
+    },
+
+    methods: {
+        addMembers() {
+            this.$modal.hideAll()
+            this.$modal.show("addMembers")
         }
     }
+}
 </script>
-
 <style scoped>
 
 button svg {
