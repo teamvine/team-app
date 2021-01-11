@@ -36,7 +36,8 @@
 
 <script>
 import { mapMutations,mapState } from "vuex"
-import { getUsersByAnyName } from '../../../lib/user'
+
+import {searchMembersByName} from "../../../lib/workspace"
 export default {
     components:{
     },
@@ -61,10 +62,13 @@ export default {
         search(){
             if(this.searchText.trim().length <= 1) return
 
-            getUsersByAnyName(this.token,this.searchText)
+            searchMembersByName(this.token,this.userAppFlow.currentWorkspace_id,this.user._id, this.searchText)
             .then(response=>{
                 this.isSearching = false
-                this.results = response.data.data
+                if(!response.data.err){
+                    this.results = response.data.data.filtered_members
+                }
+                else this.results = []
             })
             .catch(e =>{
                 console.error(e)
