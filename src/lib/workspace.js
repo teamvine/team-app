@@ -75,6 +75,25 @@ function searchMembersByName(token,workspace_id,user_id,search_text) {
 
 
 /**
+ * Search workspace members by full name or display name and email that are not in a given channel
+ * @param {String} token user token
+ * @param {String} workspace_id workspace id
+ * @param {String} channel_id the channel id
+ * @param {String} user_id user id
+ * @param {String} search_text searching text
+ * @returns Promise<AxiosResponse> axios response
+*/
+function searchMembersNotInChannel(token,workspace_id,channel_id,user_id,search_text){
+  return axios.request({
+    url: baseURL + workspaceAPI.searchMembersNotInChannel+"?workspace_id="+workspace_id+"&channel_id="+channel_id+"&user_id="+user_id+"&search_string="+search_text,
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+/**
  * Search public workspaces by their names
  * @param {String} token user token
  * @param {String} text search query
@@ -117,5 +136,6 @@ module.exports = {
   getWorkspaceAllMembers,
   searchMembersByName,
   searchPublicWorkspaces,
-  joinWorkspace
+  joinWorkspace,
+  searchMembersNotInChannel
 };
