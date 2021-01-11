@@ -138,6 +138,7 @@ export default {
     }
     .new-organ,.find-organ {
         border-radius: 5px;
+        font-family: Arial, Helvetica, sans-serif !important;
     }
     .find-organ {
         border: 1px solid #1a65e6;

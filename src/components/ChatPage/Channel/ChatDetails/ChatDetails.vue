@@ -1,19 +1,17 @@
 <template>
-  <div class="details">
+  <div class="details" v-if="show">
         <div class="chat-detls pl-2 pb-2 flex flex-wrap">
-            <div class="channel-card shadow-md rounded-md bg-white mr-2">
+            <div class="channel-card shadow-md rounded-sm bg-white mr-2">
                 <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
-                    <div class="w-full md:w-auto py-3 pl-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
+                    <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar('')">
+                        &times;
                     </div>
-                    <div class="w-full md:w-full font-bold py-2 text-center text-lg font-custom">Channel Details</div>
+                    <div class="w-full md:w-full font-bold py-3 text-center text-lg font-custom">Channel Details</div>
                 </div>
                 <div class="channel-icn">
                     <span class="mt-4 py-8">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" class="display-block" viewBox="0 0 24 24" width="72" height="72"><path fill="none" d="M0 0L24 0 24 24 0 24z"/><path fill="rgb(4, 85, 207)" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.702 0-3.305-.425-4.708-1.175L2 22l1.176-5.29C2.426 15.306 2 13.703 2 12 2 6.477 6.477 2 12 2zm0 5c-1.598 0-3 1.34-3 3v1H8v5h8v-5h-1v-1c0-1.657-1.343-3-3-3zm2 6v1h-4v-1h4zm-2-4c.476 0 1 .49 1 1v1h-2v-1c0-.51.487-1 1-1z"/></svg> -->
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill="none" d="M0 0h24v24H0z"/><path fill="rgb(4, 85, 207)" d="M7.784 14l.42-4H4V8h4.415l.525-5h2.011l-.525 5h3.989l.525-5h2.011l-.525 5H20v2h-3.784l-.42 4H20v2h-4.415l-.525 5h-2.011l.525-5H9.585l-.525 5H7.049l.525-5H4v-2h3.784zm2.011 0h3.99l.42-4h-3.99l-.42 4z"/></svg> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill="none" d="M0 0h24v24H0z"/><path fill="rgb(4, 85, 207)" d="M7.784 14l.42-4H4V8h4.415l.525-5h2.011l-.525 5h3.989l.525-5h2.011l-.525 5H20v2h-3.784l-.42 4H20v2h-4.415l-.525 5h-2.011l.525-5H9.585l-.525 5H7.049l.525-5H4v-2h3.784zm2.011 0h3.99l.42-4h-3.99l-.42 4z"/></svg>
                         <span class="text-2xl mt-3 font-bold p-0">{{currentChannel.name}}</span><br class="p-0">
-                        <!-- <small class="font-bold">Workspace wide communication</small> -->
                     </span>
                 </div>
                 <div class="w-full mb-4 px-3">
@@ -44,7 +42,7 @@
                     </div>
                     <div x-data={show:false} class="rounded-sm">
                         <div class="px-5 py-4 headingOne">
-                            <button @click="show=!show" class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
+                            <button @click="addMembers" class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
                                 <svg class="icn1" xmlns="http://www.w3.org/2000/svg" style="display: inline-block" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M14 14.252V22H4a8 8 0 0 1 10-7.748zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm6 4v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z"/></svg>
                                 <b class="font-bold ml-2 text-md">Add Members</b>
                                 <svg class="icn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z"/></svg>
@@ -145,25 +143,50 @@
                 </div>
             </div>
         </div>
+        
+    <vue-modal style="z-index: 2500" class="py-6 col-lg-9" name="addMembers" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
+      <nav class="flex drag-handler items-center justify-between flex-wrap bg-teal p-6 py-2">
+        <div class="flex items-center flex-no-shrink text-black mr-6">
+          <span class="text-2xl tracking-tight ml-3 font-bold">Add Members</span>
+        </div>
+        <div class="block">
+          <button @click="$modal.hide('addMembers')" title="cancel" class="flex text-2xl ring-0 border-none items-center px-3 py-1 font-bold hover:text-gray-500">
+           &times;
+          </button>
+        </div>
+      </nav>
+      <invite-member></invite-member>
+    </vue-modal>
   </div>
 </template>
 
 <script>
-    import { component as CodeHighlighter} from 'vue-code-highlight'
-    import {mapState} from "vuex"
-    export default {
-        name: "ChatDetails",
-        components:{
-            CodeHighlighter
-        },
-        computed: {
-            ...mapState({
-                currentChannel: state=> state.chat.currentChannel
-            })
+import { mapState } from "vuex"
+
+import InviteMember from '../InviteMember.vue'
+export default {
+    name: "ChatDetails",
+    props: {
+        toggleRightSidebar: Function,
+        show: Boolean
+    },
+    components: {
+        InviteMember
+    },
+    computed: {
+        ...mapState({
+            currentChannel: state => state.chat.currentChannel
+        })
+    },
+
+    methods: {
+        addMembers() {
+            this.$modal.hideAll()
+            this.$modal.show("addMembers")
         }
     }
+}
 </script>
-
 <style scoped>
 
 button svg {
@@ -199,6 +222,9 @@ button svg {
     fill: rgb(5, 102, 199);
     color:  rgb(5, 102, 199);
 }
+    .headingOne button b {
+         font-family: Arial, Helvetica, sans-serif !important;
+    }
     .details {
         height: 100%;
         flex: 0 0 350px;

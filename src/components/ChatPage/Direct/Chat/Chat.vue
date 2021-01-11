@@ -2,7 +2,7 @@
   <div class="chat">
     <div class="chat-content">
       <div class="chat-header">
-          <Header/>
+          <Header :toggleChatDetails="toggleChatDetails"/>
       </div>
       <div class="chat-messages">
         <div class="messages" id="messages">
@@ -41,6 +41,9 @@ export default {
       Header,
       Footer,
       MessageItem
+  },
+  props: {
+    toggleChatDetails: Function
   },
   data(){
     return {
