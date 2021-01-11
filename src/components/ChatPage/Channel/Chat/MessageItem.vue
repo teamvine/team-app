@@ -10,17 +10,29 @@
         </span>
       </div>
     </div>
-    <div class="menu bg-indigo-100 flex px-3 py-1 rounded-lg">
-      <span class="hover:bg-indigo-200 cursor-pointer"><i class="ri-reply-line"></i></span>
-      <span class="hover:bg-indigo-200 cursor-pointer"><i class="ri-save-line"></i></span>
-      <span class="hover:bg-indigo-200 cursor-pointer"><i class="ri-delete-bin-6-line"></i></span>
-      <span class="hover:bg-indigo-200 cursor-pointer"><i class="ri-menu-2-line"></i></span>
+    <div class="menu bg-white border flex px-3 py-1 rounded-lg">
+      <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-indigo-600" @click="toggleReplies(message)">
+        <i class="ri-reply-line"></i>
+      </span>
+      <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+        <i class="ri-save-line"></i>
+      </span>
+      <span v-if="user.email==message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+        <i class="ri-edit-line"></i>
+      </span>
+      <span v-if="user.email==message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-red-800">
+        <i class="ri-delete-bin-6-line"></i>
+      </span>
+      <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+        <i class="ri-menu-2-line"></i>
+      </span>
     </div>
   </div>
 </template>
 
 <script>
 import {Filters} from '../../../../lib/functions'
+import { mapState } from "vuex"
 export default {
   name: "MessageItem",
   props: {
@@ -28,7 +40,13 @@ export default {
       type: Object,
       required: true
     },
-    sameToPrevious: Boolean
+    sameToPrevious: Boolean,
+    toggleReplies: Function
+  },
+  computed: {
+    ...mapState({
+      user: state=> state.all.user
+    })
   },
   filters: {
     formatDate: (value)=>{
@@ -102,6 +120,7 @@ export default {
   width: 30px;
   height: 30px;
   text-align: center;
+  font-weight: bolder;
 }
 .message-item:hover .menu {
   display: block;

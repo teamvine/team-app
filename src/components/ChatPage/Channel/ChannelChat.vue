@@ -1,7 +1,7 @@
 <template>
   <div class="channel-chat-view">
       <div class="main-channel-chat">
-            <Chat :toggleChatDetails="toggleChatDetails"/>
+            <Chat :toggleReplies="toggleReplies" :toggleChatDetails="toggleChatDetails"/>
             <ChatDetails :show="showRightSidebar=='chatDetails'? true:false" :toggleRightSidebar="toggleRightSidebar"/>
             <ChatReplies :show="showRightSidebar=='chatReplies'? true:false" :toggleRightSidebar="toggleRightSidebar"/>
             <router-view></router-view>
@@ -36,9 +36,12 @@ export default {
     methods: {
         ...mapMutations("chat",["setCurrentChannel","setCurrentChatType"]),
         ...mapActions("chat",["changeAndSetUpRoom","resetCurrentThread"]),
-        toggleRightSidebar(sidebar){
+        toggleRightSidebar(sidebar,...args){
             this.showRightSidebar = sidebar.toString()
             if(sidebar.toString()=="chatDetails") localStorage.setItem("showRightSidebar","chatDetails")
+            if(args[0] && args[0]=="checkDetails"){
+                this.showRightSidebar=localStorage.getItem("showRightSidebar") || ""
+            }
         },
         toggleChatDetails(){
             if(this.showRightSidebar!="chatDetails") {
@@ -48,6 +51,10 @@ export default {
                 this.showRightSidebar = ""
                 localStorage.setItem("showRightSidebar","")
             }
+        },
+        toggleReplies(message){
+            //to do add the replies to state and show them
+            this.showRightSidebar="chatReplies"
         },
         initializeChat(){
             let channel = this.currentWorkspaceJoinedChannels.find(channel=> channel.channel_code==this.$route.params.channel_code)
