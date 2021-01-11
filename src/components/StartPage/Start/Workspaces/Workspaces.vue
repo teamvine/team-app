@@ -19,7 +19,7 @@
                             >
                                 <article 
                                 :class="[currentWorkspace.code==organization.code? 'border-green-500 border':'shadow-md']" 
-                                class="overflow-hidden rounded-md bg-white">
+                                class="overflow-hidden rounded-sm bg-white">
                                     <a href="#" class="workspace-img">
                                         <!-- <img alt="Placeholder" class="block h-auto w-full" src=""> -->
                                     </a>
@@ -206,6 +206,7 @@ export default {
         padding-top: 1.2%;
         padding-bottom: 1.2%;
         border-radius: 5px;
+        font-family: Arial, Helvetica, sans-serif !important;
     }
     .find-organ {
         border: 1px solid #1a65e6;
