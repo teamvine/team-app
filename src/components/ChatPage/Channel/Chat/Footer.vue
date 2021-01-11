@@ -25,7 +25,7 @@
         />
       </div>
       <div class="field" v-if="editorType=='minimal'">
-        <input :disabled="inputDisabled" v-model="newMessage.content" type="text" :placeholder="'send to #'+currentChannel.name" />
+        <input :disabled="inputDisabled" v-model="newMessage.content" @keyup.enter="sendMessage" type="text" :placeholder="'send to #'+currentChannel.name" />
       </div>
       <div class="field" v-else>
           <div class="menubar format-buttons">
@@ -209,9 +209,11 @@
 import {mapGetters, mapState} from "vuex"
 import { sendChannelMessage } from "../../../../lib/message"
 import {event} from "../../../../config/constants"
+import {VEmojiPicker} from 'v-emoji-picker';
 export default {
   name: "Footer",
   components: {
+    VEmojiPicker
   },
   props: {
     changeFooter: Function

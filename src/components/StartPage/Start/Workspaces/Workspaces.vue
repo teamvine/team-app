@@ -1,7 +1,7 @@
 <template>
     <main class="flex-1 ">
         <div class="w-full flex-row flex content-center justify-center flex-wrap py-3">
-            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-3/4 md:w-3/4 lg:w-4/6 border rounded-sm md:rounded-lg mt-3 mb-4">
+            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-3/4 md:w-3/4 lg:w-4/6 border rounded-sm md:rounded-sm mt-3 mb-4">
                 <header class="flex items-center justify-between leading-tight w-full border-b">
                     <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline" ><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
@@ -19,7 +19,7 @@
                             >
                                 <article 
                                 :class="[currentWorkspace.code==organization.code? 'border-green-500 border':'shadow-md']" 
-                                class="overflow-hidden rounded-md bg-white">
+                                class="overflow-hidden rounded-sm bg-white">
                                     <a href="#" class="workspace-img">
                                         <!-- <img alt="Placeholder" class="block h-auto w-full" src=""> -->
                                     </a>
@@ -148,10 +148,12 @@ export default {
                         this.dialog.message = "You switched to "+newOrganization.name
                         console.log(this.currentWorkspaceJoinedChannels);
                         this.$dialog.show("switch-dialog").then(()=>{
-                            this.$router.push({
-                                name: "ChannelChat",
-                                params: {channel_code: this.currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}
-                            })
+                            // location.reload(true)
+                            location.href = "/chat/channel/"+this.currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code
+                            // this.$router.push({
+                            //     name: "ChannelChat",
+                            //     params: {channel_code: this.currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}
+                            // })
                         })
                     }
                 })
@@ -190,6 +192,9 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .organ-name a, .organ-name span {
+        font-family: Arial, Helvetica, sans-serif !important;
+    }
     .workspace-img {
         display: block;
         width: 100%;
@@ -201,6 +206,7 @@ export default {
         padding-top: 1.2%;
         padding-bottom: 1.2%;
         border-radius: 5px;
+        font-family: Arial, Helvetica, sans-serif !important;
     }
     .find-organ {
         border: 1px solid #1a65e6;

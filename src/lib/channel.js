@@ -1,6 +1,13 @@
 const axios = require("./axios");
 const { baseURL, channelAPI, messageAPI } = require("./api");
 
+/**
+ * add members to a channel
+ * @param {String} token user token
+ * @param {String} workspace_id workspace id
+ * @param {String} channel_id channel id
+ * @param {Array} members members array to add
+ */
 function addChannelMembers(token, workspace_id, channel_id, members) {
     return axios.request({
         url: baseURL + channelAPI.addMembers,

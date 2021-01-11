@@ -2,7 +2,7 @@
   <div class="chat">
     <div class="chat-content">
       <div class="chat-header">
-          <Header/>
+          <Header :toggleChatDetails="toggleChatDetails"/>
       </div>
       <div class="chat-messages p-4">
         <div class="messages" id="messages">
@@ -10,7 +10,11 @@
               <span class="mt-4 font-bold text-lg absolute">Loading...</span>
           </div>
           <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
-            <MessageItem v-for="(message,index) in currentChatMessages" :message="message" :key="index"/>
+            <MessageItem 
+              v-for="(message,index) in currentChatMessages"
+              :toggleReplies="toggleReplies"
+              :sameToPrevious="allMessagesToArray(currentChatMessages).indexOf(message)>0 && message.sender_info.email==allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)-1].sender_info.email" 
+              :message="message" :key="index"/>
           </div>
           <div
            class="nothing w-full h-full flex text-center justify-center content-center items-center"
@@ -32,6 +36,7 @@ import Footer from "./Footer"
 import MessageItem from './MessageItem'
 import {mapState} from "vuex"
 import { component as CodeHighlight } from 'vue-code-highlight'
+import _ from "lodash"
 export default {
   name: "Chat",
   components: {
@@ -39,6 +44,10 @@ export default {
       Footer,
       MessageItem,
       CodeHighlight,
+  },
+  props: {
+    toggleChatDetails: Function,
+    toggleReplies: Function
   },
   data(){
     return {
@@ -51,9 +60,15 @@ export default {
       currentChatMessages: state=> state.chat.currentChatMessages
     })
   },
+  mounted(){
+    // console.log(this.currentChatMessages)
+  },
   methods: {
     changeFooter(str_type){
       this.chat_footer = str_type
+    },
+    allMessagesToArray(messages){
+      return _.toArray(messages)
     }
   }
 };

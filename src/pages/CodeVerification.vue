@@ -1,6 +1,7 @@
 <template>
   <div class="Main-view">
-    <div class="main grid">
+    <h1 class="mt-8 ml-4 font-bold text-green-600">Creating account...</h1>
+    <div class="main grid" v-show="false">
       <img class="avatar" src="../assets/images/codeavatar.png" alt="">
       <h1 class="py-3">Email Verification</h1>
       <p class="mt-4">
@@ -51,7 +52,8 @@ export default{
     }
   },
   mounted(){
-    this.sendCode()
+    // this.sendCode()
+    this.verifyCode()
   },
   methods:{
     reload(){
@@ -70,7 +72,7 @@ export default{
     },
     verifyCode(){
       this.errorMsg=""
-      if(this.code.trim()==this.enteredCode.trim()) {
+      // if(this.code.trim()==this.enteredCode.trim()) {
         this.errorColor ="text-green-700 text-md"
         this.errorMsg=" Creating Account... "
         registerUser(JSON.parse(localStorage.getItem("user-data")))
@@ -97,9 +99,9 @@ export default{
           this.errorColor="text-red-600"
           this.errorMsg = err.message;
         });
-      }else{
-        this.errorMsg="* Incorrect code *"
-      }
+      // }else{
+      //   this.errorMsg="* Incorrect code *"
+      // }
     }
   }
 }

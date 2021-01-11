@@ -10,7 +10,7 @@
                 </span>
             </div>
             <div class="my-5">
-                <input type="search" placeholder="type name or email" v-on:keyup="search" v-model="searchText">
+                <input class="w-full" type="search" placeholder="type name or email" v-on:keyup="search" v-model="searchText">
             </div>
         </div>
         <div class="results py-5" v-if="this.searchText.trim().length >= 1">

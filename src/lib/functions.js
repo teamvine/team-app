@@ -18,7 +18,7 @@ Filters.formatTimestamp = (date) => {
  * @returns string MMM Do,YYYY eg:  Sep 27th,2020
  */
 Filters.formatTimestamp_v2 = (date) => {
-    return moment(new Date(date)).format("MMM Do,YYYY");
+    return moment(new Date(date)).format("hh:mm A");
 }
 
 /**

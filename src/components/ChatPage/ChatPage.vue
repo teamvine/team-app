@@ -2,7 +2,7 @@
   <div class="chat-view">
       <SideBar/>
       <div class="main-chat-view">
-          <router-view/>
+        <router-view/>
       </div>
   </div>
 </template>
@@ -33,5 +33,10 @@ export default {
         overflow: hidden;
         /* background: rgb(139, 193, 243); */
         /* color: white; */
+    }
+    @media only screen and (max-width: 800px){
+        .chat-view {
+            flex-direction: column;
+        }
     }
 </style>

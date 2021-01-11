@@ -2,7 +2,7 @@
   <div class="chat">
     <div class="chat-content">
       <div class="chat-header">
-          <Header/>
+          <Header :toggleChatDetails="toggleChatDetails"/>
       </div>
       <div class="chat-messages">
         <div class="messages" id="messages">
@@ -10,7 +10,10 @@
               <span class="mt-4 font-bold text-lg absolute">Loading...</span>
           </div>
           <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
-            <MessageItem v-for="(message,index) in currentChatMessages" :message="message" :key="index"/>
+            <MessageItem 
+            v-for="(message,index) in currentChatMessages"
+            :sameToNext="allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)+1] && message.sender_info.email==allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)+1].sender_info.email"
+            :message="message" :key="index"/>
           </div>
           <div
            class="nothing w-full h-full flex text-center justify-center content-center items-center"
@@ -31,12 +34,16 @@ import Header from './Header'
 import Footer from "./Footer"
 import MessageItem from './MessageItem'
 import {mapState} from "vuex"
+import _ from "lodash"
 export default {
   name: "Chat",
   components: {
       Header,
       Footer,
       MessageItem
+  },
+  props: {
+    toggleChatDetails: Function
   },
   data(){
     return {
@@ -52,6 +59,9 @@ export default {
   methods: {
     changeFooter(str_type){
       this.chat_footer = str_type
+    },
+    allMessagesToArray(messages){
+      return _.toArray(messages)
     }
   }
 };

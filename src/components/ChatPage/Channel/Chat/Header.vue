@@ -61,7 +61,7 @@
                 />
               </svg>
             </span>
-            <span>
+            <span @click="toggleChatDetails">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -85,6 +85,9 @@
 import { mapState } from "vuex"
 export default {
   name: "Header",
+  props: {
+    toggleChatDetails: Function
+  },
   computed: {
     ...mapState({
       currentChannel: state=> state.chat.currentChannel

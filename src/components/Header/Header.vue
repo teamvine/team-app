@@ -221,7 +221,8 @@ export default {
   margin-bottom: 0.1%;
 }
 .organization .name span {
-  font-weight: bolder !important;
+  font-weight: bold !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 .right-menu {
   float: right;
