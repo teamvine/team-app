@@ -10,10 +10,8 @@
                 </div>
                 <div class="channel-icn">
                     <span class="mt-4 py-8">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" class="display-block" viewBox="0 0 24 24" width="72" height="72"><path fill="none" d="M0 0L24 0 24 24 0 24z"/><path fill="rgb(4, 85, 207)" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.702 0-3.305-.425-4.708-1.175L2 22l1.176-5.29C2.426 15.306 2 13.703 2 12 2 6.477 6.477 2 12 2zm0 5c-1.598 0-3 1.34-3 3v1H8v5h8v-5h-1v-1c0-1.657-1.343-3-3-3zm2 6v1h-4v-1h4zm-2-4c.476 0 1 .49 1 1v1h-2v-1c0-.51.487-1 1-1z"/></svg> -->
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill="none" d="M0 0h24v24H0z"/><path fill="rgb(4, 85, 207)" d="M7.784 14l.42-4H4V8h4.415l.525-5h2.011l-.525 5h3.989l.525-5h2.011l-.525 5H20v2h-3.784l-.42 4H20v2h-4.415l-.525 5h-2.011l.525-5H9.585l-.525 5H7.049l.525-5H4v-2h3.784zm2.011 0h3.99l.42-4h-3.99l-.42 4z"/></svg> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill="none" d="M0 0h24v24H0z"/><path fill="rgb(4, 85, 207)" d="M7.784 14l.42-4H4V8h4.415l.525-5h2.011l-.525 5h3.989l.525-5h2.011l-.525 5H20v2h-3.784l-.42 4H20v2h-4.415l-.525 5h-2.011l.525-5H9.585l-.525 5H7.049l.525-5H4v-2h3.784zm2.011 0h3.99l.42-4h-3.99l-.42 4z"/></svg>
                         <span class="text-2xl mt-3 font-bold p-0">{{currentChannel.name}}</span><br class="p-0">
-                        <!-- <small class="font-bold">Workspace wide communication</small> -->
                     </span>
                 </div>
                 <div class="w-full mb-4 px-3">
@@ -226,6 +224,9 @@ button svg {
     fill: rgb(5, 102, 199);
     color:  rgb(5, 102, 199);
 }
+    .headingOne button b {
+         font-family: Arial, Helvetica, sans-serif !important;
+    }
     .details {
         height: 100%;
         flex: 0 0 350px;

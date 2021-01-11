@@ -20,8 +20,7 @@ export default {
     },
     data(){
         return {
-            // showRightSidebar: localStorage.getItem("showRightSidebar") || ""
-            showRightSidebar: "chatReplies"
+            showRightSidebar: localStorage.getItem("showRightSidebar") || ""
         }
     },
     mounted(){
@@ -78,7 +77,8 @@ export default {
     .main-personal-chat {
         width: 100% !important;
         height: 100% !important;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: auto;
         display: flex;
         flex-direction: row;
         /* background-color: rgb(211, 175, 175); */
