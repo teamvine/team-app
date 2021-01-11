@@ -37,7 +37,8 @@
 <script>
 import { mapMutations,mapState } from "vuex"
 
-import {searchMembersByName} from "../../../lib/workspace"
+import { searchMembersNotInChannel } from "../../../lib/workspace"
+import { addChannelMembers } from "../../../lib/channel"
 export default {
     components:{
     },
@@ -62,7 +63,7 @@ export default {
         search(){
             if(this.searchText.trim().length <= 1) return
 
-            searchMembersByName(this.token,this.userAppFlow.currentWorkspace_id,this.user._id, this.searchText)
+            searchMembersNotInChannel(this.token,this.userAppFlow.currentWorkspace_id,this.user._id, this.searchText)
             .then(response=>{
                 this.isSearching = false
                 if(!response.data.err){
