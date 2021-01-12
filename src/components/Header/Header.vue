@@ -220,9 +220,13 @@ export default {
   margin-top: 0.1%;
   margin-bottom: 0.1%;
 }
-.organization .name span {
+.item-hover div,.organization .name span {
   font-weight: bold !important;
   font-family: Arial, Helvetica, sans-serif !important;
+}
+.item-hover div {
+  font-family: "LatoBold" !important;
+  font-weight: 600 !important;
 }
 .right-menu {
   float: right;
