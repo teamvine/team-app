@@ -30,7 +30,6 @@
                     <div x-data={show:false} class="rounded-sm">
                         <div class="px-5 py-4 headingOne">
                             <button class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
-                                <!-- <svg class="icn1" xmlns="http://www.w3.org/2000/svg" style="display: inline-block" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 22a8 8 0 1 1 16 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm7.363 2.233A7.505 7.505 0 0 1 22.983 22H20c0-2.61-1-4.986-2.637-6.767zm-2.023-2.276A7.98 7.98 0 0 0 18 7a7.964 7.964 0 0 0-1.015-3.903A5 5 0 0 1 21 8a4.999 4.999 0 0 1-5.66 4.957z"/></svg> -->
                                 <svg class="icn1" style="display: inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 22h-2v-2a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v2H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
                                 <b class="font-bold ml-2 text-md">Channel Members</b>
                                 <svg class="icn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z"/></svg>
@@ -40,7 +39,7 @@
                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                         </div> -->
                     </div>
-                    <div class="rounded-sm">
+                    <div class="rounded-sm" v-if="currentChannel.name!='general' && currentChannel.gen!=true">
                         <div class="px-5 py-4 headingOne">
                             <button @click="addMembers" class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
                                 <svg class="icn1" xmlns="http://www.w3.org/2000/svg" style="display: inline-block" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M14 14.252V22H4a8 8 0 0 1 10-7.748zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm6 4v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z"/></svg>
@@ -82,58 +81,6 @@
                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                         </div> -->
                     </div>
-                    <!-- ======================================================================= -->
-                    <!-- <div class="bg-gray-100 w-full rounded px-6">
-                        <div class="border-l-4 border-red-400 -ml-6 pl-6 flex items-center justify-between my-4">
-                            <div class="font-semibold text-gray-800">More Activity</div>
-                            <div class="text-red-400">See all</div>
-                        </div>
-                        <hr class="-mx-6"/>
-                        <div class="flex items-center justify-between my-4">
-                            <div class="w-16">
-                            <img class="w-12 h-12 rounded-full" src="https://source.unsplash.com/50x50/?nature">
-                            </div>
-                            <div class="flex-1 pl-2">
-                                <div class="text-gray-700 font-semibold">
-                                PHP Developers
-                                </div>
-                                <div class="text-gray-600 font-thin">
-                                Web House
-                                </div>
-                            </div>
-                            <div class="text-red-400">20 Posts</div>
-                        </div>
-                        <hr class="boder-b-0 my-4"/>
-                        <div class="flex items-center my-4">
-                            <div class="w-16">
-                            <img class="w-12 h-12 rounded-full" src="https://source.unsplash.com/50x50/?water">
-                            </div>
-                            <div class="flex-1 pl-2">
-                                <div class="text-gray-700 font-semibold">
-                                Designer
-                                </div>
-                                <div class="text-gray-600 font-thin">
-                                Web House
-                                </div>
-                            </div>
-                            <div class="text-red-400">300 Posts</div>
-                        </div>
-                        <hr class="boder-b-0 my-4"/>
-                        <div class="flex items-center my-4">
-                            <div class="w-16">
-                            <img class="w-12 h-12 rounded-full" src="https://source.unsplash.com/50x50/?logo">
-                            </div>
-                            <div class="flex-1 pl-2">
-                                <div class="text-gray-700 font-semibold">
-                                Data Entry
-                                </div>
-                                <div class="text-gray-600 font-thin">
-                                Web House
-                                </div>
-                            </div>
-                            <div class="text-red-400">30 Posts</div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
