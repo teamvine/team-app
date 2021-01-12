@@ -19,7 +19,7 @@
                 class="flex flex-wrap items-stretch w-full relative hover:bg-gray-300 rounded cursor-pointer px-3">
                 <div class="flex -mr-px h-auto">
                     <span class="flex items-center leading-normal px-2 pr-0 whitespace-no-wrap text-grey-dark text-md">
-                        <img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+                        <img src="../../../assets/images/avatar4.png"
                             class="w-8 h-8 bg-gray-400 rounded-full  mx-auto" />
                     </span>
                 </div>
