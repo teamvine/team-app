@@ -85,7 +85,7 @@
             </div>
         </div>
         
-    <vue-modal style="z-index: 2500" class="py-6 col-lg-9" name="addMembers" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
+    <vue-modal style="z-index: 2500" class="py-3 col-lg-9" name="addMembers" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
       <nav class="flex drag-handler items-center justify-between flex-wrap bg-teal p-6 py-2">
         <div class="flex items-center flex-no-shrink text-black mr-6">
           <span class="text-2xl tracking-tight ml-3 font-bold">Add Members</span>
