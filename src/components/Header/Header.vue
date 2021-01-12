@@ -169,6 +169,7 @@ export default {
     ...mapActions("all",["resetAllModuleState"]),
     ...mapActions("chat",["resetChatModuleState"]),
     navigate(path){
+      this.showDropDown = !this.showDropDown
       if(this.$route.name!=path.name){
         this.$router.push(path)
       }
