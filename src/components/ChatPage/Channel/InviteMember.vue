@@ -1,12 +1,13 @@
 <template>
     <div class="p-5">
-        <div class="border rounded border-gray-400 px-3">
+        <div :class="'border rounded px-3 ' + (this.errorOcurred ? 'border-red-600':'border-gray-400 ' )" >
             <div class='pt-3' v-if="addedMembers.length > 0">
                 <span v-for="(user,index) in addedMembers" :key="index+user._id"
-                    class="added-member bg-blue-200 rounded-full px-2 py-2 font-bold cursor-pointer">
+                    class="added-member bg-blue-200 rounded-full px-2 py-2 cursor-pointer">                    
+                    <img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460" class="w-4 h-4 bg-gray-400 rounded-full inline-block" />
                     {{user.full_name}}
                     <span @click="removeMember(user)"
-                        class="px-1 h-auto text-black hover:text-gray-600 rounded-full">&times;</span>
+                        class="px-1 h-auto text-gray-700 hover:text-gray-900 rounded-full">&times;</span>
                 </span>
             </div>
             <div class="my-5">
@@ -28,6 +29,9 @@
                 </div>
             </div>
         </div>
+        <div class="my-3 text-red-600" v-if="this.errorOcurred" >
+            Error occured. please check your internet connection
+        </div>
         <div class="done text-right mt-3">
             <button :disabled="buttonDisabled" :class="(buttonDisabled ? 'bg-gray-400 text-black ': 'bg-blue-700 text-white ') +' py-3 px-5 border rounded' " @click="sendData">Add</button>
         </div>
@@ -37,7 +41,8 @@
 <script>
 import { mapMutations,mapState } from "vuex"
 
-import {searchMembersByName} from "../../../lib/workspace"
+import { searchMembersNotInChannel } from "../../../lib/workspace"
+import { addChannelMembers } from "../../../lib/channel"
 export default {
     components:{
     },
@@ -45,7 +50,7 @@ export default {
       return {
         searchText:'',
         results : [],
-        isSearching: false,
+        errorOcurred: false,
         buttonDisabled: true,
         addedMembers:[],
       }
@@ -54,19 +59,18 @@ export default {
         ...mapState({
             token: state=> state.all.token,
             user: state=> state.all.user,
-            userAppFlow: state=> state.all.userAppFlow,
-            userWorkspaces: state=> state.all.userWorkspaces
+            currentWorkspace: state=> state.all.currentWorkspace,
+            currentChannel: state=> state.chat.currentChannel,
         })
     },
     methods: {
         search(){
-            if(this.searchText.trim().length <= 1) return
+            if(this.searchText.trim().length < 1) return
 
-            searchMembersByName(this.token,this.userAppFlow.currentWorkspace_id,this.user._id, this.searchText)
+            searchMembersNotInChannel(this.token,this.currentWorkspace._id,this.currentChannel._id,this.user._id, this.searchText)
             .then(response=>{
-                this.isSearching = false
                 if(!response.data.err){
-                    this.results = response.data.data.filtered_members
+                    this.results = response.data.data.users
                 }
                 else this.results = []
             })
@@ -87,8 +91,17 @@ export default {
             if (this.addedMembers.length == 0) this.buttonDisabled = true
         },
         sendData(){
-            console.log("sending data")
-            this.$modal.hide('addMembers')
+            this.errorOcurred = false
+
+            addChannelMembers(this.token,this.currentWorkspace._id,this.currentChannel._id,this.addedMembers.map(user => ({_id:user._id}) ) )
+            .then(resp=>{
+                this.$modal.hide('addMembers')
+            })
+            .catch(e =>{
+                this.errorOcurred = true
+                console.error(e)
+            })
+            
         }
     }
 }
@@ -100,4 +113,9 @@ export default {
     margin-right: 3px;
     margin-top: 5px !important;
 }
+
+  .results {
+    height: 80vh;
+    overflow: auto;
+  }
 </style>
