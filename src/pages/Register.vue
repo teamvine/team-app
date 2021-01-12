@@ -52,7 +52,7 @@
             <div class="in-field">
               <div class="icn"><i class="ri-at-line"></i></div>
               <div class="inpt">
-                <h6>Email</h6>
+                <h6>Work Email</h6>
                 <input
                   v-model="email"
                   type="email"
@@ -367,10 +367,11 @@ form .line {
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(51, 51, 51, 0.76);
+  color: rgb(10, 10, 10);
   font-size: 16px;
   transition: 0.3s;
-  font-weight: bold;
+  font-weight: 400;
+  font-family: "LatoBold" !important;
 }
 
 .input {
