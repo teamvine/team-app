@@ -23,7 +23,7 @@
                                 <svg class="icn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z"/></svg>
                             </button>
                         </div>
-                        <div class="border px-5 py-4 bg-indigo-100" v-show="showAbout">
+                        <div class="border px-5 py-4 bg-gray-100" v-show="showAbout">
                             {{currentChannel.description}}
                         </div>
                     </div>
