@@ -1,6 +1,6 @@
 <template>
   <div class="details" v-if="show">
-    <div class="chat-detls pl-2 pb-2 flex flex-wrap">
+    <div class="chat-detls pl-1 pb-2 flex flex-wrap">
       <div class="user-card shadow-md rounded-sm bg-white mr-2">
         <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
           <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar('')">
