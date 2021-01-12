@@ -9,6 +9,9 @@
           </div>
           <div class="w-full md:w-full font-bold py-3 text-center text-lg font-custom">Replies</div>
         </div>
+        <div class="replies p-3">
+          <h2 class="text-bold">ChatReplies</h2>
+        </div>
       </div>
     </div>
   </div>

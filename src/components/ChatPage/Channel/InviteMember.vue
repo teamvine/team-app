@@ -3,10 +3,11 @@
         <div :class="'border rounded px-3 ' + (this.errorOcurred ? 'border-red-600':'border-gray-400 ' )" >
             <div class='pt-3' v-if="addedMembers.length > 0">
                 <span v-for="(user,index) in addedMembers" :key="index+user._id"
-                    class="added-member bg-blue-200 rounded-full px-2 py-2 font-bold cursor-pointer">
+                    class="added-member bg-blue-200 rounded-full px-2 py-2 cursor-pointer">                    
+                    <img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460" class="w-4 h-4 bg-gray-400 rounded-full inline-block" />
                     {{user.full_name}}
                     <span @click="removeMember(user)"
-                        class="px-1 h-auto text-black hover:text-gray-600 rounded-full">&times;</span>
+                        class="px-1 h-auto text-gray-700 hover:text-gray-900 rounded-full">&times;</span>
                 </span>
             </div>
             <div class="my-5">
@@ -58,8 +59,7 @@ export default {
         ...mapState({
             token: state=> state.all.token,
             user: state=> state.all.user,
-            userAppFlow: state=> state.all.userAppFlow,
-            userWorkspaces: state=> state.all.userWorkspaces,
+            currentWorkspace: state=> state.all.currentWorkspace,
             currentChannel: state=> state.chat.currentChannel,
         })
     },
@@ -67,7 +67,7 @@ export default {
         search(){
             if(this.searchText.trim().length < 1) return
 
-            searchMembersNotInChannel(this.token,this.userAppFlow.currentWorkspace_id,this.currentChannel._id,this.user._id, this.searchText)
+            searchMembersNotInChannel(this.token,this.currentWorkspace._id,this.currentChannel._id,this.user._id, this.searchText)
             .then(response=>{
                 if(!response.data.err){
                     this.results = response.data.data.users
@@ -93,7 +93,7 @@ export default {
         sendData(){
             this.errorOcurred = false
 
-            addChannelMembers(this.addedMembers.map(user => ({_id:user._id}) ) )
+            addChannelMembers(this.token,this.currentWorkspace._id,this.currentChannel._id,this.addedMembers.map(user => ({_id:user._id}) ) )
             .then(resp=>{
                 this.$modal.hide('addMembers')
             })
@@ -113,4 +113,9 @@ export default {
     margin-right: 3px;
     margin-top: 5px !important;
 }
+
+  .results {
+    height: 80vh;
+    overflow: auto;
+  }
 </style>
