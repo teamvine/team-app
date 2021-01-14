@@ -45,6 +45,7 @@
 
 <script>
 import { mapState,mapMutations,mapGetters } from "vuex"
+import {deleteDirectMessage} from "../../../../lib/message"
 import {Filters} from '../../../../lib/functions'
 export default {
   name: "MessageItem",
@@ -62,9 +63,24 @@ export default {
   },
   methods: {
     ...mapMutations("chat", ["deleteMessage"]),
-    ...mapGetters("all", ["getToken"]),
+    ...mapGetters("all", ["getToken","getCurrentWorkspace"]),
     deleteThisMessage(){
-
+      deleteDirectMessage(this.getToken(),this.getCurrentWorkspace()._id,this.message.sender_id,this.message.receiver_id,this.message._id)
+      .then(res=>{
+        if(res.data.err){
+          alert(res.data.message)
+        }else{
+          this.deleteMessage({
+            access_id: this.message.receiver_id,
+            chat_type: "direct",
+            message_id: this.message._id
+          })
+        }
+      })
+      .catch(err=>{
+        alert("ERROR: "+err.message)
+        console.log(err);
+      })
     }
   },
   filters: {
