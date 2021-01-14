@@ -41,7 +41,8 @@ module.exports = {
         findMessage: "/channel/message/find",
         getAllChannelMessages: "/message/get-all-channel-messages", //fetch latest few messages
         getOlderMessages: "/message/get-channel-older-messages", //fetch older few messages
-        deleteChannelMessage: "/message/delete-channel-message"
+        deleteChannelMessage: "/message/delete-channel-message",
+        deleteDirectMessage: "/message/delete-direct-message"
     },
     personalChatAPI: { //direct chat
         getPersonalChatMessages: "/message/get-direct-chat-messages", //fetch latest few messages

@@ -196,6 +196,30 @@ function deleteChannelMessage(token, workspace_id, channel_id, message_id){
     });
 }
 
+/**
+ * delete a direct message
+ * @param {String} token user token
+ * @param {String} workspace_id workspace id
+ * @param {String} sender_id sender id
+ * @param {String} receiver_id receiver id
+ * @param {String} message_id message id
+ */
+function deleteDirectMessage(token, workspace_id, sender_id,receiver_id, message_id){
+    return axios.request({
+        url: baseURL+messageAPI.deleteDirectMessage,
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            workspace_id: workspace_id,
+            sender_id: sender_id,
+            receiver_id: receiver_id,
+            message_id: message_id
+        }
+    });
+}
+
 
 module.exports = {
     getAllMessagesInChannel,
@@ -206,5 +230,6 @@ module.exports = {
     sendDirectMessage,
     sendChannelReply,
     sendDirectReply,
-    deleteChannelMessage
+    deleteChannelMessage,
+    deleteDirectMessage
 };
