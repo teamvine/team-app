@@ -173,6 +173,30 @@ function sendDirectReply(token,reply){
         }
     });
 }
+
+/**
+ * delete a channel message
+ * @param {String} token user token
+ * @param {String} workspace_id workspace id
+ * @param {String} channel_id channel id
+ * @param {String} message_id message id
+ */
+function deleteChannelMessage(token, workspace_id, channel_id, message_id){
+    return axios.request({
+        url: baseURL+messageAPI.deleteChannelMessage,
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            channel_id: channel_id,
+            workspace_id: workspace_id,
+            message_id: message_id
+        }
+    });
+}
+
+
 module.exports = {
     getAllMessagesInChannel,
     getOlderMessagesInChannel,
@@ -181,7 +205,6 @@ module.exports = {
     sendChannelMessage,
     sendDirectMessage,
     sendChannelReply,
-    sendDirectReply
-    // uploadAttachment,
-    // findMessage
+    sendDirectReply,
+    deleteChannelMessage
 };

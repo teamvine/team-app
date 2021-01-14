@@ -82,6 +82,32 @@ const mutations = {
         }
     },
     /**
+     * delete a message
+     * @param {Object} inform information
+     */
+    deleteMessage: (state, inform)=> {
+        // inform= {
+        //     access_id: "",
+        //     chat_type: "",
+        //     message_id: ""
+        // }
+        if (state.messages[inform.access_id]){
+            let all = {}
+            let current_sms = _.toArray(state.messages[inform.access_id].messages)
+            for (let index = 0; index < current_sms.length; index++) {
+                if(current_sms[index]._id.toString()!=inform.message_id.toString()) all[current_sms[index]._id] = current_sms[index];
+            }
+            state.messages[inform.access_id].messages = all
+            //adjust current chat messages
+            if (state.currentChatType == 'direct' && state.currentDirectChatReceiver._id == inform.access_id) {
+                state.currentChatMessages = state.messages[inform.access_id].messages
+            }
+            if (state.currentChatType == 'channel' && state.currentChannel._id == inform.access_id) {
+                state.currentChatMessages = state.messages[inform.access_id].messages
+            }
+        }
+    },
+    /**
      * pepend old messages of chat by access_id
      * @param {Object} data object containing access_id and old messages
      */
