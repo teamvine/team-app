@@ -13,20 +13,20 @@
       </nav>
     <div class="new-channel-page h-auto">
         <div class="flex flex-col bg-white px-4 sm:px-6 md:px-8 lg:px-10 py-4 rounded-md w-full">
-            <h4 class="text-gray-900 font-semibold mb-5 info">
+            <h4 class="text-gray-900 Lato__Bold mb-5 info">
                 Channels helps the teams in the organization to communicate easily.
                 They're groups of specific members in whole the organization.
             </h4>
             <div class="flex flex-col md:flex-row w-full">
                 <div class="flex flex-col w-full mb-6 mr-0 md:mr-2">
-                    <label for="c-name" class="mb-1 text-md tracking-wide text-gray-800 font-bold">Channel Name:</label>
+                    <label class="mb-1 text-md tracking-wide text-gray-800 font-bold Lato__Bold">Channel Name:</label>
                     <div>
                         <input @focus="removeReport" @blur="removeReport" v-model="newChannel.name" id="c-name" type="text" name="channelName"
                             class="text-sm font-bold sm:text-base rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
                     </div>
                 </div>
                 <div class="flex flex-col w-full mb-6 ml-0 md:ml-2">
-                    <label for="c-name" class="mb-1 text-md tracking-wide text-gray-800 font-bold">Channel Type:</label>
+                    <label for="c-name" class="mb-1 text-md tracking-wide text-gray-800 font-bold Lato__Bold">Channel Type:</label>
                     <div>
                         <select @focus="removeReport" @blur="removeReport" v-model="newChannel.type" class="font-bold text-sm sm:text-base rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
                             <option value="public" class="py-4">Public</option>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="flex flex-col mb-6">
-                <label for="description" class="mb-1 text-md tracking-wide text-gray-800 font-bold">Description</label>
+                <label class="mb-1 text-md tracking-wide text-gray-800 font-bold Lato__Bold">Description</label>
                 <div>
                     <textarea @focus="removeReport" @blur="removeReport" v-model="newChannel.description" name="description" id="description" cols="30" rows="4"
                         class="text-base md:text-md rounded placeholder-gray-500 pl-2 pr-2 border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" />
@@ -189,5 +189,9 @@ export default {
     }
     .info {
         font-weight: normal;
+        font-family: "LatoBold" !important;
+    }
+    .Lato__Bold {
+        font-family: "LatoBold"
     }
 </style>

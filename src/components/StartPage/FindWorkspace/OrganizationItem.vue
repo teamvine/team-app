@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="flex-grow text-grey-darker items-center p-4 pt-2 pb-3">
-            <span class="text-lg organization-name w-full font-bold pb-4 pr-4">
+            <span class="text-lg organization-name w-full font-bold pb-4 pr-4 Lato__Bold">
             {{organization.name}}
             </span>
             <p class="leading-tight w-full flex text-sm">
@@ -94,5 +94,9 @@ export default {
     }
     .new-organ:hover {
         background-color: #003eaa;
+    }
+    .Lato__Bold {
+        font-family: "LatoBold" !important;
+        font-weight: bold;
     }
 </style>
