@@ -39,7 +39,7 @@
           <div class="flex items-center justify-between hover:bg-gray-100 py-3 px-6 border-b-1" 
           v-for="contact in userDirectChatReceivers" :key="contact._id">
             <div class="w-16">
-              <img class="w-12 h-12 rounded-full" src="https://source.unsplash.com/50x50/?nature">
+              <img class="w-12 h-12 rounded-full bg-gray-300" src="https://source.unsplash.com/50x50/?nature">
             </div>
             <div class="flex-1 pl-2">
               <div class="text-black font-semibold">{{contact.full_name}}</div>

@@ -1,10 +1,10 @@
 <template>
-  <div class="message-item mt-4">
+  <div class="message-item mt-3">
     <div class="flex msg-item-content" v-if="message.sender_id!=user._id">
       <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToNext"/>
       <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
-        <span class="text-gray-800 msg-body py-2 inter px-4">
+        <span class="msg-body py-2 px-4">
          {{message.content}}
         </span>
         <span class="msg-date mt-2">{{message.sent_at | formatDate}}</span>
@@ -12,7 +12,7 @@
     </div>
     <div class="flex msg-item-content sent-msg" v-else>
       <div class="flex-1 px-3">
-        <span class="msg-body py-2 inter px-4">
+        <span class="msg-body py-2 px-4">
           <span class="inter">
             {{message.content}}
           </span>
@@ -22,11 +22,30 @@
       <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToNext"/>
       <span class="w-40" v-else>&emsp;</span>
     </div>
+    <div class="menu bg-white border flex px-3 py-1 rounded-lg"
+    :class="[message.sender_id!=user._id? 'right':'left']">
+      <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-indigo-600" @click="toggleReplies(message)">
+        <i class="ri-reply-line"></i>
+      </span>
+      <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+        <i class="ri-save-line"></i>
+      </span>
+      <span v-if="user.email==message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+        <i class="ri-edit-line"></i>
+      </span>
+      <span v-if="user.email==message.sender_info.email" @click="deleteThisMessage" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-red-800">
+        <i class="ri-delete-bin-6-line"></i>
+      </span>
+      <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+        <i class="ri-menu-2-line"></i>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapState,mapMutations,mapGetters } from "vuex"
+import {deleteDirectMessage} from "../../../../lib/message"
 import {Filters} from '../../../../lib/functions'
 export default {
   name: "MessageItem",
@@ -42,6 +61,28 @@ export default {
       user: state=> state.all.user
     })
   },
+  methods: {
+    ...mapMutations("chat", ["deleteMessage"]),
+    ...mapGetters("all", ["getToken","getCurrentWorkspace"]),
+    deleteThisMessage(){
+      deleteDirectMessage(this.getToken(),this.getCurrentWorkspace()._id,this.message.sender_id,this.message.receiver_id,this.message._id)
+      .then(res=>{
+        if(res.data.err){
+          alert(res.data.message)
+        }else{
+          this.deleteMessage({
+            access_id: this.message.receiver_id,
+            chat_type: "direct",
+            message_id: this.message._id
+          })
+        }
+      })
+      .catch(err=>{
+        alert("ERROR: "+err.message)
+        console.log(err);
+      })
+    }
+  },
   filters: {
     formatDate: (value)=>{
       return Filters.formatTimestamp_v2(value)
@@ -53,13 +94,10 @@ export default {
 <style scoped>
 .message-item {
   font-family: "Lato";
+  position: relative
 }
 .msg-item-content {
   position: relative;
-}
-.inter {
-  font-size: 14;
-  font-family: "Lato";
 }
 .reply-name{
   font-size: 12;
@@ -73,6 +111,8 @@ export default {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  font-family: "Lato";
+  word-break:break-all
 }
 .msg-date {
   width: 100%;
@@ -109,8 +149,6 @@ export default {
 .sent-msg div .msg-body {
   background-color: rgba(0, 90, 224, 0.863);
   color: white;
-  display: inline-block;
-  max-width: 70%;
   margin-left: auto;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 0px;
@@ -118,11 +156,31 @@ export default {
   border-bottom-left-radius: 15px;
 }
 .sent-msg div .msg-body span {
-  font-weight: normal;
-  font-size: 14px;
   text-align: left;
   width: 100%;
   height: 100%;
+  display: block;
+}
+.menu {
+  position: absolute;
+  display: none;
+  position: absolute;
+  top: 0;
+}
+.menu.left {
+  left: 0
+}
+.menu.right {
+  right: 0;
+}
+.menu span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-weight: bolder;
+}
+.message-item:hover .menu {
   display: block;
 }
 </style>

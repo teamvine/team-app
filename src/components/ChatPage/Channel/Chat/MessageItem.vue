@@ -20,7 +20,7 @@
       <span v-if="user.email==message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
         <i class="ri-edit-line"></i>
       </span>
-      <span v-if="user.email==message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-red-800">
+      <span v-if="user.email==message.sender_info.email" @click="deleteThisMessage" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-red-800">
         <i class="ri-delete-bin-6-line"></i>
       </span>
       <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
@@ -32,7 +32,8 @@
 
 <script>
 import {Filters} from '../../../../lib/functions'
-import { mapState } from "vuex"
+import {deleteChannelMessage} from "../../../../lib/message"
+import { mapState, mapGetters, mapMutations } from "vuex"
 export default {
   name: "MessageItem",
   props: {
@@ -47,6 +48,29 @@ export default {
     ...mapState({
       user: state=> state.all.user
     })
+  },
+  methods: {
+    ...mapGetters("chat", ["getCurrentChannel"]),
+    ...mapMutations("chat", ["deleteMessage"]),
+    ...mapGetters("all", ["getCurrentWorkspace","getToken"]),
+    deleteThisMessage(){
+      deleteChannelMessage(this.getToken(),this.getCurrentWorkspace()._id,this.getCurrentChannel()._id,this.message._id)
+      .then(res=>{
+        if(res.data.err){
+          alert(res.data.message)
+        }else{
+          this.deleteMessage({
+            access_id: this.getCurrentChannel()._id,
+            chat_type: "channel",
+            message_id: this.message._id
+          })
+        }
+      })
+      .catch(err=>{
+        alert("ERROR: "+err.message)
+        console.log(err);
+      })
+    }
   },
   filters: {
     formatDate: (value)=>{
