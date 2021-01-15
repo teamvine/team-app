@@ -28,36 +28,42 @@ export default {
 </script>
 
 <style scoped>
-    .border {
-      border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-    }
-    .border-b {
-      border-bottom: 1px solid rgb(0, 0, 0, 0.1) !important;
-    }
-    .replies {
-        height: 100%;
-        flex: 0 0 350px;
-        overflow: auto;
-    }
-    .replies::-webkit-scrollbar {
-        width: 6px;
-    }
-    .replies::-webkit-scrollbar-thumb {
-        background-color: rgb(212, 212, 212);
-    }
-    .chat-replies {
-        height: 100%;
-        width: 100%;
-        display: block;
-        float: none;
-        flex: none;
-    }
-    .replies-card {
-        margin-top: 10px;
-        min-height: 100%;
-        /* border-radius: 5px; */
-        /* border: 1px solid rgb(0, 0, 0, 0.18); */
-        box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
-        background-color: #fff;
-    }
+.border {
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.border-b {
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1) !important;
+}
+
+.replies {
+  height: 100%;
+  flex: 0 0 350px;
+  overflow: auto;
+}
+
+.replies::-webkit-scrollbar {
+  width: 6px;
+}
+
+.replies::-webkit-scrollbar-thumb {
+  background-color: rgb(212, 212, 212);
+}
+
+.chat-replies {
+  height: 100%;
+  width: 100%;
+  display: block;
+  float: none;
+  flex: none;
+}
+
+.replies-card {
+  margin-top: 10px;
+  min-height: 100%;
+  /* border-radius: 5px; */
+  /* border: 1px solid rgb(0, 0, 0, 0.18); */
+  box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
+  background-color: #fff;
+}
 </style>
