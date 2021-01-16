@@ -232,7 +232,7 @@ const actions = {
             //add this message to messages list by access id
             let access_id;
             reply.sender_id.toString() == rootState.all.user._id.toString() ? access_id = reply.receiver_id : access_id = reply.sender_id;
-            commit("addReply", { access_id: access_id, reply: reply, type: "direct" });
+            commit("addReply", { access_id: access_id, reply: reply, chat_type: "direct", message_id: reply.direct_message_id });
         }
     },
 
@@ -267,7 +267,7 @@ const actions = {
         channel == undefined ? isForMe = false : isForMe = true;
         if (isForMe) {
             //add this message to messages list by access id
-            commit("addReply", { access_id: reply.channel_id, reply: reply, type: "channel" });
+            commit("addReply", { access_id: reply.channel_id, reply: reply, chat_type: "channel", message_id: reply.message_id });
         }
     },
 }

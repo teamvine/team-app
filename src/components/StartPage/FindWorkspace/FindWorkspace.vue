@@ -1,7 +1,7 @@
 <template>
     <main class="flex-1 ">
         <div class="w-full flex-row flex content-center justify-center flex-wrap py-3 px-2">
-            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-2/4 md:w-3/4 lg:w-3/6 border border-gray-400 rounded-sm md:rounded-lg mt-3 mb-4">
+            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-0 sm:w-2/4 md:w-3/4 lg:w-3/6 border border-gray-500 rounded-sm md:rounded-sm mt-3 mb-4">
                 <header class="flex items-center justify-between leading-tight w-full border-b">
                     <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg> -->
@@ -12,7 +12,7 @@
                 <div class="find-organs w-ful px-2">
                     <div class="px-8 pt-6 pb-2 mb-2 flex flex-col my-2">
                       <div class="-mx-3 md:flex mb-0">
-                        <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+                        <div class="flex flex-wrap items-stretch w-full mb-4 relative Lato__Bold">
                           <label class="block w-full tracking-wide text-grey-darker text-md font-bold mb-2" for="grid-password">
                             Find Public Organizations
                           </label>
@@ -35,7 +35,7 @@
                     </div>
                     <!-- =============== results================ -->
                     <div class="flex flex-col md:px-12" v-else>
-                      <h1 class="w-full font-bold text-2xl mb-3">{{filteredWorkspaces.length}} Results</h1>
+                      <h1 class="w-full font-bold text-2xl mb-3 Lato__Bold">{{filteredWorkspaces.length}} Results</h1>
                       <OrganizationItem v-for="(organization,index) in filteredWorkspaces" :userJoin="userJoinedOrganization" :organization="organization" :key="index"/>
                     </div>
                   <!-- ============================= -->
@@ -136,6 +136,9 @@ export default {
     .find-organs {
         min-height: 20pc;
     }
+    .organ-name {
+      font-family: Arial, Helvetica, sans-serif !important;
+    }
     .new-organ,.find-organ {
         border-radius: 5px;
         font-family: Arial, Helvetica, sans-serif !important;
@@ -148,5 +151,8 @@ export default {
     }
     .btn-blue:hover,.new-organ:hover,.open-btn:hover {
         background-color: #003eaa;
+    }
+    .Lato__Bold {
+      font-family: "LatoBold" !important;
     }
 </style>
