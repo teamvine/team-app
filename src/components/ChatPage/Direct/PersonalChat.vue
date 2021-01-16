@@ -1,15 +1,15 @@
 <template>
   <div class="personal-chat-view">
       <div class="main-personal-chat">
-            <Chat :toggleChatDetails="toggleChatDetails"/>
-            <ChatDetails :show="showRightSidebar=='chatDetails'? true:false" :toggleRightSidebar="toggleRightSidebar"/>
+            <Chat :toggleReplies="toggleReplies" :toggleChatDetails="toggleChatDetails"/>
+            <ChatDetails :show="showRightSidebar=='chatDetails'? true:false" :toggleRightSidebar="toggleChatDetails"/>
             <ChatReplies :show="showRightSidebar=='chatReplies'? true:false" :toggleRightSidebar="toggleRightSidebar"/>
       </div>
   </div>
 </template>
 
 <script>
-import { mapState,mapActions,mapMutations } from "vuex"
+import { mapState,mapActions,mapMutations, mapGetters } from "vuex"
 import Chat from "./Chat/Chat"
 import ChatDetails from "./ChatDetails/ChatDetails"
 import ChatReplies from "./ChatReplies/ChatReplies"
@@ -33,11 +33,20 @@ export default {
         })
     },
     methods: {
-        ...mapMutations("chat",["setCurrentChatType","setCurrentDirectChatReceiver"]),
+        ...mapGetters("all",["getUser"]),
+        ...mapMutations("chat",["setCurrentChatType","setCurrentDirectChatReceiver","setCurrentThread"]),
         ...mapActions("chat",["changeAndSetUpRoom","resetCurrentThread"]),
         toggleRightSidebar(sidebar){
             this.showRightSidebar = sidebar.toString()
             if(sidebar.toString()=="chatDetails") localStorage.setItem("showRightSidebar","chatDetails")
+        },
+        toggleReplies(message){
+            this.setCurrentThread({
+                chat_type: 'direct',
+                access_id: message.sender_id.toString()==this.getUser()._id.toString()? message.receiver_id:message.sender_id,
+                message_id: message._id
+            })
+            this.showRightSidebar="chatReplies"
         },
         toggleChatDetails(){
             if(this.showRightSidebar!="chatDetails") {
@@ -45,7 +54,7 @@ export default {
                 localStorage.setItem("showRightSidebar","chatDetails")
             }else {
                 this.showRightSidebar = ""
-                localStorage.setItem("showRightSidebar","")
+                localStorage.removeItem("showRightSidebar")
             }
         },
         initializeChat(){

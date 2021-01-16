@@ -12,6 +12,7 @@
           <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
             <MessageItem 
             v-for="(message,index) in currentChatMessages"
+            :toggleReplies="toggleReplies"
             :sameToNext="allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)+1] && message.sender_info.email==allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)+1].sender_info.email"
             :message="message" :key="index"/>
           </div>
@@ -43,7 +44,8 @@ export default {
       MessageItem
   },
   props: {
-    toggleChatDetails: Function
+    toggleChatDetails: Function,
+    toggleReplies: Function
   },
   data(){
     return {

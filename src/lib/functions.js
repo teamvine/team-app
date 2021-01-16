@@ -15,10 +15,10 @@ Filters.formatTimestamp = (date) => {
 /**
  * function version:2 to format Date() string
  * @param date a date provided by Date() bultin function
- * @returns string MMM Do,YYYY eg:  Sep 27th,2020
+ * @returns string hh:mm A eg:  12:30 pm
  */
 Filters.formatTimestamp_v2 = (date) => {
-    return moment(new Date(date)).format("hh:mm A");
+    return moment(new Date(date)).format("hh:mm a");
 }
 
 /**

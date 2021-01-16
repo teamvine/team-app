@@ -3,7 +3,7 @@
         <div class="chat-detls pl-1 pb-2 flex flex-wrap">
             <div class="channel-card shadow-md rounded-sm bg-white mr-2">
                 <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
-                    <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar('')">
+                    <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar">
                         &times;
                     </div>
                     <div class="w-full md:w-full font-bold py-3 text-center text-lg font-custom">Channel Details</div>

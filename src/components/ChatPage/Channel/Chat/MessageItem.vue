@@ -4,10 +4,13 @@
       <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToPrevious"/>
       <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
-        <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.full_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>
+        <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.display_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>
         <span class="msg-body py-0 txt px-1">
           {{message.content}}
         </span>
+        <label v-if="message.replies.length>0" @click="toggleReplies(message)" class="bg-gray-200 hover:bg-gray-400 rounded mt-3 text-sm cursor-pointer replies-num">
+          <b>{{message.replies.length}}</b> repl{{message.replies.length>1? 'ies':'y'}}
+        </label>
       </div>
     </div>
     <div class="menu bg-white border flex px-3 py-1 rounded-lg">
@@ -81,6 +84,12 @@ export default {
 </script>
 
 <style scoped>
+.replies-num {
+  padding: 2px 10px;
+  color: rgb(0, 81, 255);
+  font-weight: bold;
+  font-family: "Lato" !important;
+}
 .message-item,.txt,.msg-body  {
   position: relative;
   font-family: "Lato",sans-serif !important;

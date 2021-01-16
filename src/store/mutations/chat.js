@@ -146,15 +146,13 @@ const mutations = {
         state.currentThread = {
             is_active: true,
             chat_type: data.chat_type,
-            access_id: data.access_id,
-            message: state.currentChatMessages[data.message_id]
+            message: state.messages[data.access_id].messages[data.message_id]
         }
     },
-    addReply(state, data) {
-        // data={access_id: "",reply: {},type: "direct/channel"}
-        let sms_access_id = data.type == "direct" ? data.reply.direct_message_id : data.reply.message_id
-        if (state.messages[data.access_id]) {
-            state.messages[data.access_id].messages[sms_access_id].replies.push(data.reply)
+    addReply(state, data){
+        // data={access_id: "",reply: {},chat_type: "direct/channel",message_id: ""}
+        if (state.messages[data.access_id] && state.messages[data.access_id].messages[data.message_id]) {
+            state.messages[data.access_id].messages[data.message_id].replies.push(data.reply)
         }
     }
 

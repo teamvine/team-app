@@ -6,6 +6,10 @@
       <div class="flex-1 px-3">
         <span class="msg-body py-2 px-4">
          {{message.content}}
+         <br v-if="message.replies.length>0">
+          <label @click="toggleReplies(message)" class="d-inline bg-indigo-200 hover:bg-indigo-400 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
+            <b>{{message.replies.length}}</b>repl{{message.replies.length>1? 'ies':'y'}}
+          </label>
         </span>
         <span class="msg-date mt-2">{{message.sent_at | formatDate}}</span>
       </div>
@@ -15,12 +19,16 @@
         <span class="msg-body py-2 px-4">
           <span class="inter">
             {{message.content}}
+            <br v-if="message.replies.length>0">
+            <label @click="toggleReplies(message)" class="d-inline bg-gray-200 hover:bg-gray-400 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
+              <b>{{message.replies.length}}</b>repl{{message.replies.length>1? 'ies':'y'}}
+            </label>
           </span>
         </span>
         <span class="msg-date mt-2">{{message.sent_at | formatDate}}</span>
       </div>
       <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToNext"/>
-      <span class="w-40" v-else>&emsp;</span>
+      <span class="w-40" v-else></span>
     </div>
     <div class="menu bg-white border flex px-3 py-1 rounded-lg"
     :class="[message.sender_id!=user._id? 'right':'left']">
@@ -54,7 +62,8 @@ export default {
       type: Object,
       required: true
     },
-    sameToNext: Boolean
+    sameToNext: Boolean,
+    toggleReplies: Function
   },
   computed: {
     ...mapState({
@@ -104,7 +113,7 @@ export default {
 }
 .msg-body {
   font-size: 16px;
-  background-color: rgb(238, 238, 238);
+  background-color: rgba(238, 238, 238, 0.733);
   display: inline-block;
   width: auto;
   max-width: 70%;
@@ -112,7 +121,7 @@ export default {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   font-family: "Lato";
-  word-break:break-all
+  word-wrap: break-word
 }
 .msg-date {
   width: 100%;
@@ -182,5 +191,8 @@ export default {
 }
 .message-item:hover .menu {
   display: block;
+}
+.replies-num {
+  padding: 3px 10px;
 }
 </style>
