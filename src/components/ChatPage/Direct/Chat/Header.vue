@@ -1,7 +1,8 @@
 <template>
-  <div
-    class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
-  >
+  <div class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0">
+    <div class="flex pl-3 pr-0 justify-between items-center cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mt-1" fill="rgb(0, 0, 0, 0.7)" viewBox="0 0 30 30" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z"/></svg>
+    </div>
     <div class="flex-1 flex justify-between items-center user-pic">
       <div class="user-picture">
         <img
@@ -11,7 +12,7 @@
         />
         <div class="names">
           <h6 class="p-0 py-0 my-0">{{currentDirectChatReceiver.full_name}}</h6>
-          <small class="font-bold py-0">@{{currentDirectChatReceiver.display_name}}</small>
+          <!-- <small class="font-bold py-0">@{{currentDirectChatReceiver.email}}</small> -->
         </div>
       </div>
     </div>
@@ -118,26 +119,25 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: row;
-  /* background: #000; */
 }
 .user-picture img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-left: 3%;
+  margin-left: 0%;
   margin-top: 2%;
 }
 .user-pic .names {
   display: inline-block;
   width: 250px;
-  padding: 2% 1%;
+  padding: 5% 3%;
 }
 .names h6 {
+  display: block;
   font-weight: bold;
   padding: 0 !important;
   display: block;
-  margin-bottom: 0px !important;
-  margin-top: -4px;
+  /* margin-bottom: 0px !important; */
   font-family: Arial, Helvetica, sans-serif;
 }
 .names small {
