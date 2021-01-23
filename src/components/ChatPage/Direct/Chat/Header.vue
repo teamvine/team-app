@@ -143,7 +143,6 @@ export default {
   font-weight: bold;
   padding: 0 !important;
   display: block;
-  /* margin-bottom: 0px !important; */
   font-family: Arial, Helvetica, sans-serif;
 }
 .names small {
@@ -180,7 +179,7 @@ export default {
   margin-right: 4%;
   cursor: pointer;
 }
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1000px) {
   #menu {
     position: absolute;
     top: 50px;
@@ -206,7 +205,7 @@ export default {
     cursor: pointer;
   }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1000px) {
   #menu nav ul li span {
     background: rgb(241, 245, 252);
     width: 28px;
@@ -221,6 +220,12 @@ export default {
   }
   .chat-head {
     overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .user-pic .names {
+    width: 150px;
   }
 }
 </style>

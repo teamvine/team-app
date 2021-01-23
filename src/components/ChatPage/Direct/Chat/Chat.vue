@@ -77,7 +77,6 @@ export default {
   min-width: 400px;
   overflow: hidden;
   background-color: rgba(224, 224, 224, 0.1);
-  /* color: white; */
 }
 .chat-content {
     width: 100%;
@@ -98,7 +97,6 @@ export default {
     overflow-x: hidden;
     height: 100%;
     padding: 0;
-    /* background-color: rgb(179, 162, 162); */
 }
 .messages {
     height: 100%;
@@ -121,5 +119,11 @@ export default {
 .chat-footer-extended {
     min-height: 120px;
     max-height: 120px;
+}
+
+@media only screen and (max-width: 800px){
+  .chat {
+    min-width: auto;
+  }
 }
 </style>

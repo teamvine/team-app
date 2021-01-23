@@ -69,14 +69,14 @@ const mutations = {
                 state.currentChatMessages = state.messages[data.access_id].messages
                 let messagesList = document.querySelector("#messages");
                 setTimeout(() => {
-                    messagesList.scrollTop = messagesList.scrollHeight
+                    if(messagesList) messagesList.scrollTop = messagesList.scrollHeight;
                 }, 100)
             }
             if (state.currentChatType == 'channel' && state.currentChannel._id == data.access_id) {
                 state.currentChatMessages = state.messages[data.access_id].messages
                 let messagesList = document.querySelector("#messages");
                 setTimeout(() => {
-                    messagesList.scrollTop = messagesList.scrollHeight
+                    if(messagesList) messagesList.scrollTop = messagesList.scrollHeight;
                 }, 100)
             }
         }
@@ -140,7 +140,7 @@ const mutations = {
             state.currentChatMessages = []
         }
         let messagesList = document.querySelector("#messages");
-        messagesList.scrollTop = messagesList.scrollHeight
+        if(messagesList) messagesList.scrollTop = messagesList.scrollHeight;
     },
     setCurrentThread: (state, data) => {
         state.currentThread = {

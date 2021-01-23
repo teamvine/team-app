@@ -81,7 +81,6 @@ export default {
   min-width: 400px;
   overflow: hidden;
   background-color: rgba(224, 224, 224, 0.01);
-  /* color: white; */
 }
 .chat-content {
     width: 100%;
@@ -131,5 +130,11 @@ export default {
   max-height: 200px !important;
   overflow: hidden; 
   white-space: pre;
+}
+
+@media only screen and (max-width: 800px){
+  .chat {
+    min-width: auto;
+  }
 }
 </style>

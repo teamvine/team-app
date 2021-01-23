@@ -161,4 +161,12 @@ export default {
         box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
         background-color: #fff;
     }
+  @media only screen and (max-width: 800px){
+    .replies {
+      flex: 0 0 100%;
+    }
+    .replies-card {
+      margin-right: 1%;
+    }
+  }
 </style>

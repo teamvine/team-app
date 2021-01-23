@@ -219,4 +219,10 @@ export default {
     overflow: hidden;
   }
 }
+
+@media only screen and (max-width: 400px){
+  .channel-ic .names {
+    width: 150px;
+  }
+}
 </style>

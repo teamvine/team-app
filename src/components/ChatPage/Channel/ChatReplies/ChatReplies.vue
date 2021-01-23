@@ -167,4 +167,12 @@ export default {
 .reply__content {
   word-wrap: break-word
 }
+@media only screen and (max-width: 800px){
+  .replies {
+    flex: 0 0 100%;
+  }
+  .replies-card {
+    margin-right: 1%;
+  }
+}
 </style>

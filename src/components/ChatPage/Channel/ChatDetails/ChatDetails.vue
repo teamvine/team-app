@@ -225,4 +225,13 @@ button svg {
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
     }
+
+    @media only screen and (max-width: 800px){
+        .details {
+            flex: 0 0 100%;
+        }
+        .channel-card {
+            margin-right: 1%;
+        }
+    }
 </style>
