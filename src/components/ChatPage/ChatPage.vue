@@ -1,7 +1,9 @@
 <template>
   <div class="chat-view">
-      <SideBar/>
-      <div class="main-chat-view">
+      <SideBar 
+        v-show="w_inner_width>800? true:w_inner_width<=800 && show_col=='sidebar'? true: false"/>
+      <div class="main-chat-view"
+        v-show="w_inner_width>800? true:w_inner_width<=800 && show_col=='chat'? true: false">
         <router-view/>
       </div>
   </div>
@@ -9,11 +11,27 @@
 
 <script>
 import SideBar from "./SideBar/SideBar"
+import { mapState } from "vuex"
 export default {
+    name: "ChatPage",
     components: {
         SideBar
     },
-    name: "ChatPage"
+    data(){
+        return {
+            w_inner_width: window.innerWidth
+        }
+    },
+    computed:{
+        ...mapState({
+            show_col: state=> state.chat.show_col
+        })
+    },
+    mounted() {
+        window.addEventListener('resize', ($event)=>{
+            this.w_inner_width = window.innerWidth
+        })
+    }
 }
 </script>
 
@@ -24,15 +42,12 @@ export default {
         display: flex;
         overflow: hidden;
         flex-direction: row;
-        /* background: rgb(0, 27, 116); */
     }
     .main-chat-view {
         width: 100%;
         height:100%;
         max-height: 100% !important;
         overflow: hidden;
-        /* background: rgb(139, 193, 243); */
-        /* color: white; */
     }
     @media only screen and (max-width: 800px){
         .chat-view {
