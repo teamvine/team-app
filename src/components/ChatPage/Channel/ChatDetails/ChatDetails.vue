@@ -134,40 +134,38 @@ export default {
 }
 </script>
 <style scoped>
-
-button svg {
-    fill: rgb(0, 117, 235);
-}
-.border {
-    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-}
-.headingOne {
-    border: 1px solid rgb(0, 0, 0, 0.1);
-    border-bottom: 0px;
-}
-.border-b {
-    border-bottom: 1px solid rgb(0, 0, 0, 0.1) !important;
-}
-.headingOne button{
-    position: relative;
-    width: 100%;
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif !important;
-}
-.headingOne:not(:nth-child(1)) {
-    border-bottom: 0px;
-}
-.icn {
-    display: inline;
-    position: absolute;
-    right: 3%;
-    fill: rgb(88, 88, 88);
-}
-.headingOne:hover,.headingOne:hover button svg {
-    /* background: rgb(241, 240, 240); */
-    fill: rgb(5, 102, 199);
-    color:  rgb(5, 102, 199);
-}
+    button svg {
+        fill: rgb(0, 117, 235);
+    }
+    .border {
+        border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+    }
+    .headingOne {
+        border: 1px solid rgb(0, 0, 0, 0.1);
+        border-bottom: 0px;
+    }
+    .border-b {
+        border-bottom: 1px solid rgb(0, 0, 0, 0.1) !important;
+    }
+    .headingOne button{
+        position: relative;
+        width: 100%;
+        text-align: left;
+        font-family: Arial, Helvetica, sans-serif !important;
+    }
+    .headingOne:not(:nth-child(1)) {
+        border-bottom: 0px;
+    }
+    .icn {
+        display: inline;
+        position: absolute;
+        right: 3%;
+        fill: rgb(88, 88, 88);
+    }
+    .headingOne:hover,.headingOne:hover button svg {
+        fill: rgb(5, 102, 199);
+        color:  rgb(5, 102, 199);
+    }
     .headingOne button b {
          font-family: Arial, Helvetica, sans-serif !important;
     }
