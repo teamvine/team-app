@@ -18,7 +18,6 @@
       <div class="user-menu">
         <div class="drp-dwn-toggler pl-2" @click="showDropDown = !showDropDown">
           <img src="../../assets/images/avatar3.png" alt="user-pic" />
-          <!-- <span class="px-2 pr-3">Egide</span> -->
         </div>
         <div class="drop-down shadow-md" v-show="showDropDown">
           <div
@@ -199,7 +198,7 @@ export default {
   min-height: 50px;
   background-color: #ffffff;
   z-index: 10;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.39)
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2)
 }
 .app-name {
   padding: auto;

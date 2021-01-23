@@ -11978,6 +11978,11 @@ uuidv4@3.0.1:
   dependencies:
     uuid "3.3.2"
 
+v-click-outside@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/v-click-outside/-/v-click-outside-3.1.2.tgz#1dbaa14bf09a21bd16f23a38f03bfa3988f71281"
+  integrity sha512-gMdRqfRE6m6XU6SiFi3dyBlFB2MWogiXpof8Aa3LQysrl9pzTndqp/iEaAphLoadaQUFnQ0ec6fLLaxr7LiY6A==
+
 v-emoji-picker@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/v-emoji-picker/-/v-emoji-picker-2.3.1.tgz#0eb4123b0a70311e1533796743f64d6cbc1023b1"
