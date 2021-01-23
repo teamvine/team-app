@@ -195,7 +195,7 @@ export default {
     })
   },
   methods: {
-    ...mapMutations("chat",["setCurrentChannel","setCurrentChatType","setCurrentDirectChatReceiver"]),
+    ...mapMutations("chat",["setCurrentChannel","setCurrentChatType","setCurrentDirectChatReceiver","changeCol"]),
     ...mapActions("chat",["changeAndSetUpRoom","resetCurrentThread"]),
     /**
      * switching between personal and channel chat types
@@ -237,6 +237,7 @@ export default {
       this.setCurrentChatType("channel")
       this.changeAndSetUpRoom()
       this.$modal.hide("browseChannel")
+      this.changeCol("chat")
       this.$router.push({
         name: "ChannelChat",
         params: { channel_code: channel.channel_code }
@@ -248,6 +249,7 @@ export default {
       this.setCurrentDirectChatReceiver(user)
       this.setCurrentChatType("direct")
       this.changeAndSetUpRoom()
+      this.changeCol("chat")
       this.$router.push({
         name: "PersonalChat",
         params: {contact_id: user._id }
