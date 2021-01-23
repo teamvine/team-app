@@ -6,15 +6,15 @@
       </div>
       <div class="chat-messages">
         <div class="messages" id="messages">
-          <div v-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
-              <span class="mt-4 font-bold text-lg absolute">Loading...</span>
-          </div>
-          <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
+          <div class="msgs px-2 py-3" v-if="Object.keys(currentChatMessages).length>0">
             <MessageItem 
             v-for="(message,index) in currentChatMessages"
             :toggleReplies="toggleReplies"
             :sameToNext="allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)+1] && message.sender_info.email==allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)+1].sender_info.email"
             :message="message" :key="index"/>
+          </div>
+          <div v-else-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
+              <span class="mt-4 font-bold text-lg absolute">Loading...</span>
           </div>
           <div
            class="nothing w-full h-full flex text-center justify-center content-center items-center"
