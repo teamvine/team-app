@@ -3,10 +3,12 @@ module.exports = {
 
   pwa: {
     name: 'RCONNECT',
-    themeColor: '#2A68D3',
-    msTileColor: '#2A68D3',
+    themeColor: '#FFFFFF',
+    msTileColor: '#FFFFFF',
     manifestOptions: {
-      background_color: '#2A68D3'
+      background_color: '#FFFFFF'
     }
-  }
+  },
+
+  assetsDir: 'static'
 }

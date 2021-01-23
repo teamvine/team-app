@@ -1,9 +1,9 @@
 <template>
   <div class="channel-chat-view">
       <div class="main-channel-chat">
-            <Chat :toggleReplies="toggleReplies" :toggleChatDetails="toggleChatDetails"/>
-            <ChatDetails :show="showRightSidebar=='chatDetails'? true:false" :toggleRightSidebar="toggleChatDetails"/>
-            <ChatReplies :show="showRightSidebar=='chatReplies'? true:false" :toggleRightSidebar="toggleRightSidebar"/>
+            <Chat v-if="w_inner_width>800 || (showRightSidebar!='chatDetails'&& showRightSidebar!='chatReplies')" :toggleReplies="toggleReplies" :toggleChatDetails="toggleChatDetails"/>
+            <ChatDetails  v-if="w_inner_width>800 || (showRightSidebar!='chatReplies')" :show="showRightSidebar=='chatDetails'? true:false" :toggleRightSidebar="toggleChatDetails"/>
+            <ChatReplies v-if="w_inner_width>800 || (showRightSidebar!='chatDetails')" :show="showRightSidebar=='chatReplies'? true:false" :toggleRightSidebar="toggleRightSidebar"/>
             <router-view></router-view>
       </div>
   </div>
@@ -21,11 +21,14 @@ export default {
     },
     data() {
         return {
-            showRightSidebar: localStorage.getItem("showRightSidebar") || ""
-            // showRightSidebar: "chatReplies"
+            showRightSidebar: localStorage.getItem("showRightSidebar") || "",
+            w_inner_width: window.innerWidth
         }
     },
     mounted(){
+        window.addEventListener('resize', ($event)=>{
+            this.w_inner_width = window.innerWidth
+        })
         this.initializeChat()
     },
     computed: {
@@ -78,16 +81,13 @@ export default {
     .channel-chat-view {
         height: 100%;
         flex: 0 0 100%;
-        /* background: rgb(107, 201, 230); */
-        /* color: white; */
     }
     .main-channel-chat {
         width: 100% !important;
         height: 100% !important;
         overflow-y: auto;
-        overflow-x: auto;
+        overflow-x: hidden;
         display: flex;
         flex-direction: row;
-        /* background-color: rgb(211, 175, 175); */
     }
 </style>

@@ -114,8 +114,6 @@ export default {
 .user-card {
   margin-top: 10px;
   min-height: 100%;
-  /* border-radius: 6px; */
-  /* border: 1px solid rgb(0, 0, 0, 0.18); */
   background-color: #fff;
   box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
 }
@@ -125,8 +123,6 @@ export default {
   height: 15vh;
   width: 100%;
   overflow: visible;
-  /* background-color:rgb(0, 0, 0, 0.05); */
-  /* background-color: rgb(0, 117, 235); */
   position: relative;
   display: flex;
   flex-direction: row;
@@ -163,5 +159,14 @@ button{
 .font-custom {
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@media only screen and (max-width: 800px){
+  .details {
+    flex: 0 0 100%;
+  }
+  .user-card {
+    margin-right: 1%;
+  }
 }
 </style>

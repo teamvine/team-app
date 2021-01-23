@@ -1,2 +1,9 @@
-User-agent: *
+# https://www.robotstxt.org/robotstxt.html
+User-agent: Google
 Disallow:
+
+User-agent: Mediapartners-Google 
+Disallow:
+
+User-agent: *
+Disallow: /

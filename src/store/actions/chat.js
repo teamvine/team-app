@@ -117,7 +117,7 @@ const actions = {
                             gotMessages: true,
                             GotError: false
                         })
-                        messageList.scrollTop = messageList.scrollHeight;
+                        if(messageList) messageList.scrollTop = messageList.scrollHeight;
                     }
                 })
                 .catch(err => {
@@ -163,7 +163,7 @@ const actions = {
                             gotMessages: true,
                             GotError: false
                         })
-                        messageList.scrollTop = messageList.scrollHeight;
+                        if(messageList) messageList.scrollTop = messageList.scrollHeight;
                     }
                 })
                 .catch(err => {

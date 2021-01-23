@@ -1,7 +1,8 @@
 <template>
-  <div
-    class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
-  >
+  <div class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0">
+    <div @click="toggleSideBar" class="flex pl-3 pr-0 justify-between items-center cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mt-1" fill="rgb(0, 0, 0, 0.7)" viewBox="0 0 30 30" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z"/></svg>
+    </div>
     <div class="flex-1 flex justify-between items-center user-pic">
       <div class="user-picture">
         <img
@@ -11,7 +12,7 @@
         />
         <div class="names">
           <h6 class="p-0 py-0 my-0">{{currentDirectChatReceiver.full_name}}</h6>
-          <small class="font-bold py-0">@{{currentDirectChatReceiver.display_name}}</small>
+          <!-- <small class="font-bold py-0">@{{currentDirectChatReceiver.email}}</small> -->
         </div>
       </div>
     </div>
@@ -82,7 +83,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapMutations, mapState } from "vuex"
 export default {
   name: "Header",
   props: {
@@ -92,6 +93,12 @@ export default {
     ...mapState({
       currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver
     })
+  },
+  methods: {
+    ...mapMutations("chat",["changeCol"]),
+    toggleSideBar(){
+      this.changeCol("sidebar")
+    }
   }
 };
 </script>
@@ -118,26 +125,24 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: row;
-  /* background: #000; */
 }
 .user-picture img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-left: 3%;
+  margin-left: 0%;
   margin-top: 2%;
 }
 .user-pic .names {
   display: inline-block;
   width: 250px;
-  padding: 2% 1%;
+  padding: 5% 3%;
 }
 .names h6 {
+  display: block;
   font-weight: bold;
   padding: 0 !important;
   display: block;
-  margin-bottom: 0px !important;
-  margin-top: -4px;
   font-family: Arial, Helvetica, sans-serif;
 }
 .names small {
@@ -174,7 +179,7 @@ export default {
   margin-right: 4%;
   cursor: pointer;
 }
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1000px) {
   #menu {
     position: absolute;
     top: 50px;
@@ -200,7 +205,7 @@ export default {
     cursor: pointer;
   }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1000px) {
   #menu nav ul li span {
     background: rgb(241, 245, 252);
     width: 28px;
@@ -215,6 +220,12 @@ export default {
   }
   .chat-head {
     overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .user-pic .names {
+    width: 150px;
   }
 }
 </style>

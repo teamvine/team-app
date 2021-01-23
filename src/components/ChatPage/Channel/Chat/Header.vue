@@ -1,17 +1,14 @@
 <template>
-  <div
-    class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
-  >
+  <div class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0">
+    <div @click="toggleSideBar" class="flex pl-3 pr-0 justify-between items-center cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" class="mt-1" fill="rgb(0, 0, 0, 0.7)" viewBox="0 0 30 30" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z"/></svg>
+    </div>
     <div class="flex-1 flex justify-between items-center channel-ic">
       <div class="channel-icon">
-        <img
-          class="rounded-md"
-          src="../../../../assets/images/public.png"
-          alt=""
-        />
-        <div class="names ml-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H2zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm8.284 3.703A8.002 8.002 0 0 1 23 22h-2a6.001 6.001 0 0 0-3.537-5.473l.82-1.824zm-.688-11.29A5.5 5.5 0 0 1 21 8.5a5.499 5.499 0 0 1-5 5.478v-2.013a3.5 3.5 0 0 0 1.041-6.609l.555-1.943z"/></svg>
+        <div class="names ml-1">
           <h6 class="p-0">#{{currentChannel.name}}</h6>
-          <small class="font-bold">{{currentChannel.description}}</small>
+          <small class="font-bold">{{currentChannel.description}} jhsdkjshg sdjhgfsdjgf</small>
         </div>
       </div>
     </div>
@@ -82,7 +79,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapMutations, mapState } from "vuex"
 export default {
   name: "Header",
   props: {
@@ -92,6 +89,12 @@ export default {
     ...mapState({
       currentChannel: state=> state.chat.currentChannel
     })
+  },
+  methods: {
+    ...mapMutations("chat",["changeCol"]),
+    toggleSideBar(){
+      this.changeCol("sidebar")
+    }
   }
 };
 </script>
@@ -118,13 +121,13 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: row;
-  /* background: #000; */
 }
-.channel-icon img {
+.channel-icon svg {
   width: 30px;
   height: 30px;
-  margin-left: 3%;
-  margin-top: 2%;
+  margin-left: 1%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .channel-ic .names {
   display: inline-block;
@@ -173,7 +176,7 @@ export default {
   margin-right: 4%;
   cursor: pointer;
 }
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1000px) {
   #menu {
     position: absolute;
     top: 50px;
@@ -199,7 +202,7 @@ export default {
     cursor: pointer;
   }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1000px) {
   #menu nav ul li span {
     background: rgb(241, 245, 252);
     width: 28px;
@@ -214,6 +217,12 @@ export default {
   }
   .chat-head {
     overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .channel-ic .names {
+    width: 150px;
   }
 }
 </style>

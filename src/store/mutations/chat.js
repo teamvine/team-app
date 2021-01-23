@@ -69,14 +69,14 @@ const mutations = {
                 state.currentChatMessages = state.messages[data.access_id].messages
                 let messagesList = document.querySelector("#messages");
                 setTimeout(() => {
-                    messagesList.scrollTop = messagesList.scrollHeight
+                    if(messagesList) messagesList.scrollTop = messagesList.scrollHeight;
                 }, 100)
             }
             if (state.currentChatType == 'channel' && state.currentChannel._id == data.access_id) {
                 state.currentChatMessages = state.messages[data.access_id].messages
                 let messagesList = document.querySelector("#messages");
                 setTimeout(() => {
-                    messagesList.scrollTop = messagesList.scrollHeight
+                    if(messagesList) messagesList.scrollTop = messagesList.scrollHeight;
                 }, 100)
             }
         }
@@ -140,7 +140,7 @@ const mutations = {
             state.currentChatMessages = []
         }
         let messagesList = document.querySelector("#messages");
-        messagesList.scrollTop = messagesList.scrollHeight
+        if(messagesList) messagesList.scrollTop = messagesList.scrollHeight;
     },
     setCurrentThread: (state, data) => {
         state.currentThread = {
@@ -154,6 +154,13 @@ const mutations = {
         if (state.messages[data.access_id] && state.messages[data.access_id].messages[data.message_id]) {
             state.messages[data.access_id].messages[data.message_id].replies.push(data.reply)
         }
+    },
+    /**
+     * Change the column to show in small screens
+     * @param {*} newCol new column i.e sidebar or chat
+     */
+    changeCol: (state, newCol)=>{
+        state.show_col = newCol
     }
 
 }
