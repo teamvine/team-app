@@ -2,7 +2,7 @@
   <div class="contact py-2 px-2 pl-3" :class="[isCurrent(contact)? 'active':'']" @click="switchDirectChat(contact)">
     <div class="">
       <img
-        src="../../../assets/images/avatar3.png"
+        src="../../../assets/images/avatar4.png"
         class="left-0 top-0 w-full h-full rounded-full object-cover"
       />
       <div
