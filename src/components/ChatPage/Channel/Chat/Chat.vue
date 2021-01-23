@@ -78,7 +78,7 @@ export default {
   width: 100%;
   height: 100%;
   max-height: 100%;
-  min-width: 400px;
+  min-width: 300px;
   overflow: hidden;
   background-color: rgba(224, 224, 224, 0.01);
 }
