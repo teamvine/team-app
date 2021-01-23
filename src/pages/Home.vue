@@ -3,7 +3,6 @@
         <AppHeader/>
         <div class="body-view">
             <div class="main-page">
-                <SideBarNav v-if="$route.fullPath.toString().split('/')[1]=='chat'"/>
                 <router-view/>
             </div>
         </div>
@@ -12,15 +11,12 @@
 
 <script>
 import AppHeader from "../components/Header/Header"
-import SideBarNav from "../components/SidebarNav/SidebarNav"
 import UserAPI from "../lib/user";
 import { mapState, mapGetters,mapMutations,mapActions } from "vuex";
 import { event } from "../config/constants";
 import _ from "lodash";
-import {baseURL,userAPI,workspaceAPI} from '../lib/api'
-import Axios from 'axios'
 export default {
-  components: { SideBarNav,AppHeader },
+  components: { AppHeader },
     name: "Home",
     data(){
         return {
