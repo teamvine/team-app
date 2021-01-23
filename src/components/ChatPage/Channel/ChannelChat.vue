@@ -78,16 +78,13 @@ export default {
     .channel-chat-view {
         height: 100%;
         flex: 0 0 100%;
-        /* background: rgb(107, 201, 230); */
-        /* color: white; */
     }
     .main-channel-chat {
         width: 100% !important;
         height: 100% !important;
         overflow-y: auto;
-        overflow-x: auto;
+        overflow-x: hidden;
         display: flex;
         flex-direction: row;
-        /* background-color: rgb(211, 175, 175); */
     }
 </style>
