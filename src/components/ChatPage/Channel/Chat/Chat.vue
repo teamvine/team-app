@@ -90,7 +90,6 @@ export default {
     overflow-x: hidden;
     overflow: hidden;
     padding: 0% 1% !important;
-    /* background: rgb(230, 230, 230); */
 }
 .chat-header {
     min-height: 60px;
