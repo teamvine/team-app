@@ -18,7 +18,8 @@ export default {
         messages: {}, //N.B: all messages must be formated into JSON not Object
         currentChatMessages: {},
         threads: {},
-        currentThread: {}
+        currentThread: {},
+        show_col: "sidebar"
     }),
     mutations,
     actions,
