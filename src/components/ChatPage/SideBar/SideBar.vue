@@ -1,7 +1,10 @@
 <template>
   <div class="side-bar-view">
-    <div class="sidebar-view">
-        <div class="my-auto">       
+    <div class="sidebar-view" v-if="show_nav">
+        <div class="my-auto">
+          <div class="text-center icon-div cursor-pointer" @click="toggleNav">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M8 7a5 5 0 1 0 0 10h8a5 5 0 0 0 0-10H8zm0-2h8a7 7 0 0 1 0 14H8A7 7 0 0 1 8 5zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+          </div>       
           <div class="text-center icon-div icon-dash">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M0 0h24v24H0z"/><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
           </div>
@@ -26,6 +29,12 @@
       <div class="upper-part p-4 relative">
         <div class="relative">
           <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+            <div 
+              class="flex mr-2 justify-center items-center cursor-pointer" 
+              @click="toggleNav" 
+              v-if="!show_nav">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#1a65e6" viewBox="0 0 30 30" width="40" height="50"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm6 2v14h11V5H9z"/></svg>
+            </div>
             <input
               type="search"
               :disabled="false"
@@ -36,7 +45,7 @@
             />
             <div class="flex -mr-px">
               <button
-                class="srchtextbtn flex items-center leading-normal rounded rounded-l-none border border-l-0 border-grey-light px-3 whitespace-no-wrap bg-white text-sm hover:bg-gray-400"
+                class="srchtextbtn flex flex-shrink flex-grow flex-auto items-center leading-normal rounded rounded-l-none border border-l-0 border-grey-light px-3 whitespace-no-wrap h-10 bg-white text-sm hover:bg-gray-400"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,9 +66,9 @@
       </div>
       <div class="chat-list">
         <div class="chat-list-upper pb-3">
-          <div class="w-full p-2">
+          <div class="w-full p-2 flex items-center justify-center">
             <button 
-              class="btn btn btn-item mr-3 sort-by font-bold" 
+              class="btn btn btn-item w-1/2 mr-2 sort-by font-bold" 
               :class="[display_cont=='personal'? 'active':'']"
               @click="switchChatType('personal')"
               @dblclick="switchChatType('personal')"
@@ -68,7 +77,7 @@
               Private
             </button>
             <button 
-              class="btn btn btn-item mr-3 sort-by font-bold" 
+              class="btn btn btn-item w-1/2 ml-2 sort-by font-bold" 
               :class="[display_cont=='channel'? 'active':'']"
               @click="switchChatType('channel')"
               @dblclick="switchChatType('channel')"
@@ -172,7 +181,8 @@ export default {
   },
   data() {
     return {
-      display_cont: this.$route.name=="ChannelChat"? "channel":"personal"
+      display_cont: this.$route.name=="ChannelChat"? "channel":"personal",
+      show_nav: JSON.parse(localStorage.getItem('show-nav')) || false,
     };
   },
   computed: {
@@ -193,6 +203,15 @@ export default {
      */
     switchChatType(chat_type){
       this.display_cont = chat_type
+    },
+    toggleNav(){
+      if(this.show_nav==false){
+        this.show_nav = true
+        localStorage.setItem('show-nav', 'true')
+      }else{
+        this.show_nav = false
+        localStorage.setItem('show-nav', 'false')
+      }
     },
     newContact(){
       this.$modal.hideAll()
@@ -294,7 +313,7 @@ export default {
 .icon-div.active svg path:nth-child(2){
     fill:  #2f74eb;
 }
-.icon-div:hover {
+.icon-div:not(:nth-child(1)):hover {
   border: 1px solid rgb(219, 219, 219);
   border-left: 5px solid   #1a65e6;
   cursor: pointer;

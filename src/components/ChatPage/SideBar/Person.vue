@@ -1,5 +1,5 @@
 <template>
-  <div class="contact py-2 px-2" :class="[isCurrent(contact)? 'active':'']" @click="switchDirectChat(contact)">
+  <div class="contact py-2 px-2 pl-3" :class="[isCurrent(contact)? 'active':'']" @click="switchDirectChat(contact)">
     <div class="">
       <img
         src="../../../assets/images/avatar3.png"
