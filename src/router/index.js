@@ -96,23 +96,33 @@ const routes = [
         ]
       },
       {
-        path: "/settings",
+        path: "settings",
         name: "SettingsPage",
         component: () => import(/* webpackChunkName: "settingspage" */ '../components/Settings/Settings'),
         beforeEnter(to, from, next) {
           const isRedirection = to.name !== 'SettingsPage'
           return next(isRedirection ? true : {
-            name: 'NotificationSettings'
+            name: 'MyAccount'
           })
         },
         redirect: to => ({
-          name: 'NotificationSettings'
+          name: 'MyAccount'
         }),
         children: [
           {
-            path: "",
+            path: "account",
+            name: "MyAccount",
+            component: () => import(/* webpackChunkName: "myaccount" */ '../components/Settings/MyAccount')
+          },
+          {
+            path: "profile-settings",
+            name: "ProfileSettings",
+            component: () => import(/* webpackChunkName: "profilesettings" */ '../components/Settings/ProfileSettings')
+          },
+          {
+            path: "notification-settings",
             name: "NotificationSettings",
-            component: () => import(/* webpackChunkName: "notificationssettings" */ '../components/Settings/Notification')
+            component: () => import(/* webpackChunkName: "notificationssettings" */ '../components/Settings/NotificationSettings')
           }
         ]
       }

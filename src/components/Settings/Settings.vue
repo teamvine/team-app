@@ -1,13 +1,11 @@
 <template>
   <div class="settings-view">
-      <div class="main-settings-view">
-            <div class="settings__left">
-                <Sidebar/>
-            </div>
-            <div class="settings__right">
-                <router-view></router-view>
-            </div>
-      </div>
+        <div class="settings__left">
+            <Sidebar/>
+        </div>
+        <div class="settings__right">
+            <router-view></router-view>
+        </div>
   </div>
 </template>
 
@@ -26,16 +24,21 @@ export default {
         height: 100%;
         flex: 0 100%;
         display: flex;
-        overflow: hidden;
+        overflow-y: auto;
         flex-direction: row;
     }
-    .main-settings-view {
-        width: 100%;
-        height:100%;
-        max-height: 100% !important;
-        overflow: hidden;
+    .settings__left, .settings__right {
+        height: 100%;
+        min-height: 100%;
+        max-height: 100%;
     }
-    @media only screen and (max-width: 800px){
+    .settings__left {
+        flex: 0 0 370px;
+    }
+    .settings__right {
+        width: 100%;
+    }
+    @media only screen and (max-width: 700px){
         .settings-view {
             flex-direction: column;
         }

@@ -50,6 +50,7 @@
                   <div class="pl-2 text-md font-bold">Go Home</div>
                 </div>
                 <div
+                  @click="navigate({name: 'MyAccount'})"
                   class="flex item-hover d-block cursor-pointer px-4 py-2 text-md text-grey-darkest border-b-0"
                 >
                   <svg
@@ -100,6 +101,7 @@
                   <div class="pl-2 text-md font-bold">Messages</div>
                 </div>
                 <div
+                  @click="navigate({name: 'SettingsPage'})"
                   class="item-hover d-block flex cursor-pointer border-bottom px-4 py-2 text-md text-grey-darkest"
                 >
                   <svg
