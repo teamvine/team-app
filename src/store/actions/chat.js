@@ -82,7 +82,7 @@ const actions = {
         //if is channel
         if (state.currentChatType == "channel") {
             if (state.messages[state.currentChannel._id]) {
-                if (state.messages[state.currentChannel._id].messages.length > 0) {
+                if (Object.keys(state.messages[state.currentChannel._id].messages).length > 0) {
                     commit("setCurrentChatMessages", state.currentChannel._id.toString())
                     commit("setMessagesLoadingProcess", {
                         isLoadingMessages: false,
@@ -90,6 +90,7 @@ const actions = {
                         GotError: false
                     })
                 } else {
+                    state.currentChatMessages = {}
                     commit("setMessagesLoadingProcess", {
                         isLoadingMessages: true,
                         gotMessages: false,
@@ -97,6 +98,7 @@ const actions = {
                     })
                 }
             } else {
+                state.currentChatMessages = {}
                 commit("setMessagesLoadingProcess", {
                     isLoadingMessages: true,
                     gotMessages: false,
@@ -128,7 +130,7 @@ const actions = {
         //if is direct chat
         if (state.currentChatType == "direct") {
             if (state.messages[state.currentDirectChatReceiver._id]) {
-                if (state.messages[state.currentDirectChatReceiver._id].messages.length > 0) {
+                if (Object.keys(state.messages[state.currentDirectChatReceiver._id].messages).length > 0) {
                     commit("setCurrentChatMessages", state.currentDirectChatReceiver._id.toString())
                     commit("setMessagesLoadingProcess", {
                         isLoadingMessages: false,
@@ -136,6 +138,7 @@ const actions = {
                         GotError: false
                     })
                 } else {
+                    state.currentChatMessages = {}
                     commit("setMessagesLoadingProcess", {
                         isLoadingMessages: true,
                         gotMessages: false,
@@ -143,6 +146,7 @@ const actions = {
                     })
                 }
             } else {
+                state.currentChatMessages = {}
                 commit("setMessagesLoadingProcess", {
                     isLoadingMessages: true,
                     gotMessages: false,
