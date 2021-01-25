@@ -19,7 +19,7 @@ export default {
         currentChatMessages: {},
         threads: {},
         currentThread: {},
-        show_col: "sidebar"
+        show_col: "chat"
     }),
     mutations,
     actions,

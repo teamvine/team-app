@@ -1,6 +1,6 @@
 <template>
   <div class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0">
-    <div @click="toggleSideBar" class="flex pl-3 pr-0 justify-between items-center cursor-pointer">
+    <div @click="toggleSideBar" class="flex sidebar-toggler pl-3 pr-0 justify-between items-center cursor-pointer">
       <svg xmlns="http://www.w3.org/2000/svg" class="mt-1" fill="rgb(0, 0, 0, 0.7)" viewBox="0 0 30 30" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z"/></svg>
     </div>
     <div class="flex-1 flex justify-between items-center channel-ic">
@@ -220,9 +220,19 @@ export default {
   }
 }
 
+.sidebar-toggler {
+  display: none;
+}
+
 @media only screen and (max-width: 400px){
   .channel-ic .names {
     width: 150px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .sidebar-toggler {
+    display: flex;
   }
 }
 </style>

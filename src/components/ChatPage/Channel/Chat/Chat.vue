@@ -6,15 +6,15 @@
       </div>
       <div class="chat-messages p-4">
         <div class="messages" id="messages">
-          <div v-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
-              <span class="mt-4 font-bold text-lg absolute">Loading...</span>
-          </div>
-          <div class="msgs px-2 py-3" v-if="messagesLoadingProcess.gotMessages && Object.keys(currentChatMessages).length>0">
+          <div class="msgs px-2 py-3" v-if="Object.keys(currentChatMessages).length>0">
             <MessageItem 
               v-for="(message,index) in currentChatMessages"
               :toggleReplies="toggleReplies"
               :sameToPrevious="allMessagesToArray(currentChatMessages).indexOf(message)>0 && message.sender_info.email==allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)-1].sender_info.email" 
               :message="message" :key="index"/>
+          </div>
+          <div v-else-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
+              <span class="mt-4 font-bold text-lg absolute">Loading...</span>
           </div>
           <div
            class="nothing w-full h-full flex text-center justify-center content-center items-center"
@@ -78,7 +78,7 @@ export default {
   width: 100%;
   height: 100%;
   max-height: 100%;
-  min-width: 400px;
+  min-width: 300px;
   overflow: hidden;
   background-color: rgba(224, 224, 224, 0.01);
 }
@@ -90,7 +90,6 @@ export default {
     overflow-x: hidden;
     overflow: hidden;
     padding: 0% 1% !important;
-    /* background: rgb(230, 230, 230); */
 }
 .chat-header {
     min-height: 60px;
