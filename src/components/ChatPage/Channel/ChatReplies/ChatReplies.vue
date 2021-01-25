@@ -134,9 +134,9 @@ export default {
   overflow: auto;
 }
 
-.replies__list {
+/* .replies__list {
   border-left: 2px solid rgb(255, 125, 4);
-}
+} */
 .replies::-webkit-scrollbar {
   width: 6px;
 }

@@ -58,43 +58,64 @@ const routes = [
         ]
       },
       {
-      path: "chat",
-      name: "ChatPage",
-      component: () => {
-        return import("../components/ChatPage/ChatPage")
-      },
-      beforeEnter(to, from, next) {
-        const isRedirection = to.name !== 'ChatPage'
-        return next(isRedirection ? true : {
-          name: 'ChannelChat'
-        })
-      },
-      redirect: () => ({ //@param {} to
-        name: 'ChannelChat'
-      }),
-      children: [{
-        path: "channel/:channel_code",
-        name: "ChannelChat",
+        path: "chat",
+        name: "ChatPage",
         component: () => {
-          return import("../components/ChatPage/Channel/ChannelChat")
+          return import("../components/ChatPage/ChatPage")
         },
+        beforeEnter(to, from, next) {
+          const isRedirection = to.name !== 'ChatPage'
+          return next(isRedirection ? true : {
+            name: 'ChannelChat'
+          })
+        },
+        redirect: () => ({ //@param {} to
+          name: 'ChannelChat'
+        }),
         children: [{
-          path: "new-channel",
-          name: "NewChannel",
+          path: "channel/:channel_code",
+          name: "ChannelChat",
           component: () => {
-            return import("../components/ChatPage/Channel/NewChannel")
+            return import("../components/ChatPage/Channel/ChannelChat")
+          },
+          children: [{
+            path: "new-channel",
+            name: "NewChannel",
+            component: () => {
+              return import("../components/ChatPage/Channel/NewChannel")
+            }
+          }]
+        },
+        {
+          path: "direct/:contact_id",
+          name: "PersonalChat",
+          component: () => {
+            return import("../components/ChatPage/Direct/PersonalChat")
           }
-        }]
+        }
+        ]
       },
       {
-        path: "direct/:contact_id",
-        name: "PersonalChat",
-        component: () => {
-          return import("../components/ChatPage/Direct/PersonalChat")
-        }
+        path: "/settings",
+        name: "SettingsPage",
+        component: () => import(/* webpackChunkName: "settingspage" */ '../components/Settings/Settings'),
+        beforeEnter(to, from, next) {
+          const isRedirection = to.name !== 'SettingsPage'
+          return next(isRedirection ? true : {
+            name: 'NotificationSettings'
+          })
+        },
+        redirect: to => ({
+          name: 'NotificationSettings'
+        }),
+        children: [
+          {
+            path: "",
+            name: "NotificationSettings",
+            component: () => import(/* webpackChunkName: "notificationssettings" */ '../components/Settings/Notification')
+          }
+        ]
       }
-      ]
-    }
     ]
   },
   {
@@ -109,7 +130,7 @@ const routes = [
         return next();
       }
     },
-  }, 
+  },
   {
     path: '/register',
     name: 'Register',
@@ -129,9 +150,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "email_verification" */ '../pages/CodeVerification.vue'),
     beforeEnter(to, from, next) {
       let userInfo = localStorage.getItem("user-data") || false
-      if(!userInfo){
-        return next({name: "Login"})
-      }else {
+      if (!userInfo) {
+        return next({ name: "Login" })
+      } else {
         return next()
       }
     },

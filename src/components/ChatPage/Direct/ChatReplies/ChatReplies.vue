@@ -125,9 +125,9 @@ export default {
     font-weight: bold;
     font-family: "Lato" !important;
   }
-  .replies__list {
+  /* .replies__list {
     border-left: 2px solid rgb(255, 125, 4);
-  }
+  } */
     .border {
       border-bottom: 1px solid rgb(0, 0, 0, 0.1);
     }
