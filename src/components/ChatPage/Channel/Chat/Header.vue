@@ -131,7 +131,7 @@ export default {
 }
 .channel-ic .names {
   display: inline-block;
-  width: 250px;
+  width: 200px;
   padding: 2% 1%;
 }
 .names h6 {
