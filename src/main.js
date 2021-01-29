@@ -11,11 +11,13 @@ import VueCodeHighlight from 'vue-code-highlight';
 import VueSocketIOExt from 'vue-socket.io-extended';
 import io from 'socket.io-client';
 import {messagesServer} from "./lib/api"
+import vClickOutside from 'v-click-outside'
  
 Vue.config.productionTip = false
 Vue.use(VModal, {componentName: 'VueModal', dynamicDefault: { draggable: true, resizable: false } })
 Vue.use(VueTailwind, Vue_t_settings)
 Vue.use(VueCodeHighlight)
+Vue.use(vClickOutside)
 
 Vue.use(
     VueSocketIOExt,

@@ -18,7 +18,7 @@
         <div class="drp-dwn-toggler pl-2" @click.stop="showDropDown = !showDropDown">
           <img src="../../assets/images/avatar4.png" alt="user-pic"/>
         </div>
-        <div class="drop-down shadow-md" v-show="showDropDown">
+        <div class="drop-down shadow-md" v-show="showDropDown" v-click-outside="outsideClick">
           <div
             class="drop-content border origin-top-right absolute right-0 mt-2 w-full rounded-sm shadow-md bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100"
             role="menu"
@@ -116,7 +116,7 @@ export default {
     ...mapActions("all",["resetAllModuleState"]),
     ...mapActions("chat",["resetChatModuleState"]),
     navigate(path){
-      this.showDropDown = !this.showDropDown
+      this.showDropDown = false
       if(this.$route.name!=path.name){
         this.$router.push(path)
       }
@@ -126,7 +126,7 @@ export default {
       this.resetChatModuleState()
       Functions.signOut(this,this.currentWorkspace._id,this.user._id)
     },
-    closeDropDownEvent: function () {
+    outsideClick: function () {
       this.showDropDown = false
     }
   }
