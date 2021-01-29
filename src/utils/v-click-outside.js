@@ -7,7 +7,7 @@ Vue.directive('click-outside', {
       this.event = function (event) { 
         //   console.log('emitting event')
           self.vm.$emit(self.expression,event) 
-         }
+      }
       this.el.addEventListener('click', this.stopProp)
       document.body.addEventListener('click',this.event)
     },
