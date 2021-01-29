@@ -111,5 +111,6 @@ export default {
 .text {
     font-family: Arial, Helvetica, sans-serif !important;
     font-weight: bold;
+    font-size: 120% !important;
 }
 </style>
