@@ -84,31 +84,24 @@ const actions = {
             if (state.messages[state.currentChannel._id]) {
                 if (Object.keys(state.messages[state.currentChannel._id].messages).length > 0) {
                     commit("setCurrentChatMessages", state.currentChannel._id.toString())
-                    commit("setMessagesLoadingProcess", {
-                        isLoadingMessages: false,
-                        gotMessages: true,
-                        GotError: false
-                    })
+                    state.messagesLoadingProcess.isLoadingMessages = false
+                    state.messagesLoadingProcess.gotMessages = true
+                    state.messagesLoadingProcess.GotError = false
                 } else {
                     state.currentChatMessages = {}
-                    commit("setMessagesLoadingProcess", {
-                        isLoadingMessages: true,
-                        gotMessages: false,
-                        GotError: false
-                    })
+                    state.messagesLoadingProcess.isLoadingMessages = true
+                    state.messagesLoadingProcess.gotMessages = false
+                    state.messagesLoadingProcess.GotError = false
                 }
             } else {
                 state.currentChatMessages = {}
-                commit("setMessagesLoadingProcess", {
-                    isLoadingMessages: true,
-                    gotMessages: false,
-                    GotError: false
-                })
+                state.messagesLoadingProcess.isLoadingMessages = true
+                state.messagesLoadingProcess.gotMessages = false
+                state.messagesLoadingProcess.GotError = false
             }
             let isCurrent = state.currentChannel._id
             getAllMessagesInChannel(rootState.all.token, rootState.all.currentWorkspace._id, state.currentChannel._id)
                 .then(res => {
-                    // state.messagesLoadingProcess.noMore = res.data.data.noMore
                     let messages = res.data.data.messages
                     commit("setMessages", { access_id: state.currentChannel._id.toString(), messages: messages })
                     if(isCurrent == state.currentChannel._id) {
@@ -117,7 +110,8 @@ const actions = {
                         commit("setMessagesLoadingProcess", {
                             isLoadingMessages: false,
                             gotMessages: true,
-                            GotError: false
+                            GotError: false,
+                            noMore: res.data.data.noMore
                         })
                         if(messageList) messageList.scrollTop = messageList.scrollHeight;
                     }
@@ -132,31 +126,24 @@ const actions = {
             if (state.messages[state.currentDirectChatReceiver._id]) {
                 if (Object.keys(state.messages[state.currentDirectChatReceiver._id].messages).length > 0) {
                     commit("setCurrentChatMessages", state.currentDirectChatReceiver._id.toString())
-                    commit("setMessagesLoadingProcess", {
-                        isLoadingMessages: false,
-                        gotMessages: true,
-                        GotError: false
-                    })
+                    state.messagesLoadingProcess.isLoadingMessages = false
+                    state.messagesLoadingProcess.gotMessages = true
+                    state.messagesLoadingProcess.GotError = false
                 } else {
                     state.currentChatMessages = {}
-                    commit("setMessagesLoadingProcess", {
-                        isLoadingMessages: true,
-                        gotMessages: false,
-                        GotError: false
-                    })
+                    state.messagesLoadingProcess.isLoadingMessages = true
+                    state.messagesLoadingProcess.gotMessages = false
+                    state.messagesLoadingProcess.GotError = false
                 }
             } else {
                 state.currentChatMessages = {}
-                commit("setMessagesLoadingProcess", {
-                    isLoadingMessages: true,
-                    gotMessages: false,
-                    GotError: false
-                })
+                state.messagesLoadingProcess.isLoadingMessages = true
+                state.messagesLoadingProcess.gotMessages = false
+                state.messagesLoadingProcess.GotError = false
             }
             let isCurrent = state.currentDirectChatReceiver._id.toString()
             getPersonalChatMessages(rootState.all.token, rootState.all.currentWorkspace._id, rootState.all.user._id, state.currentDirectChatReceiver._id)
                 .then(res => {
-                    // state.messagesLoadingProcess.noMore = res.data.data.noMore
                     let messages = res.data.data.messages
                     commit("setMessages", { access_id: state.currentDirectChatReceiver._id.toString(), messages: messages })
                     if(isCurrent == state.currentDirectChatReceiver._id.toString()){
@@ -165,7 +152,8 @@ const actions = {
                         commit("setMessagesLoadingProcess", {
                             isLoadingMessages: false,
                             gotMessages: true,
-                            GotError: false
+                            GotError: false,
+                            noMore: res.data.data.noMore
                         })
                         if(messageList) messageList.scrollTop = messageList.scrollHeight;
                     }

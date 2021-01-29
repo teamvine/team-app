@@ -9,7 +9,7 @@ export default {
             isLoadingMessages: true,
             gotMessages: false,
             GotError: false,
-            noMore: 1
+            noMore: false
         },
         currentChannel: {},
         members: {},
