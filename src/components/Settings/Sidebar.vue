@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="overflow-y-auto overflow-x-hidden flex-grow">
-                    <ul class="flex flex-col py-4 space-y-1">
+                    <ul class="flex flex-col py-4 space-y-0">
                         <li>
                             <router-link to="/settings/account" :class="[$route.name=='MyAccount'? 'active':'']" class="relative hover:bg-gray-200 flex flex-row items-center py-3 focus:outline-none hover:bg-gray-50 text-gray-800 hover:text-gray-900 border-l-4 border-transparent hover:border-indigo-500 pr-6 bold item">
                                 <span class="inline-flex justify-center items-center ml-4">
@@ -111,8 +111,8 @@ export default {
 .text {
     font-family: Arial, Helvetica, sans-serif !important;
     font-weight: bold;
-    font-size: 118% !important;
-    color: rgb(0, 0, 0,0.9);
+    font-size: 109.3% !important;
+    color: rgb(0, 0, 0,0.85);
 }
 .item.active span svg, .item:hover span svg, .item:focus span svg,
 .item.active .text, .item:hover .text, .item:focus .text {
