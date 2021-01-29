@@ -1,6 +1,6 @@
 <template>
   <div class="profile-settings">
-      <div class="h-32 bg-gray-400"></div>
+      <div class="h-40 bg-gray-400"></div>
       <div class="text-center bg-gray-200">
         <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
       </div>
@@ -80,5 +80,6 @@ export default {
 }
 .img-border {
   border: 4px solid white;
+  background-color: rgb(245, 245, 245);
 }
 </style>
