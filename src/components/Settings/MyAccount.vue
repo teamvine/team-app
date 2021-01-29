@@ -6,7 +6,7 @@
       <p class="text-center text-lg font-bold mt-4">Jane Doe Hamblin</p>
       <p class="text-center text-sm font-light">janedoe250</p>
     </div>
-    <div class="grid grid-cols-2 py-4">
+    <div class="grid grid-cols-2 py-2">
       <div class="text-left my-auto">
         <span class="text-blue-600 text-lg px-5">Home</span>
         <span class="text-gray-700 text-lg px-5">About</span>
