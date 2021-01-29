@@ -33,10 +33,11 @@ export default {
         max-height: 100%;
     }
     .settings__left {
-        flex: 0 0 370px;
+        flex: 0 0 340px;
     }
     .settings__right {
         width: 100%;
+        background-color: rgb(0, 0, 0, 0.03);
     }
     @media only screen and (max-width: 700px){
         .settings-view {

@@ -1,12 +1,12 @@
 <template>
   <div class="details" v-if="show">
-        <div class="chat-detls pl-1 pb-2 flex flex-wrap">
-            <div class="channel-card shadow-md rounded-sm bg-white mr-2">
+        <div class="chat-detls flex flex-wrap">
+            <div class="channel-card shadow-md rounded-sm bg-white mr-1">
                 <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
                     <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar">
                         &times;
                     </div>
-                    <div class="w-full md:w-full font-bold py-3 text-center text-lg font-custom">Channel Details</div>
+                    <div class="w-full md:w-full font-bold py-3 text-center text-lg font-custom">Channel</div>
                 </div>
                 <div class="channel-icn">
                     <span class="mt-4 py-8">
@@ -28,16 +28,18 @@
                         </div>
                     </div>
                     <div x-data={show:false} class="rounded-sm">
-                        <div class="px-5 py-4 headingOne">
+                        <div class="px-5 py-4 headingOne" @click="fetchMembers">
                             <button class="btn-itm text-black-300 font-bold focus:outline-none" type="button">
                                 <svg class="icn1" style="display: inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 22h-2v-2a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v2H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
                                 <b class="font-bold ml-2 text-md">Channel Members</b>
                                 <svg class="icn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z"/></svg>
                             </button>
                         </div>
-                        <!-- <div x-show="show" class="px-5 py-4">     
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div> -->
+                        <div class="pb-4 borders bg-gray-100" v-if="showMembers">
+                            <h2 v-if="isLoadingMembers" class="w-full text-center font-bold font-arial py-3">Loading...</h2>     
+                            <ChannelMembers v-else-if="currentChannelMembers.length>0" :channel_admin_id="currentChannel.admin_id" :members="currentChannelMembers"/>
+                            <h2 v-else class="w-full text-center font-bold font-arial py-3">No Members</h2>
+                        </div>
                     </div>
                     <div class="rounded-sm" v-if="currentChannel.name!='general' && currentChannel.gen!=true">
                         <div class="px-5 py-4 headingOne">
@@ -102,8 +104,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
-
+import { mapState, mapMutations,mapGetters } from "vuex"
+import { getMembersInChannel } from '../../../../lib/channel'
 import InviteMember from '../InviteMember.vue'
 export default {
     name: "ChatDetails",
@@ -111,36 +113,63 @@ export default {
         toggleRightSidebar: Function,
         show: Boolean
     },
+    components: {
+        ChannelMembers: ()=> import('./ChannelMembers'),
+        InviteMember
+    },
     data(){
         return {
-            showAbout: false
+            showAbout: false,
+            showMembers: false,
+            isLoadingMembers: false
         }
-    },
-    components: {
-        InviteMember
     },
     computed: {
         ...mapState({
-            currentChannel: state => state.chat.currentChannel
+            currentChannel: state => state.chat.currentChannel,
+            currentChannelMembers: state=> state.chat.currentChannelMembers
         })
     },
 
     methods: {
+        ...mapGetters("all", ["getToken", "getCurrentWorkspace"]),
+        ...mapMutations("chat", ["setMembers","setCurrentChannelMembers"]),
         addMembers() {
             this.$modal.hideAll()
             this.$modal.show("addMembers")
+        },
+        fetchMembers(){
+            if(this.currentChannelMembers.length < 1){
+                this.isLoadingMembers = true
+                getMembersInChannel(this.getToken(),this.getCurrentWorkspace()._id,this.currentChannel._id).then(res=>{
+                    this.isLoadingMembers = false
+                    if(res.data.err){
+                        alert(res.data.message)
+                    }else {
+                        this.setMembers({
+                            channel: this.currentChannel,
+                            members: res.data.data.channel_members
+                        })
+                        this.setCurrentChannelMembers({channel: this.currentChannel})
+                    }
+                })
+            }
+            this.showMembers = !this.showMembers
         }
     }
 }
 </script>
 <style scoped>
+    .font-arial {
+        font-family: Arial, Helvetica, sans-serif;
+    }
     button svg {
         fill: rgb(0, 117, 235);
     }
     .border {
         border-bottom: 1px solid rgb(0, 0, 0, 0.1);
     }
-    .headingOne {
+    .headingOne, .borders {
         border: 1px solid rgb(0, 0, 0, 0.1);
         border-bottom: 0px;
     }
@@ -186,9 +215,10 @@ export default {
         display: block;
         float: none;
         flex: none;
+        padding-left: 2px;
     }
     .channel-card {
-        margin-top: 10px;
+        margin-top: 0px;
         min-height: 100%;
         /* border-radius: 5px; */
         /* border: 1px solid rgb(0, 0, 0, 0.18); */
