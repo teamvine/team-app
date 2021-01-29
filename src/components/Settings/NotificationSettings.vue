@@ -1,7 +1,7 @@
 <template>
   <div class="notifications-settings">
-    <div class="w-full mb-4 mt-2">
-      <div class="col">
+    <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-4">
+      <div class="col mx-4">
         <h4>Notification Settings</h4>
         <div>
           <label class="md:w-2/3 block text-gray-500 font-bold">
@@ -56,7 +56,7 @@
           </label>
         </div>
       </div>
-      <div class="col">
+      <div class="col mx-4">
         <h4>Notification Sound</h4>
         <span>There are many Options to<br> set your notification sound.</span>
         <h4>Select from our system</h4>
@@ -89,11 +89,12 @@ export default {
 }
 .col {
   display: inline-block;
-  width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
-  padding: 4% 10%;
+  padding: 4% 6%;
+  background-color: #fff;
+  width: 92%;
 }
 
 label input[type='checkbox'] {
@@ -145,7 +146,8 @@ input:checked ~ .toggle__dot {
 
 @media only screen and (min-width: 1000px){
   .col {
-    width: 50%
+    width: 46%;
+    margin-top: 0%;
   }
 }
 </style>
