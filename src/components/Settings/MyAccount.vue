@@ -38,11 +38,11 @@
           </div>
 
           <div class="titles py-5">
-            <p class="font-normal text-sm my-2">Full Name</p>
-            <p class="font-normal text-sm my-2">Display Name</p>
-            <p class="font-normal text-sm my-2">Work Email</p>
-            <p class="font-normal text-sm my-2">Phone Number</p>
-            <p class="font-normal text-sm my-2">Location</p>
+            <p class="font-normal text-sm my-2">Dusengimana Felix</p>
+            <p class="font-normal text-sm my-2">Felix Wazekwa</p>
+            <p class="font-normal text-sm my-2">phelixdusengimana@gmail.com</p>
+            <p class="font-normal text-sm my-2">0787757575775</p>
+            <p class="font-normal text-sm my-2">Rwanda, Kigali</p>
           </div>
         </div>
       </div>
