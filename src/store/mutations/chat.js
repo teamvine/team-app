@@ -22,6 +22,9 @@ const mutations = {
             state.currentChannelMembers = []
         }
     },
+    resetCurrentChannelMembers: (state) => {
+        state.currentChannelMembers = []
+    },
     addMembersToChannel: (state, data = { channel: {}, newMembers: [] }) => {
         if (state.members[data.channel._id]) {
             for (let index = 0; index < data.newMembers.length; index++) {

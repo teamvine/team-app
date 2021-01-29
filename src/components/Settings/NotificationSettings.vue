@@ -1,40 +1,76 @@
 <template>
-  <div class="notifications-settings min-h-screen bg-gray-200">
-    <div class="px-4 sm:px-6 md:px-12 lg:px-16 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="notifications-settings">
-          <h2 class="text-lg font-bold">Notifications settings</h2>
-          <div class="my-2">
-            <input type="checkbox" class="checkbox border border-gray-600 checked:text-white py-3 px-4 rounded-0 text-black" >
-          </div>
-          <h2 class="text-lg font-bold">Message Notifications</h2>
+  <div class="notifications-settings">
+    <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-4">
+      <div class="col mx-4">
+        <h4>Notification Settings</h4>
+        <div>
+          <label class="md:w-2/3 block text-gray-500 font-bold">
+            <input class="mr-2 leading-tight" type="checkbox">
+            <span>
+              Email Notifications
+            </span>
+          </label>
+          <label class="md:w-2/3 block text-gray-500 font-bold">
+            <input class="mr-2 leading-tight" type="checkbox">
+            <span>
+              Desktop Notifications
+            </span>
+          </label>
+          <label class="md:w-2/3 block text-gray-500 font-bold">
+            <input class="mr-2 leading-tight" type="checkbox">
+            <span>
+              Mobile Notifications
+            </span>
+          </label>
+
+          <h4>Message Notifications</h4>
+          <label for="toogleA" class="flex items-center cursor-pointer">
+            <div class="relative">
+              <input id="toogleA" type="checkbox" class="hidden" />
+              <div class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner" ></div>
+              <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
+            </div>
+            <div class="ml-3 text-gray-700 font-medium text">
+              Turn All Notifications Off
+            </div>
+          </label>
+          <label for="toogleB" class="flex items-center cursor-pointer">
+            <div class="relative">
+              <input checked id="toogleB" type="checkbox" class="hidden" />
+              <div class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner" ></div>
+              <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
+            </div>
+            <div class="ml-3 text-gray-700 font-medium text">
+              Hide Message Content
+            </div>
+          </label>
+          <label for="toogleC" class="flex items-center cursor-pointer">
+            <div class="relative">
+              <input checked id="toogleC" type="checkbox" class="hidden" />
+              <div class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner" ></div>
+              <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
+            </div>
+            <div class="ml-3 text-gray-700 font-medium text">
+              Play Sound
+            </div>
+          </label>
         </div>
-        <div class="notifications-settings item-left text-left">
-          <h2 class="text-lg font-bold">Notification Sound</h2>
-          <div class="cont-e-nt my-4">
-            <p class="font-light text-sm">Here there are many option to set your notification sound. In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content</p>
-            <div class="choose">
-              <h2 class="font-bold text-sm mt-4">Select  from our system</h2>
-              <div class="my-2 bg-gray-400 py-0 px-4 relative inline-block">
-                <button class="pr-2 border-r-2 border-white focus:outline-none">
+      </div>
+      <div class="col mx-4">
+        <h4>Notification Sound</h4>
+        <span>There are many Options to<br> set your notification sound.</span>
+        <h4>Select from our system</h4>
+        <div class="my-3 bg-gray-400 py-0 px-4 ">
+          <button class="pr-2 border-r-2 border-white focus:outline-none">
                   <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM10.622 8.415a.4.4 0 0 0-.622.332v6.506a.4.4 0 0 0 .622.332l4.879-3.252a.4.4 0 0 0 0-.666l-4.88-3.252z" fill="rgba(52,72,94,1)"/></svg>
                 </button>
-                <select name="sound" id="select-sound" class="px-2 bg-gray-400">
-                  <option value="BIP">Abu dhabi by bruce...</option>
-                  <option value="BIP">Bib Bip</option>
-                  <option value="BIP">Bib Bip</option>
-                </select>
-                <button class="pl-5 pr-2 focus:outline-none">
-                  <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 16l-6-6h12z" fill="rgba(52,72,94,1)"/></svg>
-                </button>
-              </div>
-              <p class="text-sm font-light mt-4">Lorem ipsum may be used as a placeholder before final copy is available.If you don’t feel to use our sounds.You can upload yours.</p>
-
-            <button class="block w-3/4 bg-blue-500 text-white text-center mb-3 mt-5 py-2">Upload sound</button>
-
-            </div>
-          </div>
+          <select class="form-select inline-block bg-transparent border-none focus:outline-none mt-1 font-bold">
+            <option>Bip Bip</option>
+            <option>Bing Bing</option>
+          </select>
         </div>
+        <span class="mt-3">If you don't feel to use our system sounds,<br> You can upload your prefered soun.</span>
+        <button class="button-upload-sound mt-3">Upload Sound</button>
       </div>
     </div>
   </div>
@@ -47,19 +83,74 @@ export default {
 </script>
 
 <style scoped>
+* {
+  font-family:Arial, Helvetica, sans-serif;
+}
 .notifications-settings {
     width: 100%;
     height: 100%;
 }
-.checkbox{
-  appearance: none;
+.col {
+  display: inline-block;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 4% 6%;
+  background-color: #fff;
+  width: 92%;
 }
-.checkbox:checked{
-  content: "\2713";
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-  font-size: 15px;
-  color: #f3f3f3;
-  text-align: center;
-  line-height: 15px;
+
+label input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2%;
+  border: 2px solid black;
+  border-radius: 0px;
+}
+.col h4 {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 2%;
+  margin-top: 5%;
+  font-family: 20px;
+}
+.toggle__dot {
+  top: -.25rem;
+  left: -.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+label span, .text {
+  font-size: 101%;
+  color: black;
+  margin-bottom: 2%;
+}
+
+.text {
+  margin-bottom: 2%;
+}
+
+input:checked ~ .toggle__dot {
+  transform: translateX(100%);
+  background-color: #0066ff;
+}
+
+.button-upload-sound {
+  padding: 8px 10px;
+  width: 100%;
+  font-weight: bold;
+  background-color: #0066ff;
+  color: white;
+}
+
+.button-upload-sound:hover, .button-upload-sound:focus {
+  background-color: #0041a3;
+}
+
+@media only screen and (min-width: 1000px){
+  .col {
+    width: 46%;
+    margin-top: 0%;
+  }
 }
 </style>

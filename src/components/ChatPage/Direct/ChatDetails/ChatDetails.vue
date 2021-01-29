@@ -1,7 +1,7 @@
 <template>
   <div class="details" v-if="show">
-    <div class="chat-detls pl-1 pb-2 flex flex-wrap">
-      <div class="user-card shadow-md rounded-sm bg-white mr-2">
+    <div class="chat-detls flex flex-wrap">
+      <div class="user-card shadow-md rounded-sm bg-white mr-1">
         <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
           <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar">
             &times;
@@ -112,10 +112,11 @@ export default {
   flex: none;
 }
 .user-card {
-  margin-top: 10px;
+  margin-top: 0px;
   min-height: 100%;
   background-color: #fff;
   box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
+  margin-left: 2px;
 }
 .user-picture {
   flex: none;

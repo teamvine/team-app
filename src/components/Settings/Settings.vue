@@ -3,7 +3,7 @@
         <div class="settings__left">
             <Sidebar/>
         </div>
-        <div class="settings__right">
+        <div class="settings__right bg-gray-200">
             <router-view></router-view>
         </div>
   </div>
@@ -30,13 +30,16 @@ export default {
     .settings__left, .settings__right {
         height: 100%;
         min-height: 100%;
-        max-height: 100%;
+        /* max-height: 100%; */
     }
     .settings__left {
-        flex: 0 0 370px;
+        flex: 0 0 340px;
+        overflow-y: auto;
     }
     .settings__right {
         width: 100%;
+        overflow-y: auto;
+        /* background-color: rgb(0, 0, 0, 0.03); */
     }
     @media only screen and (max-width: 700px){
         .settings-view {

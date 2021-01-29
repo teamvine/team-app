@@ -195,7 +195,7 @@ export default {
     })
   },
   methods: {
-    ...mapMutations("chat",["setCurrentChannel","setCurrentChatType","setCurrentDirectChatReceiver","changeCol"]),
+    ...mapMutations("chat",["setCurrentChannel","setCurrentChannelMembers","setCurrentChatType","setCurrentDirectChatReceiver","changeCol"]),
     ...mapActions("chat",["changeAndSetUpRoom","resetCurrentThread"]),
     /**
      * switching between personal and channel chat types
@@ -234,6 +234,7 @@ export default {
       if (this.isCurrentChannel(channel)) return;
       this.resetCurrentThread()
       this.setCurrentChannel(channel)
+      this.setCurrentChannelMembers({channel: channel})
       this.setCurrentChatType("channel")
       this.changeAndSetUpRoom()
       this.$modal.hide("browseChannel")
