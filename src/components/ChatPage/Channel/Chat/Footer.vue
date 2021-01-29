@@ -6,14 +6,10 @@
     <div class="edit" id="editor" contenteditable="true" v-if="editorType=='extended'">
     </div>
     <form @submit.prevent="sendMessage">
-      <div
-        class="icon"
-        @click="showEmojis = !showEmojis"
-        @dblclick="showEmojis = !showEmojis"
-      >
+      <div class="icon" @click.stop="showEmojis = !showEmojis" @dblclick.stop="showEmojis = !showEmojis">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="33" height="33"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-4-6h8v2H8v-2zm0-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm8 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
       </div>
-      <div class="emoji-pickr" v-show="showEmojis">
+      <div class="emoji-pickr" v-show="showEmojis" v-click-outside="emojiOutsideClick">
         <VEmojiPicker
           labelSearch="Search"
           lang="pt-BR"
@@ -126,22 +122,12 @@
             </button>
       </div>
       </div>
-      <div class="icon chat-options"
-        @click="showAdvancedOptions = !showAdvancedOptions"
-        @dblclick="showAdvancedOptions = !showAdvancedOptions"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="32"
-          height="32"
-        >
+      <div class="icon chat-options" @click.stop="showAdvancedOptions = !showAdvancedOptions" @dblclick.stop="showAdvancedOptions = !showAdvancedOptions">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
           <path fill="none" d="M0 0h24v24H0z" />
-          <path
-            d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11H7v2h4v4h2v-4h4v-2h-4V7h-2v4z"
-          />
+          <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11H7v2h4v4h2v-4h4v-2h-4V7h-2v4z"/>
         </svg>
-        <div class="drop-up bg-white" v-show="showAdvancedOptions">
+        <div class="drop-up bg-white" v-show="showAdvancedOptions" v-click-outside="advancedOptionsOutSideClick">
           <div class="border-b border-gray-200 px-3 py-2">
             <h2 class="font-bold text-left">Advanced options</h2>
           </div>
@@ -300,6 +286,12 @@ export default {
         this.editorType="minimal";
         localStorage.setItem("editor_type","minimal");
       }
+    },
+    emojiOutsideClick(){
+      this.showEmojis = false
+    },
+    advancedOptionsOutSideClick(){
+      this.showAdvancedOptions = false
     }
   },
 };

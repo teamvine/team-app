@@ -1,8 +1,8 @@
 <template>
   <div class="my-account p-0">
-      <div class="h-32 bg-gray-300"></div>
+      <div class="h-40 bg-gray-300"></div>
     <div class="text-center my-- border-b-2 border-gray-400 pb-5">
-      <img class="inline-block w-32 h-32 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
+      <img class="inline-block w-32 h-32 rounded-full img-border border-white" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
       <p class="text-center text-lg font-bold mt-4 font-arial">Jane Doe Hamblin</p>
       <p class="text-center text-md font-light">janedoe250</p>
     </div>
@@ -63,5 +63,9 @@ export default {
 }
 .my--{
   margin-top: -80px;
+}
+.img-border {
+  border: 4px solid white;
+  background-color: rgb(245, 245, 245);
 }
 </style>
