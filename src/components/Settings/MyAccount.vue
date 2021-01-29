@@ -3,14 +3,14 @@
       <div class="h-32 bg-gray-300"></div>
     <div class="text-center my-- border-b-2 border-gray-400 pb-5">
       <img class="inline-block w-32 h-32 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
-      <p class="text-center text-lg font-bold mt-4">Jane Doe Hamblin</p>
-      <p class="text-center text-sm font-light">janedoe250</p>
+      <p class="text-center text-lg font-bold mt-4 font-arial">Jane Doe Hamblin</p>
+      <p class="text-center text-md font-light">janedoe250</p>
     </div>
-    <div class="grid grid-cols-2 py-4">
+    <div class="grid grid-cols-2 py-2">
       <div class="text-left my-auto">
-        <span class="text-blue-600 text-lg px-5">Home</span>
-        <span class="text-gray-700 text-lg px-5">About</span>
-        <span class="text-gray-700 text-lg px-5">Workspace</span>
+        <span class="text-blue-600 text-md font-bold font-arial px-5">Home</span>
+        <span class="text-gray-800 text-md font-bold font-arial px-5">About</span>
+        <span class="text-gray-800 text-md font-bold font-arial px-5">Workspace</span>
       </div>
       <div class="text-right px-4">
         <button class="px-4 py-2 bg-gray-300 mx-4">
@@ -27,22 +27,22 @@
     </div>
     <div class="bg-gray-300 px-8 py-5">
       <div class="bg-white p-5">
-        <h2 class="font-bold text-md">General Information</h2>
+        <h2 class="font-bold text-lg font-arial">General Information</h2>
         <div class="grid grid-cols-2">
           <div class="titles py-5">
-            <p class="font-normal text-sm my-2">Full Name</p>
-            <p class="font-normal text-sm my-2">Display Name</p>
-            <p class="font-normal text-sm my-2">Work Email</p>
-            <p class="font-normal text-sm my-2">Phone Number</p>
-            <p class="font-normal text-sm my-2">Location</p>
+            <p class="font-normal text-md my-2">Full Name</p>
+            <p class="font-normal text-md my-2">Display Name</p>
+            <p class="font-normal text-md my-2">Work Email</p>
+            <p class="font-normal text-md my-2">Phone Number</p>
+            <p class="font-normal text-md my-2">Location</p>
           </div>
 
           <div class="titles py-5">
-            <p class="font-normal text-sm my-2">Dusengimana Felix</p>
-            <p class="font-normal text-sm my-2">Felix Wazekwa</p>
-            <p class="font-normal text-sm my-2">phelixdusengimana@gmail.com</p>
-            <p class="font-normal text-sm my-2">0787757575775</p>
-            <p class="font-normal text-sm my-2">Rwanda, Kigali</p>
+            <p class="font-normal text-md my-2">Dusengimana Felix</p>
+            <p class="font-normal text-md my-2">Felix Wazekwa</p>
+            <p class="font-normal text-md my-2">phelixdusengimana@gmail.com</p>
+            <p class="font-normal text-md my-2">0787757575775</p>
+            <p class="font-normal text-md my-2">Rwanda, Kigali</p>
           </div>
         </div>
       </div>
