@@ -1,6 +1,6 @@
 <template>
   <div class="replies" v-if="show">
-    <div class="chat-replies pl-1 pb-2 flex flex-wrap">
+    <div class="chat-replies flex flex-wrap">
       <div class="replies-card shadow-md rounded-sm bg-white mr-2">
         <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
           <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar('','checkDetails')">
@@ -151,13 +151,11 @@ export default {
   display: block;
   float: none;
   flex: none;
+  padding-left: 2px;
 }
 
 .replies-card {
-  margin-top: 10px;
   min-height: 100%;
-  /* border-radius: 5px; */
-  /* border: 1px solid rgb(0, 0, 0, 0.18); */
   box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
   background-color: #fff;
 }

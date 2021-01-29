@@ -103,7 +103,8 @@ export default {
 <style scoped>
 .message-item {
   font-family: "Lato";
-  position: relative
+  position: relative;
+  width: 100%;
 }
 .msg-item-content {
   position: relative;
@@ -146,7 +147,6 @@ export default {
   margin-bottom: 0;
 }
 .img {
-  /* position: absolute; */
   background-color: rgb(0, 0, 0,0.1);
   bottom: 0;
 }
