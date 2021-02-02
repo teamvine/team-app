@@ -2,7 +2,7 @@
   <div class="profile-settings">
       <div class="h-32 bg-gray-400"></div>
       <div class="text-center bg-gray-200">
-        <img class="inline-block  my-- w-32 h-32 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
+        <img class="inline-block  my-- w-32 h-32 rounded-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
       </div>
     <div class="bg-gray-200 p-5">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

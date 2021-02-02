@@ -2,7 +2,7 @@
   <div class="my-account p-0">
       <div class="h-32 bg-gray-300"></div>
     <div class="text-center my-- border-b-2 border-gray-400 pb-5">
-      <img class="inline-block w-32 h-32 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
+      <img class="inline-block w-32 h-32 rounded-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
       <p class="text-center text-lg font-bold mt-4 font-arial">Jane Doe Hamblin</p>
       <p class="text-center text-md font-light">janedoe250</p>
     </div>
@@ -20,7 +20,7 @@
         <button class="px-4 py-2 bg-gray-300 mx-4">
           <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"/></svg>
         </button>
-        <button class="px-4 py-2 bg-gray-300">
+        <button class="px-4 py-2 bg-gray-300 mx-4">
           <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M4.5 10.5c-.825 0-1.5.675-1.5 1.5s.675 1.5 1.5 1.5S6 12.825 6 12s-.675-1.5-1.5-1.5zm15 0c-.825 0-1.5.675-1.5 1.5s.675 1.5 1.5 1.5S21 12.825 21 12s-.675-1.5-1.5-1.5zm-7.5 0c-.825 0-1.5.675-1.5 1.5s.675 1.5 1.5 1.5 1.5-.675 1.5-1.5-.675-1.5-1.5-1.5z"/></svg>
         </button>
       </div>
@@ -38,11 +38,11 @@
           </div>
 
           <div class="titles py-5">
-            <p class="font-normal text-md my-2">Dusengimana Felix</p>
-            <p class="font-normal text-md my-2">Felix Wazekwa</p>
-            <p class="font-normal text-md my-2">phelixdusengimana@gmail.com</p>
-            <p class="font-normal text-md my-2">0787757575775</p>
-            <p class="font-normal text-md my-2">Rwanda, Kigali</p>
+            <p class="font-normal text-md my-2 truncate">Dusengimana Felix</p>
+            <p class="font-normal text-md my-2 truncate">Felix Wazekwa</p>
+            <p class="font-normal text-md my-2 truncate">phelixdusengimana@gmail.com</p>
+            <p class="font-normal text-md my-2 truncate">0787757575775</p>
+            <p class="font-normal text-md my-2 truncate">Rwanda, Kigali</p>
           </div>
         </div>
       </div>
