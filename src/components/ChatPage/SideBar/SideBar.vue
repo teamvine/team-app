@@ -231,6 +231,7 @@ export default {
       return this.currentDirectChatReceiver._id == user._id && this.currentChatType === "direct"
     },
     onChannelClick(channel){
+      this.changeCol("chat")
       if (this.isCurrentChannel(channel)) return;
       this.resetCurrentThread()
       this.setCurrentChannel(channel)
@@ -238,19 +239,18 @@ export default {
       this.setCurrentChatType("channel")
       this.changeAndSetUpRoom()
       this.$modal.hide("browseChannel")
-      this.changeCol("chat")
       this.$router.push({
         name: "ChannelChat",
         params: { channel_code: channel.channel_code }
       });
     },
     onUserClick(user){
+      this.changeCol("chat")
       if (this.isCurrentDirectReceiver(user)) return;
       this.resetCurrentThread()
       this.setCurrentDirectChatReceiver(user)
       this.setCurrentChatType("direct")
       this.changeAndSetUpRoom()
-      this.changeCol("chat")
       this.$router.push({
         name: "PersonalChat",
         params: {contact_id: user._id }
