@@ -83,11 +83,11 @@
           </div>
 
           <div class="titles py-5">
-            <p class="font-normal text-md my-2">Dusengimana Felix</p>
-            <p class="font-normal text-md my-2">Felix Wazekwa</p>
-            <p class="font-normal text-md my-2">phelixdusengimana@gmail.com</p>
-            <p class="font-normal text-md my-2">0787757575775</p>
-            <p class="font-normal text-md my-2">Rwanda, Kigali</p>
+            <p class="font-normal text-md my-2 truncate">Dusengimana Felix</p>
+            <p class="font-normal text-md my-2 truncate">Felix Wazekwa</p>
+            <p class="font-normal text-md my-2 truncate">phelixdusengimana@gmail.com</p>
+            <p class="font-normal text-md my-2 truncate">0787757575775</p>
+            <p class="font-normal text-md my-2 truncate">Rwanda, Kigali</p>
           </div>
         </div>
       </div>
