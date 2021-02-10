@@ -1,9 +1,9 @@
 <template>
   <div class="settings-view">
-        <div class="settings__left">
+        <div class="settings__left border-r">
             <Sidebar/>
         </div>
-        <div class="settings__right bg-gray-200">
+        <div class="settings__right bg-white">
             <router-view></router-view>
         </div>
   </div>

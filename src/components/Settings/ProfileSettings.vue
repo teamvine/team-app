@@ -1,12 +1,12 @@
 <template>
   <div class="profile-settings">
-      <div class="h-40 bg-gray-400"></div>
+      <div class="h-40 bg-indigo-100"></div>
       <div class="text-center bg-gray-200">
-        <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgkYDl5dyfXrYtGaut71So1kQCo7150vgdBQ&usqp=CAU" alt="profile img">
+        <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
       </div>
-    <div class="bg-gray-200 p-5">
+    <div class="bg-gray-200 p-5 pt-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-white py-5 px-6 rounded-sm">
+        <div class="bg-white py-5 px-6 rounded-sm shadow-md">
           <h2 class="font-bold text-md font-arial">Change your information</h2>
           <div class="my-5 px-3">
             <div class="my-3">
@@ -37,7 +37,7 @@
           </div>
         </div>
 
-        <div class="bg-white py-5 px-6 rounded-sm">
+        <div class="bg-white py-5 px-6 rounded-sm shadow-md">
           <h2 class="font-bold text-lg font-arial">Update Security Information</h2>
             <div class="cont-ent">
               <p class="pt-8 text-md">If you feel your password is known by other person you don’t trust. You better change it with this button.</p>

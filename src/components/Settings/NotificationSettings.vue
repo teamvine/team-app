@@ -1,7 +1,7 @@
 <template>
   <div class="notifications-settings">
-    <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-4">
-      <div class="col mx-4">
+    <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-4 pt-6">
+      <div class="col mx-4 shadow border">
         <h4>Notification Settings</h4>
         <div>
           <label class="md:w-2/3 block text-gray-500 font-bold">
@@ -56,7 +56,7 @@
           </label>
         </div>
       </div>
-      <div class="col mx-4">
+      <div class="col mx-4 shadow border">
         <h4>Notification Sound</h4>
         <span>There are many Options to<br> set your notification sound.</span>
         <h4>Select from our system</h4>
