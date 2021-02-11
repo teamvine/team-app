@@ -1,5 +1,5 @@
 <template>
-  <footer class="bottom-0 bottom">
+  <footer class="bottom-0 footer bottom">
     <div class="flex flex-wrap justify-center bg-indigo-100 p-6 w-full">
       <div class="flex flex-wrap mb-4 w-full content-center">
         <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4">
@@ -152,6 +152,11 @@ export default {
 </script>
 
 <style scoped>
+.footer {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100%
+}
 .font-bold {
         font-weight: bolder;
     }
