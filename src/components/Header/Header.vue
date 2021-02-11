@@ -179,7 +179,7 @@ export default {
   font-family: Arial, Helvetica, sans-serif !important;
 }
 .item-hover div {
-  font-family: "LatoBold" !important;
+  /* font-family: "LatoBold" !important; */
   font-weight: 600 !important;
 }
 .right-menu {

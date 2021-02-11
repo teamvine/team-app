@@ -160,9 +160,6 @@ export default {
 .font-bold {
         font-weight: bolder;
     }
-    * {
-    font-family: "Lato";
-    }
     .w-1\/4 {
     padding: 10px;
     }
