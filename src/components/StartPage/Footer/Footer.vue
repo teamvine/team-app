@@ -1,6 +1,6 @@
 <template>
   <footer class="bottom-0 footer bottom">
-    <div class="flex flex-wrap justify-center bg-indigo-100 p-6 w-full">
+    <div class="flex flex-wrap justify-center bg-gray-800 p-6 w-full">
       <div class="flex flex-wrap mb-4 w-full content-center">
         <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4">
           <h3 class="text-lg py-4 font-bold">GET OUR APPS</h3>
@@ -178,7 +178,7 @@ export default {
     }
     a {
         color: rgb(27, 27, 27,0.8);
-        font-family: "Lato" !important
+        /* font-family: "Lato" !important */
     }
     @media (max-width: 642px) {
         .w-full,

@@ -3,7 +3,7 @@
         <div class="w-full flex-row flex content-center justify-center flex-wrap py-3 px-1">
             <header class="flex items-center justify-between leading-tight w-full">
                 <h1 class="text-lg text-center w-full organs-header font-bold py-3 px-3 mt-6">
-                    <span class="ml-2 font-bold text-xl text-blue-800">Choose Organization</span>
+                    <span class="ml-2 font-bold text-2xl text-blue-800">Choose Organization</span>
                 </h1>
             </header>
             <div class="border-t border-gray-200 w-full content-center justify-center flex-wrap sm:w-3/4 md:w-3/6 lg:w-2/6 md:shadow-md rounded-sm mt-3 mb-4">
@@ -11,14 +11,14 @@
                 <div 
                 v-for="(organization,index) in organizations"
                 :key="index"
-                :class="[index>0? 'border-t':'',currentWorkspace.code==organization.code? 'bg-indigo-100':'']"
+                :class="[index>0? 'border-t':'',currentWorkspace.code==organization.code? 'active border-indigo-500':'organization-hover']"
                 @click="switchOrganization(organization)"
-                class="bg-white w-full flex items-center p-2 cursor-pointer hover:bg-indigo-100">
+                class="bg-white w-full flex items-center p-2 cursor-pointer organization hover:border-indigo-500">
                     <div class="flex-grow p-3 w-full">
                         <div class="font-bold text-md text-gray-800 org-name">
                             {{organization.name | truncateText}}
                         </div>
-                        <div class="text-sm text-gray-700 org-desc">
+                        <div class="text-sm text-gray-700 org-desc font-semibold">
                             {{organization.description | truncateText}}
                         </div>
                     </div>
@@ -167,6 +167,24 @@ export default {
         /* height: auto; */
         min-height: auto;
         height: auto;
+    }
+    .organization {
+        border-width: 1px;
+        border-style: transparent;
+    }
+    .organization-hover:hover,.organization.active {
+        border-width: 1px;
+        border-style: solid;
+    }
+    .organization.border-t {
+        border-top-width: 1px;
+        border-top-style: solid;
+    }
+    .organization-hover:hover {
+        border-top: 1px solid rgb(241, 241, 241);
+        border-bottom-width: 1px;
+        border-bottom-style: transparent;
+        border-bottom-color: white;
     }
     .organs {
         min-height: 20pc;

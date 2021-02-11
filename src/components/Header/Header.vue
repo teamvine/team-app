@@ -4,15 +4,17 @@
       <h3 class="font-bold">RCONNECT</h3>
     </div>
     <div class="organization py-1 bg-gray-0 flex flex-grow content-center justify-center">
-      <h2 v-if="userAppFlow.switchedWorkspaces" class="m-auto bg-gray-200 cursor-pointer font-lg name px-3 py-2 text-blue-500 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline; margin-top: -3%" ><path fill="none" d="M0 0H24V24H0z"/><path class="fill-current text-gray-700" d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
-        <span class="font-bold font-lg ml-1 text-gray-700">{{currentWorkspace.name}}</span>
+      <h2 v-if="userAppFlow.switchedWorkspaces" class="m-auto bg-gray-200 cursor-pointer font-lg name px-3 py-2 text-blue-500 rounded-md">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline; margin-top: -3%" ><path fill="none" d="M0 0H24V24H0z"/><path class="fill-current text-gray-800" d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
+        <span class="font-bold font-lg ml-1 text-gray-800">{{currentWorkspace.name}}</span>
       </h2>
     </div>
     <div class="right-menu">
-      <div class="notifications">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="w-10 h-10" role="img"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 17h2v2H2v-2h2v-7a8 8 0 1 1 16 0v7zm-2 0v-7a6 6 0 1 0-12 0v7h12zm-9 4h6v2H9v-2z"/></svg>
-        <!-- <span class="number">5</span> -->
+      <div class="notifications mt-1">
+        <svg style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-14 h-14" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+        </svg>
+        <span class="number">5</span>
       </div>
       <div class="user-menu">
         <div class="drp-dwn-toggler pl-2" @click.stop="showDropDown = !showDropDown">
@@ -30,36 +32,36 @@
                   {{user.full_name||''}}
                 </div>
               <div class="block space-y-2 text-md w-full pr-0 lst">
-                        <router-link to="/" :class="[$route.name=='MyAccount'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
+                        <p @click="navigate({name: 'StartPage'})" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
                           <svg class="h-5" style="display: inline-block !important;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg>
                           <span class="font-bold h-5 ">Home</span>
-                        </router-link>
-                        <router-link to="/settings/account" :class="[$route.name=='MyAccount'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
+                        </p>
+                        <p @click="navigate({name: 'MyAccount'})" to="/settings/account" :class="[$route.name=='MyAccount'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
                           <svg class="h-5" style="display: inline-block !important;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg>
                           <span class="font-bold h-5 ">My Account</span>
-                        </router-link>
-                        <a href="#" :class="[$route.name=='NotificationSettings'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
+                        </p>
+                        <p :class="[$route.name=='NotificationSettings'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
                           <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                           </svg>
                           <span class="font-bold">Notifications</span>
-                        </a>
-                        <router-link :to="'/chat/channel/'+currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
+                        </p>
+                        <p @click="navigate({name: 'ChannelChat',params: {channel_code: currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}})" v-if="userAppFlow.switchedWorkspaces" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
                           <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
                           </svg>
                           <span class="font-bold">Messages</span>
-                        </router-link>
-                        <router-link to="/settings/profile-settings" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
+                        </p>
+                        <p @click="navigate({name: 'ProfileSettings'})" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
                           <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                           </svg>
                           <span class="font-bold">Settings</span>
-                        </router-link>
+                        </p>
                         <p @click="onLogOut" @dblclick="onLogOut" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
                           <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -277,8 +279,11 @@ img.user-pic:hover {
 }
 @media only screen and (max-width: 600px) {
   .drop-down,.drop-content {
-    width: 100vw;
-    right: -6.6%;
+    position: fixed;
+    width: 96vw;
+    right: 2vw;
+    left: 2vw;
+    top: 42px
   }
 }
 @media only screen and (max-width: 433px) {
