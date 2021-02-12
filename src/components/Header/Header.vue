@@ -1,7 +1,7 @@
 <template>
   <header class="header-view flex">
     <div class="app-name p-3 cursor-pointer" @click="navigate({name: 'Start'})">
-      <h3 class="font-bold">RCONNECT</h3>
+      <h3 class="font-bold">Affix</h3>
     </div>
     <div class="organization py-1 bg-gray-0 flex flex-grow content-center justify-center">
       <h2 v-if="userAppFlow.switchedWorkspaces" class="m-auto bg-gray-200 cursor-pointer font-lg name px-3 py-2 text-blue-500 rounded-md">

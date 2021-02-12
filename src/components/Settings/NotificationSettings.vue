@@ -104,7 +104,7 @@ label input[type='checkbox'] {
   width: 20px;
   height: 20px;
   margin-top: 2%;
-  border: 2px solid black;
+  border: 2px solid #b9b9b9;
   border-radius: 0px;
 }
 .col h4 {
