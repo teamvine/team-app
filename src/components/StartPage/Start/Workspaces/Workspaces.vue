@@ -6,7 +6,7 @@
                     <span class="ml-2 font-bold text-2xl text-blue-800">Choose Organization</span>
                 </h1>
             </header>
-            <div class="border-t border-gray-200 w-full content-center justify-center flex-wrap sm:w-3/4 md:w-3/6 lg:w-2/6 md:shadow-md rounded-sm mt-3 mb-4">
+            <div class="border-t border-gray-200 w-full content-center justify-center flex-wrap sm:w-3/4 md:w-3/5 lg:w-2/5 md:shadow-md rounded-sm mt-3 mb-4">
               <!-- ====================================== -->
                 <div 
                 v-for="(organization,index) in organizations"
