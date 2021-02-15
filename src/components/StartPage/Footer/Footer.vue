@@ -1,13 +1,13 @@
 <template>
-  <footer class="bottom-0 bottom">
-    <div class="flex flex-wrap justify-center bg-indigo-100 p-6 w-full">
-      <div class="flex flex-wrap mb-4 w-full content-center">
+  <footer class="bottom-0 footer bottom">
+    <div class="flex flex-wrap justify-center bg-blue-600 p-6 w-full">
+      <div class="flex flex-wrap mb-4 w-full content-center py-6">
         <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4">
           <h3 class="text-lg py-4 font-bold">GET OUR APPS</h3>
           <ul>
             <li>
               <a href="#" class="text-md"
-                ><i class="ri-arrow-right-s-line"></i>Get mobile app</a
+                ><i class="ri-arrow-right-s-line"></i><span>Get mobile app</span></a
               >
             </li>
             <li>
@@ -94,7 +94,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-indigo-200 p-2 py-4 pl-6 w-full text-center">
+    <div class="bg-indigo-100 p-2 py-4 pl-6 w-full text-center">
       <span class="text-black text-sm">© Copyright 2020 - RCONNECT.Inc</span>
       <button
         class="bg-grey-light hover:bg-grey text-grey-darkest ml-3 font-bold rounded inline-flex items-center"
@@ -152,18 +152,19 @@ export default {
 </script>
 
 <style scoped>
+.footer {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100%
+}
 .font-bold {
         font-weight: bolder;
-    }
-    * {
-    font-family: "Lato";
     }
     .w-1\/4 {
     padding: 10px;
     }
     h3,p,a {
-    color: black;
-    font-weight: bold;
+    color: rgb(243, 243, 243);
     }
     h3 {
         font-weight: bolder !important;
@@ -175,8 +176,8 @@ export default {
     color: rgb(0, 102, 235);
     }
     a {
-        color: rgb(27, 27, 27,0.8);
-        font-family: "Lato" !important
+        color: rgba(255, 255, 255, 0.8);
+        /* font-family: "Lato" !important */
     }
     @media (max-width: 642px) {
         .w-full,

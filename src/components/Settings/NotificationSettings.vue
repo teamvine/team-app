@@ -2,7 +2,7 @@
   <div class="notifications-settings">
     <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-4 pt-6">
       <div class="col mx-4 shadow border">
-        <h4>Notification Settings</h4>
+        <h4 class="text-md">Notification Settings</h4>
         <div>
           <label class="md:w-2/3 block text-gray-500 font-bold">
             <input class="mr-2 leading-tight" type="checkbox">
@@ -23,11 +23,11 @@
             </span>
           </label>
 
-          <h4>Message Notifications</h4>
+          <h4 class="pt-4">Message Notifications</h4>
           <label for="toogleA" class="flex items-center cursor-pointer">
             <div class="relative">
               <input id="toogleA" type="checkbox" class="hidden" />
-              <div class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner" ></div>
+              <div class="toggle__line w-10 h-4 bg-indigo-200 rounded-full shadow-inner" ></div>
               <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
             </div>
             <div class="ml-3 text-gray-700 font-medium text">
@@ -37,7 +37,7 @@
           <label for="toogleB" class="flex items-center cursor-pointer">
             <div class="relative">
               <input checked id="toogleB" type="checkbox" class="hidden" />
-              <div class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner" ></div>
+              <div class="toggle__line w-10 h-4 bg-indigo-200 rounded-full shadow-inner" ></div>
               <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
             </div>
             <div class="ml-3 text-gray-700 font-medium text">
@@ -47,7 +47,7 @@
           <label for="toogleC" class="flex items-center cursor-pointer">
             <div class="relative">
               <input checked id="toogleC" type="checkbox" class="hidden" />
-              <div class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner" ></div>
+              <div class="toggle__line w-10 h-4 bg-indigo-200 rounded-full shadow-inner" ></div>
               <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
             </div>
             <div class="ml-3 text-gray-700 font-medium text">
@@ -57,14 +57,14 @@
         </div>
       </div>
       <div class="col mx-4 shadow border">
-        <h4>Notification Sound</h4>
-        <span>There are many Options to<br> set your notification sound.</span>
+        <h4 class="text-md">Notification Sound</h4>
+        <span>There are many Options to set your notification sound audio tone.</span>
         <h4>Select from our system</h4>
-        <div class="my-3 bg-gray-400 py-0 px-4 ">
-          <button class="pr-2 border-r-2 border-white focus:outline-none">
-                  <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM10.622 8.415a.4.4 0 0 0-.622.332v6.506a.4.4 0 0 0 .622.332l4.879-3.252a.4.4 0 0 0 0-.666l-4.88-3.252z" fill="rgba(52,72,94,1)"/></svg>
-                </button>
-          <select class="form-select inline-block bg-transparent border-none focus:outline-none mt-1 font-bold">
+        <div class="flex my-3 bg-indigo-100 py-0 ">
+          <button class="px-3 border-r-2 border-white focus:outline-none">
+            <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM10.622 8.415a.4.4 0 0 0-.622.332v6.506a.4.4 0 0 0 .622.332l4.879-3.252a.4.4 0 0 0 0-.666l-4.88-3.252z" fill="rgba(52,72,94,1)"/></svg>
+          </button>
+          <select class="w-full form-select inline-block bg-transparent border-none rounded-0 mt-1 font-bold">
             <option>Bip Bip</option>
             <option>Bing Bing</option>
           </select>
@@ -104,7 +104,7 @@ label input[type='checkbox'] {
   width: 20px;
   height: 20px;
   margin-top: 2%;
-  border: 2px solid black;
+  border: 2px solid #b9b9b9;
   border-radius: 0px;
 }
 .col h4 {

@@ -7,12 +7,11 @@
       <div class="user-picture">
         <img
           class="rounded-lg"
-          src="../../../../assets/images/avatar3.png"
+          src="../../../../assets/images/avatar4.png"
           alt=""
         />
         <div class="names">
           <h6 class="p-0 py-0 my-0">{{currentDirectChatReceiver.full_name}}</h6>
-          <!-- <small class="font-bold py-0">@{{currentDirectChatReceiver.email}}</small> -->
         </div>
       </div>
     </div>

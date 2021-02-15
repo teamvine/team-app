@@ -1,11 +1,11 @@
 <template>
     <main class="flex-1 ">
         <div class="w-full flex-row flex content-center justify-center flex-wrap py-3">
-            <div class="w-full content-center justify-center flex-wrap p-2 px-0 pt-3 sm:w-3/4 md:w-2/4 lg:w-2/4 border-0 border-gray-500 shadow-none md:shadow-sm rounded-sm md:rounded-sm mt-3 mb-4 border">
-                <header class="flex items-center justify-between leading-tight w-full border-0">
-                    <h1 class="text-lg text-center w-full organ-name font-bold py-3 px-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35" style="display: inline; margin-top: -1.5%" ><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
-                        <span class="ml-2 font-bold text-2xl font-arial">New Organization</span>
+            <div class="pb-4 border-t border-gray-200 w-full content-center justify-center flex-wrap sm:w-3/4 md:w-3/5 lg:w-2/5 md:shadow-md border rounded-sm mt-3 mb-4">
+                <header class="flex items-center justify-between leading-tight w-full border-b">
+                    <h1 class="text-lg text-center w-full organ-name font-bold py-5 px-3">
+                        <svg xmlns="http://www.w3.org/2000/svg"  class="fill-current text-indigo-600 -mt-1" viewBox="0 0 24 24" width="35" height="35" style="display: inline; margin-top: -1.5%" ><path fill="none" d="M0 0H24V24H0z"/><path d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
+                        <span class="ml-2 font-bold text-xl text-indigo-600">New Organization</span>
                     </h1>
                 </header>
                 <div class="pg-form w-full px-2">
@@ -33,7 +33,7 @@
                           <label class="block tracking-wide uppercase text-sm text-gray-900 font-bold mb-1">
                             Description
                           </label>
-                          <textarea v-model="newworkspace.basic_info.description" class="w-full text-gray-900 p-3 rounded-md w-full text-gray-1000 p-3 rounded-md placeholder-gray-500 border border-gray-400 focus:outline-none focus:border-blue-400" rows="4" placeholder="Description..."></textarea>
+                          <textarea v-model="newworkspace.basic_info.description" class="w-full text-gray-900 p-3 rounded-md w-full text-gray-1000 p-3 rounded-md placeholder-gray-500 border border-gray-400 focus:outline-none focus:border-blue-400" rows="2" placeholder="Description..."></textarea>
                           <!-- <p class="text-grey-dark text-xs italic mt-2">Enter a short and simple description below 200 characters.</p> -->
                         </div>
                       </div>
