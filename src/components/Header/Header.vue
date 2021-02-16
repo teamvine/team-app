@@ -11,9 +11,7 @@
     </div>
     <div class="right-menu">
       <div class="notifications mt-1">
-        <svg style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-14 h-14" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-        </svg>
+        <img src="../../assets/svgs/bell2.svg" alt="notifications" class="h-8">
         <span class="number">5</span>
       </div>
       <div class="user-menu">
@@ -45,7 +43,7 @@
                           <span class="font-bold h-5 ">My Account</span>
                         </p>
                         <p :class="[$route.name=='NotificationSettings'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                           </svg>
                           <span class="font-bold">Notifications</span>
@@ -119,10 +117,22 @@ export default {
 </script>
 
 <style scoped>
+.svg {
+  display: inline-block;
+  width: 23px !important;
+  margin-left: 2%;
+} 
+.svg.medium {
+  width: 30px !important;
+  margin-left: 1%;
+}
 .lst,.d-block {
   display: block !important;
   flex: none;
   width: 100%;
+}
+.lst p {
+  position: relative
 }
 .item-hover:hover {
   background-color: rgb(241, 245, 252);

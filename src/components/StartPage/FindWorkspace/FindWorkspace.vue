@@ -143,13 +143,13 @@ export default {
         font-family: Arial, Helvetica, sans-serif !important;
     }
     .find-organ {
-        border: 1px solid #1a65e6;
+        border: 1px solid #007fe0;
     }
     .btn-blue,.new-organ,.find-organ:hover,.open-btn {
-        background-color: #1a65e6;
+        background-color: #007fe0;
     }
     .btn-blue:hover,.new-organ:hover,.open-btn:hover {
-        background-color: #003eaa;
+        background-color: #0273c9;
     }
     .Lato__Bold {
       font-family: "LatoBold" !important;

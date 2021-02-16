@@ -1,6 +1,6 @@
 <template>
   <footer class="bottom-0 footer bottom">
-    <div class="flex flex-wrap justify-center bg-blue-600 p-6 w-full">
+    <div class="flex flex-wrap justify-center footer-bg p-6 w-full">
       <div class="flex flex-wrap mb-4 w-full content-center py-6">
         <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4">
           <h3 class="text-lg py-4 font-bold">GET OUR APPS</h3>
@@ -96,14 +96,13 @@
     </div>
     <div class="bg-indigo-100 p-2 py-4 pl-6 w-full text-center">
       <span class="text-black text-sm">© Copyright 2020 - RCONNECT.Inc</span>
-      <button
-        class="bg-grey-light hover:bg-grey text-grey-darkest ml-3 font-bold rounded inline-flex items-center"
-      >
+      <button class="bg-grey-light hover:bg-grey text-grey-darkest ml-3 font-bold rounded inline-flex items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
           height="24"
+          style="fill: purple;"
         >
           <path fill="none" d="M0 0h24v24H0z" />
           <path
@@ -119,6 +118,7 @@
           viewBox="0 0 24 24"
           width="24"
           height="24"
+          style="fill:#0391FD;"
         >
           <path fill="none" d="M0 0h24v24H0z" />
           <path
@@ -134,6 +134,7 @@
           viewBox="0 0 24 24"
           width="24"
           height="24"
+          style="fill: blue;"
         >
           <path fill="none" d="M0 0h24v24H0z" />
           <path
@@ -152,12 +153,15 @@ export default {
 </script>
 
 <style scoped>
-.footer {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 100%
-}
-.font-bold {
+    .footer {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 100%
+    }
+    .footer-bg {
+      background-color:#0391FD;
+    }
+    .font-bold {
         font-weight: bolder;
     }
     .w-1\/4 {
