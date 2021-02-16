@@ -147,7 +147,7 @@ export default {
   margin-bottom: 0;
 }
 .img {
-  background-color: rgb(0, 0, 0,0.1);
+  background-color: rgb(0, 0, 0,0.05);
   bottom: 0;
 }
 

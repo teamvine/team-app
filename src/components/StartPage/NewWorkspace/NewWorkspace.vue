@@ -9,7 +9,7 @@
                     </h1>
                 </header>
                 <div class="pg-form w-full px-2">
-                    <div class="bg-white px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+                    <div class="bg-white px-8 pt-6 pb-1 mb-4 flex flex-col my-2">
                       <div class="-mx-3 md:flex mb-6">
                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                           <label class="block tracking-wide uppercase text-sm text-gray-900 font-bold mb-1" for="grid-first-name">

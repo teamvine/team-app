@@ -76,7 +76,7 @@ export default {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.16);
+  background-color: rgb(0, 0, 0,0.05);
 }
 .contact div div {
   display: block;
