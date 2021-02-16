@@ -11,9 +11,7 @@
     </div>
     <div class="right-menu">
       <div class="notifications mt-1">
-        <svg style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-14 h-14" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-        </svg>
+        <img src="../../assets/svgs/bell2.svg" alt="notifications" class="h-8">
         <span class="number">5</span>
       </div>
       <div class="user-menu">
@@ -33,39 +31,27 @@
                 </div>
               <div class="block space-y-2 text-md w-full pr-0 lst">
                         <p @click="navigate({name: 'StartPage'})" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <svg class="h-5" style="display: inline-block !important;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
+                          <img src="../../assets/svgs/home.svg" alt="back to home" class="svg">
                           <span class="font-bold h-5 ">Home</span>
                         </p>
                         <p @click="navigate({name: 'MyAccount'})" to="/settings/account" :class="[$route.name=='MyAccount'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <svg class="h-5" style="display: inline-block !important;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
+                          <img src="../../assets/svgs/profile.svg" alt="my account" class="svg">
                           <span class="font-bold h-5 ">My Account</span>
                         </p>
                         <p :class="[$route.name=='NotificationSettings'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                          </svg>
+                         <img src="../../assets/svgs/bell2.svg" alt="notifications" class="svg medium">
                           <span class="font-bold">Notifications</span>
                         </p>
                         <p @click="navigate({name: 'ChannelChat',params: {channel_code: currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}})" v-if="userAppFlow.switchedWorkspaces" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-                          </svg>
+                          <img src="../../assets/svgs/chat.svg" alt="messages" class="svg">
                           <span class="font-bold">Messages</span>
                         </p>
                         <p @click="navigate({name: 'ProfileSettings'})" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                          </svg>
+                          <img src="../../assets/svgs/settings.svg" alt="settings" class="svg">
                           <span class="font-bold">Settings</span>
                         </p>
                         <p @click="onLogOut" @dblclick="onLogOut" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                          </svg>
+                          <img src="../../assets/svgs/logout.svg" alt="logout" class="svg">
                           <span class="font-bold">Logout</span>
                         </p>
                 </div>
@@ -119,10 +105,22 @@ export default {
 </script>
 
 <style scoped>
+.svg {
+  display: inline-block;
+  width: 23px !important;
+  margin-left: 2%;
+} 
+.svg.medium {
+  width: 30px !important;
+  margin-left: 1%;
+}
 .lst,.d-block {
   display: block !important;
   flex: none;
   width: 100%;
+}
+.lst p {
+  position: relative
 }
 .item-hover:hover {
   background-color: rgb(241, 245, 252);
