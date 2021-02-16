@@ -31,11 +31,15 @@
                 </div>
               <div class="block space-y-2 text-md w-full pr-0 lst">
                         <p @click="navigate({name: 'StartPage'})" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <img src="../../assets/svgs/home.svg" alt="back to home" class="svg">
+                          <svg class="h-5" style="display: inline-block !important;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
                           <span class="font-bold h-5 ">Home</span>
                         </p>
                         <p @click="navigate({name: 'MyAccount'})" to="/settings/account" :class="[$route.name=='MyAccount'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <img src="../../assets/svgs/profile.svg" alt="my account" class="svg">
+                          <svg class="h-5" style="display: inline-block !important;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
                           <span class="font-bold h-5 ">My Account</span>
                         </p>
                         <p :class="[$route.name=='NotificationSettings'? 'bg-indigo-100':'']" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
@@ -45,15 +49,21 @@
                           <span class="font-bold">Notifications</span>
                         </p>
                         <p @click="navigate({name: 'ChannelChat',params: {channel_code: currentWorkspaceJoinedChannels.find(channel=> channel.gen==true).channel_code}})" v-if="userAppFlow.switchedWorkspaces" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <img src="../../assets/svgs/chat.svg" alt="messages" class="svg">
+                          <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                          </svg>
                           <span class="font-bold">Messages</span>
                         </p>
                         <p @click="navigate({name: 'ProfileSettings'})" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <img src="../../assets/svgs/settings.svg" alt="settings" class="svg">
+                          <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                          </svg>
                           <span class="font-bold">Settings</span>
                         </p>
                         <p @click="onLogOut" @dblclick="onLogOut" class="space-x-3 text-gray-900 w-full p-1 rounded-md hover:bg-indigo-100 focus:bg-indigo-100 d-block">
-                          <img src="../../assets/svgs/logout.svg" alt="logout" class="svg">
+                          <svg class="h-5" style="display: inline-block !important;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                          </svg>
                           <span class="font-bold">Logout</span>
                         </p>
                 </div>
