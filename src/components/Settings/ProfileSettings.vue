@@ -11,27 +11,27 @@
           <div class="my-5 px-3">
             <div class="my-3">
               <label for="fname" class="text-md font-bold">Full Name</label>
-              <input id="fname" type="text" class="block w-full my-1 bg-white border border-gray-400 rounded-sm py-3 px-4" value="Dusengimana Felix">
+              <input id="fname" type="text" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.full_name">
             </div>
             <div class="my-3">
               <label for="dname" class="text-md font-bold">Display Name</label>
-              <input id="dname" type="text" class="block w-full my-1 bg-white border border-gray-400 rounded-sm py-3 px-4" value="phelixwazekwaOg">
+              <input id="dname" type="text" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.display_name">
             </div>
             <div class="my-3">
               <label for="location" class="text-md font-bold">Location</label>
-              <input id="location" type="text" class="block w-full my-1 bg-white border border-gray-400 rounded-sm py-3 px-4" value="Musanze Rwanda">
+              <input id="location" type="text" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.country">
             </div>
             <div class="my-3">
               <label for="birth-date" class="text-md font-bold">Birth Date</label>
-              <input id="birth-date" type="date" class="block w-full my-1 bg-white border border-gray-400 rounded-sm py-3 px-4" value="09/1/2020">
+              <input id="birth-date" type="date" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.born">
             </div>
             <div class="my-3">
               <label for="employee-role" class="text-md font-bold">Employment</label>
-              <input id="employee-role" type="text" class="block w-full my-1 bg-white border border-gray-400 rounded-sm py-3 px-4" value="Phelix Wazekwa">
+              <input id="employee-role" type="text" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.role">
             </div>
             <div class="my-3">
-              <label for="email" class="text-md font-bold">Email</label>
-              <input id="email" type="email" class="block w-full my-1 bg-white border border-gray-400 rounded-sm py-3 px-4 bg-indigo-100" value="dusengimanaphelix@gmail.com" disabled>
+              <label for="phone" class="text-md font-bold">Work Phone</label>
+              <input id="phone" type="text" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.phone">
             </div>
             <button class="block w-full btn-blue text-white text-center mb-3 mt-5 py-3 rounded font-bold">Save changes</button>
           </div>
@@ -59,8 +59,26 @@
 </template>
 
 <script>
+import { mapGetters} from 'vuex'
+import _ from "lodash"
 export default {
-    name: "ProfileSeetings"
+    name: "ProfileSeetings",
+    data(){
+      return {
+        user: {}
+      }
+    },
+    beforeMount(){
+      this.user = _.pick(this.getUser(), [
+        "born","country","display_name","email","full_name","phone","role"
+      ]);
+    },
+    mounted(){
+      
+    },
+    methods: {
+      ...mapGetters("all",["getUser"])
+    }
 }
 </script>
 

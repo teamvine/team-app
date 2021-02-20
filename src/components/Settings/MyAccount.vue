@@ -7,10 +7,10 @@
         src="../../assets/images/avatar4.png"
         alt="profile img"
       />
-      <p class="text-center text-md text-lg font-bold mt-4 font-arial">
-        Jane Doe Hamblin
+      <p class="text-center text-md text-lg font-bold mt-4 text-gray-900 font-arial">
+        {{user.full_name}}
       </p>
-      <p class="text-center text-md font-bold text-gray-700">janedoe250</p>
+      <p class="text-center text-md font-bold text-gray-700">@{{user.display_name}}</p>
     </div>
     <div class="grid grid-cols-2 py-2 bg-white">
       <div class="text-left my-auto">
@@ -19,7 +19,7 @@
         <span class="text-gray-800 cursor-pointer hover:text-blue-600 text-md font-bold font-arial px-5">Workspace</span>
       </div>
       <div class="text-right px-4">
-        <button class="px-4 py-2 bg-gray-300 mx-4 rounded mb-2 mt-1 font-bold">
+        <router-link to="/settings/profile-settings" class="px-4 py-3 bg-gray-300 mx-4 rounded mb-2 mt-1 font-bold">
           <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
             <path fill="none" d="M0 0h24v24H0z" />
             <path
@@ -27,7 +27,7 @@
             />
           </svg>
           Edit profile
-        </button>
+        </router-link>
         <button class="px-4 py-2 bg-gray-300 mx-4 rounded">
           <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
             <path fill="none" d="M0 0h24v24H0z" />
@@ -58,11 +58,11 @@
             <p class="font-bold border py-3 border-t-0 px-2 md:px-4 text-md">Location</p>
           </div>
           <div class="titles py-5">
-            <p class="font-normal py-3 px-2 md:px-4 border border-l-0 text-md truncate">Dusengimana Felix</p>
-            <p class="font-normal py-3 px-2 border-t-0 border-l-0 md:px-4 border text-md truncate">Felix Wazekwa</p>
-            <p class="font-normal py-3 px-2 border-t-0 border-l-0 md:px-4 border text-md truncate">phelixdusengimana@gmail.com</p>
-            <p class="font-normal py-3 px-2 border-t-0 border-l-0 md:px-4 border text-md truncate">0787757575775</p>
-            <p class="font-normal py-3 px-2 border-t-0 border-l-0 md:px-4 border text-md truncate">Rwanda, Kigali</p>
+            <p class="font-normal py-3 px-2 md:px-4 border border-l-0 text-md truncate">{{user.full_name || "Unknown"}}</p>
+            <p class="font-normal py-3 px-2 border-t-0 border-l-0 md:px-4 border text-md truncate">{{user.display_name || "Unknown"}}</p>
+            <p class="font-normal py-3 px-2 border-t-0 border-l-0 md:px-4 border text-md truncate">{{user.email || "Unknown"}}</p>
+            <p class="font-normal py-3 px-2 border-t-0 border-l-0 md:px-4 border text-md truncate">{{user.phone || "Unknown"}}</p>
+            <p class="font-normal py-3 px-2 border-t-0 border-l-0 md:px-4 border text-md truncate">{{user.country || "Unknown"}}</p>
           </div>
         </div>
       </div>
@@ -71,8 +71,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 export default {
   name: "MyAccount",
+  computed: {
+    ...mapState({
+      user: state=> state.all.user
+    })
+  }
 };
 </script>
 
