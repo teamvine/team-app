@@ -244,6 +244,26 @@ function checkIfEmailUsed(email){
     });
 }
 
+/**
+ * update general user profile
+ * @param {String} token user token
+ * @param {String} user_id user id
+ * @param {Object} fields fields to update note: must be same to db fields
+ */
+function updateProfile(token, user_id, fields){
+    return axios.request({
+        user: baseURL+userAPI.updateProfile,
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            user_id: user_id,
+            fields: fields
+        }
+    })
+}
+
 
 module.exports = {
     getUserById,
@@ -258,5 +278,6 @@ module.exports = {
     getUserAccountInfo,
     updateAccount,
     VerifyEmail,
-    checkIfEmailUsed
+    checkIfEmailUsed,
+    updateProfile
 };
