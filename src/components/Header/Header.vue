@@ -239,7 +239,7 @@ export default {
   height: 36px;
   margin: 2px;
   border-radius: 50%;
-  background-color: rgb(0, 0, 0,0.08);
+  background-color: rgb(0, 0, 0,0.03);
 }
 .user-menu .drp-dwn-toggler span {
   font-weight: bold;

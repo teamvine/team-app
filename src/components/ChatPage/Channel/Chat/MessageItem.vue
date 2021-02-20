@@ -136,7 +136,7 @@ export default {
 }
 .img {
   /* position: absolute; */
-  background-color: rgb(0, 0, 0,0.05);
+  background-color: rgb(0, 0, 0,0.03);
   bottom: 0;
 }
 
