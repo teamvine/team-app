@@ -54,5 +54,8 @@ module.exports = {
         newChannelReply: "/channel/new-reply",
         newDirectMessage: "/direct/new-message",
         newDirectReply: "/direct/new-reply"
+    },
+    settingsAPI: {
+        updateNotificationSettings: "/settings/update-nofication-settings"
     }
 };
