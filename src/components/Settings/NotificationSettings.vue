@@ -79,6 +79,7 @@
 
 <script>
 import { updateNotificationSettings } from '../../lib/settings'
+import { mapGetters } from 'vuex'
 export default {
   name: "NotificationSettings",
   data(){
@@ -94,8 +95,14 @@ export default {
     }
   },
   methods: {
+    ...mapGetters("all", ["getUser", "getToken"]),
     saveSettings(){
-      // updateNotificationSettings
+      updateNotificationSettings(this.getToken(), this.getUser()._id, this.notification_settings)
+       .then(response=> {
+         if(!response.data.err) {
+           alert("Account Updated!")
+         }
+       }).catch(error=> console.log(error.message))
     }
   }
 }
