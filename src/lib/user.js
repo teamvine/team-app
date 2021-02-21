@@ -252,7 +252,7 @@ function checkIfEmailUsed(email){
  */
 function updateProfile(token, user_id, fields){
     return axios.request({
-        user: baseURL+userAPI.updateProfile,
+        url: baseURL+userAPI.updateProfile,
         method: "PUT",
         headers: {
             Authorization: `Bearer ${token}`

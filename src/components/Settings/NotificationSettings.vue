@@ -1,7 +1,7 @@
 <template>
   <div class="notifications-settings">
-    <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-4 pt-6">
-      <div class="col mx-4 shadow border">
+    <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-1 pt-6">
+      <div class="col mx-4 shadow border pt-0">
         <h4 class="text-md">Notification Settings</h4>
         <div>
           <label class="md:w-2/3 block text-gray-500 font-bold">
@@ -54,6 +54,7 @@
               Play Sound
             </div>
           </label>
+          <button class="button-blue mt-4 py-3">Upload Sound</button>
         </div>
       </div>
       <div class="col mx-4 shadow border">
@@ -70,7 +71,7 @@
           </select>
         </div>
         <span class="mt-3">If you don't feel to use our system sounds,<br> You can upload your prefered soun.</span>
-        <button class="button-upload-sound mt-3">Upload Sound</button>
+        <button class="button-blue mt-4">Upload Sound</button>
       </div>
     </div>
   </div>
@@ -135,15 +136,15 @@ input:checked ~ .toggle__dot {
   background-color: #0066ff;
 }
 
-.button-upload-sound {
-  padding: 8px 10px;
+.button-blue {
+  padding: 9px 10px;
   width: 100%;
   font-weight: bold;
   background-color: #0066ff;
   color: white;
 }
 
-.button-upload-sound:hover, .button-upload-sound:focus {
+.button-blue:hover, .button-blue:focus {
   background-color: #0041a3;
 }
 

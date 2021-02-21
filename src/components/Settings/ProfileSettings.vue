@@ -33,7 +33,7 @@
               <label for="phone" class="text-md font-bold">Work Phone</label>
               <input id="phone" type="text" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.phone">
             </div>
-            <button class="block w-full btn-blue text-white text-center mb-3 mt-5 py-3 rounded font-bold">Save changes</button>
+            <button @click="updateInformation" class="block w-full btn-blue text-white text-center mb-3 mt-5 py-3 rounded font-bold">Save changes</button>
           </div>
         </div>
 
@@ -59,7 +59,8 @@
 </template>
 
 <script>
-import { mapGetters} from 'vuex'
+import { mapGetters, mapMutations} from 'vuex'
+import { updateProfile } from "../../lib/user"
 import _ from "lodash"
 export default {
     name: "ProfileSeetings",
@@ -70,14 +71,36 @@ export default {
     },
     beforeMount(){
       this.user = _.pick(this.getUser(), [
-        "born","country","display_name","email","full_name","phone","role"
+        "born","country","display_name","full_name","phone","role"
       ]);
     },
     mounted(){
       
     },
     methods: {
-      ...mapGetters("all",["getUser"])
+      ...mapGetters("all",["getUser", "getToken"]),
+      ...mapMutations("all", ["setUser"]),
+      updateInformation(){
+        updateProfile(this.getToken(), this.getUser()._id, this.user)
+        .then(res=> {
+          if(res.data.err){
+            alert("Something Went Wrong")
+          }
+          else {
+            if(res.data.data.success){
+              alert("Account Updated!")
+              let user = this.getUser();
+              user.born = this.user.born
+              user.country = this.user.country
+              user.display_name = this.user.display_name
+              user.full_name = this.user.full_name
+              user.phone = this.user.phone
+              user.role = this.user.role
+              this.setUser(user)
+            }
+          }
+        }).catch(err=> alert(err.message))
+      }
     }
 }
 </script>
