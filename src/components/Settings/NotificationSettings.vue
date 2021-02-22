@@ -54,6 +54,7 @@
               Play Sound
             </div>
           </label>
+          <p v-show="show_progress1" :class="[progress1_color]" class="mt-4 text-sm">{{progress1_text}}</p>
           <button @click="saveSettings" class="button-blue mt-4 py-3">Save changes</button>
         </div>
       </div>
@@ -79,6 +80,7 @@
 
 <script>
 import { updateNotificationSettings } from '../../lib/settings'
+import { mapGetters } from 'vuex'
 export default {
   name: "NotificationSettings",
   data(){
@@ -90,12 +92,31 @@ export default {
         turn_all_off: false,
         hide_message_content: false,
         play_sound: true
-      }
+      },
+      progress1_color: "text-green-600",
+      show_progress1: false,
+      progress1_text: ""
     }
   },
   methods: {
+    ...mapGetters("all", ["getUser", "getToken"]),
     saveSettings(){
-      // updateNotificationSettings
+      this.progress1_text = "Saving changes..."
+      this.progress1_color = "text-green-600"
+      this.show_progress1 = true
+      updateNotificationSettings(this.getToken(), this.getUser()._id, this.notification_settings)
+       .then(response=> {
+         this.progress1_text = ""
+         this.show_progress1 = false
+        //  if(!response.data.err) {
+        //    alert("Account Updated!")
+        //  }
+       }).catch(error=> {
+         console.log(error.message);
+         this.progress1_text = "Something Went Wrong"
+         this.progress1_color = "text-red-600"
+         this.show_progress1 = true
+       })
     }
   }
 }

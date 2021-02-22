@@ -14,6 +14,9 @@
                 :class="[index>0? 'border-t':'',currentWorkspace.code==organization.code? 'active border-indigo-500':'organization-hover']"
                 @click="switchOrganization(organization)"
                 class="bg-white w-full flex items-center p-2 cursor-pointer organization hover:border-indigo-500">
+                    <div class="p-2 uppercase w-12 flex justify-center items-center rounded-md font-bold text-white bg-indigo-500">
+                        {{organization.name[0]}}
+                    </div>
                     <div class="flex-grow p-3 w-full">
                         <div class="font-bold text-md text-gray-800 org-name">
                             {{organization.name | truncateText}}
