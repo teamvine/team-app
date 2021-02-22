@@ -1,23 +1,23 @@
 <template>
   <div class="notifications-settings">
-    <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-4 pt-6">
-      <div class="col mx-4 shadow border">
+    <div class="w-full mb-4 mt-10 pb-2 space-x-4 space-y-1 pt-6">
+      <div class="col mx-4 shadow border pt-0">
         <h4 class="text-md">Notification Settings</h4>
         <div>
           <label class="md:w-2/3 block text-gray-500 font-bold">
-            <input class="mr-2 leading-tight" type="checkbox">
+            <input class="mr-2 leading-tight" type="checkbox" v-model="notification_settings.email_notifications">
             <span>
               Email Notifications
             </span>
           </label>
           <label class="md:w-2/3 block text-gray-500 font-bold">
-            <input class="mr-2 leading-tight" type="checkbox">
+            <input class="mr-2 leading-tight" type="checkbox" v-model="notification_settings.desktop_notifications">
             <span>
               Desktop Notifications
             </span>
           </label>
           <label class="md:w-2/3 block text-gray-500 font-bold">
-            <input class="mr-2 leading-tight" type="checkbox">
+            <input class="mr-2 leading-tight" type="checkbox" v-model="notification_settings.mobile_notifications">
             <span>
               Mobile Notifications
             </span>
@@ -26,7 +26,7 @@
           <h4 class="pt-4">Message Notifications</h4>
           <label for="toogleA" class="flex items-center cursor-pointer">
             <div class="relative">
-              <input id="toogleA" type="checkbox" class="hidden" />
+              <input id="toogleA" type="checkbox" class="hidden" v-model="notification_settings.turn_all_off"/>
               <div class="toggle__line w-10 h-4 bg-indigo-200 rounded-full shadow-inner" ></div>
               <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
             </div>
@@ -36,7 +36,7 @@
           </label>
           <label for="toogleB" class="flex items-center cursor-pointer">
             <div class="relative">
-              <input checked id="toogleB" type="checkbox" class="hidden" />
+              <input checked id="toogleB" type="checkbox" class="hidden" v-model="notification_settings.hide_message_content"/>
               <div class="toggle__line w-10 h-4 bg-indigo-200 rounded-full shadow-inner" ></div>
               <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
             </div>
@@ -46,7 +46,7 @@
           </label>
           <label for="toogleC" class="flex items-center cursor-pointer">
             <div class="relative">
-              <input checked id="toogleC" type="checkbox" class="hidden" />
+              <input checked id="toogleC" type="checkbox" class="hidden" v-model="notification_settings.play_sound"/>
               <div class="toggle__line w-10 h-4 bg-indigo-200 rounded-full shadow-inner" ></div>
               <div class="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
             </div>
@@ -54,6 +54,7 @@
               Play Sound
             </div>
           </label>
+          <button @click="saveSettings" class="button-blue mt-4 py-3">Save changes</button>
         </div>
       </div>
       <div class="col mx-4 shadow border">
@@ -70,15 +71,33 @@
           </select>
         </div>
         <span class="mt-3">If you don't feel to use our system sounds,<br> You can upload your prefered soun.</span>
-        <button class="button-upload-sound mt-3">Upload Sound</button>
+        <button class="button-blue mt-4">Upload Sound</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { updateNotificationSettings } from '../../lib/settings'
 export default {
-  name: "NotificationSettings"
+  name: "NotificationSettings",
+  data(){
+    return {
+      notification_settings: {
+        email_notifications: true,
+        mobile_notifications: false,
+        desktop_notifications: false,
+        turn_all_off: false,
+        hide_message_content: false,
+        play_sound: true
+      }
+    }
+  },
+  methods: {
+    saveSettings(){
+      // updateNotificationSettings
+    }
+  }
 }
 </script>
 
@@ -135,15 +154,15 @@ input:checked ~ .toggle__dot {
   background-color: #0066ff;
 }
 
-.button-upload-sound {
-  padding: 8px 10px;
+.button-blue {
+  padding: 9px 10px;
   width: 100%;
   font-weight: bold;
   background-color: #0066ff;
   color: white;
 }
 
-.button-upload-sound:hover, .button-upload-sound:focus {
+.button-blue:hover, .button-blue:focus {
   background-color: #0041a3;
 }
 

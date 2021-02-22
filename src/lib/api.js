@@ -19,7 +19,8 @@ module.exports = {
         checkIfToChat: "/user/check-user-for-chat",
         updateAccount: "/user/update-account",
         verifyEmail: "/user/verify_email",
-        checkIfEmailUsed: "/user/check-email-taken/"
+        checkIfEmailUsed: "/user/check-email-taken/",
+        updateProfile: "/user/update-profile"
     },
     workspaceAPI: {
         createNewWorkspace: "/workspace/new-workspace",
@@ -53,5 +54,8 @@ module.exports = {
         newChannelReply: "/channel/new-reply",
         newDirectMessage: "/direct/new-message",
         newDirectReply: "/direct/new-reply"
+    },
+    settingsAPI: {
+        updateNotificationSettings: "/settings/update-nofication-settings"
     }
 };
