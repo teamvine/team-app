@@ -1,10 +1,11 @@
 <template>
   <div class="profile-settings">
       <div class="h-40 bg-indigo-100"></div>
-      <div class="text-center">
-        <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
-      </div>
-    <div class="bg-white p-5 pt-8">
+    <div class="text-center relative">
+      <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
+      <button class="change-profile-pencil absolute inline-block focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.728 9.686l-1.414-1.414L5 17.586V19h1.414l9.314-9.314zm1.414-1.414l1.414-1.414-1.414-1.414-1.414 1.414 1.414 1.414zM7.242 21H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 21z" fill="rgba(52,72,94,1)"/></svg></button>
+    </div>
+      <div class="bg-white p-5 pt-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white py-6 px-6 rounded-sm shadow-md border">
           <h2 class="font-bold text-md font-arial">Change your information</h2>
@@ -102,4 +103,10 @@ export default {
   border: 4px solid white;
   background-color: rgb(245, 245, 245);
 }
+.change-profile-pencil{
+  margin-left: -30px;
+  z-index: 3;
+  margin-top: -30px;
+}
+
 </style>
