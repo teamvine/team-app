@@ -1,8 +1,11 @@
 <template>
   <div class="profile-settings">
-      <div class="h-40 bg-indigo-100"></div>
-      <div class="text-center">
+      <div class="h-40 bg-gray-200"></div>
+      <div class="text-center relative">
         <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
+        <button @click="showUpdateModal = !showUpdateModal" class="absolute -mt-6 bg-gray-300 change-profile-pencil focus:outline-none hover:bg-gray-400 p-1 rounded-md">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
+        </button>
       </div>
     <div class="bg-white p-5 pt-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -55,6 +58,7 @@
         </div>
       </div>
     </div>
+    <update-profile-modal :onClose="closeUpdateModal" :showModal="showUpdateModal"></update-profile-modal>
   </div>
 </template>
 
@@ -64,9 +68,13 @@ import { updateProfile } from "../../lib/user"
 import _ from "lodash"
 export default {
     name: "ProfileSeetings",
+    components: {
+      UpdateProfileModal: ()=> import('./UpdateProfileModal')
+    },
     data(){
       return {
-        user: {}
+        user: {},
+        showUpdateModal: false
       }
     },
     beforeMount(){
@@ -80,6 +88,9 @@ export default {
     methods: {
       ...mapGetters("all",["getUser", "getToken"]),
       ...mapMutations("all", ["setUser"]),
+      closeUpdateModal(){
+        this.showUpdateModal = false
+      },
       updateInformation(){
         updateProfile(this.getToken(), this.getUser()._id, this.user)
         .then(res=> {
@@ -124,5 +135,8 @@ export default {
 .img-border {
   border: 4px solid white;
   background-color: rgb(245, 245, 245);
+}
+.change-profile-pencil{
+  margin-left: -22px;
 }
 </style>

@@ -57,7 +57,11 @@ export default {
       onChannelClick: {
         type: Function,
         required: true
-      }
+      },
+      closeAllModals: {
+        type: Function,
+        required: true
+      },
     },   
     data(){
       return {
@@ -75,7 +79,7 @@ export default {
     methods: {
       ...mapGetters("all",["getToken","getCurrentWorkspace"]),
       newChannel(){
-        this.$modal.hide('browseChannel')
+        this.closeAllModals()
         this.$router.push({name: "NewChannel"})
       },
       searchChannels() {
@@ -106,7 +110,7 @@ export default {
     outline: none !important;
   }
   .channels-list {
-    height: 80vh;
+    height: auto;
     overflow: auto;
   }
 </style>
