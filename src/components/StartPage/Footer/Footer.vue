@@ -159,7 +159,8 @@ export default {
       top: 100%
     }
     .footer-bg {
-      background-color:#0391FD;
+      /* background-color: #1d2124; */
+      background-color: #3B5998;
     }
     .font-bold {
         font-weight: bolder;
