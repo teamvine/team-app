@@ -3,7 +3,7 @@
       <div class="h-40 bg-indigo-100"></div>
     <div class="text-center relative">
       <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
-      <button class="change-profile-pencil absolute inline-block focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.728 9.686l-1.414-1.414L5 17.586V19h1.414l9.314-9.314zm1.414-1.414l1.414-1.414-1.414-1.414-1.414 1.414 1.414 1.414zM7.242 21H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 21z" fill="rgba(52,72,94,1)"/></svg></button>
+      <button @click="$modal.show('changeProfileImage')" class="change-profile-pencil absolute inline-block focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.728 9.686l-1.414-1.414L5 17.586V19h1.414l9.314-9.314zm1.414-1.414l1.414-1.414-1.414-1.414-1.414 1.414 1.414 1.414zM7.242 21H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 21z" fill="rgba(52,72,94,1)"/></svg></button>
     </div>
       <div class="bg-white p-5 pt-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -56,6 +56,31 @@
         </div>
       </div>
     </div>
+
+    <vue-modal style="z-index: 2500" class="py-2" name="changeProfileImage" :scrollable="true" height="auto" draggable=".drag-handler" :reset="true" :classes="[]" :adaptive="true">
+      <nav class="flex drag-handler items-center justify-between flex-wrap p-3 py-2">
+        <div class="flex items-center flex-no-shrink text-black mr-6">
+          <span class="text-2xl tracking-tight px-4 py-2 font-bold">Update profile</span>
+        </div>
+        <div class="block">
+          <button @click="$modal.hide('changeProfileImage')" title="cancel" class="flex items-center px-3 py-1 font-bold hover:text-red-700">
+            &#x2715;
+          </button>
+        </div>
+      </nav>
+      <div class="block px-5 pt-3 pb-6">
+        <div class="h-64 w-full border-2 rounded-sm border-dashed"></div>
+        <div class="py-4 flex justify-between">
+          <div class="text-left">
+          <button class="py-3 px-6 text-gray-900 rounded bg-gray-300 focus:outline-none" @click="$modal.hide('changeProfileImage')">Cancel</button>
+          </div>
+          <div class="text-right">
+            <button class="py-3 px-6 text-gray-200 rounded btn-blue focus:outline-none">Update</button>
+          </div>
+        </div>
+      </div>
+<!--      <new-contact :closeAllModals="closeAllModals"></new-contact>-->
+    </vue-modal>
   </div>
 </template>
 
@@ -127,7 +152,7 @@ export default {
   background-color: rgb(245, 245, 245);
 }
 .change-profile-pencil{
-  margin-left: -30px;
+  margin-left: -25px;
   z-index: 3;
   margin-top: -30px;
 }
