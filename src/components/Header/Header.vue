@@ -3,7 +3,7 @@
     <div class="app-name p-3 cursor-pointer" @click="navigate({name: 'Start'})">
       <h3 class="font-bold">RCONNECT</h3>
     </div>
-    <div class="organization py-1 bg-gray-0 flex flex-grow content-center justify-center">
+    <div class="organization py-2 bg-gray-0 flex flex-grow content-center justify-center">
       <h2 v-if="userAppFlow.switchedWorkspaces" class="m-auto bg-gray-200 cursor-pointer font-lg name px-3 py-2 text-blue-500 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" style="display: inline; margin-top: -3%" ><path fill="none" d="M0 0H24V24H0z"/><path class="fill-current text-gray-800" d="M15 3c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-2v2h4c.552 0 1 .448 1 1v3h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1h-6c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-2H8v2h2c.552 0 1 .448 1 1v4c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1v-4c0-.552.448-1 1-1h2v-3c0-.552.448-1 1-1h4V9H9c-.552 0-1-.448-1-1V4c0-.552.448-1 1-1h6zM9 17H5v2h4v-2zm10 0h-4v2h4v-2zM14 5h-4v2h4V5z"/></svg>
         <span class="font-bold font-lg ml-1 text-gray-800">{{currentWorkspace.name}}</span>
@@ -140,9 +140,9 @@ export default {
 }
 .header-view {
   width: 100%;
-  flex: 0 50px;
-  max-height: 50px;
-  min-height: 50px;
+  flex: 0 55px;
+  max-height: 55px;
+  min-height: 55px;
   background-color: #ffffff;
   z-index: 10;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2)
