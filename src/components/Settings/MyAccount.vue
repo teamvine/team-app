@@ -1,6 +1,6 @@
 <template>
   <div class="my-account p-0">
-    <div class="h-40 bg-indigo-100"></div>
+    <div class="h-40 bg-gray-200"></div>
     <div class="text-center my-- border-b-2 border-gray-400 pb-5">
       <img
         class="inline-block w-32 h-32 rounded-full img-border border-white"

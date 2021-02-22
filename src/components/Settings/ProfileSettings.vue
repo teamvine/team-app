@@ -1,6 +1,6 @@
 <template>
   <div class="profile-settings">
-      <div class="h-40 bg-indigo-100"></div>
+      <div class="h-40 bg-gray-200"></div>
       <div class="text-center">
         <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
       </div>
