@@ -22,10 +22,14 @@ export default {
   data() {
     return {
       cropper: null,
+      coppedImageDataUri: ""
     };
   },
   methods: {
-    change() {},
+    crop() {
+      if(this.cropper==null) return;
+      this.coppedImageDataUri = this.cropper.getCroppedCanvas().toDataURL('image/jpeg', 100)
+    }
   },
   mounted() {
     this.cropper = new Cropper(this.$el.querySelector("#image_to_crop"), {
@@ -38,13 +42,6 @@ export default {
       cropBoxResizable: true,
       ready() {},
       crop(event) {
-        console.log(event.detail.x);
-        console.log(event.detail.y);
-        console.log(event.detail.width);
-        console.log(event.detail.height);
-        console.log(event.detail.rotate);
-        console.log(event.detail.scaleX);
-        console.log(event.detail.scaleY);
       },
     });
   },
