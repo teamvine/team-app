@@ -1,7 +1,7 @@
 <template>
   <div>
       <cropper
-		:src="img"
+		:src="image_data_uri"
 		@change="change"
 	/>
   </div>
@@ -21,9 +21,8 @@ export default {
 		Cropper,
     },
     data(){
-        return {
-            img: 'https://images.pexels.com/photos/4323307/pexels-photo-4323307.jpeg',
-        }
+      return {
+      }
     },
     methods: {
 		change({ coordinates, canvas }) {

@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <t-modal-md v-model="showModal" header="Profile Picture">
+    <t-modal-lg @before-close="onBeforeUpdateProfilePicClose" v-model="showModal" header="Profile Picture">
       <template v-slot:header>
         <nav class="flex w-full drag-handler border-b items-center justify-between flex-wrap bg-teal pb-3 px-6">
           <div class="flex w-full items-center justify-center flex-no-shrink text-black mr-6">
@@ -73,7 +73,7 @@
         </label>
       </div>
       <ProfilePicture :user_picture="getUser().profile_picture" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
-      <ImageCropper :image_data_uri="uploadedImageUriData"  class="min-h-2"></ImageCropper>
+      <ImageCropper :image_data_uri="uploadedImageUriData" v-if="showCropper=true && uploadedImageUriData!=''"  class="min-h-2"></ImageCropper>
       <template v-slot:footer>
         <div class="flex justify-between">
           <t-button :class="['py-3']" type="button" v-if="showPicture">
@@ -87,7 +87,7 @@
           </t-button>
         </div>
       </template>
-    </t-modal-md>
+    </t-modal-lg>
   </div>
 </template>
 
@@ -123,6 +123,16 @@ export default {
         this.showModal = !this.showModal
         this.showPicture = true
         this.showCropper = false
+        this.updateProfile = null
+        this.uploadedImageUriData = ""
+      },
+      onBeforeUpdateProfilePicClose({ cancel }){
+        this.closeUpdateModal()
+        this.showModal = false
+        this.showPicture = true
+        this.showCropper = false
+        this.updateProfile = null
+        this.uploadedImageUriData = ""
       },
       setPictureUploaded($evnt){
         let input = $evnt.target
