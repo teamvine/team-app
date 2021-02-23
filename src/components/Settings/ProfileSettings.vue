@@ -1,11 +1,13 @@
 <template>
   <div class="profile-settings">
-      <div class="h-40 bg-indigo-100"></div>
-    <div class="text-center relative">
-      <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
-      <button class="change-profile-pencil absolute inline-block focus:outline-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.728 9.686l-1.414-1.414L5 17.586V19h1.414l9.314-9.314zm1.414-1.414l1.414-1.414-1.414-1.414-1.414 1.414 1.414 1.414zM7.242 21H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 21z" fill="rgba(52,72,94,1)"/></svg></button>
-    </div>
-      <div class="bg-white p-5 pt-8">
+      <div class="h-40 bg-gray-200"></div>
+      <div class="text-center relative">
+        <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
+        <button @click="showModal = !showModal" class="absolute -mt-6 bg-gray-300 change-profile-pencil focus:outline-none hover:bg-gray-400 p-1 rounded-md">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
+        </button>
+      </div>
+    <div class="bg-white p-5 pt-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white py-6 px-6 rounded-sm shadow-md border">
           <h2 class="font-bold text-md font-arial">Change your information</h2>
@@ -56,6 +58,36 @@
         </div>
       </div>
     </div>
+    <t-modal-md v-model="showModal" header="Profile Picture">
+      <template v-slot:header>
+        <nav class="flex w-full drag-handler border-b items-center justify-between flex-wrap bg-teal pb-3 px-6">
+          <div class="flex w-full items-center justify-center flex-no-shrink text-black mr-6">
+            <span class="text-2xl tracking-tight ml-3 font-bold">Profile Picture</span>
+          </div>
+        </nav>
+      </template>
+      <div class="flex flex-row-reverse" v-if="showPicture">
+        <input name="uploaded_profile_picture" type="file" id="uploaded_profile_picture" hidden>
+        <label for="uploaded_profile_picture" class="bg-gray-300 hover:bg-gray-400 cursor-pointer rounded text-black -mt-3 py-3 block px-4 py-2 transition duration-100 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
+          Upload picture
+        </label>
+      </div>
+      <ProfilePicture v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
+      <Cropper v-if="showCropper"></Cropper>
+      <template v-slot:footer>
+        <div class="flex justify-between">
+          <t-button :class="['py-3']" type="button" v-if="showPicture">
+            Remove picture
+          </t-button>
+          <t-button :class="['py-3']" type="button" variant="success" v-if="showCropper">
+            Crop and Save
+          </t-button>
+          <t-button :class="['py-3']" @click="showModal = !showModal" type="button" variant="error">
+            Close
+          </t-button>
+        </div>
+      </template>
+    </t-modal-md>
   </div>
 </template>
 
@@ -65,9 +97,16 @@ import { updateProfile } from "../../lib/user"
 import _ from "lodash"
 export default {
     name: "ProfileSeetings",
+    components: {
+      ProfilePicture: ()=> import('./ProfilePicture'),
+      Cropper: ()=> import('./Cropper')
+    },
     data(){
       return {
-        user: {}
+        user: {},
+        showModal: false,
+        showCropper: false,
+        showPicture: true
       }
     },
     beforeMount(){
@@ -75,12 +114,12 @@ export default {
         "born","country","display_name","full_name","phone","role"
       ]);
     },
-    mounted(){
-      
-    },
     methods: {
       ...mapGetters("all",["getUser", "getToken"]),
       ...mapMutations("all", ["setUser"]),
+      closeUpdateModal(){
+        this.showModal = !this.showModal
+      },
       updateInformation(){
         updateProfile(this.getToken(), this.getUser()._id, this.user)
         .then(res=> {
@@ -127,9 +166,6 @@ export default {
   background-color: rgb(245, 245, 245);
 }
 .change-profile-pencil{
-  margin-left: -30px;
-  z-index: 3;
-  margin-top: -30px;
+  margin-left: -22px;
 }
-
 </style>
