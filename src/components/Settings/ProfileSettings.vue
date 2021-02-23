@@ -4,7 +4,7 @@
       <div class="text-center relative">
         <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
         <button @click="showModal = !showModal" class="absolute -mt-6 bg-gray-300 change-profile-pencil focus:outline-none hover:bg-gray-400 p-1 rounded-md">
-          <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
         </button>
       </div>
     <div class="bg-white p-5 pt-8">
@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <t-modal-md v-model="showModal" header="Profile Picture">
+    <t-modal-lg @before-close="onBeforeUpdateProfilePicClose" v-model="showModal" header="Profile Picture">
       <template v-slot:header>
         <nav class="flex w-full drag-handler border-b items-center justify-between flex-wrap bg-teal pb-3 px-6">
           <div class="flex w-full items-center justify-center flex-no-shrink text-black mr-6">
@@ -67,27 +67,31 @@
         </nav>
       </template>
       <div class="flex flex-row-reverse" v-if="showPicture">
-        <input name="uploaded_profile_picture" type="file" id="uploaded_profile_picture" hidden>
-        <label for="uploaded_profile_picture" class="bg-gray-300 hover:bg-gray-400 cursor-pointer rounded text-black -mt-3 py-3 block px-4 py-2 transition duration-100 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
+        <input @change="setPictureUploaded" name="uploaded_profile_picture" type="file" accept=".jpg, .jpeg, .png, .jfif" id="uploaded_profile_picture" hidden>
+        <label for="uploaded_profile_picture" class="font-bold bg-gray-300 hover:bg-gray-400 cursor-pointer rounded text-black -mt-3 py-3 block px-4 py-2 transition duration-100 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
+          <svg class="inline fill-current text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 13v4h-2v-4H8l4-5 4 5h-3z"/></svg>
           Upload picture
         </label>
       </div>
-      <ProfilePicture v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
-      <Cropper v-if="showCropper"></Cropper>
+      <ProfilePicture :user_picture="getUser().profile_picture" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
+      <ImageCropper :image_data_uri="uploadedImageUriData" v-if="showCropper=true && uploadedImageUriData!=''"  class="min-h-2"></ImageCropper>
       <template v-slot:footer>
         <div class="flex justify-between">
           <t-button :class="['py-3']" type="button" v-if="showPicture">
             Remove picture
           </t-button>
-          <t-button :class="['py-3']" type="button" variant="success" v-if="showCropper">
-            Crop and Save
+          <t-button :class="['py-3']" type="button" @click="backFromCropper" variant="secondary" v-if="showCropper=true && uploadedImageUriData!=''">
+            Back
           </t-button>
-          <t-button :class="['py-3']" @click="showModal = !showModal" type="button" variant="error">
+          <t-button :class="['py-3']" v-if="showPicture" @click="showModal = !showModal" type="button" variant="error">
             Close
+          </t-button>
+          <t-button :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
+            Crop and Save
           </t-button>
         </div>
       </template>
-    </t-modal-md>
+    </t-modal-lg>
   </div>
 </template>
 
@@ -96,17 +100,20 @@ import { mapGetters, mapMutations} from 'vuex'
 import { updateProfile } from "../../lib/user"
 import _ from "lodash"
 export default {
-    name: "ProfileSeetings",
+    name: "ProfileSettings",
     components: {
       ProfilePicture: ()=> import('./ProfilePicture'),
-      Cropper: ()=> import('./Cropper')
+      ImageCropper: ()=> import('./ImageCropper')
     },
     data(){
       return {
         user: {},
         showModal: false,
         showCropper: false,
-        showPicture: true
+        showPicture: true,
+        uploadedImageUriData: "",
+        uploadedImage: null,
+        croppedImageUriData: ""
       }
     },
     beforeMount(){
@@ -119,12 +126,47 @@ export default {
       ...mapMutations("all", ["setUser"]),
       closeUpdateModal(){
         this.showModal = !this.showModal
+        this.showPicture = true
+        this.showCropper = false
+        this.updateProfile = null
+        this.uploadedImageUriData = ""
+      },
+      onBeforeUpdateProfilePicClose({ cancel }){
+        this.closeUpdateModal()
+        this.showModal = false
+        this.showPicture = true
+        this.showCropper = false
+        this.updateProfile = null
+        this.uploadedImageUriData = ""
+      },
+      backFromCropper(){
+        this.showPicture = true
+        this.showCropper = false
+        this.updateProfile = null
+        this.uploadedImageUriData = ""
+      },
+      setPictureUploaded($evnt){
+        let input = $evnt.target
+        if (input.files[0].type && input.files[0].type.indexOf('image') === -1) {
+          alert("Only images are allowed!")
+          return;
+        }
+        this.uploadedImage = input.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+          this.uploadedImageUriData = event.target.result;
+          this.showPicture = false
+          setTimeout(()=> {
+            this.showCropper = true
+          }, 100)
+        });
+        reader.readAsDataURL(input.files[0]);
       },
       updateInformation(){
         updateProfile(this.getToken(), this.getUser()._id, this.user)
         .then(res=> {
           if(res.data.err){
-            alert("Something Went Wrong")
+            alert("Something Went Wrong");
           }
           else {
             if(res.data.data.success){
