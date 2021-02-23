@@ -87,7 +87,7 @@
             </div>
         </div>
         
-    <vue-modal style="z-index: 2500" class="py-3 col-lg-9" name="addMembers" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
+    <!-- <vue-modal style="z-index: 2500" class="py-3 col-lg-9" name="addMembers" :scrollable="true" draggable=".drag-handler" height="auto" :reset="true" :adaptive="true">
       <nav class="flex drag-handler items-center justify-between flex-wrap bg-teal p-6 py-2">
         <div class="flex items-center flex-no-shrink text-black mr-6">
           <span class="text-2xl tracking-tight ml-3 font-bold">Add Members</span>
@@ -98,8 +98,25 @@
           </button>
         </div>
       </nav>
-      <invite-member></invite-member>
-    </vue-modal>
+      
+    </vue-modal> -->
+    <t-modal-md name="addMembersModal" v-model="showAddMembersModal" header="Add Members">
+      <template v-slot:header>
+        <nav class="flex w-full drag-handler border-b items-center justify-between flex-wrap bg-teal pb-3 px-6">
+          <div class="flex w-full items-center justify-center flex-no-shrink text-black mr-6">
+            <span class="text-2xl tracking-tight ml-3 font-bold">Add Members</span>
+          </div>
+        </nav>
+      </template>
+      <invite-member :closeAddMembers="closeAddMembers"></invite-member>
+      <template v-slot:footer>
+        <div class="flex flex-row-reverse gap-x-4">
+          <t-button @click="$modal.hide('addMembersModal')" type="button" variant="error">
+            Close
+          </t-button>
+        </div>
+      </template>
+    </t-modal-md>
   </div>
 </template>
 
@@ -121,7 +138,8 @@ export default {
         return {
             showAbout: false,
             showMembers: false,
-            isLoadingMembers: false
+            isLoadingMembers: false,
+            showAddMembersModal: false
         }
     },
     computed: {
@@ -135,8 +153,10 @@ export default {
         ...mapGetters("all", ["getToken", "getCurrentWorkspace"]),
         ...mapMutations("chat", ["setMembers","setCurrentChannelMembers"]),
         addMembers() {
-            this.$modal.hideAll()
-            this.$modal.show("addMembers")
+            this.showAddMembersModal = !this.showAddMembersModal
+        },
+        closeAddMembers(){
+            this.showAddMembersModal = false
         },
         fetchMembers(){
             if(this.currentChannelMembers.length < 1){

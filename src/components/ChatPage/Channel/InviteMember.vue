@@ -14,6 +14,9 @@
                 <input class="w-full" type="search" placeholder="type name or email" v-on:keyup="search" v-model="searchText">
             </div>
         </div>
+        <div class="done text-right mt-3">
+            <button :disabled="buttonDisabled" :class="(buttonDisabled ? 'bg-gray-400 text-black ': 'bg-blue-700 text-white ') +' py-3 px-5 border rounded' " @click="sendData">Add</button>
+        </div>
         <div class="py-5" v-if="results.length >= 1">
             <div v-for="result in results" :key="result._id" @click="addMember(result)"
                 class="flex flex-wrap items-stretch w-full relative hover:bg-gray-300 rounded cursor-pointer px-3">
@@ -32,9 +35,6 @@
         <div class="my-3 text-red-600" v-if="this.errorOcurred" >
             Error occured. please check your internet connection
         </div>
-        <div class="done text-right mt-3">
-            <button :disabled="buttonDisabled" :class="(buttonDisabled ? 'bg-gray-400 text-black ': 'bg-blue-700 text-white ') +' py-3 px-5 border rounded' " @click="sendData">Add</button>
-        </div>
     </div>
 </template>
 
@@ -44,7 +44,8 @@ import { mapMutations,mapState } from "vuex"
 import { searchMembersNotInChannel } from "../../../lib/workspace"
 import { addChannelMembers } from "../../../lib/channel"
 export default {
-    components:{
+    props: {
+        closeAddMembers: Function
     },
     data(){
       return {
@@ -106,7 +107,7 @@ export default {
             this.errorOcurred = false
             addChannelMembers(this.token,this.currentWorkspace._id,this.currentChannel._id,this.addedMembers.map(user => ({_id:user._id}) ) )
             .then(resp=>{
-                this.$modal.hide('addMembers')
+                this.closeAddMembers()
             })
             .catch(e =>{
                 this.errorOcurred = true
@@ -124,8 +125,8 @@ export default {
     margin-top: 5px !important;
 }
 
-  .content {
-    height: 80vh;
-    overflow: auto;
-  }
+.content {
+    min-height: 40vh;
+    height: auto;
+}
 </style>
