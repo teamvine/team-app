@@ -67,13 +67,13 @@
         </nav>
       </template>
       <div class="flex flex-row-reverse" v-if="showPicture">
-        <input name="uploaded_profile_picture" type="file" id="uploaded_profile_picture" hidden>
+        <input @change="setPictureUploaded" name="uploaded_profile_picture" type="file" accept=".jpg, .jpeg, .png" id="uploaded_profile_picture" hidden>
         <label for="uploaded_profile_picture" class="bg-gray-300 hover:bg-gray-400 cursor-pointer rounded text-black -mt-3 py-3 block px-4 py-2 transition duration-100 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
           Upload picture
         </label>
       </div>
-      <ProfilePicture v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
-      <Cropper v-if="showCropper"></Cropper>
+      <ProfilePicture :user_picture="getUser().profile_picture" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
+      <Cropper :img_data_uri="uploadedImageUriData" v-if="showCropper" class="min-"></Cropper>
       <template v-slot:footer>
         <div class="flex justify-between">
           <t-button :class="['py-3']" type="button" v-if="showPicture">
@@ -96,7 +96,7 @@ import { mapGetters, mapMutations} from 'vuex'
 import { updateProfile } from "../../lib/user"
 import _ from "lodash"
 export default {
-    name: "ProfileSeetings",
+    name: "ProfileSettings",
     components: {
       ProfilePicture: ()=> import('./ProfilePicture'),
       Cropper: ()=> import('./Cropper')
@@ -106,7 +106,9 @@ export default {
         user: {},
         showModal: false,
         showCropper: false,
-        showPicture: true
+        showPicture: true,
+        uploadedImageUriData: "",
+        uploadedImage: null
       }
     },
     beforeMount(){
@@ -120,11 +122,28 @@ export default {
       closeUpdateModal(){
         this.showModal = !this.showModal
       },
+      setPictureUploaded($evnt){
+        let input = $evnt.target
+        if (input.files[0].type && input.files[0].type.indexOf('image') === -1) {
+          alert("Only images are allowed!")
+          return;
+        }
+        this.uploadedImage = input.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+          this.uploadedImageUriData = event.target.result;
+          this.showPicture = false
+          setTimeout(()=> {
+            this.showCropper = true
+          }, 100)
+        });
+        reader.readAsDataURL(input.files[0]);
+      },
       updateInformation(){
         updateProfile(this.getToken(), this.getUser()._id, this.user)
         .then(res=> {
           if(res.data.err){
-            alert("Something Went Wrong")
+            alert("Something Went Wrong");
           }
           else {
             if(res.data.data.success){
