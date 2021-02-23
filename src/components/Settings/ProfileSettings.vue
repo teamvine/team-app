@@ -79,11 +79,14 @@
           <t-button :class="['py-3']" type="button" v-if="showPicture">
             Remove picture
           </t-button>
+          <t-button :class="['py-3']" type="button" @click="backFromCropper" variant="secondary" v-if="showCropper=true && uploadedImageUriData!=''">
+            Back
+          </t-button>
+          <t-button :class="['py-3']" v-if="showPicture" @click="showModal = !showModal" type="button" variant="error">
+            Close
+          </t-button>
           <t-button :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
             Crop and Save
-          </t-button>
-          <t-button :class="['py-3']" @click="showModal = !showModal" type="button" variant="error">
-            Close
           </t-button>
         </div>
       </template>
@@ -108,7 +111,8 @@ export default {
         showCropper: false,
         showPicture: true,
         uploadedImageUriData: "",
-        uploadedImage: null
+        uploadedImage: null,
+        croppedImageUriData: ""
       }
     },
     beforeMount(){
@@ -129,6 +133,12 @@ export default {
       onBeforeUpdateProfilePicClose({ cancel }){
         this.closeUpdateModal()
         this.showModal = false
+        this.showPicture = true
+        this.showCropper = false
+        this.updateProfile = null
+        this.uploadedImageUriData = ""
+      },
+      backFromCropper(){
         this.showPicture = true
         this.showCropper = false
         this.updateProfile = null
