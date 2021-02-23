@@ -73,13 +73,13 @@
         </label>
       </div>
       <ProfilePicture :user_picture="getUser().profile_picture" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
-      <Cropper :img_data_uri="uploadedImageUriData" v-if="showCropper" class="min-h-2"></Cropper>
+      <ImageCropper :image_data_uri="uploadedImageUriData"  class="min-h-2"></ImageCropper>
       <template v-slot:footer>
         <div class="flex justify-between">
           <t-button :class="['py-3']" type="button" v-if="showPicture">
             Remove picture
           </t-button>
-          <t-button :class="['py-3']" type="button" variant="success" v-if="showCropper">
+          <t-button :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
             Crop and Save
           </t-button>
           <t-button :class="['py-3']" @click="showModal = !showModal" type="button" variant="error">
@@ -99,7 +99,7 @@ export default {
     name: "ProfileSettings",
     components: {
       ProfilePicture: ()=> import('./ProfilePicture'),
-      Cropper: ()=> import('./Cropper')
+      ImageCropper: ()=> import('./ImageCropper')
     },
     data(){
       return {
@@ -121,6 +121,8 @@ export default {
       ...mapMutations("all", ["setUser"]),
       closeUpdateModal(){
         this.showModal = !this.showModal
+        this.showPicture = true
+        this.showCropper = false
       },
       setPictureUploaded($evnt){
         let input = $evnt.target
