@@ -146,10 +146,10 @@ export default {
 
 <style scoped>
   .main-div{
-    min-height:400px ;
+    min-height:270px ;
   }
   .results {
-    height: 80vh;
+    height: 55vh;
     overflow: auto;
   }
 </style>
