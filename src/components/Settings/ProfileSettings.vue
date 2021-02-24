@@ -74,7 +74,7 @@
         </label>
       </div>
       <ProfilePicture :user_picture="getUser().profile_picture" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
-      <ImageCropper :image_data_uri="uploadedImageUriData" v-if="showCropper=true && uploadedImageUriData!=''"  class="min-h-2"></ImageCropper>
+      <ImageCropper ref="image_cropper_cmpnt" :image_data_uri="uploadedImageUriData" v-if="showCropper=true && uploadedImageUriData!=''"  class="min-h-2"></ImageCropper>
       <template v-slot:footer>
         <div class="flex justify-between">
           <t-button :class="['py-3']" type="button" v-if="showPicture">
@@ -99,7 +99,6 @@
 import { mapGetters, mapMutations} from 'vuex'
 import { updateProfile } from "../../lib/user"
 import _ from "lodash"
-import ImageCropper from './ImageCropper.vue'
 export default {
     name: "ProfileSettings",
     components: {
@@ -164,7 +163,10 @@ export default {
         reader.readAsDataURL(input.files[0]);
       },
       updateProfilePicture(){
-        alert(ImageCropper.methods.crop())
+        let cropped_img_uri = this.$refs.image_cropper_cmpnt.getCrop()
+        if(cropped_img_uri=="") return;
+        alert(cropped_img_uri)
+        console.log(cropped_img_uri);
       },
       updateInformation(){
         updateProfile(this.getToken(), this.getUser()._id, this.user)
