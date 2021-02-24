@@ -86,7 +86,7 @@
           <t-button :class="['py-3']" v-if="showPicture" @click="showModal = !showModal" type="button" variant="error">
             Close
           </t-button>
-          <t-button :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
+          <t-button @click="updateProfilePicture" :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
             Crop and Save
           </t-button>
         </div>
@@ -99,6 +99,7 @@
 import { mapGetters, mapMutations} from 'vuex'
 import { updateProfile } from "../../lib/user"
 import _ from "lodash"
+import ImageCropper from './ImageCropper.vue'
 export default {
     name: "ProfileSettings",
     components: {
@@ -161,6 +162,9 @@ export default {
           }, 100)
         });
         reader.readAsDataURL(input.files[0]);
+      },
+      updateProfilePicture(){
+        alert(ImageCropper.methods.crop())
       },
       updateInformation(){
         updateProfile(this.getToken(), this.getUser()._id, this.user)

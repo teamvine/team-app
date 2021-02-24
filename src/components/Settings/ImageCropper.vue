@@ -2,7 +2,7 @@
   <div class="block w-full">
     <img
       class="w-full"
-      style="display: block; max-width: 100% !important"
+      style="display: block; max-width: 100% !important; max-height: 400px !important"
       id="image_to_crop"
       :src="image_data_uri"
     />
@@ -22,13 +22,14 @@ export default {
   data() {
     return {
       cropper: null,
-      coppedImageDataUri: ""
+      croppedImageDataUri: ""
     };
   },
   methods: {
     crop() {
       if(this.cropper==null) return;
-      this.coppedImageDataUri = this.cropper.getCroppedCanvas().toDataURL('image/jpeg', 100)
+      this.croppedImageDataUri = this.cropper.getCroppedCanvas().toDataURL('image/jpeg', 100)
+      return this.croppedImageDataUri;
     }
   },
   mounted() {
