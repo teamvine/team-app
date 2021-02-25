@@ -84,7 +84,6 @@ export default {
             this.errorColor = "text-green-600"
             this.errorMsg = "Logging In..."
             localStorage.setItem("rconnectToken",response.data.data.token)
-            // this.$store.commit("all/setUser", JSON.stringify(response.data.data.user));
             // this.$store.commit("all/setToken", response.data.data.token);
             this.$router.push({ name: "Home" });
           }
