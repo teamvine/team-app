@@ -90,6 +90,7 @@
             Close
           </t-button>
           <t-button @click="updateProfilePic" :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
+            <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-64 w-64"></div>
             Crop and Save
           </t-button>
         </div>
