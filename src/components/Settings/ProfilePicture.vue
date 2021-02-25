@@ -1,6 +1,8 @@
 <template>
     <div class="flex justify-center items-center py-2">
-        <img src="../../assets/images/avatar4.png" class="border w-44" alt="">
+        <img 
+        :src="(typeof(user_picture)=='object' && user_picture.updated==true? user_picture.url:'../../assets/images/avatar4.png')" 
+        class="border w-44" alt=""/>
     </div>
 </template>
 
@@ -9,7 +11,7 @@ export default {
     name: 'ProfilePicture',
     props: {
         close: Function,
-        user_picture: String
+        user_picture: Object
     },
     data(){
         return {

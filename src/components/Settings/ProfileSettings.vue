@@ -86,7 +86,7 @@
           <t-button :class="['py-3']" v-if="showPicture" @click="showModal = !showModal" type="button" variant="error">
             Close
           </t-button>
-          <t-button @click="updateProfilePicture" :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
+          <t-button @click="updateProfilePic" :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
             Crop and Save
           </t-button>
         </div>
@@ -98,6 +98,7 @@
 <script>
 import { mapGetters, mapMutations} from 'vuex'
 import { updateProfile } from "../../lib/user"
+import { updateProfilePicture } from '../../lib/settings'
 import _ from "lodash"
 export default {
     name: "ProfileSettings",
@@ -123,7 +124,7 @@ export default {
     },
     methods: {
       ...mapGetters("all",["getUser", "getToken"]),
-      ...mapMutations("all", ["setUser"]),
+      ...mapMutations("all", ["setUser", "setUserPicture"]),
       closeUpdateModal(){
         this.showModal = !this.showModal
         this.showPicture = true
@@ -162,11 +163,32 @@ export default {
         });
         reader.readAsDataURL(input.files[0]);
       },
-      updateProfilePicture(){
+      updateProfilePic(){
         let cropped_img_uri = this.$refs.image_cropper_cmpnt.getCrop()
         if(cropped_img_uri=="") return;
-        alert(cropped_img_uri)
-        console.log(cropped_img_uri);
+        updateProfilePicture(this.getToken(), this.getUser()._id,{
+          file_name: this.uploadedImage.name,
+          file_type: 'image/jpeg',
+          caption: this.getUser().full_name,
+          cropped_file_data_uri: cropped_img_uri
+        }).then((response)=> {
+          if(response.data.success){
+            this.setUserPicture({
+              updated: true,
+              caption: response.data.doc.picture.caption,
+              created_at: response.data.doc.picture.created_at,
+              updated_at: response.data.doc.picture.updated_at,
+              url: response.data.doc.picture.url
+            })
+            this.backFromCropper();
+            this.closeUpdateModal();
+          }else{
+            alert("SOMETHING WENT WRONG. RETRY")
+          }
+        }).catch(err=> {
+          alert("SOMETHING WENT WRONG.")
+          console.log(err.message);
+        })
       },
       updateInformation(){
         updateProfile(this.getToken(), this.getUser()._id, this.user)
