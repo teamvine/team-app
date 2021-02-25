@@ -73,7 +73,7 @@
           Upload picture
         </label>
       </div>
-      <ProfilePicture :user_picture="getUser().profile_picture" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
+      <ProfilePicture :user_picture="getUser().profile_pic" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
       <ImageCropper ref="image_cropper_cmpnt" :image_data_uri="uploadedImageUriData" v-if="showCropper=true && uploadedImageUriData!=''"  class="min-h-2"></ImageCropper>
       <template v-slot:footer>
         <div class="flex justify-between">

@@ -9,7 +9,7 @@ const mutations = {
         state.user = user;
     },
     setUserPicture: (state, picture)=> {
-        state.user.profile_picture = picture
+        state.user.profile_pic = picture
     },
     setGotCurrentWorkspaceMembers: (state,val)=>{
         state.userAppFlow.gotCurrentWorkspaceMembers = val
