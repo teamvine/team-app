@@ -4,7 +4,7 @@
       <div class="text-center relative">
         <img 
         class="inline-block  my-- w-32 h-32 rounded-full img-border" 
-        :src="(getUser().profile_pic.updated? getUser().profile_pic.url:'../../assets/images/avatar4.png')" alt="profile img"
+        :src="(getUser().profile_pic.updated? getUser().profile_pic.url: require('../../assets/images/avatar4.png'))" alt="profile img"
         />
         <button @click="showModal = !showModal" class="absolute -mt-6 bg-gray-300 change-profile-pencil focus:outline-none hover:bg-gray-400 p-1 rounded-md">
           <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>

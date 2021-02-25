@@ -4,7 +4,7 @@
     <div class="text-center my-- border-b-2 border-gray-400 pb-5">
       <img
         class="inline-block w-32 h-32 rounded-full img-border border-white"
-        :src="(user.profile_pic.updated? user.profile_pic.url:'../../assets/images/avatar4.png')"
+        :src="(user.profile_pic.updated? user.profile_pic.url: require('../../assets/images/avatar4.png'))"
         alt="profile img"
       />
         <p class="text-center text-md text-lg font-bold mt-4 text-gray-900 font-arial">

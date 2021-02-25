@@ -16,8 +16,8 @@
       </div>
       <div class="user-menu">
         <div class="drp-dwn-toggler pl-2" @click.stop="showDropDown = !showDropDown">
-          <img 
-          :src="(user.profile_pic.updated? user.profile_pic.url:'../../assets/images/avatar4.png')" 
+          <img
+          :src="(user.profile_pic.updated? user.profile_pic.url: require('../../assets/images/avatar4.png'))" 
           :alt="user.full_name"
           />
         </div>
