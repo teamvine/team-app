@@ -3,7 +3,7 @@
         <div class="flex flex-col flex-auto flex-shrink-0 bg-white text-gray-900">
             <div class="w-full h-full bg-white rounded p-3">
                 <div class="flex items-center space-x-4 p-2 mb-5">
-                    <img class="h-12 rounded-full" src="../../assets/images/avatar4.png" :alt="user.full_name">
+                    <img class="h-12 rounded-full" :src="(user.profile_pic.updated? user.profile_pic.url:'../../assets/images/avatar4.png')" :alt="user.full_name">
                     <div>
                         <h4 class="font-semibold text-lg text-gray-900 capitalize font-poppins tracking-wide">{{user.full_name}}</h4>
                         <span class="text-sm tracking-wide flex items-center space-x-1">
