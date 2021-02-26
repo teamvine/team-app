@@ -54,8 +54,11 @@
               Play Sound
             </div>
           </label>
-          <p v-show="show_progress1" :class="[progress1_color]" class="mt-4 text-sm">{{progress1_text}}</p>
-          <button @click="saveSettings" class="button-blue mt-4 py-3">Save changes</button>
+          <!-- <p v-show="show_progress1" :class="[progress1_color]" class="mt-4 text-sm">{{progress1_text}}</p> -->
+          <button @click="saveSettings" class="button-blue mt-4 py-3">
+            <div v-if="show_progress1" class="inline-block -mb-1 mr-2 loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6"></div>
+            Save changes
+          </button>
         </div>
       </div>
       <div class="col mx-4 shadow border">
@@ -95,7 +98,7 @@ export default {
       },
       progress1_color: "text-green-600",
       show_progress1: false,
-      progress1_text: ""
+      progress1_text: "",
     }
   },
   methods: {

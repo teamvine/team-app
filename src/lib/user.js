@@ -264,6 +264,25 @@ function updateProfile(token, user_id, fields){
     })
 }
 
+/**
+ * set updated profile picture
+ * @param {String} token user token
+ * @param {String} user_id user id
+ * @param {Boolean} val new value
+ */
+function setUpdatedProfilePic(token, user_id, val){
+    return axios.request({
+        url: baseURL+userAPI.setUpdatedProfilePic,
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            user_id: user_id,
+            new_val: val
+        }
+    })
+}
 
 module.exports = {
     getUserById,
@@ -279,5 +298,6 @@ module.exports = {
     updateAccount,
     VerifyEmail,
     checkIfEmailUsed,
-    updateProfile
+    updateProfile,
+    setUpdatedProfilePic
 };

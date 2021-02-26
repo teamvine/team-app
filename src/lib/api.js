@@ -21,7 +21,8 @@ module.exports = {
         updateAccount: "/user/update-account",
         verifyEmail: "/user/verify_email",
         checkIfEmailUsed: "/user/check-email-taken/",
-        updateProfile: "/user/update-profile"
+        updateProfile: "/user/update-profile",
+        setUpdatedProfilePic: "/user/set-updated-profile-pic"
     },
     workspaceAPI: {
         createNewWorkspace: "/workspace/new-workspace",

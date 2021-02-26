@@ -39,7 +39,10 @@
               <label for="phone" class="text-md font-bold">Work Phone</label>
               <input id="phone" type="text" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.phone">
             </div>
-            <button @click="updateInformation" class="block w-full btn-blue text-white text-center mb-3 mt-5 py-3 rounded font-bold">Save changes</button>
+            <button @click="updateInformation" class="block w-full btn-blue text-white text-center mb-3 mt-5 py-3 rounded font-bold">
+              <div v-if="show_progress1" class="inline-block -mb-1 mr-2 loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6"></div>
+              Save changes
+            </button>
           </div>
         </div>
 
@@ -90,7 +93,7 @@
             Close
           </t-button>
           <t-button @click="updateProfilePic" :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
-            <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-64 w-64"></div>
+            <div v-if="saving_new_pic" class="inline-block -mb-1 mr-2 loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6"></div>
             Crop and Save
           </t-button>
         </div>
@@ -100,8 +103,8 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations} from 'vuex'
-import { updateProfile } from "../../lib/user"
+import { mapGetters, mapMutations, mapState} from 'vuex'
+import { updateProfile, setUpdatedProfilePic } from "../../lib/user"
 import { updateProfilePicture } from '../../lib/settings'
 import _ from "lodash"
 export default {
@@ -118,13 +121,20 @@ export default {
         showPicture: true,
         uploadedImageUriData: "",
         uploadedImage: null,
-        croppedImageUriData: ""
+        croppedImageUriData: "",
+        saving_new_pic: false,
+        show_progress1: false
       }
     },
     beforeMount(){
       this.user = _.pick(this.getUser(), [
         "born","country","display_name","full_name","phone","role"
       ]);
+    },
+    computed: {
+      ...mapState({
+        token: state=> state.all.token
+      })
     },
     methods: {
       ...mapGetters("all",["getUser", "getToken"]),
@@ -170,12 +180,14 @@ export default {
       updateProfilePic(){
         let cropped_img_uri = this.$refs.image_cropper_cmpnt.getCrop()
         if(cropped_img_uri=="") return;
+        this.saving_new_pic = true
         updateProfilePicture(this.getToken(), this.getUser()._id,{
           file_name: this.uploadedImage.name,
           file_type: 'image/jpeg',
           caption: this.getUser().full_name,
           cropped_file_data_uri: cropped_img_uri
         }).then((response)=> {
+          this.saving_new_pic = false
           if(response.data.success){
             this.setUserPicture({
               updated: true,
@@ -186,23 +198,30 @@ export default {
             })
             this.backFromCropper();
             this.closeUpdateModal();
+            setUpdatedProfilePic(this.getToken()+"".toString(), this.getUser()._id, true).then(res=> {
+                if(res.data.err){
+                  alert("SOMETHING IS WRONG.")
+                }
+              }).catch(err=> console.log(err.message))
           }else{
             alert("SOMETHING WENT WRONG. RETRY")
           }
         }).catch(err=> {
+          this.saving_new_pic = false
           alert("SOMETHING WENT WRONG.")
           console.log(err.message);
         })
       },
       updateInformation(){
+        this.show_progress1 = true
         updateProfile(this.getToken(), this.getUser()._id, this.user)
         .then(res=> {
+          this.show_progress1 = false
           if(res.data.err){
             alert("Something Went Wrong");
           }
           else {
             if(res.data.data.success){
-              alert("Account Updated!")
               let user = this.getUser();
               user.born = this.user.born
               user.country = this.user.country
@@ -213,7 +232,10 @@ export default {
               this.setUser(user)
             }
           }
-        }).catch(err=> alert(err.message))
+        }).catch(err=> {
+          this.show_progress1 = false
+          alert(err.message)
+        })
       }
     }
 }
