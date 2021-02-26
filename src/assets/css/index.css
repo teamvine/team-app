@@ -57,6 +57,7 @@ html,body{
 
 .loader {
     border-top-color: #3498db;
+    border-left-color: #3498db;
     -webkit-animation: spinner 1.5s linear infinite;
     animation: spinner 1.5s linear infinite;
   }

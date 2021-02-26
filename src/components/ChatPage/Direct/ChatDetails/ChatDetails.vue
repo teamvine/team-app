@@ -10,7 +10,8 @@
         </div>
         <div class="user-picture rounded-t-md">
           <img
-            src="../../../../assets/images/avatar4.png"
+            v-if="currentDirectChatReceiver.profile_pic"
+            :src="currentDirectChatReceiver.profile_pic.updated? currentDirectChatReceiver.profile_pic.url:require('../../../../assets/images/avatar4.png')"
             class="opacity-80"
             :alt="currentDirectChatReceiver.full_name"
           />
@@ -121,7 +122,7 @@ export default {
 .user-picture {
   flex: none;
   display: block;
-  height: 15vh;
+  height: 18vh;
   width: 100%;
   overflow: visible;
   position: relative;
@@ -132,8 +133,8 @@ export default {
   text-align: center;
 }
 .user-picture img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   position: absolute;
   border-radius: 50%;
   top: 35%;

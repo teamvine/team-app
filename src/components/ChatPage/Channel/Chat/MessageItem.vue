@@ -1,7 +1,13 @@
 <template>
   <div class="message-item hover:bg-gray-100" :class="[sameToPrevious? 'mt-1':'mt-4']">
     <div class="flex msg-item-content">
-      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToPrevious"/>
+      <img 
+      :src="
+        user.email==message.sender_info.email && user.profile_pic.updated==true? user.profile_pic.url:
+        message.sender_info.profile_pic.updated? message.sender_info.profile_pic.url:
+        require('../../../../assets/images/avatar4.png')
+      " 
+      class="wh-40 img" v-if="!sameToPrevious"/>
       <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
         <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.display_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>

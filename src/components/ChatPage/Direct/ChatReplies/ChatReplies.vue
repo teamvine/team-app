@@ -11,10 +11,15 @@
         <div class="replies p-3">
           <div>
             <div class="reply pb-4">
-                <img src="../../../../assets/images/avatar4.png" class="h-8 w-8 rounded-full inline-block" alt="">
+                <img :src="
+                  getUser()._id==currentThread.message.sender_id && getUser().profile_pic.updated==true? getUser().profile_pic.url:
+                  currentDirectChatReceiver.profile_pic.updated==true? currentDirectChatReceiver.profile_pic.url:
+                  require('../../../../assets/images/avatar4.png')
+                " 
+                class="h-8 w-8 rounded-md inline-block" alt="">
                 <span class="font-semibold ml-2 name text-sm">{{currentThread.message.sender_info.display_name}}</span>
                 <span class="sent-date ml-4 text-sm">{{currentThread.message.sent_at | formatDate}}</span>
-                <p class="font-medium text-left px-4 reply__content">
+                <p class="font-medium text-left px-4 pt-1 reply__content">
                     {{currentThread.message.content}}
                 </p>
                 <label v-if="currentThread.message.replies.length>0" class="bg-gray-200 ml-4 mt-3 hover:bg-gray-400 rounded mt-3 text-sm cursor-pointer replies-num">
@@ -70,7 +75,8 @@ export default {
     },
     computed: {
       ...mapState({
-        currentThread: state=> state.chat.currentThread
+        currentThread: state=> state.chat.currentThread,
+        currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver
       })
     },
     methods:{

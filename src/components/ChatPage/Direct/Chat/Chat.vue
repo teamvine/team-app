@@ -11,7 +11,7 @@
               <button class="btn-see-older-sms text-sm font-bold" @click="loadOlderMessages">See older messages</button>
             </div>
             <div class="loading-oldersms w-full flex justify-center items-center text-sm font-bold" v-if="loadingOlderMessages.loading">
-              Loading...
+              <div class="loader ease-linear rounded-full border-4 border-gray-200 h-6 w-6"></div>
             </div>
             <MessageItem 
             v-for="(message,index) in currentChatMessages"
@@ -20,7 +20,7 @@
             :message="message" :key="index"/>
           </div>
           <div v-else-if="messagesLoadingProcess.isLoadingMessages" class="nothing nothing w-full h-full flex text-center justify-center content-center items-center">
-              <span class="mt-4 font-bold text-lg absolute">Loading...</span>
+            <div class="loader ease-linear mt-4 rounded-full border-4 border-gray-200 h-6 w-6"></div>
           </div>
           <div
            class="nothing w-full h-full flex text-center justify-center content-center items-center"
@@ -88,6 +88,7 @@ export default {
       }
     },
     loadOlderMessages(){
+      if(_.size(this.currentChatMessages)<10) return;
       let ALL_SMS_LENGTH = Number(this.lodash.size(this.currentChatMessages));
       let LAST_SMS_ID = this.lodash.toArray(this.currentChatMessages)[0]._id
       if(this.loadingOlderMessages.noMoreMessages) return;

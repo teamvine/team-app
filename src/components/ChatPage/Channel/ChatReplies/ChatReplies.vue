@@ -11,7 +11,11 @@
         <div class="replies p-3">
           <div>
             <div class="reply pb-4">
-                <img src="../../../../assets/images/avatar4.png" class="h-8 w-8 rounded-full inline-block" alt="">
+                <img :src="
+                  currentThread.message.sender_info.profile_pic.updated? currentThread.message.sender_info.profile_pic.url:
+                  require('../../../../assets/images/avatar4.png')
+                " class="h-8 w-8 rounded-full inline-block" alt=""
+                />
                 <span class="font-semibold ml-2 text-sm name">{{currentThread.message.sender_info.display_name}}</span>
                 <span class="sent-date ml-4 text-sm">{{currentThread.message.sent_at | formatDate}}</span>
                 <p class="font-medium text-left px-4 reply__content">
