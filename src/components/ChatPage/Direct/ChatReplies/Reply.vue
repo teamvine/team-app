@@ -9,7 +9,7 @@
             />
             <span class="font-semibold ml-2 name text-sm">{{message.sender_info.display_name}}</span>
             <span class="sent-date ml-4 text-sm">{{message.sent_at | formatDate}}</span>
-            <p class="font-medium text-left px-4 reply__content">
+            <p class="ml-6 text-left px-4 reply__content">
                 {{message.content}}
             </p>
         </div>

@@ -104,7 +104,7 @@
 
 <script>
 import { mapGetters, mapMutations, mapState} from 'vuex'
-import { updateProfile, setUpdatedProfilePic } from "../../lib/user"
+import { updateProfile} from "../../lib/user"
 import { updateProfilePicture } from '../../lib/settings'
 import _ from "lodash"
 export default {
@@ -198,11 +198,6 @@ export default {
             })
             this.backFromCropper();
             this.closeUpdateModal();
-            setUpdatedProfilePic(this.getToken()+"".toString(), this.getUser()._id, true).then(res=> {
-                if(res.data.err){
-                  alert("SOMETHING IS WRONG.")
-                }
-              }).catch(err=> console.log(err.message))
           }else{
             alert("SOMETHING WENT WRONG. RETRY")
           }

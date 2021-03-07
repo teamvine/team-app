@@ -3,7 +3,7 @@ module.exports = {
     // messagesServer: "http://localhost:3001", //socket server url (NodeJs)
     // baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL (NodeJs)
     messagesServer: "https://rconnect-backend-socket.herokuapp.com", //socket server url (NodeJs)
-    filesBaseUrl: "http://127.0.0.1:8000/api/team-files", // files server (Django)
+    filesBaseUrl: "http://127.0.0.1:3001", // files server (Django)
     loginAPI: {
         authorize: "/user/login"
     },
@@ -61,7 +61,7 @@ module.exports = {
         updateNotificationSettings: "/settings/update-nofication-settings"
     },
     filesManageAPI: {
-        updateProfilePicture: "/manage/profile/update-profile-picture"
+        updateProfilePicture: "/profile-picture/update"
     }
 };
 
