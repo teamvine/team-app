@@ -11,9 +11,7 @@
       <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
         <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.display_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>
-        <span class="msg-body py-0 txt px-1">
-          {{message.content}}
-        </span>
+        <span class="msg-body py-0 txt px-1" v-html="this.$options.filters.format_messageLinks(message.content)"></span>
         <label v-if="message.replies.length>0" @click="toggleReplies(message)" class="bg-gray-200 hover:bg-gray-400 rounded mt-3 text-sm cursor-pointer replies-num">
           <b>{{message.replies.length}}</b> repl{{message.replies.length>1? 'ies':'y'}}
         </label>
@@ -62,6 +60,9 @@ export default {
     ...mapGetters("chat", ["getCurrentChannel"]),
     ...mapMutations("chat", ["deleteMessage"]),
     ...mapGetters("all", ["getCurrentWorkspace","getToken"]),
+    getAllLinksinText(text){
+      return Filters.getAllLinksinText(text)
+    },
     deleteThisMessage(){
       deleteChannelMessage(this.getToken(),this.getCurrentWorkspace()._id,this.getCurrentChannel()._id,this.message._id)
       .then(res=>{
@@ -84,6 +85,9 @@ export default {
   filters: {
     formatDate: (value)=>{
       return Filters.formatTimestamp_v2(value)
+    },
+    format_messageLinks: (value)=>{
+      return Filters.formatMessageLinks(value)
     }
   }
 };
@@ -163,5 +167,13 @@ export default {
 }
 .message-item:hover .menu {
   display: block;
+}
+
+/*Message formating*/
+.msg-body>>>a {
+  color: rgb(0, 81, 255) !important;
+}
+.msg-body>>>a:hover {
+  text-decoration: underline;
 }
 </style>

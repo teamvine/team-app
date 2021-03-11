@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="reply pb-4">
+        <div class="reply relative pb-4 hover:bg-gray-50">
             <img :src="
                 getUser()._id==message.sender_id && getUser().profile_pic.updated==true? getUser().profile_pic.url:
                 getCurrentDirectChatReceiver().profile_pic.updated==true? getCurrentDirectChatReceiver().profile_pic.url:
@@ -12,6 +12,20 @@
             <p class="ml-6 text-left px-4 reply__content">
                 {{message.content}}
             </p>
+            <div class="menu bg-white border flex px-3 py-1 rounded-lg">
+                <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+                    <i class="ri-save-line"></i>
+                </span>
+                <span v-if="getUser().email==message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+                    <i class="ri-edit-line"></i>
+                </span>
+                <span v-if="getUser().email==message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-red-800">
+                    <i class="ri-delete-bin-6-line"></i>
+                </span>
+                <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+                    <i class="ri-menu-2-line"></i>
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -45,5 +59,23 @@
 }
 .reply .name {
     font-family: Arial, Helvetica, sans-serif;
+}
+.menu {
+  position: absolute;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+}
+.menu span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-weight: bolder;
+}
+.reply:hover .menu {
+  display: block;
 }
 </style>

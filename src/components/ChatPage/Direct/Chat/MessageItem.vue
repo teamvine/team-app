@@ -11,7 +11,7 @@
             <b>{{message.replies.length}}</b>repl{{message.replies.length>1? 'ies':'y'}}
           </label>
         </span>
-        <span class="msg-date mt-2">{{message.sent_at | formatDate}}</span>
+        <span class="msg-date mt-2 text-gray-700">{{message.sent_at | formatDate}}</span>
       </div>
     </div>
     <div class="flex msg-item-content sent-msg" v-else>
@@ -20,12 +20,12 @@
           <span class="inter">
             {{message.content}}
             <br v-if="message.replies.length>0">
-            <label @click="toggleReplies(message)" class="d-inline bg-gray-200 hover:bg-gray-400 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
+            <label @click="toggleReplies(message)" class="d-inline bg-gray-100 hover:bg-gray-300 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
               <b>{{message.replies.length}}</b>repl{{message.replies.length>1? 'ies':'y'}}
             </label>
           </span>
         </span>
-        <span class="msg-date mt-2">{{message.sent_at | formatDate}}</span>
+        <span class="msg-date mt-2 text-gray-700">{{message.sent_at | formatDate}}</span>
       </div>
       <img alt="" :src="user.profile_pic.updated? user.profile_pic.url:require('../../../../assets/images/avatar4.png')" class="wh-40 img" v-if="!sameToNext"/>
       <span class="w-40" v-else></span>
@@ -70,6 +70,9 @@ export default {
       user: state=> state.all.user,
       currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver
     })
+  },
+  mounted(){
+    console.log(this.currentDirectChatReceiver);
   },
   methods: {
     ...mapMutations("chat", ["deleteMessage"]),

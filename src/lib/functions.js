@@ -63,3 +63,38 @@ Functions.signOut = (self, workspace_id = "", user_id = "") => {
     localStorage.removeItem("rconnectToken")
     self.$router.push({ name: "Login" })
 }
+
+/**
+ * a function to Convert Plain Text message into Links
+ * @param {String} message_text message text to format
+ * @returns a formated text to use as html
+ */
+Filters.formatMessageLinks = (message_text)=>{
+    return (message_text || "").replace(/([^\S]|^)(((https?\:\/\/)|(www\.))(\S+))/gi,
+        function(match, space, url){
+            var hyperlink = url;
+            if (!hyperlink.match('^https?:\/\/')) {
+                hyperlink = 'http://' + hyperlink;
+            }
+            return space + '<a href="' + hyperlink + '">' + url + '</a>';
+        }
+    );
+}
+
+/**
+ * A function to extract links from a text
+ * @param {String} text text to extract
+ * @returns array of objects with extracted links
+ */
+Filters.getAllLinksinText = (text)=>{
+    let matches = text.match(/([^\S]|^)(((https?\:\/\/)|(www\.))(\S+))/gi)
+    let links = []
+    for(let match in matches){
+        var link = {};
+        link['link'] = matches[match];
+        link['startsAt'] = text.indexOf(matches[match]);
+        link['endsAt'] = text.indexOf(matches[match]) + matches[match].length;
+        links.push(link)
+    }
+    return links;
+}

@@ -21,7 +21,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
                             </span>
-                            <span class="font-bold">My Account</span>
+                            <span class="font-bold text-md">My Account</span>
                         </router-link>
                     </li>
                     <li>
@@ -139,7 +139,7 @@ export default {
 .text {
     font-family: Arial, Helvetica, sans-serif !important;
     font-weight: bold;
-    font-size: 109.3% !important;
+    /* font-size: 110.3% !important; */
     color: rgb(0, 0, 0,0.85);
 }
 </style>
