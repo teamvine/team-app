@@ -21,7 +21,7 @@ export default {
     },
     mounted(){
         this.loading = true
-        this.got_meta_data= false,
+        this.got_meta_data= false
     }
 }
 </script>
