@@ -5,7 +5,14 @@
       <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
         <span class="msg-body py-2 px-4">
-         {{message.content}}
+         <span>{{message.content}}</span>
+         <div v-if="getAllLinksinText(message.content).length>0">
+            <LinkMetaData 
+              v-for="(web_url, index) in getAllLinksinText(message.content)"
+              :webLink="web_url"
+              :key="index"
+            />
+          </div>
          <br v-if="message.replies.length>0">
           <label @click="toggleReplies(message)" class="d-inline bg-indigo-200 hover:bg-indigo-400 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
             <b>{{message.replies.length}}</b>repl{{message.replies.length>1? 'ies':'y'}}
@@ -18,7 +25,14 @@
       <div class="flex-1 px-3">
         <span class="msg-body py-2 px-4">
           <span class="inter">
-            {{message.content}}
+            <span v-html="this.$options.filters.format_messageLinks(message.content)"></span>
+            <div v-if="getAllLinksinText(message.content).length>0">
+                <LinkMetaData 
+                  v-for="(web_url, index) in getAllLinksinText(message.content)"
+                  :webLink="web_url"
+                  :key="index"
+                />
+            </div>
             <br v-if="message.replies.length>0">
             <label @click="toggleReplies(message)" class="d-inline bg-gray-100 hover:bg-gray-300 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
               <b>{{message.replies.length}}</b>repl{{message.replies.length>1? 'ies':'y'}}
@@ -57,6 +71,9 @@ import {deleteDirectMessage} from "../../../../lib/message"
 import {Filters} from '../../../../lib/functions'
 export default {
   name: "MessageItem",
+  components: {
+    LinkMetaData: ()=> import('../../shared/LinkMetaData')
+  },
   props: {
     message: {
       type: Object,
@@ -77,6 +94,9 @@ export default {
   methods: {
     ...mapMutations("chat", ["deleteMessage"]),
     ...mapGetters("all", ["getToken","getCurrentWorkspace"]),
+    getAllLinksinText(text){
+      return Filters.getAllLinksinText(text)
+    },
     deleteThisMessage(){
       deleteDirectMessage(this.getToken(),this.getCurrentWorkspace()._id,this.message.sender_id,this.message.receiver_id,this.message._id)
       .then(res=>{
@@ -99,6 +119,9 @@ export default {
   filters: {
     formatDate: (value)=>{
       return Filters.formatTimestamp_v2(value)
+    },
+    format_messageLinks: (value)=>{
+      return Filters.formatMessageLinks(value)
     }
   }
 };
@@ -126,7 +149,8 @@ export default {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   font-family: "Lato",sans-serif;
-  word-wrap: break-word
+  word-wrap: break-word;
+  word-break: break-all;
 }
 .msg-date {
   width: 100%;
@@ -194,5 +218,17 @@ export default {
 }
 .replies-num {
   padding: 3px 10px;
+}
+
+/*Message formating*/
+.msg-body>>>a {
+  color: rgb(0, 81, 255) !important;
+  font-size: 16px;
+}
+.msg-body>>>a:hover {
+  text-decoration: underline;
+}
+.sent-msg div .msg-body>>>a.message-inline-link {
+  color: rgb(200, 240, 255) !important;
 }
 </style>

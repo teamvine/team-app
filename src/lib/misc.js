@@ -8,8 +8,8 @@ const { baseURL,miscAPI} = require("./api");
  */
 function getUrlMetaData(token, url){
     return axios.request({
-        url: baseURL + miscAPI+"?url="+url,
-        method: "get",
+        url: baseURL + miscAPI.getUrlMetaData+"?url="+url,
+        method: "GET",
         headers: {
             Authorization: `Bearer ${token}`
         }

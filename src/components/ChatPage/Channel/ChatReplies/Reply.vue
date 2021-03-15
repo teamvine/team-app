@@ -9,9 +9,14 @@
             />
             <span class="font-semibold ml-2 text-sm name">{{message.sender_info.display_name}}</span>
             <span class="sent-date ml-4 text-sm">{{message.sent_at | formatDate}}</span>
-            <p class="ml-6 text-left px-4 reply__content">
-                {{message.content}}
-            </p>
+            <p class="ml-6 text-left px-4 reply__content" v-html="this.$options.filters.format_messageLinks(message.content)"></p>
+            <div v-if="getAllLinksinText(message.content).length>0">
+                  <LinkMetaData 
+                    v-for="(web_url, index) in getAllLinksinText(message.content)"
+                    :webLink="web_url"
+                    :key="index"
+                  />
+            </div>
             <div class="menu bg-white border flex px-3 py-1 rounded-lg">
                 <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
                     <i class="ri-save-line"></i>
@@ -35,6 +40,9 @@
     import {mapGetters} from 'vuex'
     export default {
         name: "Reply",
+        components: {
+            LinkMetaData: ()=> import('../../shared/LinkMetaData')
+        },
         props: {
             message: {
                 type: Object,
@@ -43,11 +51,17 @@
         },
          methods: {
             ...mapGetters("all", ["getUser"]),
-            ...mapGetters("chat", ["getCurrentDirectChatReceiver"])
+            ...mapGetters("chat", ["getCurrentDirectChatReceiver"]),
+            getAllLinksinText(text){
+                return Filters.getAllLinksinText(text)
+            },
         },
         filters: {
             formatDate: (value)=>{
                 return Filters.formatTimestamp_v2(value)
+            },
+            format_messageLinks: (value)=>{
+                return Filters.formatMessageLinks(value)
             }
         }
     }
@@ -55,7 +69,8 @@
 
 <style scoped>
 .reply__content {
-  word-wrap: break-word
+  word-wrap: break-word;
+  word-break:break-all;
 }
 .reply .name {
     font-family: Arial, Helvetica, sans-serif;
@@ -77,5 +92,13 @@
 }
 .reply:hover .menu {
   display: block;
+}
+ /*Message formating*/
+.reply__content>>>a {
+  color: rgb(0, 81, 255) !important;
+  font-size: 16px;
+}
+.reply__content>>>a:hover {
+  text-decoration: underline;
 }
 </style>

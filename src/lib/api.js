@@ -1,9 +1,9 @@
 module.exports = {
-    baseURL: "http://192.168.0.250:3000", //api server base url (NodeJs)
-    messagesServer: "http://192.168.0.250:3002", //socket server url (NodeJs)
+    baseURL: "http://localhost:3000", //api server base url (NodeJs)
+    messagesServer: "http://localhost:3002", //socket server url (NodeJs)
     // baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL (NodeJs)
     // messagesServer: "https://rconnect-backend-socket.herokuapp.com", //socket server url (NodeJs)
-    filesBaseUrl: "http://192.168.0.250:3001", // files server (Django)
+    filesBaseUrl: "http://localhost:3001", // files server (Django)
     loginAPI: {
         authorize: "/user/login"
     },

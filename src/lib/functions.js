@@ -76,7 +76,7 @@ Filters.formatMessageLinks = (message_text)=>{
             if (!hyperlink.match('^https?:\/\/')) {
                 hyperlink = 'http://' + hyperlink;
             }
-            return space + '<a href="' + hyperlink + '">' + url + '</a>';
+            return space + '<a class="message-inline-link" href="' + hyperlink + '">' + url + '</a>';
         }
     );
 }
@@ -91,7 +91,10 @@ Filters.getAllLinksinText = (text)=>{
     let links = []
     for(let match in matches){
         var link = {};
-        link['link'] = matches[match];
+        link['link'] = matches[match].trim();
+        if(!link['link'].startsWith('http://', 0) && !link['link'].startsWith('https://', 0)){
+            link['link'] = "http://"+link['link'];
+        }
         link['startsAt'] = text.indexOf(matches[match]);
         link['endsAt'] = text.indexOf(matches[match]) + matches[match].length;
         links.push(link)

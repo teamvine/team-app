@@ -18,9 +18,14 @@
                 />
                 <span class="font-semibold ml-2 text-sm name">{{currentThread.message.sender_info.display_name}}</span>
                 <span class="sent-date ml-4 text-sm">{{currentThread.message.sent_at | formatDate}}</span>
-                <p class="text-left px-4 reply__content">
-                    {{currentThread.message.content}}
-                </p>
+                <p class="text-left px-4 reply__content" v-html="this.$options.filters.format_messageLinks(currentThread.message.content)"></p>
+                <div v-if="getAllLinksinText(currentThread.message.content).length>0">
+                  <LinkMetaData 
+                    v-for="(web_url, index) in getAllLinksinText(currentThread.message.content)"
+                    :webLink="web_url"
+                    :key="index"
+                  />
+                </div>
                 <label v-if="currentThread.message.replies.length>0" class="bg-gray-200 ml-4 mt-3 hover:bg-gray-400 rounded mt-3 text-sm cursor-pointer replies-num">
                   <b>{{currentThread.message.replies.length}}</b> repl{{currentThread.message.replies.length>1? 'ies':'y'}}
                 </label>
@@ -55,7 +60,10 @@ import {Filters} from '../../../../lib/functions'
 import {sendChannelReply} from "../../../../lib/message"
 import {event} from "../../../../config/constants"
 export default {
-  components: { Reply },
+  components: { 
+    Reply,
+    LinkMetaData: ()=> import('../../shared/LinkMetaData')
+  },
   name: "ChatReplies",
   props: {
     toggleRightSidebar: Function,
@@ -77,6 +85,9 @@ export default {
     },
     methods:{
       ...mapGetters("all",["getToken","getUser"]),
+      getAllLinksinText(text){
+        return Filters.getAllLinksinText(text)
+      },
       sendReply(){
         if(this.newReply.trim()=="" || this.newReply=="") return;
         let cont = this.newReply.toString()
@@ -109,7 +120,10 @@ export default {
     filters: {
       formatDate: (value)=>{
         return Filters.formatTimestamp_v2(value)
-      }
+      },
+      format_messageLinks: (value)=>{
+      return Filters.formatMessageLinks(value)
+    }
     }
 
 };
@@ -179,6 +193,14 @@ export default {
   position:-webkit-sticky;
   position: sticky;
   bottom: 0;
+}
+ /*Message formating*/
+.reply__content>>>a {
+  color: rgb(0, 81, 255) !important;
+  font-size: 16px;
+}
+.reply__content>>>a:hover {
+  text-decoration: underline;
 }
 @media only screen and (max-width: 800px){
   .replies {

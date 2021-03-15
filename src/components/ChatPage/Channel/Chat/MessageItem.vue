@@ -12,6 +12,13 @@
       <div class="flex-1 px-3">
         <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.display_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>
         <span class="msg-body py-0 txt px-1" v-html="this.$options.filters.format_messageLinks(message.content)"></span>
+        <div v-if="getAllLinksinText(message.content).length>0">
+          <LinkMetaData 
+            v-for="(web_url, index) in getAllLinksinText(message.content)"
+            :webLink="web_url"
+            :key="index"
+          />
+        </div>
         <label v-if="message.replies.length>0" @click="toggleReplies(message)" class="bg-gray-200 hover:bg-gray-400 rounded mt-3 text-sm cursor-pointer replies-num">
           <b>{{message.replies.length}}</b> repl{{message.replies.length>1? 'ies':'y'}}
         </label>
@@ -43,6 +50,9 @@ import {deleteChannelMessage} from "../../../../lib/message"
 import { mapState, mapGetters, mapMutations } from "vuex"
 export default {
   name: "MessageItem",
+  components: {
+    LinkMetaData: ()=> import('../../shared/LinkMetaData')
+  },
   props: {
     message: {
       type: Object,
@@ -121,6 +131,8 @@ export default {
   width: auto;
   max-width: 90%;
   font-family: "Lato";
+  word-wrap: break-word;
+  word-break: break-all;
 }
 .msg-date {
   width: 100%;
@@ -172,6 +184,7 @@ export default {
 /*Message formating*/
 .msg-body>>>a {
   color: rgb(0, 81, 255) !important;
+  font-size: 16px;
 }
 .msg-body>>>a:hover {
   text-decoration: underline;

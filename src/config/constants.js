@@ -36,6 +36,12 @@ exports.errorMessage = {
 
 exports.regExp = {
     URL_REGEX: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+    URL_REGEX2: new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'),
     VALID_CHANNEL_NAME: /^[a-zA-Z0-9_-\s]+$/i,
     VALID_PASSWORD: /^[a-zA-Z0-9!@#$%^&*]{6,}$/i,
     VALID_USER_NAME: /^[a-zA-Z0-9]{3,25}$/i
