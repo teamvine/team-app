@@ -1,13 +1,14 @@
 <template>
-  <div class="chat-head rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0">
+  <div class="chat-head border-b rounded-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0">
     <div @click="toggleSideBar" class="flex pl-3 pr-0 sidebar-toggler justify-between items-center cursor-pointer">
       <svg xmlns="http://www.w3.org/2000/svg" class="mt-1" fill="rgb(0, 0, 0, 0.7)" viewBox="0 0 30 30" width="35" height="35"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 9V8l-4 4 4 4v-3h4v-2h-4z"/></svg>
     </div>
     <div class="flex-1 flex justify-between items-center user-pic">
-      <div class="user-picture">
+      <div class="user-picture pl-2">
         <img
+          v-if="currentDirectChatReceiver.profile_pic"
           class="rounded-lg"
-          src="../../../../assets/images/avatar4.png"
+          :src="currentDirectChatReceiver.profile_pic.updated? currentDirectChatReceiver.profile_pic.url:require('../../../../assets/images/avatar4.png')"
           alt=""
         />
         <div class="names">

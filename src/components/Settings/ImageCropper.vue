@@ -26,10 +26,9 @@ export default {
     };
   },
   methods: {
-    crop() {
-      if(this.cropper==null) return;
-      this.croppedImageDataUri = this.cropper.getCroppedCanvas().toDataURL('image/jpeg', 100)
-      return this.croppedImageDataUri;
+    getCrop() {
+      if(this.cropper==null) return "";
+      return this.cropper.getCroppedCanvas().toDataURL('image/jpeg', 100);
     }
   },
   mounted() {

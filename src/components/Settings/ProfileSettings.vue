@@ -2,7 +2,10 @@
   <div class="profile-settings">
       <div class="h-40 bg-gray-200"></div>
       <div class="text-center relative">
-        <img class="inline-block  my-- w-32 h-32 rounded-full img-border" src="../../assets/images/avatar4.png" alt="profile img">
+        <img 
+        class="inline-block  my-- w-32 h-32 rounded-full img-border" 
+        :src="(getUser().profile_pic.updated? getUser().profile_pic.url: require('../../assets/images/avatar4.png'))" alt="profile img"
+        />
         <button @click="showModal = !showModal" class="absolute -mt-6 bg-gray-300 change-profile-pencil focus:outline-none hover:bg-gray-400 p-1 rounded-md">
           <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-black" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
         </button>
@@ -36,7 +39,10 @@
               <label for="phone" class="text-md font-bold">Work Phone</label>
               <input id="phone" type="text" class="block w-full my-1 bg-white border-0 border-gray-400 rounded-sm py-3 px-4 bg-gray-200" v-model="user.phone">
             </div>
-            <button @click="updateInformation" class="block w-full btn-blue text-white text-center mb-3 mt-5 py-3 rounded font-bold">Save changes</button>
+            <button @click="updateInformation" class="block w-full btn-blue text-white text-center mb-3 mt-5 py-3 rounded font-bold">
+              <div v-if="show_progress1" class="inline-block -mb-1 mr-2 loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6"></div>
+              Save changes
+            </button>
           </div>
         </div>
 
@@ -62,7 +68,7 @@
       <template v-slot:header>
         <nav class="flex w-full drag-handler border-b items-center justify-between flex-wrap bg-teal pb-3 px-6">
           <div class="flex w-full items-center justify-center flex-no-shrink text-black mr-6">
-            <span class="text-2xl tracking-tight ml-3 font-bold">Profile Picture</span>
+            <span class="text-2xl tracking-tight ml-3 font-bold">{{getUser().full_name}}</span>
           </div>
         </nav>
       </template>
@@ -73,8 +79,8 @@
           Upload picture
         </label>
       </div>
-      <ProfilePicture :user_picture="getUser().profile_picture" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
-      <ImageCropper :image_data_uri="uploadedImageUriData" v-if="showCropper=true && uploadedImageUriData!=''"  class="min-h-2"></ImageCropper>
+      <ProfilePicture :user_picture="getUser().profile_pic" v-if="showPicture" :close="closeUpdateModal"></ProfilePicture>
+      <ImageCropper ref="image_cropper_cmpnt" :image_data_uri="uploadedImageUriData" v-if="showCropper=true && uploadedImageUriData!=''"  class="min-h-2"></ImageCropper>
       <template v-slot:footer>
         <div class="flex justify-between">
           <t-button :class="['py-3']" type="button" v-if="showPicture">
@@ -86,7 +92,8 @@
           <t-button :class="['py-3']" v-if="showPicture" @click="showModal = !showModal" type="button" variant="error">
             Close
           </t-button>
-          <t-button @click="updateProfilePicture" :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
+          <t-button @click="updateProfilePic" :class="['py-3']" type="button" variant="success" v-if="showCropper=true && uploadedImageUriData!=''">
+            <div v-if="saving_new_pic" class="inline-block -mb-1 mr-2 loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6"></div>
             Crop and Save
           </t-button>
         </div>
@@ -96,10 +103,10 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations} from 'vuex'
-import { updateProfile } from "../../lib/user"
+import { mapGetters, mapMutations, mapState} from 'vuex'
+import { updateProfile} from "../../lib/user"
+import { updateProfilePicture } from '../../lib/settings'
 import _ from "lodash"
-import ImageCropper from './ImageCropper.vue'
 export default {
     name: "ProfileSettings",
     components: {
@@ -114,7 +121,9 @@ export default {
         showPicture: true,
         uploadedImageUriData: "",
         uploadedImage: null,
-        croppedImageUriData: ""
+        croppedImageUriData: "",
+        saving_new_pic: false,
+        show_progress1: false
       }
     },
     beforeMount(){
@@ -122,9 +131,14 @@ export default {
         "born","country","display_name","full_name","phone","role"
       ]);
     },
+    computed: {
+      ...mapState({
+        token: state=> state.all.token
+      })
+    },
     methods: {
       ...mapGetters("all",["getUser", "getToken"]),
-      ...mapMutations("all", ["setUser"]),
+      ...mapMutations("all", ["setUser", "setUserPicture"]),
       closeUpdateModal(){
         this.showModal = !this.showModal
         this.showPicture = true
@@ -163,18 +177,46 @@ export default {
         });
         reader.readAsDataURL(input.files[0]);
       },
-      updateProfilePicture(){
-        alert(ImageCropper.methods.crop())
+      updateProfilePic(){
+        let cropped_img_uri = this.$refs.image_cropper_cmpnt.getCrop()
+        if(cropped_img_uri=="") return;
+        this.saving_new_pic = true
+        updateProfilePicture(this.getToken(), this.getUser()._id,{
+          file_name: this.uploadedImage.name,
+          file_type: 'image/jpeg',
+          caption: this.getUser().full_name,
+          cropped_file_data_uri: cropped_img_uri
+        }).then((response)=> {
+          this.saving_new_pic = false
+          if(response.data.success){
+            this.setUserPicture({
+              updated: true,
+              caption: response.data.doc.picture.caption,
+              created_at: response.data.doc.picture.created_at,
+              updated_at: response.data.doc.picture.updated_at,
+              url: response.data.doc.picture.url
+            })
+            this.backFromCropper();
+            this.closeUpdateModal();
+          }else{
+            alert("SOMETHING WENT WRONG. RETRY")
+          }
+        }).catch(err=> {
+          this.saving_new_pic = false
+          alert("SOMETHING WENT WRONG.")
+          console.log(err.message);
+        })
       },
       updateInformation(){
+        this.show_progress1 = true
         updateProfile(this.getToken(), this.getUser()._id, this.user)
         .then(res=> {
+          this.show_progress1 = false
           if(res.data.err){
             alert("Something Went Wrong");
           }
           else {
             if(res.data.data.success){
-              alert("Account Updated!")
               let user = this.getUser();
               user.born = this.user.born
               user.country = this.user.country
@@ -185,7 +227,10 @@ export default {
               this.setUser(user)
             }
           }
-        }).catch(err=> alert(err.message))
+        }).catch(err=> {
+          this.show_progress1 = false
+          alert(err.message)
+        })
       }
     }
 }

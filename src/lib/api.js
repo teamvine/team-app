@@ -1,8 +1,9 @@
 module.exports = {
-    // baseURL: "http://localhost:3000", //api server base url
-    // messagesServer: "http://localhost:3001", //socket server url
-    baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL
-    messagesServer: "https://rconnect-backend-socket.herokuapp.com", //socket server url
+    baseURL: "http://192.168.0.232:3000", //api server base url (NodeJs)
+    messagesServer: "http://192.168.0.232:3002", //socket server url (NodeJs)
+    // baseURL: "https://rconnect-backend.herokuapp.com", //api server base urL (NodeJs)
+    // messagesServer: "https://rconnect-backend-socket.herokuapp.com", //socket server url (NodeJs)
+    filesBaseUrl: "http://192.168.0.232:3001", // files server (Django)
     loginAPI: {
         authorize: "/user/login"
     },
@@ -20,7 +21,8 @@ module.exports = {
         updateAccount: "/user/update-account",
         verifyEmail: "/user/verify_email",
         checkIfEmailUsed: "/user/check-email-taken/",
-        updateProfile: "/user/update-profile"
+        updateProfile: "/user/update-profile",
+        setUpdatedProfilePic: "/user/set-updated-profile-pic"
     },
     workspaceAPI: {
         createNewWorkspace: "/workspace/new-workspace",
@@ -57,5 +59,32 @@ module.exports = {
     },
     settingsAPI: {
         updateNotificationSettings: "/settings/update-nofication-settings"
+    },
+    filesManageAPI: {
+        updateProfilePicture: "/profile-picture/update"
+    },
+    miscAPI: {
+        getUrlMetaData: "/misc/get-url-metadata"
     }
 };
+
+// let test_res = {
+//     'asset_id': '3b84f7693390aa737fd518249f8a829e', 
+//     'public_id': 'team_files/profile_pictures/profile_pic2.jpeg', 
+//     'version': 1614177818, 
+//     'version_id': 'b4aa6e443d8a0d474c1c1dfa31ab882f', 
+//     'signature': 'c9a74364d3b9e09e92662c74dc4e3fa37ce98bd2',
+//      'width': 576, 
+//      'height': 576, 
+//      'format': 'jpg', 
+//      'resource_type': 'image', 
+//      'created_at': '2021 - 02 - 24T14: 43: 38Z', 
+//      'tags': [], 
+//      'bytes': 41488, 
+//      'type': 'upload', 
+//      'etag': 'a17bf6a40fb356021c5b1d3328dbb2d1', 
+//      'placeholder': false, 
+//      'url': 'http://res.cloudinary.com/rconnect/image/upload/v1614177818/team_files/profile_pictures/profile_pic2.jpeg.jpg', 
+//      'secure_url': 'https://res.cloudinary.com/rconnect/image/upload/v1614177818/team_files/profile_pictures/profile_pic2.jpeg.jpg', 
+//      'overwritten': true
+// }

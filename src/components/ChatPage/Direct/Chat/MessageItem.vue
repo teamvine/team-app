@@ -1,47 +1,61 @@
 <template>
   <div class="message-item mt-3">
     <div class="flex msg-item-content" v-if="message.sender_id!=user._id">
-      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToNext"/>
+      <img alt="" :src="currentDirectChatReceiver.profile_pic.updated? currentDirectChatReceiver.profile_pic.url:require('../../../../assets/images/avatar4.png')" class="wh-40 img" v-if="!sameToNext"/>
       <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
         <span class="msg-body py-2 px-4">
-         {{message.content}}
+         <span>{{message.content}}</span>
+         <div v-if="getAllLinksinText(message.content).length>0">
+            <LinkMetaData 
+              v-for="(web_url, index) in getAllLinksinText(message.content)"
+              :webLink="web_url"
+              :key="index"
+            />
+          </div>
          <br v-if="message.replies.length>0">
           <label @click="toggleReplies(message)" class="d-inline bg-indigo-200 hover:bg-indigo-400 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
             <b>{{message.replies.length}}</b>repl{{message.replies.length>1? 'ies':'y'}}
           </label>
         </span>
-        <span class="msg-date mt-2">{{message.sent_at | formatDate}}</span>
+        <span class="msg-date mt-2 text-gray-700">{{message.sent_at | formatDate}}</span>
       </div>
     </div>
     <div class="flex msg-item-content sent-msg" v-else>
       <div class="flex-1 px-3">
         <span class="msg-body py-2 px-4">
           <span class="inter">
-            {{message.content}}
+            <span v-html="this.$options.filters.format_messageLinks(message.content)"></span>
+            <div v-if="getAllLinksinText(message.content).length>0">
+                <LinkMetaData 
+                  v-for="(web_url, index) in getAllLinksinText(message.content)"
+                  :webLink="web_url"
+                  :key="index"
+                />
+            </div>
             <br v-if="message.replies.length>0">
-            <label @click="toggleReplies(message)" class="d-inline bg-gray-200 hover:bg-gray-400 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
+            <label @click="toggleReplies(message)" class="d-inline bg-gray-100 hover:bg-gray-300 text-black cursor-pointer replies-num rounded text-sm" v-if="message.replies.length>0">
               <b>{{message.replies.length}}</b>repl{{message.replies.length>1? 'ies':'y'}}
             </label>
           </span>
         </span>
-        <span class="msg-date mt-2">{{message.sent_at | formatDate}}</span>
+        <span class="msg-date mt-2 text-gray-700">{{message.sent_at | formatDate}}</span>
       </div>
-      <img src="../../../../assets/images/avatar4.png" class="wh-40 img" v-if="!sameToNext"/>
+      <img alt="" :src="user.profile_pic.updated? user.profile_pic.url:require('../../../../assets/images/avatar4.png')" class="wh-40 img" v-if="!sameToNext"/>
       <span class="w-40" v-else></span>
     </div>
     <div class="menu bg-white border flex px-3 py-1 rounded-lg"
-    :class="[message.sender_id!=user._id? 'right':'left']">
+    :class="[message.sender_id!==user._id? 'right':'left']">
       <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-indigo-600" @click="toggleReplies(message)">
         <i class="ri-reply-line"></i>
       </span>
       <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
         <i class="ri-save-line"></i>
       </span>
-      <span v-if="user.email==message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
+      <span v-if="user.email===message.sender_info.email" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
         <i class="ri-edit-line"></i>
       </span>
-      <span v-if="user.email==message.sender_info.email" @click="deleteThisMessage" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-red-800">
+      <span v-if="user.email===message.sender_info.email" @click="deleteThisMessage" class="hover:bg-indigo-200 cursor-pointer rounded-md p-1 text-red-800">
         <i class="ri-delete-bin-6-line"></i>
       </span>
       <span class="hover:bg-indigo-200 cursor-pointer rounded-md p-1">
@@ -52,11 +66,14 @@
 </template>
 
 <script>
-import { mapState,mapMutations,mapGetters } from "vuex"
+  import { mapState,mapMutations,mapGetters } from "vuex"
 import {deleteDirectMessage} from "../../../../lib/message"
 import {Filters} from '../../../../lib/functions'
 export default {
   name: "MessageItem",
+  components: {
+    LinkMetaData: ()=> import('../../shared/LinkMetaData')
+  },
   props: {
     message: {
       type: Object,
@@ -67,12 +84,19 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state=> state.all.user
+      user: state=> state.all.user,
+      currentDirectChatReceiver: state=> state.chat.currentDirectChatReceiver
     })
+  },
+  mounted(){
+    console.log(this.currentDirectChatReceiver);
   },
   methods: {
     ...mapMutations("chat", ["deleteMessage"]),
     ...mapGetters("all", ["getToken","getCurrentWorkspace"]),
+    getAllLinksinText(text){
+      return Filters.getAllLinksinText(text)
+    },
     deleteThisMessage(){
       deleteDirectMessage(this.getToken(),this.getCurrentWorkspace()._id,this.message.sender_id,this.message.receiver_id,this.message._id)
       .then(res=>{
@@ -87,7 +111,7 @@ export default {
         }
       })
       .catch(err=>{
-        alert("ERROR: "+err.message)
+        alert("ERROR: "+err.message);
         console.log(err);
       })
     }
@@ -95,6 +119,9 @@ export default {
   filters: {
     formatDate: (value)=>{
       return Filters.formatTimestamp_v2(value)
+    },
+    format_messageLinks: (value)=>{
+      return Filters.formatMessageLinks(value)
     }
   }
 };
@@ -102,7 +129,7 @@ export default {
 
 <style scoped>
 .message-item {
-  font-family: "Lato";
+  font-family: "Lato", sans-serif;
   position: relative;
   width: 100%;
 }
@@ -110,7 +137,7 @@ export default {
   position: relative;
 }
 .reply-name{
-  font-size: 12;
+  font-size: 12px;
 }
 .msg-body {
   font-size: 16px;
@@ -121,14 +148,15 @@ export default {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  font-family: "Lato";
-  word-wrap: break-word
+  font-family: "Lato",sans-serif;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 .msg-date {
   width: 100%;
   display: block;
   font-size: 12px;
-  font-family: "LatoBold";
+  font-family: "LatoBold", sans-serif;
 }
 .wh-40 {
   width: 2.4em;
@@ -156,13 +184,10 @@ export default {
   text-align: right;
 }
 .sent-msg div .msg-body {
-  background-color: rgba(0, 90, 224, 0.863);
+  background-color: rgba(10, 99, 233, 0.863);
   color: white;
   margin-left: auto;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 0px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
+  border-radius: 15px 15px 0 15px;
 }
 .sent-msg div .msg-body span {
   text-align: left;
@@ -173,7 +198,6 @@ export default {
 .menu {
   position: absolute;
   display: none;
-  position: absolute;
   top: 0;
 }
 .menu.left {
@@ -194,5 +218,17 @@ export default {
 }
 .replies-num {
   padding: 3px 10px;
+}
+
+/*Message formating*/
+.msg-body>>>a {
+  color: rgb(0, 81, 255) !important;
+  font-size: 16px;
+}
+.msg-body>>>a:hover {
+  text-decoration: underline;
+}
+.sent-msg div .msg-body>>>a.message-inline-link {
+  color: rgb(200, 240, 255) !important;
 }
 </style>

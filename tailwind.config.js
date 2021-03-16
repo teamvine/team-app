@@ -25,4 +25,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/custom-forms'),
   ],
+  corePlugins: {
+   animation: true,
+  }
 }

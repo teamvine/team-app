@@ -1,31 +1,40 @@
 <template>
   <div class="replies" v-if="show">
     <div class="chat-replies flex flex-wrap">
-      <div class="replies-card shadow-md rounded-sm bg-white mr-2">
+      <div class="replies-card shadow-md rounded-sm bg-white">
         <div class="md:flex sm:flex lg:flex border border-t-0 border-l-0 border-r-0">
           <div class="w-auto py-3 pl-3 font-bold text-xl cursor-pointer" @click="toggleRightSidebar('','checkDetails')">
             &times;
           </div>
           <div class="w-full md:w-full font-bold py-3 text-center text-lg font-custom">Replies</div>
         </div>
-        <div class="replies p-3">
+        <div class="replies-container pt-3 px-2">
           <div>
-            <div class="reply pb-4">
-                <img src="../../../../assets/images/avatar4.png" class="h-8 w-8 rounded-full inline-block" alt="">
+            <div class="reply pb-4 border-b mb-2">
+                <img :src="
+                  currentThread.message.sender_info.profile_pic.updated? currentThread.message.sender_info.profile_pic.url:
+                  require('../../../../assets/images/avatar4.png')
+                " class="h-8 w-8 rounded-full inline-block" alt=""
+                />
                 <span class="font-semibold ml-2 text-sm name">{{currentThread.message.sender_info.display_name}}</span>
                 <span class="sent-date ml-4 text-sm">{{currentThread.message.sent_at | formatDate}}</span>
-                <p class="font-medium text-left px-4 reply__content">
-                    {{currentThread.message.content}}
-                </p>
+                <p class="text-left px-4 reply__content" v-html="this.$options.filters.format_messageLinks(currentThread.message.content)"></p>
+                <div v-if="getAllLinksinText(currentThread.message.content).length>0">
+                  <LinkMetaData 
+                    v-for="(web_url, index) in getAllLinksinText(currentThread.message.content)"
+                    :webLink="web_url"
+                    :key="index"
+                  />
+                </div>
                 <label v-if="currentThread.message.replies.length>0" class="bg-gray-200 ml-4 mt-3 hover:bg-gray-400 rounded mt-3 text-sm cursor-pointer replies-num">
                   <b>{{currentThread.message.replies.length}}</b> repl{{currentThread.message.replies.length>1? 'ies':'y'}}
                 </label>
             </div>
           </div>
-          <div class="replies replies__list" v-for="message in currentThread.message.replies" :key="message._id">
+          <div class="replies__list" v-for="message in currentThread.message.replies" :key="message._id">
             <reply :message="message" />
           </div>
-          <div class="send-your-reply border-t py-2">
+          <div class="send-your-reply bg-white border-t py-2 pb-4">
             <div class="border p-3 rounded">
               <div class="flex">
                 <div class="w-3/4">
@@ -51,7 +60,10 @@ import {Filters} from '../../../../lib/functions'
 import {sendChannelReply} from "../../../../lib/message"
 import {event} from "../../../../config/constants"
 export default {
-  components: { Reply },
+  components: { 
+    Reply,
+    LinkMetaData: ()=> import('../../shared/LinkMetaData')
+  },
   name: "ChatReplies",
   props: {
     toggleRightSidebar: Function,
@@ -73,6 +85,9 @@ export default {
     },
     methods:{
       ...mapGetters("all",["getToken","getUser"]),
+      getAllLinksinText(text){
+        return Filters.getAllLinksinText(text)
+      },
       sendReply(){
         if(this.newReply.trim()=="" || this.newReply=="") return;
         let cont = this.newReply.toString()
@@ -105,7 +120,10 @@ export default {
     filters: {
       formatDate: (value)=>{
         return Filters.formatTimestamp_v2(value)
-      }
+      },
+      format_messageLinks: (value)=>{
+      return Filters.formatMessageLinks(value)
+    }
     }
 
 };
@@ -137,11 +155,11 @@ export default {
 /* .replies__list {
   border-left: 2px solid rgb(255, 125, 4);
 } */
-.replies::-webkit-scrollbar {
+.replies-container::-webkit-scrollbar,.replies::-webkit-scrollbar {
   width: 6px;
 }
 
-.replies::-webkit-scrollbar-thumb {
+.replies-container::-webkit-scrollbar-thumb,.replies::-webkit-scrollbar-thumb {
   background-color: rgb(212, 212, 212);
 }
 
@@ -155,15 +173,34 @@ export default {
 }
 
 .replies-card {
-  min-height: 100%;
+  height: 100%;
   box-shadow: 0 0 4px rgb(0.3, 0.3, 0.3, 0.3);
   background-color: #fff;
+  display: flex;
+  flex-flow: column;
+}
+.replies-container {
+  overflow-y: auto;
+  height: 100%;
 }
 .btn:focus{
   outline: none;
 }
 .reply__content {
   word-wrap: break-word
+}
+.send-your-reply {
+  position:-webkit-sticky;
+  position: sticky;
+  bottom: 0;
+}
+ /*Message formating*/
+.reply__content>>>a {
+  color: rgb(0, 81, 255) !important;
+  font-size: 16px;
+}
+.reply__content>>>a:hover {
+  text-decoration: underline;
 }
 @media only screen and (max-width: 800px){
   .replies {

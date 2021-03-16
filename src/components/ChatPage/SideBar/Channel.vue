@@ -47,7 +47,7 @@ export default {
 }
 .contact-name {
   font-size: 12;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: bold !important;
 }
 .contact-last-message {
@@ -63,5 +63,10 @@ export default {
   width: 30px;
   height: 30px;
   display: inline-block;
+}
+@media only screen and (max-width: 800px){
+  .contact-name {
+    font-size: 130%;
+  }
 }
 </style>

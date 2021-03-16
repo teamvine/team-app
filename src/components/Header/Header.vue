@@ -16,7 +16,10 @@
       </div>
       <div class="user-menu">
         <div class="drp-dwn-toggler pl-2" @click.stop="showDropDown = !showDropDown">
-          <img src="../../assets/images/avatar4.png" alt="user-pic"/>
+          <img
+          :src="(user.profile_pic.updated? user.profile_pic.url: require('../../assets/images/avatar4.png'))" 
+          :alt="user.full_name"
+          />
         </div>
         <div class="drop-down shadow-md" v-show="showDropDown" v-click-outside="outsideClick">
           <div
