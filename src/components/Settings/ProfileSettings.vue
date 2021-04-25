@@ -200,6 +200,7 @@ export default {
             this.closeUpdateModal();
           }else{
             alert("SOMETHING WENT WRONG. RETRY")
+            console.log(response.data)
           }
         }).catch(err=> {
           this.saving_new_pic = false
