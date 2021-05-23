@@ -1,0 +1,112 @@
+@font-face { 
+    font-family: "Lato";
+    src: url('../fonts/Lato/Lato-Regular.ttf');
+}
+@font-face { 
+    font-family: "LatoLight";
+    src: url('../fonts/Lato/Lato-Light.ttf');
+}
+
+@font-face { 
+    font-family: "LatoBold";
+    src: url('../fonts/Lato/Lato-Bold.ttf');
+}
+
+*{
+    box-sizing: border-box;
+    /* font-family: 'Lato', sans-serif; */
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+html,body{
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.font-arial {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+/* nprogress */
+#nprogress {
+    pointer-events: none;
+  }
+  
+  #nprogress .bar {
+    background: rgb(0, 109, 211);
+  
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+  }
+  #nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px rgb(0, 109, 211), 0 0 5px rgb(0, 109, 211);
+    opacity: 1.0;
+  
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+        -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px);
+}
+
+.loader {
+    border-top-color: #3498db;
+    border-left-color: #3498db;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+  }
+  
+  @-webkit-keyframes spinner {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Skeleton with animation */
+  .skeleton-box {
+    position: relative;
+    overflow: hidden;
+    background-color: #e2e8f0;
+  }
+  .skeleton-box::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 3s infinite;
+    content: '';
+  }
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /*Message formating*/
+.reply__content>>>a {
+  color: rgb(0, 81, 255) !important;
+  font-size: 16px;
+}
+.reply__content>>>a:hover {
+  text-decoration: underline;
+}
