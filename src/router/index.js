@@ -54,7 +54,7 @@ const routes = [
             path: "search-organization",
             name: "FindWorkspace",
             component: () => import(/* webpackChunkName: "FindWorkspace" */ '../components/StartPage/FindWorkspace/FindWorkspace')
-          }
+          },
         ]
       },
       {
@@ -166,6 +166,16 @@ const routes = [
         return next()
       }
     },
+  },
+  {
+    path: '/reset-password',
+    name: "ResetPassword",
+    component: ()=> import('../pages/ForgotPassword.vue')
+  },
+  {
+    path: '/change-password',
+    name: "ResetPassword",
+    component: ()=> import('../pages/ChangePassword.vue')
   },
   {
     path: '/**',
