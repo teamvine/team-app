@@ -10,8 +10,9 @@
         :class="[contact.status=='online'? 'bg-green-400':'']"
         class="absolute rounded-full right-0 bottom-0 w-2 h-2"
       ></div>
+
     </div>
-    <span class="contact-name ml-1"> {{ contact.full_name }}</span>
+    <span class="contact-name ml-1"> {{ contact.full_name + contact.status}}</span>
     <!-- <p class="contact-last-message text">
       {{ contact.lastMessage.message }}
     </p> -->
