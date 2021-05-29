@@ -13,7 +13,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     ```
   - Before going to sleep, remember to push your changes to your branch 😁️. But wait a sec follow these steps.
      ```
-    git checkout edisor/felix  (Done Only Once)
+    git checkout edisor/felix  (Done Only Ocne)
     git add .
     git commit -m 'Simple Message-Month-name/Date/Year'
     git pull origin master
