@@ -12,7 +12,8 @@
       ></div>
 
     </div>
-    <span class="contact-name ml-1"> {{ contact.full_name + contact.status}}</span>
+    <span class="contact-name ml-1"> {{ contact.full_name}}</span>
+    <!-- <span class="status rounded-full h-3 w-3 flex items-center justify-center"></span> -->
     <!-- <p class="contact-last-message text">
       {{ contact.lastMessage.message }}
     </p> -->
@@ -52,7 +53,6 @@ export default {
   display: inline-block;
 }
 .contact-name {
-  font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold !important;
 }
@@ -84,5 +84,8 @@ export default {
   position: absolute;
   width: 10px;
   height: 10px;
+}
+.status{
+  background: rebeccapurple;
 }
 </style>
