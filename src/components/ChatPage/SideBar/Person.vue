@@ -1,19 +1,15 @@
 <template>
-  <div class="contact py-2 px-2 pl-3" :class="[isCurrent(contact)? 'active':'']" @click="switchDirectChat(contact)">
+  <div class="contact p-2 px-5" :class="[isCurrent(contact)? 'active':'']" @click="switchDirectChat(contact)">
+ 
     <div class="">
       <img
         :src="contact.profile_pic.updated? contact.profile_pic.url:require('../../../assets/images/avatar4.png')"
         class="left-0 top-0 w-full h-full rounded-full object-cover"
       />
-      <div
-        v-if="contact.status"
-        :class="[contact.status=='online'? 'bg-green-400':'']"
-        class="absolute rounded-full right-0 bottom-0 w-2 h-2"
-      ></div>
-
     </div>
     <span class="contact-name ml-1"> {{ contact.full_name}}</span>
-    <!-- <span class="status rounded-full h-3 w-3 flex items-center justify-center"></span> -->
+    <span class="status rounded-full h-3 w-3" title="Active"></span>
+
     <!-- <p class="contact-last-message text">
       {{ contact.lastMessage.message }}
     </p> -->
@@ -86,6 +82,8 @@ export default {
   height: 10px;
 }
 .status{
-  background: rebeccapurple;
+  display: inline-block;
+  background: #2f74eb;
+  margin-left: 5px;
 }
 </style>
