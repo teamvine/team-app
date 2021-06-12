@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[editorType=='extended'? 'chat-foot-extended':'chat-foot']"
-    class="rounded-md bord shadow-md lg:px-4 px-2 bg-white flex flex-wrap items-center lg:py-0"
+    class="rounded-md bord shadow-md bg-white flex flex-wrap items-center lg:py-0"
   >
     <div class="edit" id="editor" contenteditable="true" v-if="editorType=='extended'">
     </div>
@@ -233,11 +233,12 @@ export default {
    let buttons = document.getElementsByClassName('menubar__button')
    for(let btn of buttons){
      btn.addEventListener('click',()=>{
-       let cmd = btn.dataset['command']
+       let cmd = btn.dataset['command'];
        if(cmd === "createlink"){
          let url = prompt("Enter the link","http:\/\/")
          document.execCommand(cmd,false,url)
        }else{
+         btn.classList.add("activeBtn")
          document.execCommand(cmd,false,null)
        }
      })
@@ -311,8 +312,9 @@ form {
   height: 100%;
   display: flex;
   flex-direction: row;
-  padding: 0.5% 0;
+  padding: 0  10px;
   position: relative;
+  background: rgb(248, 248, 248);
 }
 form .emoji-pickr {
   position: absolute;
@@ -348,12 +350,14 @@ form .icon svg:hover {
 form .field {
   height: 100%;
   width: 100%;
+  margin-left: 10px;
 }
 form .field input {
   height: 100%;
   width: 100%;
   padding: 0 2%;
   font-size: 14px;
+
 }
 .chat-options {
   position: relative;
@@ -389,7 +393,7 @@ form .field input {
   background: rgb(253, 253, 253);
   outline: none;
   font-size: 14px;
-  padding-top: 13px;
+  padding: 13px 20px;
 }
 .edit *{
   all: initial;
@@ -406,17 +410,38 @@ form .field input {
   position: relative;
 }
 .format-buttons button{
-  width: 8.33333333333%;
+  width: 5%;
   outline: none;
   margin-top: 1%;
 }
 .format-buttons button.is-active,.format-buttons button:hover{
-  background-color: #2f74eb2c;
+  background-color: #acaeb32c;
+  border-radius: 3px;
 }
 
 .editor__content div {
   display: block;
   height: 100%;
   outline: none;
+}
+
+/* design buttons  according to its functionalities*/
+/* disable text color  */
+.field button:disabled{
+ color: rgb(223, 223, 223);
+}
+.field button{
+  color: rgb(88, 88, 88);
+  margin-left: 3px;
+}
+.ri-bold{
+  font-weight: bolder;
+}
+.ri-italic{
+  font-style: italic;
+}
+.activeBtn{
+    background-color: #acaeb32c;
+  border-radius: 3px;
 }
 </style>
