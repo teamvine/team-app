@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[editorType=='extended'? 'chat-foot-extended':'chat-foot']"
-    class="rounded-md bord shadow-md bg-white flex flex-wrap items-center lg:py-0"
+    class="bord shadow-md bg-white flex flex-wrap items-center lg:py-0"
   >
     <div class="edit" id="editor" contenteditable="true" v-if="editorType=='extended'">
     </div>
@@ -238,7 +238,7 @@ export default {
          let url = prompt("Enter the link","http:\/\/")
          document.execCommand(cmd,false,url)
        }else{
-         btn.classList.add("activeBtn")
+         btn.classList.toggle("activeBtn")
          document.execCommand(cmd,false,null)
        }
      })
@@ -300,7 +300,9 @@ export default {
 
 <style scoped>
 .bord {
-  border: 1px solid rgba(0, 5, 77, 0.2);
+    box-shadow:0 0 0 1px rgb(214, 214, 214);
+    outline: 0;
+    border-radius: 3px;
 }
 .chat-foot {
   height: 50px;
@@ -312,7 +314,7 @@ form {
   height: 100%;
   display: flex;
   flex-direction: row;
-  padding: 0  10px;
+  padding: 0  5px;
   position: relative;
   background: rgb(248, 248, 248);
 }
@@ -337,14 +339,14 @@ form .icon svg {
   margin: auto;
   margin-top: 10%;
   fill: #2f74eb;
-  fill: linear-gradient(180deg, #2f74eb 0%, #83eaf1 74%);
+  /* fill: linear-gradient(180deg, #2f74eb 0%, #83eaf1 74%); */
 }
 form .icon img {
   cursor: pointer;
 }
 form .icon svg:hover {
   fill: #164ba7;
-  fill: linear-gradient(180deg, #164ba7 0%, #83eaf1 74%);
+  /* fill: linear-gradient(180deg, #164ba7 0%, #83eaf1 74%); */
   cursor: pointer;
 }
 form .field {
