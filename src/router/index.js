@@ -180,6 +180,19 @@ const routes = [
       }
     },
   },
+  {
+  path: "/successful-reset",
+  name: "SuccessfulReset",
+  component: () => import(/* webpackChunkName: "Successful_Reset" */ '../pages/ResetSuccess.vue'),
+  beforeEnter(to, from, next) {
+    let userInfo = localStorage.getItem("rconnectToken") || false
+    if (!userInfo) {
+      return next({ name: "Home" })
+    } else {
+      return next()
+    }
+  },
+},
  
   {
     path: '/reset-password',
