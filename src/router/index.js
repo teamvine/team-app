@@ -201,7 +201,7 @@ const routes = [
   },
   {
     path: '/change-password',
-    name: "ResetPassword",
+    name: "changePassword",
     component: ()=> import('../pages/ChangePassword.vue')
   },
   {

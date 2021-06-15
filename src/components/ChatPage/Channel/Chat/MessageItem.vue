@@ -10,8 +10,11 @@
       class="wh-40 img" v-if="!sameToPrevious"/>
       <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
-        <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.display_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at | formatDate}}</span>
+        <!-- <div class="msg-body py-0 txt px-1" v-for="m">{{messages|transform}}</div> -->
+
+        <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.display_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at |formatDate}}</span>
         <span class="msg-body py-0 txt px-1" v-html="this.$options.filters.format_messageLinks(message.content)"></span>
+        
         <div v-if="getAllLinksinText(message.content).length>0">
           <LinkMetaData 
             v-for="(web_url, index) in getAllLinksinText(message.content)"
@@ -66,6 +69,7 @@ export default {
       user: state=> state.all.user
     })
   },
+  
   methods: {
     ...mapGetters("chat", ["getCurrentChannel"]),
     ...mapMutations("chat", ["deleteMessage"]),
@@ -96,6 +100,45 @@ export default {
     formatDate: (value)=>{
       return Filters.formatTimestamp_v2(value)
     },
+    transform(value) {
+        if (value) {
+            const seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
+            if (seconds < 29) // less than 30 seconds ago will show as 'Just now'
+                return 'Just now';
+            const intervals = {
+                'year': 31536000,
+                'month': 2592000,
+                'week': 604800,
+                'day': 86400,
+                'hour': 3600,
+                'minute': 60,
+                'second': 1
+            };
+            let counter;
+            for (const i in intervals) {
+                counter = Math.floor(seconds / intervals[i]);
+                if (counter > 0)
+                    if (counter === 1) {
+
+                        return counter + ' ' + i + ' ago'; // singular (1 day ago)
+                    } else {
+                        return counter + ' ' + i + 's ago'; // plural (2 days ago)
+                    }
+            }
+
+           
+
+          
+        }
+        return value;
+
+     
+     
+    },
+
+   
+
+
     format_messageLinks: (value)=>{
       return Filters.formatMessageLinks(value)
     }

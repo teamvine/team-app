@@ -192,7 +192,6 @@ export default {
   overflow: hidden; 
   white-space: pre;
 }
-
 @media only screen and (max-width: 800px){
   .chat {
     min-width: auto;
