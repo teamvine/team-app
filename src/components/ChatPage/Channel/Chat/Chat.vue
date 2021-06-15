@@ -15,6 +15,7 @@
             </div>
             <MessageItem 
               v-for="(message,index) in currentChatMessages"
+               :previousMessageSentAt="index"
               :toggleReplies="toggleReplies"
               :sameToPrevious="allMessagesToArray(currentChatMessages).indexOf(message)>0 && message.sender_info.email==allMessagesToArray(currentChatMessages)[allMessagesToArray(currentChatMessages).indexOf(message)-1].sender_info.email" 
               :message="message" :key="index"/>
@@ -44,6 +45,7 @@ import { mapGetters, mapState, mapMutations } from "vuex";
 import { component as CodeHighlight } from 'vue-code-highlight'
 import { getOlderMessagesInChannel } from '../../../../lib/message'
 import _ from "lodash"
+import { messages } from '../../../../src/lib/api';
 export default {
   name: "Chat",
   components: {
@@ -125,12 +127,17 @@ export default {
           alert("ERROR: SOMETHING WENT WRONG!")
           console.log(err)
         })
+    },
+    groupBYdate(){
+      
+     console.log(messages);
     }
   },
   watch: {
     currentChannel: function(){
       this.loadingOlderMessages.noMoreMessages = false
       this.loadingOlderMessages.loading = false
+      
     }
   }
 };

@@ -1,5 +1,7 @@
 <template>
   <div class="message-item hover:bg-gray-100" :class="[sameToPrevious? 'mt-1':'mt-4']">
+     <div class="text-center">---------------------{{message.sent_at |transform}}-------------------------</div>
+    
     <div class="flex msg-item-content">
       <img 
       :src="
@@ -10,7 +12,7 @@
       class="wh-40 img" v-if="!sameToPrevious"/>
       <span class="w-40" v-else>&emsp;</span>
       <div class="flex-1 px-3">
-        <!-- <div class="msg-body py-0 txt px-1" v-for="m">{{messages|transform}}</div> -->
+       
 
         <b class="px-1 txt user-name" v-if="!sameToPrevious">{{message.sender_info.display_name}}</b> <span v-if="!sameToPrevious" class="text-sm msg-date mt-2 px-2 text-sm">{{message.sent_at |formatDate}}</span>
         <span class="msg-body py-0 txt px-1" v-html="this.$options.filters.format_messageLinks(message.content)"></span>
@@ -125,14 +127,12 @@ export default {
                         return counter + ' ' + i + 's ago'; // plural (2 days ago)
                     }
             }
+            
 
-           
-
-          
         }
         return value;
 
-     
+    
      
     },
 
